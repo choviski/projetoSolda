@@ -4,7 +4,7 @@
 @section('content')
     <div class="row d-flex justify-content-center ">
         <div class="col-12 bg-primary text-center shadow-sm ">
-            <a class="text-white  display-4 ">CIDADES</a>
+            <a class="text-white  display-4 ">CIDADE</a>
             <hr class="bg-white">
             <p class="lead text-white">Edição: {{$cidade->nome}}, {{$cidade->estado}}</p>
         </div>
