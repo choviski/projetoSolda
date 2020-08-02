@@ -13,4 +13,10 @@ class Contato extends Model
     public function empresa(){
         return $this->hasOne('App\EmpresaContato', 'id_contato','id');
     }
+    public function phoneNumber() {
+        // add logic to correctly format number here
+        // a more robust ways would be to use a regular expression
+        $data ="";
+        return "(".substr($data, 0, 3).") ".substr($data, 3, 3)." ".substr($data,6);
+    }
 }
