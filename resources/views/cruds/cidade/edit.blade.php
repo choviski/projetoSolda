@@ -4,7 +4,9 @@
 @section('content')
     <div class="row d-flex justify-content-center ">
         <div class="col-12 bg-primary text-center shadow-sm ">
-            <a class="text-white  display-4 ">CIDADE</a>
+
+            <a class="text-white  display-4 ">CIDADES</a>
+
             <hr class="bg-white">
             <p class="lead text-white">Edição: {{$cidade->nome}}, {{$cidade->estado}}</p>
         </div>
@@ -24,4 +26,5 @@
         </form>
     </div>
     <a href="/cidade"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
 @endsection

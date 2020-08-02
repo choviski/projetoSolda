@@ -19,6 +19,20 @@ Route::get('/', function () {
 Route::resource("/cidade","CidadeController",['except'=>'destroy']);
 Route::delete('/cidade/remover/{id}', "CidadeController@destroy");
 
+
+Route::resource("/soldador","SoldadorController",['except'=>'destroy']);
+Route::delete('/soldador/remover/{id}', "SoldadorController@destroy");
+
+Route::resource("/endereco","EnderecoController",['except'=>'destroy']);
+Route::delete('/endereco/remover/{id}', "EnderecoController@destroy");
+
+Route::resource("/soldadorqualificacao","SoldadorQualificacaoController",['except'=>'destroy']);
+Route::delete('/soldadorqualificacao/remover/{id}', "SoldadorQualificacaoController@destroy");
+
+Route::resource("/normaqualificacao","NormaQualificacaoController",['except'=>'destroy']);
+Route::delete('/normaqualificacao/remover/{id}', "NormaQualificacaoController@destroy");
+
+
 Route::resource("/norma","NormaController",['except'=>'destroy']);
 Route::delete('/norma/remover/{id}', "NormaController@destroy");
 
@@ -36,5 +50,6 @@ Route::delete('/empresa/remover/{id}', "EmpresaController@destroy");
 
 Route::resource("/contatoEmpresa","contatoEmpresaController",['except'=>'destroy']);
 Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy");
+
 
 
