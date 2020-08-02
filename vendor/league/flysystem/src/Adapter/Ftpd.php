@@ -12,6 +12,14 @@ class Ftpd extends Ftp
         if ($path === '') {
             return ['type' => 'dir', 'path' => ''];
         }
+<<<<<<< HEAD
+=======
+        if (@ftp_chdir($this->getConnection(), $path) === true) {
+            $this->setConnectionRoot();
+
+            return ['type' => 'dir', 'path' => $path];
+        }
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 
         if ( ! ($object = ftp_raw($this->getConnection(), 'STAT ' . $path)) || count($object) < 3) {
             return false;

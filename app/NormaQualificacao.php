@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NormaQualificacao extends Model
 {
-    protected $table="normas_qualificacoes";
+    protected $table="norma_qualificacoes";
     protected $fillable=["id_norma","id_qualificacao"];
     public function norma(){
         return $this->belongsTo("App\Norma",'id_norma','id');

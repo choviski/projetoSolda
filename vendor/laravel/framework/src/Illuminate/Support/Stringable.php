@@ -669,7 +669,11 @@ class Stringable
     {
         $this->dump();
 
+<<<<<<< HEAD
         die(1);
+=======
+        exit(1);
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 
     /**

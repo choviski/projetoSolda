@@ -23,8 +23,15 @@ return [
     'hour' => 'ਇੱਕ ਘੰਟਾ|:count ਘੰਟੇ',
     'minute' => 'ਇਕ ਮਿੰਟ|:count ਮਿੰਟ',
     'second' => 'ਕੁਝ ਸਕਿੰਟ|:count ਸਕਿੰਟ',
+<<<<<<< HEAD
     'ago' => ':time ਪਿਛਲੇ',
     'from_now' => ':time ਵਿੱਚ',
+=======
+    'ago' => ':time ਪਹਿਲਾਂ',
+    'from_now' => ':time ਵਿੱਚ',
+    'before' => ':time ਤੋਂ ਪਹਿਲਾਂ',
+    'after' => ':time ਤੋਂ ਬਾਅਦ',
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     'diff_now' => 'ਹੁਣ',
     'diff_today' => 'ਅਜ',
     'diff_yesterday' => 'ਕਲ',
@@ -70,4 +77,8 @@ return [
     'day_of_first_week_of_year' => 1,
     'list' => [', ', ' ਅਤੇ '],
     'weekend' => [0, 0],
+<<<<<<< HEAD
+=======
+    'alt_numbers' => ['੦', '੧', '੨', '੩', '੪', '੫', '੬', '੭', '੮', '੯'],
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 ];

@@ -1,11 +1,24 @@
 {
     "name": "league/flysystem",
+<<<<<<< HEAD
+=======
+    "type": "library",
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     "description": "Filesystem abstraction: Many filesystems, one API.",
     "keywords": [
         "filesystem", "filesystems", "files", "storage", "dropbox", "aws",
         "abstraction", "s3", "ftp", "sftp", "remote", "webdav",
         "file systems", "cloud", "cloud files", "rackspace", "copy.com"
     ],
+<<<<<<< HEAD
+=======
+    "funding": [
+        {
+            "type": "other",
+            "url": "https://offset.earth/frankdejonge"
+        }
+    ],
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     "license": "MIT",
     "authors": [
         {
@@ -14,12 +27,21 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
         "php": ">=5.5.9"
     },
     "require-dev": {
         "ext-fileinfo": "*",
         "phpspec/phpspec": "^3.4",
         "phpunit/phpunit": "^5.7.10"
+=======
+        "php": ">=5.5.9",
+        "ext-fileinfo": "*"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.4 || ^4.0 || ^5.0 || ^6.0",
+        "phpunit/phpunit": "^5.7.26"
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     },
     "autoload": {
         "psr-4": {
@@ -53,12 +75,21 @@
     "conflict": {
         "league/flysystem-sftp": "<1.0.6"
     },
+<<<<<<< HEAD
     "config": {
         "bin-dir": "bin"
     },
+=======
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     "extra": {
         "branch-alias": {
             "dev-master": "1.1-dev"
         }
+<<<<<<< HEAD
+=======
+    },
+    "scripts": {
+        "phpstan": "php phpstan.php"
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 }

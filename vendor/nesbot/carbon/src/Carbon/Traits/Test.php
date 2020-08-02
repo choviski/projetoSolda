@@ -43,10 +43,21 @@ trait Test
      *
      * /!\ Use this method for unit tests only.
      *
+<<<<<<< HEAD
      * @param Closure|static|string|null $testNow real or mock Carbon instance
      */
     public static function setTestNow($testNow = null)
     {
+=======
+     * @param Closure|static|string|false|null $testNow real or mock Carbon instance
+     */
+    public static function setTestNow($testNow = null)
+    {
+        if ($testNow === false) {
+            $testNow = null;
+        }
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         static::$testNow = is_string($testNow) ? static::parse($testNow) : $testNow;
     }
 

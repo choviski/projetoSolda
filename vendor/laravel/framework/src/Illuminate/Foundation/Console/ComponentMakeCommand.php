@@ -80,7 +80,11 @@ class ComponentMakeCommand extends GeneratorCommand
         if ($this->option('inline')) {
             return str_replace(
                 'DummyView',
+<<<<<<< HEAD
                 "<<<'blade'\n<div>\n    ".Inspiring::quote()."\n</div>\nblade",
+=======
+                "<<<'blade'\n<div>\n    <!-- ".Inspiring::quote()." -->\n</div>\nblade",
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
                 parent::buildClass($name)
             );
         }

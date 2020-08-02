@@ -972,14 +972,25 @@ trait HasAttributes
      */
     public function getDates()
     {
+<<<<<<< HEAD
+=======
+        if (! $this->usesTimestamps()) {
+            return $this->dates;
+        }
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $defaults = [
             $this->getCreatedAtColumn(),
             $this->getUpdatedAtColumn(),
         ];
 
+<<<<<<< HEAD
         return $this->usesTimestamps()
                     ? array_unique(array_merge($this->dates, $defaults))
                     : $this->dates;
+=======
+        return array_unique(array_merge($this->dates, $defaults));
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 
     /**

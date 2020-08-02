@@ -21,6 +21,10 @@ use Ramsey\Uuid\Converter\NumberConverterInterface;
 use Ramsey\Uuid\Converter\TimeConverterInterface;
 use Ramsey\Uuid\Exception\DateTimeException;
 use Ramsey\Uuid\Exception\InvalidArgumentException;
+<<<<<<< HEAD
+=======
+use Ramsey\Uuid\Lazy\LazyUuidFromString;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
 use Ramsey\Uuid\Rfc4122\UuidInterface;
 use Ramsey\Uuid\Rfc4122\UuidV1;
@@ -106,10 +110,17 @@ final class UuidV6 extends Uuid implements UuidInterface
             . '1' . substr($hex, 0, 3)
             . substr($hex, 16);
 
+<<<<<<< HEAD
         /** @var UuidV1 $uuid */
         $uuid = Uuid::fromBytes((string) hex2bin($hex));
 
         return $uuid;
+=======
+        /** @var LazyUuidFromString $uuid */
+        $uuid = Uuid::fromBytes((string) hex2bin($hex));
+
+        return $uuid->toUuidV1();
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 
     /**
@@ -124,9 +135,16 @@ final class UuidV6 extends Uuid implements UuidInterface
             . '6' . substr($hex, 5, 3)
             . substr($hex, 16);
 
+<<<<<<< HEAD
         /** @var UuidV6 $uuid */
         $uuid = Uuid::fromBytes((string) hex2bin($hex));
 
         return $uuid;
+=======
+        /** @var LazyUuidFromString $uuid */
+        $uuid = Uuid::fromBytes((string) hex2bin($hex));
+
+        return $uuid->toUuidV6();
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 }

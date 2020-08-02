@@ -15,7 +15,11 @@ declare(strict_types=1);
 namespace Ramsey\Uuid\Fields;
 
 use function base64_decode;
+<<<<<<< HEAD
 use function base64_encode;
+=======
+use function strlen;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 
 /**
  * Provides common serialization functionality to fields
@@ -39,7 +43,11 @@ trait SerializableFieldsTrait
      */
     public function serialize(): string
     {
+<<<<<<< HEAD
         return base64_encode($this->getBytes());
+=======
+        return $this->getBytes();
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 
     /**
@@ -51,6 +59,14 @@ trait SerializableFieldsTrait
      */
     public function unserialize($serialized): void
     {
+<<<<<<< HEAD
         $this->__construct(base64_decode($serialized));
+=======
+        if (strlen($serialized) === 16) {
+            $this->__construct($serialized);
+        } else {
+            $this->__construct(base64_decode($serialized));
+        }
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 }

@@ -40,7 +40,15 @@ trait ManagesTransactions
             }
 
             try {
+<<<<<<< HEAD
                 $this->commit();
+=======
+                if ($this->transactions == 1) {
+                    $this->getPdo()->commit();
+                }
+
+                $this->transactions = max(0, $this->transactions - 1);
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
             } catch (Throwable $e) {
                 $this->handleCommitTransactionException(
                     $e, $currentAttempt, $attempts
@@ -49,6 +57,11 @@ trait ManagesTransactions
                 continue;
             }
 
+<<<<<<< HEAD
+=======
+            $this->fireConnectionEvent('committed');
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
             return $callbackResult;
         }
     }
@@ -189,7 +202,11 @@ trait ManagesTransactions
      */
     protected function handleCommitTransactionException(Throwable $e, $currentAttempt, $maxAttempts)
     {
+<<<<<<< HEAD
         $this->transactions--;
+=======
+        $this->transactions = max(0, $this->transactions - 1);
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 
         if ($this->causedByConcurrencyError($e) &&
             $currentAttempt < $maxAttempts) {

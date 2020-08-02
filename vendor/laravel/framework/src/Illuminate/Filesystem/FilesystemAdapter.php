@@ -236,7 +236,11 @@ class FilesystemAdapter implements CloudFilesystemContract
      *
      * @param  string  $path
      * @param  \Illuminate\Http\File|\Illuminate\Http\UploadedFile|string  $file
+<<<<<<< HEAD
      * @param  array  $options
+=======
+     * @param  mixed  $options
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
      * @return string|false
      */
     public function putFile($path, $file, $options = [])
@@ -252,7 +256,11 @@ class FilesystemAdapter implements CloudFilesystemContract
      * @param  string  $path
      * @param  \Illuminate\Http\File|\Illuminate\Http\UploadedFile|string  $file
      * @param  string  $name
+<<<<<<< HEAD
      * @param  array  $options
+=======
+     * @param  mixed  $options
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
      * @return string|false
      */
     public function putFileAs($path, $file, $name, $options = [])

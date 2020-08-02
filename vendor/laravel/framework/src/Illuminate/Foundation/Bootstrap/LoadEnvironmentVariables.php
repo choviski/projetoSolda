@@ -105,6 +105,10 @@ class LoadEnvironmentVariables
         $output->writeln('The environment file is invalid!');
         $output->writeln($e->getMessage());
 
+<<<<<<< HEAD
         die(1);
+=======
+        exit(1);
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 }

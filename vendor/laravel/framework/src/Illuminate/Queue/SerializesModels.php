@@ -65,6 +65,15 @@ trait SerializesModels
                 continue;
             }
 
+<<<<<<< HEAD
+=======
+            $property->setAccessible(true);
+
+            if (! $property->isInitialized($this)) {
+                continue;
+            }
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
             $name = $property->getName();
 
             if ($property->isPrivate()) {

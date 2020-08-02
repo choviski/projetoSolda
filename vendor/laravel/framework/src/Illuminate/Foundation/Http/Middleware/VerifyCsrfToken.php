@@ -6,6 +6,10 @@ use Closure;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Responsable;
+<<<<<<< HEAD
+=======
+use Illuminate\Cookie\CookieValuePrefix;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\InteractsWithTime;
@@ -151,7 +155,11 @@ class VerifyCsrfToken
         $token = $request->input('_token') ?: $request->header('X-CSRF-TOKEN');
 
         if (! $token && $header = $request->header('X-XSRF-TOKEN')) {
+<<<<<<< HEAD
             $token = $this->encrypter->decrypt($header, static::serialized());
+=======
+            $token = CookieValuePrefix::remove($this->encrypter->decrypt($header, static::serialized()));
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         }
 
         return $token;

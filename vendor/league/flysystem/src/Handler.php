@@ -60,7 +60,11 @@ abstract class Handler
     {
         $metadata = $this->filesystem->getMetadata($this->path);
 
+<<<<<<< HEAD
         return $metadata['type'];
+=======
+        return $metadata ? $metadata['type'] : 'dir';
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     }
 
     /**

@@ -8,7 +8,11 @@
     "dependencies": {
         "git-url-parse": "^11.1.2",
         "highlight.js": "^9.15.6",
+<<<<<<< HEAD
         "lodash": "^4.17.4",
+=======
+        "lodash": "^4.17.19",
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         "markdown-it": "^9.0.1",
         "md5": "^2.2.1",
         "sql-formatter": "^2.3.3"

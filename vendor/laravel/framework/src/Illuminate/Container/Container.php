@@ -234,6 +234,13 @@ class Container implements ArrayAccess, ContainerContract
         // bound into this container to the abstract type and we will just wrap it
         // up inside its own Closure to give us more convenience when extending.
         if (! $concrete instanceof Closure) {
+<<<<<<< HEAD
+=======
+            if (! is_string($concrete)) {
+                throw new \TypeError(self::class.'::bind(): Argument #2 ($concrete) must be of type Closure|string|null');
+            }
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
             $concrete = $this->getClosure($abstract, $concrete);
         }
 

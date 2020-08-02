@@ -34,15 +34,27 @@ trait StreamedCopyTrait
     // Required abstract method
 
     /**
+<<<<<<< HEAD
      * @param  string   $path
+=======
+     * @param string $path
+     *
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
      * @return resource
      */
     abstract public function readStream($path);
 
     /**
+<<<<<<< HEAD
      * @param  string   $path
      * @param  resource $resource
      * @param  Config   $config
+=======
+     * @param string   $path
+     * @param resource $resource
+     * @param Config   $config
+     *
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
      * @return resource
      */
     abstract public function writeStream($path, $resource, Config $config);

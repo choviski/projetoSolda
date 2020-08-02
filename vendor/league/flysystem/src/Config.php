@@ -10,7 +10,11 @@ class Config
     protected $settings = [];
 
     /**
+<<<<<<< HEAD
      * @var Config
+=======
+     * @var Config|null
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
      */
     protected $fallback;
 

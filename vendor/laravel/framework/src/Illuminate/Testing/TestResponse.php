@@ -5,6 +5,10 @@ namespace Illuminate\Testing;
 use ArrayAccess;
 use Closure;
 use Illuminate\Contracts\View\View;
+<<<<<<< HEAD
+=======
+use Illuminate\Cookie\CookieValuePrefix;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -299,7 +303,12 @@ class TestResponse implements ArrayAccess
         $cookieValue = $cookie->getValue();
 
         $actual = $encrypted
+<<<<<<< HEAD
             ? app('encrypter')->decrypt($cookieValue, $unserialize) : $cookieValue;
+=======
+            ? CookieValuePrefix::remove(app('encrypter')->decrypt($cookieValue, $unserialize))
+            : $cookieValue;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 
         PHPUnit::assertEquals(
             $value, $actual,

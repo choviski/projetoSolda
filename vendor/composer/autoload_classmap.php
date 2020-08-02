@@ -13,7 +13,15 @@ return array(
     'App\\EmpresaContato' => $baseDir . '/app/EmpresaContato.php',
     'App\\Endereco' => $baseDir . '/app/Endereco.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+=======
+    'App\\Http\\Controllers\\CidadeController' => $baseDir . '/app/Http/Controllers/CidadeController.php',
+    'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\EnderecoController' => $baseDir . '/app/Http/Controllers/EnderecoController.php',
+    'App\\Http\\Controllers\\SoldadorController' => $baseDir . '/app/Http/Controllers/SoldadorController.php',
+    'App\\Http\\Controllers\\SoldadorQualificacaoController' => $baseDir . '/app/Http/Controllers/SoldadorQualificacaoController.php',
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -1275,6 +1283,10 @@ return array(
     'Illuminate\\Contracts\\View\\View' => $vendorDir . '/laravel/framework/src/Illuminate/Contracts/View/View.php',
     'Illuminate\\Cookie\\CookieJar' => $vendorDir . '/laravel/framework/src/Illuminate/Cookie/CookieJar.php',
     'Illuminate\\Cookie\\CookieServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Cookie/CookieServiceProvider.php',
+<<<<<<< HEAD
+=======
+    'Illuminate\\Cookie\\CookieValuePrefix' => $vendorDir . '/laravel/framework/src/Illuminate/Cookie/CookieValuePrefix.php',
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     'Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse' => $vendorDir . '/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php',
     'Illuminate\\Cookie\\Middleware\\EncryptCookies' => $vendorDir . '/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php',
     'Illuminate\\Database\\Capsule\\Manager' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Capsule/Manager.php',
@@ -2136,15 +2148,28 @@ return array(
     'League\\Flysystem\\Adapter\\SynologyFtp' => $vendorDir . '/league/flysystem/src/Adapter/SynologyFtp.php',
     'League\\Flysystem\\Config' => $vendorDir . '/league/flysystem/src/Config.php',
     'League\\Flysystem\\ConfigAwareTrait' => $vendorDir . '/league/flysystem/src/ConfigAwareTrait.php',
+<<<<<<< HEAD
+=======
+    'League\\Flysystem\\ConnectionErrorException' => $vendorDir . '/league/flysystem/src/ConnectionErrorException.php',
+    'League\\Flysystem\\ConnectionRuntimeException' => $vendorDir . '/league/flysystem/src/ConnectionRuntimeException.php',
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     'League\\Flysystem\\Directory' => $vendorDir . '/league/flysystem/src/Directory.php',
     'League\\Flysystem\\Exception' => $vendorDir . '/league/flysystem/src/Exception.php',
     'League\\Flysystem\\File' => $vendorDir . '/league/flysystem/src/File.php',
     'League\\Flysystem\\FileExistsException' => $vendorDir . '/league/flysystem/src/FileExistsException.php',
     'League\\Flysystem\\FileNotFoundException' => $vendorDir . '/league/flysystem/src/FileNotFoundException.php',
     'League\\Flysystem\\Filesystem' => $vendorDir . '/league/flysystem/src/Filesystem.php',
+<<<<<<< HEAD
     'League\\Flysystem\\FilesystemInterface' => $vendorDir . '/league/flysystem/src/FilesystemInterface.php',
     'League\\Flysystem\\FilesystemNotFoundException' => $vendorDir . '/league/flysystem/src/FilesystemNotFoundException.php',
     'League\\Flysystem\\Handler' => $vendorDir . '/league/flysystem/src/Handler.php',
+=======
+    'League\\Flysystem\\FilesystemException' => $vendorDir . '/league/flysystem/src/FilesystemException.php',
+    'League\\Flysystem\\FilesystemInterface' => $vendorDir . '/league/flysystem/src/FilesystemInterface.php',
+    'League\\Flysystem\\FilesystemNotFoundException' => $vendorDir . '/league/flysystem/src/FilesystemNotFoundException.php',
+    'League\\Flysystem\\Handler' => $vendorDir . '/league/flysystem/src/Handler.php',
+    'League\\Flysystem\\InvalidRootException' => $vendorDir . '/league/flysystem/src/InvalidRootException.php',
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     'League\\Flysystem\\MountManager' => $vendorDir . '/league/flysystem/src/MountManager.php',
     'League\\Flysystem\\NotSupportedException' => $vendorDir . '/league/flysystem/src/NotSupportedException.php',
     'League\\Flysystem\\PluginInterface' => $vendorDir . '/league/flysystem/src/PluginInterface.php',
@@ -3437,6 +3462,10 @@ return array(
     'Ramsey\\Uuid\\Guid\\Fields' => $vendorDir . '/ramsey/uuid/src/Guid/Fields.php',
     'Ramsey\\Uuid\\Guid\\Guid' => $vendorDir . '/ramsey/uuid/src/Guid/Guid.php',
     'Ramsey\\Uuid\\Guid\\GuidBuilder' => $vendorDir . '/ramsey/uuid/src/Guid/GuidBuilder.php',
+<<<<<<< HEAD
+=======
+    'Ramsey\\Uuid\\Lazy\\LazyUuidFromString' => $vendorDir . '/ramsey/uuid/src/Lazy/LazyUuidFromString.php',
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     'Ramsey\\Uuid\\Math\\BrickMathCalculator' => $vendorDir . '/ramsey/uuid/src/Math/BrickMathCalculator.php',
     'Ramsey\\Uuid\\Math\\CalculatorInterface' => $vendorDir . '/ramsey/uuid/src/Math/CalculatorInterface.php',
     'Ramsey\\Uuid\\Math\\RoundingMode' => $vendorDir . '/ramsey/uuid/src/Math/RoundingMode.php',

@@ -37,7 +37,11 @@
             'defaultTab' => $defaultTab,
             'defaultTabProps' => $defaultTabProps,
         ])
+<<<<<<< HEAD
     ?>
+=======
+    ?>;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 
     window.tabs = <?=$tabs?>;
 </script>

@@ -186,6 +186,20 @@ trait ManagesLayouts
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Check if section does not exist.
+     *
+     * @param  string  $name
+     * @return bool
+     */
+    public function sectionMissing($name)
+    {
+        return ! $this->hasSection($name);
+    }
+
+    /**
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
      * Get the contents of a section.
      *
      * @param  string  $name

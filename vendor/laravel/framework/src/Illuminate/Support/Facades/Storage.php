@@ -23,6 +23,10 @@ use Illuminate\Filesystem\Filesystem;
  * @method static bool prepend(string $path, string $data)
  * @method static bool put(string $path, string|resource $contents, mixed $options = [])
  * @method static string|false putFile(string $path, \Illuminate\Http\File|\Illuminate\Http\UploadedFile|string $file, mixed $options = [])
+<<<<<<< HEAD
+=======
+ * @method static string|false putFileAs(string $path, \Illuminate\Http\File|\Illuminate\Http\UploadedFile|string $file, string $name, mixed $options = [])
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
  * @method static bool setVisibility(string $path, string $visibility)
  * @method static bool writeStream(string $path, resource $resource, array $options = [])
  * @method static int lastModified(string $path)

@@ -24,6 +24,10 @@ use Ramsey\Uuid\Generator\DefaultTimeGenerator;
 use Ramsey\Uuid\Generator\NameGeneratorInterface;
 use Ramsey\Uuid\Generator\RandomGeneratorInterface;
 use Ramsey\Uuid\Generator\TimeGeneratorInterface;
+<<<<<<< HEAD
+=======
+use Ramsey\Uuid\Lazy\LazyUuidFromString;
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 use Ramsey\Uuid\Provider\NodeProviderInterface;
 use Ramsey\Uuid\Provider\Time\FixedTimeProvider;
 use Ramsey\Uuid\Type\Hexadecimal;
@@ -94,11 +98,22 @@ class UuidFactory implements UuidFactoryInterface
      */
     private $validator;
 
+<<<<<<< HEAD
+=======
+    /** @var bool whether the feature set was provided from outside, or we can operate under "default" assumptions */
+    private $isDefaultFeatureSet;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
     /**
      * @param FeatureSet $features A set of available features in the current environment
      */
     public function __construct(?FeatureSet $features = null)
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = $features === null;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $features = $features ?: new FeatureSet();
 
         $this->codec = $features->getCodec();
@@ -128,6 +143,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setCodec(CodecInterface $codec): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->codec = $codec;
     }
 
@@ -147,6 +167,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setNameGenerator(NameGeneratorInterface $nameGenerator): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->nameGenerator = $nameGenerator;
     }
 
@@ -182,6 +207,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setTimeGenerator(TimeGeneratorInterface $generator): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->timeGenerator = $generator;
     }
 
@@ -201,6 +231,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setDceSecurityGenerator(DceSecurityGeneratorInterface $generator): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->dceSecurityGenerator = $generator;
     }
 
@@ -220,6 +255,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setRandomGenerator(RandomGeneratorInterface $generator): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->randomGenerator = $generator;
     }
 
@@ -231,6 +271,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setNumberConverter(NumberConverterInterface $converter): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->numberConverter = $converter;
     }
 
@@ -250,6 +295,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setUuidBuilder(UuidBuilderInterface $builder): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->uuidBuilder = $builder;
     }
 
@@ -269,6 +319,11 @@ class UuidFactory implements UuidFactoryInterface
      */
     public function setValidator(ValidatorInterface $validator): void
     {
+<<<<<<< HEAD
+=======
+        $this->isDefaultFeatureSet = false;
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         $this->validator = $validator;
     }
 
@@ -458,6 +513,13 @@ class UuidFactory implements UuidFactoryInterface
         $bytes = substr_replace($bytes, $timeHiAndVersion, 6, 2);
         $bytes = substr_replace($bytes, $clockSeqHiAndReserved, 8, 2);
 
+<<<<<<< HEAD
+=======
+        if ($this->isDefaultFeatureSet) {
+            return LazyUuidFromString::fromBytes($bytes);
+        }
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
         return $this->uuid($bytes);
     }
 }

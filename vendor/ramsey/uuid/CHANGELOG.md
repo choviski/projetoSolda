@@ -21,6 +21,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Security
 
 
+<<<<<<< HEAD
+=======
+## [4.1.0] - 2020-07-28
+
+### Changed
+
+* Improve performance of `Uuid::fromString()`, `Uuid::fromBytes()`,
+  `UuidInterface#toString()`, and `UuidInterface#getBytes()`. See PR
+  [#324](https://github.com/ramsey/uuid/pull/324) for more information.
+
+
+>>>>>>> 26a57853ee839924b2db0120fcb2ed8c185674ed
 ## [4.0.1] - 2020-03-29
 
 ### Fixed
