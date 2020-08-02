@@ -15,6 +15,7 @@
                 <input type="text" class="form-control" id="nome" placeholder="Insira o nome da cidade" name="nome" required>
 
                 <label  for="estado">Estado:</label>
+
                 <input type="text" class="form-control" id="estado" placeholder="Insira o estado" name="estado" required>
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
@@ -22,4 +23,6 @@
         </form>
     </div>
     <a href="/cidade"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
 @endsection
+
