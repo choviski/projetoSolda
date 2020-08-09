@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/entidades', function () {
+    return view('entidades');
+});
 Route::resource("/cidade","CidadeController",['except'=>'destroy']);
 Route::delete('/cidade/remover/{id}', "CidadeController@destroy");
 

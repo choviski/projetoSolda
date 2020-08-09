@@ -11,9 +11,12 @@
         <!-- Conteudo da CRUD -->
         <div class="col-12">
             <form method="get" action="{{route("cidade.create")}}">
+                <a href="/entidades" class="btn btn btn-outline-primary mt-2"><i class="fas fa-arrow-left"></i> Voltar</a>
                 @csrf
-                <button class="btn btn btn-outline-primary mt-2">Adicionar</button>
+                <button class="btn btn btn-outline-primary mt-2 ">Adicionar</button>
+
             </form>
+
             <ul class="list-group">
                 @foreach($cidades as $cidade)
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$cidade->id}} |

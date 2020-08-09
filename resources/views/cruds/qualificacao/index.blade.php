@@ -10,6 +10,7 @@
         <!-- Conteudo da CRUD -->
         <div class="col-12">
             <form method="get" action="{{route("qualificacao.create")}}">
+                <a href="/entidades" class="btn btn btn-outline-primary mt-2"><i class="fas fa-arrow-left"></i> Voltar</a>
                 @csrf
                 <button class="btn btn btn-outline-primary mt-2">Adicionar</button>
             </form>
