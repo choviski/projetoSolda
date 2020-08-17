@@ -51,4 +51,8 @@ class EnderecoController extends Controller
         return redirect("/endereco");
 
     }
+    public function cidadeAjax(Request $request){
+        $cidadeCEP=Cidade::where('nome','=',$request->cidade)->first();
+        return $cidadeCEP;
+    }
 }

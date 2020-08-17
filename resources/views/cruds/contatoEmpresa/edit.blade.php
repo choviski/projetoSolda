@@ -13,11 +13,23 @@
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
 
-                <label  for="contato">Contato:</label>
-                <input type="number" class="form-control" id="contato" value="{{$contatoEmpresa->id_contato}}" name="id_contato" required>
+                <label for="id_empresa">Empresa:</label>
+                <select class="form-control" id="id_empresa" name="id_empresa" required>
+                    <option value="{{$contatoEmpresa->empresa->id}}">{{$contatoEmpresa->empresa->nome_fantasia}}</option>
 
-                <label  for="empresa">Empresa:</label>
-                <input type="number" class="form-control" id="empresa" value="{{$contatoEmpresa->id_empresa}}" name="id_empresa" required>
+                    @foreach($empresas as $empresa)
+                        <option value="{{$empresa->id}}">{{$empresa->nome_fantasia}}</option>
+                    @endforeach
+                </select>
+
+                <label for="id_contato">Contato:</label>
+                <select class="form-control" id="id_contato" name="id_contato" required>
+                    <option value="{{$contatoEmpresa->contato->id}}" selected>{{$contatoEmpresa->contato->nome}}</option>
+
+                    @foreach($contatos as $contato)
+                        <option value="{{$contato->id}}">{{$contato->nome}}</option>
+                    @endforeach
+                </select>
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

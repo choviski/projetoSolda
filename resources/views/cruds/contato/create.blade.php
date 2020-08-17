@@ -2,6 +2,8 @@
 @extends('../../layouts/padrao')
 
 @section('content')
+
+
     <div class="row d-flex justify-content-center ">
         <div class="col-12 bg-primary text-center shadow-sm ">
             <a class="text-white  display-4 ">CONTATOS</a>
@@ -14,8 +16,8 @@
                 <label  for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" placeholder="Insira o nome do contato" name="nome" required>
 
-                <label  for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" placeholder="insira o telefone para contato (apenas numeros)" name="telefone" required>
+                <label  for="telefone"> Telefone:</label>
+                <input  type="tel"  id="telefone"   class="form-control " placeholder="insira o telefone para contato (apenas numeros)" name="telefone" required>
 
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="insira o email" name="email" required>
@@ -26,5 +28,11 @@
             </div>
         </form>
     </div>
+
     <a href="/contato"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+    <script>
+        $(document).ready(function(){
+            $('#telefone').mask('(99) 99999-9999');
+        });
+    </script>
 @endsection

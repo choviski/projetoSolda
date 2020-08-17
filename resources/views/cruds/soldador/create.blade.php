@@ -21,7 +21,7 @@
                 <input type="text" class="form-control" id="matricula" placeholder="Insira o matricula" name="matricula" required>
 
                 <label  for="email">E-mail:</label>
-                <input type="text" class="form-control" id="email" placeholder="Insira o email" name="email" required>
+                <input type="email" class="form-control" id="email" placeholder="Insira o email" name="email" required>
 
                 <label for="id_empresa">Empresa:</label>
                 <select class="form-control" id="id_empresa" name="id_empresa" required>

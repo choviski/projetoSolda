@@ -17,7 +17,7 @@
                 <input type="text" class="form-control" id="nome" value="{{$contato->nome}}" name="nome" required>
 
                 <label  for="telefone">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" value="{{$contato->telefone}}" name="telefone" required>
+                <input type="tel" class="form-control" id="telefone" value="{{$contato->telefone}}" name="telefone" required>
 
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" value="{{$contato->email}}" name="email" required>
@@ -27,4 +27,9 @@
         </form>
     </div>
     <a href="/contato"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+    <script>
+        $(document).ready(function(){
+            $('#telefone').mask('(99) 99999-9999');
+        });
+    </script>
 @endsection

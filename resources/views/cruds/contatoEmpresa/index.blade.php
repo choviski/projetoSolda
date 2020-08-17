@@ -18,7 +18,7 @@
             <ul class="list-group">
                 @foreach($contatoEmpresas as $contatoEmpresa)
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$contatoEmpresa->id}} |
-                        Contato {{$contatoEmpresa->contato->nome}} na Empresa {{$contatoEmpresa->empresa->razao_social}}
+                        Contato {{$contatoEmpresa->contato->nome}} na Empresa {{$contatoEmpresa->empresa->nome_fantasia}}
                         <span class="d-flex">
                             <form method="get" action="/contatoEmpresa/{{$contatoEmpresa->id}}">
                                 @csrf
