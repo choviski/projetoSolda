@@ -18,7 +18,7 @@
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição da norma" name="descricao" required></textarea>
 
                 <label  for="validade">Data validade:</label>
-                <input type=a"date" class="form-control" id="validade" placeholder="Insira a data de validade da norma" name="validade" required>
+                <input type="date" class="form-control" id="validade" placeholder="Insira a data de validade da norma" name="validade" required>
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

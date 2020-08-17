@@ -28,15 +28,34 @@
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" value="{{$empresa->email}}" name="email" required>
 
-                <label  for="endereco">Endereço:</label>
-                <input type="number" class="form-control" id="endereco" value="{{$empresa->id_endereco}}" name="id_endereco" required>
+                <label for="id_endereco">Empresa:</label>
+                <select class="form-control" id="id_endereco" name="id_endereco" required>
+                    <option value="{{$empresa->endereco->id}}" selected>{{$empresa->endereco->cidade->nome}}, {{$empresa->endereco->cidade->estado}}, {{$empresa->endereco->bairro}}, {{$empresa->endereco->rua}}</option>
 
-                <label  for="inspetor">Inspetor:</label>
-                <input type="number" class="form-control" id="inspetor" value="{{$empresa->id_inspetor}}" name="id_inspetor" required>
+                    @foreach($enderecos as $endereco)
+                        <option value="{{$endereco->id}}">{{$endereco->cidade->nome}}, {{$endereco->cidade->estado}}, {{$endereco->bairro}}, {{$endereco->rua}}</option>
+                    @endforeach
+                </select>
 
+                <label for="id_inspetor">Inspetor:</label>
+                <select class="form-control" id="id_inspetor" name="id_inspetor" required>
+                    <option value="{{$empresa->inspetor->id}}">{{$empresa->inspetor->nome}}, {{$empresa->inspetor->crea}}</option>
+
+                    @foreach($inspetors as $inspetor)
+                        <option value="{{$inspetor->id}}">{{$inspetor->nome}}, {{$inspetor->crea}}</option>
+                    @endforeach
+                </select>
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
     </div>
     <a href="/empresa"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+    <script>
+        $(document).ready(function(){
+            $('#telefone').mask('(99) 9999-9999');
+        });
+        $(document).ready(function(){
+            $('#cnpj').mask('99.999.999/9999-99');
+        });
+    </script>
 @endsection

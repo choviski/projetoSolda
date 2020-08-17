@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contato;
+use App\Empresa;
 use App\EmpresaContato;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class ContatoEmpresaController extends Controller
      */
     public function create()
     {
-        return view("cruds.contatoEmpresa.create");
+        $contatos=Contato::all();
+        $empresa=Empresa::all();
+        return view("cruds.contatoEmpresa.create")->with(["contatos"=>$contatos,"empresas"=>$empresa]);;
     }
 
     /**
@@ -50,6 +53,7 @@ class ContatoEmpresaController extends Controller
      */
     public function show($id)
     {
+
         $contatoEmpresa=EmpresaContato::find($id);
         return view("cruds.contatoEmpresa.show")->with(["contatoEmpresa"=>$contatoEmpresa]);
     }
@@ -62,8 +66,10 @@ class ContatoEmpresaController extends Controller
      */
     public function edit($id)
     {
+        $contatos=Contato::all();
+        $empresas=Empresa::all();
         $contatoEmpresa=EmpresaContato::find($id);
-        return view("cruds.contatoEmpresa.edit")->with(["contatoEmpresa"=>$contatoEmpresa]);
+        return view("cruds.contatoEmpresa.edit")->with(["contatoEmpresa"=>$contatoEmpresa,"contatos"=>$contatos,"empresas"=>$empresas]);
     }
 
     /**

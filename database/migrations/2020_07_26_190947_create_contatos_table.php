@@ -16,7 +16,7 @@ class CreateContatosTable extends Migration
         Schema::create('contatos', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("nome");
-            $table->bigInteger("telefone");
+            $table->string("telefone",15);
             $table->string("email",100)->unique();
             $table->softDeletes();
             $table->timestamps();

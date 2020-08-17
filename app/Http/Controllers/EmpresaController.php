@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Empresa;
+use App\Endereco;
 use App\Http\Controllers\Controller;
+use App\Inspetor;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -26,7 +28,9 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        return view("cruds.empresa.create");
+        $enderecos=Endereco::all();
+        $inspetors=Inspetor::all();
+        return view("cruds.empresa.create")->with(["enderecos"=>$enderecos,"inspetors"=>$inspetors]);
     }
 
     /**
@@ -61,8 +65,10 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
+        $enderecos=Endereco::all();
+        $inspetors=Inspetor::all();
         $empresa=Empresa::find($id);
-        return view("cruds.empresa.edit")->with(["empresa"=>$empresa]);
+        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors]);
     }
 
     /**
