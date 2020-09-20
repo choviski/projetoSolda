@@ -53,5 +53,13 @@ Route::delete('/empresa/remover/{id}', "EmpresaController@destroy");
 Route::resource("/contatoEmpresa","contatoEmpresaController",['except'=>'destroy']);
 Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy");
 
+Route::resource("/processo","ProcessoController",['except'=>'destroy']);
+Route::delete('/processo/remover/{id}', "ProcessoController@destroy");
+
+Route::post('/login','LoginController@entrar');
+Route::get('/', "LoginController@index")->name("inicio");
+Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");
+Route::post('/cadastrar', "LoginController@cadastrar")->name("cadastrar");
+Route::get('/sair', "LoginController@sair")->name("sair");
 
 

@@ -17,7 +17,7 @@ class CreateNormasTable extends Migration
             $table->bigIncrements("id");
             $table->string("nome");
             $table->text("descricao");
-            $table->date("validade");
+            $table->enum("validade",[6,12,24]);
             $table->timestamps();
             $table->softDeletes();
         });

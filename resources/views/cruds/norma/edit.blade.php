@@ -19,8 +19,13 @@
                 <label  for="descricao">Descrição:</label>
                 <textarea type="text" class="form-control" id="descricao" value="{{$norma->descricao}}" name="descricao" required>{{$norma->descricao}}</textarea>
 
-                <label  for="validade">Validade:</label>
-                <input type="date" class="form-control" id="validade" value="{{$norma->validade}}" name="validade" required>
+                <label for="validade">Validade:</label>
+                <select name="validade" class="form-control" id="validade">
+                    <option value="{{$norma->validade}}">{{$norma->validade}} meses</option>
+                    <option value="1">6 meses</option>
+                    <option value="2">12 meses</option>
+                    <option value="3">24 meses</option>
+                </select>
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
