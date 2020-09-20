@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Processo;
-use App\Qualificacao;
 use Illuminate\Http\Request;
 
-class QualificacaoController extends Controller
+class ProcessoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class QualificacaoController extends Controller
      */
     public function index()
     {
-        $qualificacoes = Qualificacao::all();
-        return view("cruds.qualificacao.index")->with(["qualificacoes"=>$qualificacoes]);
+        $processos = Processo::all();
+        return view("cruds.processo.index")->with(["processos"=>$processos]);
     }
 
     /**
@@ -27,8 +26,7 @@ class QualificacaoController extends Controller
      */
     public function create()
     {
-        $processos = Processo::all();
-        return view("cruds.qualificacao.create")->with(["processos"=>$processos]);
+        return view("cruds.processo.create");
     }
 
     /**
@@ -39,8 +37,8 @@ class QualificacaoController extends Controller
      */
     public function store(Request $request)
     {
-        Qualificacao::create($request->all());
-        return redirect()->route("qualificacao.index");
+        Processo::create($request->all());
+        return redirect()->route("processo.index");
     }
 
     /**
@@ -51,8 +49,8 @@ class QualificacaoController extends Controller
      */
     public function show($id)
     {
-        $qualificacao=Qualificacao::find($id);
-        return view("cruds.qualificacao.show")->with(["qualificacao"=>$qualificacao]);
+        $processo = Processo::find($id);
+        return view ("cruds.processo.show")->with(["processo"=>$processo]);
     }
 
     /**
@@ -63,9 +61,8 @@ class QualificacaoController extends Controller
      */
     public function edit($id)
     {
-        $processos = Processo::all();
-        $qualificacao=Qualificacao::find($id);
-        return view("cruds.qualificacao.edit")->with(["qualificacao"=>$qualificacao,"processos"=>$processos]);
+        $processo = Processo::find($id);
+        return view ("cruds.processo.edit")->with(["processo"=>$processo]);
     }
 
     /**
@@ -77,8 +74,8 @@ class QualificacaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Qualificacao::find($id)->update($request->all());
-        return redirect()->route("qualificacao.index");
+        Processo::find($id)->update($request->all());
+        return redirect()->route("processo.index");
     }
 
     /**
@@ -89,7 +86,7 @@ class QualificacaoController extends Controller
      */
     public function destroy(Request $request)
     {
-        Qualificacao::destroy($request->id);
-        return redirect("/qualificacao");
+        Processo::destroy($request->id);
+        return redirect("/processo");
     }
 }

@@ -13,8 +13,17 @@
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
 
-                <label  for="cod_eps">Código EPS:</label>
+                <label  for="cod_eps">Código:</label>
                 <input type="text" class="form-control" id="cod_eps" value="{{$qualificacao->cod_eps}}" name="cod_eps" required>
+
+                <label for="id_processo">Processo:</label>
+                <select class="form-control" id="id_processo" name="id_processo" required>
+                    <option id="op1" value="{{$qualificacao->processo->id}}">{{$qualificacao->processo->nome}}</option>
+
+                    @foreach($processos as $processo)
+                        <option value="{{$processo->id}}">{{$processo->nome}}</option>
+                    @endforeach
+                </select>
 
                 <label  for="descricao">Descrição:</label>
                 <textarea type="text" class="form-control" id="descricao" value="{{$qualificacao->descricao}}" name="descricao" required>{{$qualificacao->descricao}}</textarea>

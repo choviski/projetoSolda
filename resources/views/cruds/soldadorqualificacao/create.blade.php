@@ -12,6 +12,9 @@
             @csrf
             <div class="form-group bg-light p-2 rounded">
 
+                <label  for="">Código RQS:</label>
+                <input type="text" class="form-control" id="" placeholder="Insira o código RQS" name="cod_rqs" required>
+
                 <label for="id_soldador">Soldador:</label>
                 <select class="form-control" id="id_soldador" name="id_soldador" required>
                     <option value="-1">Selecione o Soldador</option>
@@ -21,7 +24,7 @@
                     @endforeach
                 </select>
 
-                <label for="id_qualificacao">Código EPS da Qualificação:</label>
+                <label for="id_qualificacao">Código da Qualificação:</label>
                 <select class="form-control" id="id_qualificacao" name="id_qualificacao" required>
                     <option value="-1">Selecione a qualificação</option>
 

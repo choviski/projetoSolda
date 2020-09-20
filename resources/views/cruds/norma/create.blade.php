@@ -17,8 +17,12 @@
                 <label  for="descricao">Descrição:</label>
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição da norma" name="descricao" required></textarea>
 
-                <label  for="validade">Data validade:</label>
-                <input type="date" class="form-control" id="validade" placeholder="Insira a data de validade da norma" name="validade" required>
+                <label for="validade">Validade:</label>
+                <select name="validade" class="form-control" id="validade">
+                    <option value="1">6 meses</option>
+                    <option value="2">12 meses</option>
+                    <option value="3">24 meses</option>
+                </select>
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

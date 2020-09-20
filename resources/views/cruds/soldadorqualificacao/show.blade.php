@@ -13,6 +13,7 @@
                     <thead class="bg-primary text-white rounded">
                     <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">CÓDIGO RQS</th>
                         <th scope="col">ID SOLDADOR</th>
                         <th scope="col">NOME SOLDADOR</th>
                         <th scope="col">ID QUALIFICAÇÃO</th>
@@ -30,6 +31,7 @@
                     <tbody>
                     <tr>
                         <td>{{$soldadorqualificacao->id}}</td>
+                        <td>{{$soldadorqualificacao->cod_rqs}}</td>
                         <td>{{$soldadorqualificacao->id_soldador}}</td>
                         <td>{{$soldadorqualificacao->soldador->nome}}</td>
                         <td>{{$soldadorqualificacao->id_qualificacao}}</td>

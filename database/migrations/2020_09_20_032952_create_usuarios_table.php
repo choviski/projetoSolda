@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQualificacaosTable extends Migration
+class CreateUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateQualificacaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('qualificacoes', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger("id_processo");
-            $table->foreign("id_processo")->references("id")->on("processos");
-            $table->string("cod_eps");
-            $table->text("descricao");
-            $table->softDeletes();
+            $table->string("nome");
+            $table->string("email",200)->unique();
+            $table->string("senha");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateQualificacaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualificacaos');
+        Schema::dropIfExists('usuarios');
     }
 }

@@ -21,12 +21,12 @@
                     @endforeach
                 </select>
 
-                <label for="id_qualificacao">Código EPS da Qualificação:</label>
+                <label for="id_qualificacao">Código RQS Qualificação:</label>
                 <select class="form-control" id="id_qualificacao" name="id_qualificacao" required>
                     <option value="-1">Selecione a qualificação</option>
 
                     @foreach($qualificacaos as $qualificacao)
-                        <option value="{{$qualificacao->id}}">{{$qualificacao->cod_eps}}</option>
+                        <option value="{{$qualificacao->id}}">código {{$qualificacao->processo->nome}}: {{$qualificacao->cod_eps}}</option>
                     @endforeach
                 </select>
 

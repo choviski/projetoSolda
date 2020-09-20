@@ -13,6 +13,9 @@
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
 
+                <label  for="">Código RQS:</label>
+                <input type="text" class="form-control" id="" value="{{$soldadorqualificacao->cod_rqs}}" name="cod_rqs" required>
+
                 <label for="id_soldador">Soldador:</label>
                 <select class="form-control" id="id_soldador" name="id_soldador" required>
                     <option value="{{$soldadorqualificacao->soldador_id}}" selected>{{$soldadorqualificacao->soldador->nome}}</option>
@@ -22,7 +25,7 @@
                     @endforeach
                 </select>
 
-                <label for="id_qualificacao">Código EPS da Qualificação:</label>
+                <label for="id_qualificacao">Código da Qualificação:</label>
                 <select class="form-control" id="id_qualificacao" name="id_qualificacao" required>
                     <option value="{{$soldadorqualificacao->qualificao_id}}" selected>{{$soldadorqualificacao->qualificacao->cod_eps}}</option>
 

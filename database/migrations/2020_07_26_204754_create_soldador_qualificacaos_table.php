@@ -15,6 +15,7 @@ class CreateSoldadorQualificacaosTable extends Migration
     {
         Schema::create('soldador_qualificacoes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string("cod_rqs");
             $table->unsignedBigInteger("id_soldador");
             $table->foreign("id_soldador")->references("id")->on("soldadores");
             $table->unsignedBigInteger("id_qualificacao");
