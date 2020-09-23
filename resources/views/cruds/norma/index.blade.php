@@ -1,18 +1,19 @@
-@extends('../../layouts/padrao')
+@extends('../../layouts/padraonovo')
 
 @section('content')
-    <div class="row d-flex justify-content-center ">
-        <div class="col-12 bg-primary text-center shadow-sm ">
-            <a class="text-white  display-4 ">NORMAS</a>
-            <hr class="bg-white">
-            <p class="lead text-white">Listagem</p>
-        </div>
-        <!-- Conteudo da CRUD -->
-        <div class="col-12">
+    <!-- "Header" | Vai ficar embaixo do cabeçalho (quando tiver um) -->
+
+
+    <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
+        <hr>
+        <p class="lead">Gerenciar Normas:</p>
+    </div>
+    <!-- Conteudo da CRUD -->
+    <div class="col-12">
             <form method="get" action="{{route("norma.create")}}">
-                <a href="/entidades" class="btn btn btn-outline-primary mt-2"><i class="fas fa-arrow-left"></i> Voltar</a>
+                <a href="/entidades" class=" btn btn-outline-light mt-2 text-dark"><i class="fas fa-arrow-left"></i> Voltar</a>
                 @csrf
-                <button class="btn btn btn-outline-primary mt-2">Adicionar</button>
+                <button class=" btn btn-outline-light mt-2 text-dark">Adicionar</button>
             </form>
             <ul class="list-group">
                 @foreach($normas as $norma)

@@ -1,13 +1,13 @@
 
-@extends('../../layouts/padrao')
+@extends('../../layouts/padraonovo')
 
 @section('content')
-    <div class="row d-flex justify-content-center ">
-        <div class="col-12 bg-primary text-center shadow-sm ">
-            <a class="text-white  display-4 ">SOLDADORES</a>
-            <hr class="bg-white">
-            <p class="lead text-white">Cadastro</p>
-        </div>
+    <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
+        <hr>
+        <p class="lead">Gerenciar Soldadores:</p>
+    </div>
+
+    <div class="row col-12 d-flex justify-content-center mt-2 ">
         <form  class="col-12 mt-2" action="{{Route('soldador.store')}}" method="post">
             @csrf
             <div class="form-group bg-light p-2 rounded">
@@ -36,6 +36,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
+        <a href="/soldador"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
-    <a href="/soldador"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
 @endsection

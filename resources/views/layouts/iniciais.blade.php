@@ -41,6 +41,7 @@
     </style>
 </head>
 <body class="container-fluid ">
+
 <div class="row d-flex justify-content-center" id="warp-body" style="">
     <div class=" col-md-6 col-sm10 text-center" style="margin-top: 10%;transform: translateY(-20%)">
         @yield('content')

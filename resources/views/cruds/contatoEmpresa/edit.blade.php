@@ -1,14 +1,15 @@
 
-@extends('../../layouts/padrao')
+@extends('../../../../layouts/padraonovo')
 
 @section('content')
-    <div class="row d-flex justify-content-center ">
-        <div class="col-12 bg-primary text-center shadow-sm ">
-            <a class="text-white  display-4 ">CONTATOS EM EMPRESAS</a>
-            <hr class="bg-white">
-            <p class="lead text-white">Edição: contato {{$contatoEmpresa->contato->nome}} na empresa {{$contatoEmpresa->empresa->razao_social}}</p>
-        </div>
-        <form class="col-12 mt-2"action="{{Route('contatoEmpresa.update',['contatoEmpresa'=> $contatoEmpresa->id])}}" method="post">
+    <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
+        <hr>
+        <p class="lead">Gerenciar Contato-Empresa:</p>
+    </div>
+
+    <div class="row col-12 d-flex justify-content-center ">
+
+    <form class="col-12 mt-2"action="{{Route('contatoEmpresa.update',['contatoEmpresa'=> $contatoEmpresa->id])}}" method="post">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
@@ -34,6 +35,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
+        <a href="/contatoEmpresa"><button class="btn btn-outline-light text-dark mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
-    <a href="/contatoEmpresa"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
 @endsection

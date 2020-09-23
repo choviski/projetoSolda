@@ -1,5 +1,5 @@
 
-@extends('../../layouts/padrao')
+@extends('../../layouts/padraonovo')
 
 @section('content')
 
@@ -74,12 +74,12 @@
             });
         });
     </script>
-    <div class="row d-flex justify-content-center ">
-        <div class="col-12 bg-primary text-center shadow-sm ">
-            <a class="text-white  display-4 ">ENDEREÇO</a>
-            <hr class="bg-white">
-            <p class="lead text-white">Edição: {{$endereco->rua}}, {{$endereco->cidade->nome}}</p>
-        </div>
+    <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
+        <hr>
+        <p class="lead">Gerenciar Endereços:</p>
+    </div>
+
+    <div class="row col-12 d-flex justify-content-center ">
         <form class="col-12 mt-2"action="{{Route('endereco.update',['endereco'=> $endereco->id])}}" method="post">
             @csrf
             @method('PUT')
@@ -109,6 +109,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
+        <a href="/endereco"><button class="btn btn-outline-light text-dark mt-2"><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
-    <a href="/endereco"><button class="btn btn-outline-primary mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
 @endsection
