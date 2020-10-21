@@ -53,7 +53,7 @@ Route::delete('/qualificacao/remover/{id}', "QualificacaoController@destroy")->m
 Route::resource("/empresa","EmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/empresa/remover/{id}', "EmpresaController@destroy")->middleware(CheckSession::class);
 
-Route::resource("/contatoEmpresa","contatoEmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
+Route::resource("/contatoEmpresa","ContatoEmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy")->middleware(CheckSession::class);
 
 Route::resource("/processo","ProcessoController",['except'=>'destroy'])->middleware(CheckSession::class);

@@ -22,7 +22,7 @@
             overflow-x: hidden;
             width: 100%;
             height:100%;
-            background-image: url("../../imagens/Background low polyv2.png");
+            background-image: url("{{asset(" imagens/Background low polyv2.png")}}");
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -35,7 +35,7 @@
 <body class="container-fluid ">
     <div class="row d-flex justify-content-center" id="warp-body" style="">
         <div class=" col-md-6 col-sm10 text-center" style="margin-top: 10%;transform: translateY(-20%)">
-            <img src="../../imagens/logo v1.png" width="150px"  class="mt-5 mb-5 mb-md-0 mb-lg-0" id="logo">
+            <img src="{{asset("imagens/logo v1.png")}}" width="150px"  class="mt-5 mb-5 mb-md-0 mb-lg-0" id="logo">
 
             <div class=" p-2 bg-light rounded shadow text-center">
 
@@ -59,7 +59,7 @@
                         <input type="submit" value="Cadastrar" class="btn-block btn-primary rounded mt-2">
 
                     </form>
-                    <a href="/">Voltar</a>
+                    <a href="{{route("inicio")}}">Voltar</a>
 
                 </div>
             </div>
