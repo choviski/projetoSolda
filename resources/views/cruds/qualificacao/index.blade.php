@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$qualificacao->id}} |
                         Código {{$qualificacao->processo->nome}}: {{$qualificacao->cod_eps}}
                         <span class="d-flex">
-                            <form method="get" action="/qualificacao/{{$qualificacao->id}}">
+                            <form method="get" action="{{route("qualificacao.show",['qualificacao'=>$qualificacao->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/qualificacao/{{$qualificacao->id}}/edit/">
+                        <form method="get" action="{{route("qualificacao.edit",['qualificacao'=>$qualificacao->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/qualificacao/remover/{{$qualificacao->id}}" onsubmit="return confirm('Tem certeza que deseja excluir a qualificação {{$qualificacao->cod_eps}} ?')">
+                        <form method="post" action="{{route("qualificacao.remover",['id'=>$qualificacao->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir a qualificação {{$qualificacao->cod_eps}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

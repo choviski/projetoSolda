@@ -34,7 +34,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
-        <a href="/contatoEmpresa"><button class="btn btn-outline-light mt-2 text-dark  "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        <a href="{{route("contatoEmpresa.index")}}"><button class="btn btn-outline-light mt-2 text-dark  "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
 @endsection

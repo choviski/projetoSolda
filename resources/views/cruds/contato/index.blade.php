@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$contato->id}} |
                         Nome: {{$contato->nome}}
                         <span class="d-flex">
-                            <form method="get" action="/contato/{{$contato->id}}">
+                            <form method="get" action="{{Route("contato.show",['contato'=>$contato->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/contato/{{$contato->id}}/edit/">
+                        <form method="get" action="{{Route("contato.edit",['contato'=>$contato->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/contato/remover/{{$contato->id}}" onsubmit="return confirm('Tem certeza que deseja remover o contato de {{$contato->nome}} ?')">
+                        <form method="post" action="{{Route("contato.remover",['id'=>$contato->id])}}" onsubmit="return confirm('Tem certeza que deseja remover o contato de {{$contato->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

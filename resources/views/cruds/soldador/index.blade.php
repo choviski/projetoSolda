@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$soldador->id}} |
                         Nome: {{$soldador->nome}} | Sinete: {{$soldador->sinete}}
                         <span class="d-flex">
-                            <form method="get" action="/soldador/{{$soldador->id}}">
+                            <form method="get" action="{{route("soldador.index",['soldador'=>$soldador->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/soldador/{{$soldador->id}}/edit/">
+                        <form method="get" action="{{route("soldador.edit",['soldador'=>$soldador->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/soldador/remover/{{$soldador->id}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldador->nome}} ?')">
+                        <form method="post" action="{{route("soldador.remover",['id'=>$soldador->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldador->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

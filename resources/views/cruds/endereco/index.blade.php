@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$endereco->id}} |
                         Rua: {{$endereco->rua}} | Bairro: {{$endereco->bairro}}
                         <span class="d-flex">
-                            <form method="get" action="/endereco/{{$endereco->id}}">
+                            <form method="get" action="{{Route("endereco.show",['endereco'=>$endereco->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/endereco/{{$endereco->id}}/edit/">
+                        <form method="get" action="{{Route("endereco.edit",['endereco'=>$endereco->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/endereco/remover/{{$endereco->id}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$endereco->rua}}, {{$endereco->bairro}} ?')">
+                        <form method="post" action="{{Route("endereco.remover",['id'=>$endereco->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$endereco->rua}}, {{$endereco->bairro}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$empresa->id}} |
                         Nome: {{$empresa->razao_social}}
                         <span class="d-flex">
-                            <form method="get" action="/empresa/{{$empresa->id}}">
+                            <form method="get" action="{{Route("empresa.show",['empresa'=>$empresa->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/empresa/{{$empresa->id}}/edit/">
+                        <form method="get" action="{{Route("empresa.edit",['empresa'=>$empresa->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/empresa/remover/{{$empresa->id}}" onsubmit="return confirm('Tem certeza que deseja remover a empresa {{$empresa->razao_social}} ?')">
+                        <form method="post" action="{{Route("empresa.remover",['id'=>$empresa->id])}}" onsubmit="return confirm('Tem certeza que deseja remover a empresa {{$empresa->razao_social}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

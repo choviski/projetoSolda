@@ -34,7 +34,7 @@
                 </tr>
                 </tbody>
             </table>
-            <a href="/contato"><button class="btn btn-outline-light text-dark mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            <a href="{{route("contato.index")}}"><button class="btn btn-outline-light text-dark mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
         </div>
     </div>
 @endsection

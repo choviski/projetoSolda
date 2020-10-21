@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$contatoEmpresa->id}} |
                         Contato {{$contatoEmpresa->contato->nome}} na Empresa {{$contatoEmpresa->empresa->nome_fantasia}}
                         <span class="d-flex">
-                            <form method="get" action="/contatoEmpresa/{{$contatoEmpresa->id}}">
+                            <form method="get" action="{{Route("contatoEmpresa.show",['contatoEmpresa'=>$contatoEmpresa->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/contatoEmpresa/{{$contatoEmpresa->id}}/edit/">
+                        <form method="get" action="{{route("contatoEmpresa.edit",['contatoEmpresa'=>$contatoEmpresa->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/contatoEmpresa/remover/{{$contatoEmpresa->id}}" onsubmit="return confirm('Tem certeza que deseja excluir o contato {{$contatoEmpresa->contato->nome}} na empresa {{$contatoEmpresa->empresa->razao_social}} ?')">
+                        <form method="post" action="{{route("contatoEmpresa.remover",['id'=>$contatoEmpresa->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir o contato {{$contatoEmpresa->contato->nome}} na empresa {{$contatoEmpresa->empresa->razao_social}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

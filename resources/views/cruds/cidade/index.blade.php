@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$cidade->id}} |
                         Nome: {{$cidade->nome}}
                         <span class="d-flex">
-                            <form method="get" action="/cidade/{{$cidade->id}}">
+                            <form method="get" action="{{Route('cidade.show',['cidade'=> $cidade->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1 text-primary"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/cidade/{{$cidade->id}}/edit/">
+                        <form method="get" action="{{Route('cidade.edit',['cidade'=> $cidade->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1 text-primary"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/cidade/remover/{{$cidade->id}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$cidade->nome}} ?')">
+                        <form method="post" action="{{Route('cidade.remover',['id'=> $cidade->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$cidade->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary text-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

@@ -109,7 +109,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
-        <a href="/endereco"><button class="btn btn-outline-light text-dark mt-2"><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        <a href="{{route("endereco.index")}}"><button class="btn btn-outline-light text-dark mt-2"><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
 @endsection

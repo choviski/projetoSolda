@@ -22,7 +22,7 @@
             overflow-x: hidden;
             width: 100%;
             height:100%;
-            background-image: url("{{asset(" imagens/Background low polyv2.png")}}");
+            background-image: url("{{asset("imagens/Background low polyv2.png")}}");
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;

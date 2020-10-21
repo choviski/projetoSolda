@@ -20,15 +20,15 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$soldadorqualificacao->id}} |
                         Nome Soldador: {{$soldadorqualificacao->soldador->nome}} | Cod EPS: {{$soldadorqualificacao->qualificacao->cod_eps}}
                         <span class="d-flex">
-                            <form method="get" action="/soldadorqualificacao/{{$soldadorqualificacao->id}}">
+                            <form method="get" action="{{route("soldadorqualificacao.show",['soldadorqualificacao'=>$soldadorqualificacao->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>
-                        <form method="get" action="/soldadorqualificacao/{{$soldadorqualificacao->id}}/edit/">
+                        <form method="get" action="{{route("soldadorqualificacao.edit",['soldadorqualificacao'=>$soldadorqualificacao->id])}}">
                             @csrf
                             <button class="btn btn-outline-primary mr-1"> <i class="far fa-edit"></i> </button>
                         </form>
-                        <form method="post" action="/soldadorqualificacao/remover/{{$soldadorqualificacao->id}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldadorqualificacao->nome}} ?')">
+                        <form method="post" action="{{route("soldadorqualificacao.remover",['id'=>$soldadorqualificacao->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldadorqualificacao->nome}} ?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-outline-primary"><i class="fas fa-trash"  alt="Deletar"></i></button>

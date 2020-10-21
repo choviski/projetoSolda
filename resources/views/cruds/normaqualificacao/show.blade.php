@@ -37,7 +37,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="/normaqualificacao"><button class=" btn-outline-light text-dark mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            <a href="{{route("normaqualificacao.index")}}"><button class=" btn-outline-light text-dark mt-2 "><i class="fas fa-arrow-left"></i> Voltar</button></a>
         </div>
     </div>
 @endsection

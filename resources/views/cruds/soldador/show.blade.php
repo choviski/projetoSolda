@@ -41,7 +41,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="/soldador"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            <a href="{{route("soldador.index")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
         </div>
     </div>
 @endsection
