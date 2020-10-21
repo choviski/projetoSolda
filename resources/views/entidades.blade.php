@@ -13,75 +13,75 @@
         <div class="container-fluid">
             <div class="row text-center d-flex justify-content-center">
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/cidade" class="text-dark">
+                    <a href="{{route("cidade.index")}}" class="text-dark">
                         <i class="fas fa-city fa-3x"></i>
                         <h4 class="mt-2">Cidade</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/contato" class="text-dark">
+                    <a href="{{route("contato.index")}}" class="text-dark">
                         <i class="fas fa-calendar-week fa-3x"></i>
                         <h4 class="mt-2">Contato</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/empresa" class="text-dark">
+                    <a href="{{route("empresa.index")}}" class="text-dark">
                         <i class="fas fa-industry fa-3x"></i>
                         <h4 class="mt-2">Empresa</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/contatoEmpresa" class="text-dark">
+                    <a href="{{route("contatoEmpresa.index")}}" class="text-dark">
                         <i class="fas fa-industry fa-3x"></i>
                         <i class="fas fa-calendar-week fa-3x"></i>
                         <h4 class="mt-2">Contato-Empresa</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/endereco" class="text-dark">
+                    <a href="{{route("endereco.index")}}" class="text-dark">
                         <i class="fas fa-map-pin fa-3x"></i>
                         <h4 class="mt-2">Endereço</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/inspetor" class="text-dark">
+                    <a href="{{route("inspetor.index")}}" class="text-dark">
                         <i class="fas fa-hard-hat fa-3x"></i>
                         <h4 class="mt-2">Inspetor</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/norma" class="text-dark">
+                    <a href="{{route("norma.index")}}" class="text-dark">
                         <i class="fas fa-scroll fa-3x"></i>
                         <h4 class="mt-2">Norma</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/normaqualificacao" class="text-dark">
+                    <a href="{{route("normaqualificacao.index")}}" class="text-dark">
                         <i class="fas fa-scroll fa-3x"></i>
                         <i class="fas fa-certificate fa-3x"></i>
                         <h4 class="mt-2">Norma-Qualificação</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/processo" class="text-dark">
+                    <a href="{{route("processo.index")}}" class="text-dark">
                         <i class="fas fa-chart-line fa-3x"></i>
                         <h4 class="mt-2">Processos</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/qualificacao" class="text-dark">
+                    <a href="{{route("qualificacao.index")}}" class="text-dark">
                         <i class="fas fa-certificate fa-3x"></i>
                         <h4 class="mt-2">Qualificação</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/soldador" class="text-dark">
+                    <a href="{{route("soldador.index")}}" class="text-dark">
                         <i class="fas fa-fire-alt fa-3x"></i>
                         <h4 class="mt-2">Soldador</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="/soldadorqualificacao" class="text-dark">
+                    <a href="{{route("soldadorqualificacao.index")}}" class="text-dark">
                         <i class="fas fa-fire-alt fa-3x"></i>
                         <i class="fas fa-certificate fa-3x"></i>
                         <h4 class="mt-2">Soldador-Qualificação</h4>

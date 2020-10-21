@@ -11,7 +11,7 @@
     <!-- Conteudo da CRUD -->
     <div class="col-12">
             <form method="get" action="{{route("soldador.create")}}">
-                <a href="/entidades" class=" btn btn-outline-light mt-2 text-dark"><i class="fas fa-arrow-left"></i> Voltar</a>
+                <a href="{{route("entidades")}}" class=" btn btn-outline-light mt-2 text-dark"><i class="fas fa-arrow-left"></i> Voltar</a>
                 @csrf
                 <button class=" btn btn-outline-light mt-2 text-dark">Adicionar</button>
             </form>

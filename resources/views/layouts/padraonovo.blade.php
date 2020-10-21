@@ -21,7 +21,7 @@
             overflow-x: hidden;
             width: 100%;
             height:100%;
-            background-image: url("../../../imagens/Background low polyv2.png");
+            background-image: url("{{asset("imagens/Background low polyv2.png")}}");
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -35,7 +35,7 @@
     <header class="row">
         <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 ">
             <a class="navbar-brand" href="#">
-                <img src="../../../imagens/logo v1.png" width="70" height="70" class="d-inline-block align-top " alt="  Projeto Solda">
+                <img src="{{asset("imagens/logo v1.png")}}" width="70" height="70" class="d-inline-block align-top " alt="  Projeto Solda">
             </a>
             <button class="navbar-toggler text-center" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,11 +46,11 @@
                         <a class="nav-link" style="font-size: 25px" href="#">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " style="font-size: 25px" href="/entidades"><u>Entidades</u> <span class="sr-only">(current)</span></a>
+                        <a class="nav-link " style="font-size: 25px" href="{{route("entidades")}}"><u>Entidades</u> <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <a href="/sair" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</a>
+                    <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</a>
                 </form>
             </div>
         </nav>

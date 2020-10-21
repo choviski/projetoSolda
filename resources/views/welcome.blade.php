@@ -36,17 +36,17 @@
 <body class="container-fluid ">
 <div class="row d-flex justify-content-center" id="warp-body" style="">
     <div class=" col-md-6 col-sm10 text-center" style="margin-top: 10%;transform: translateY(-20%)">
-        <img src="../../imagens/logo v1.png" width="150px"  class="mt-5 mb-5 mb-md-0 mb-lg-0" id="logo">
+        <img src="{{asset("imagens/logo v1.png")}}" width="150px"  class="mt-5 mb-5 mb-md-0 mb-lg-0" id="logo">
 
         <div class=" p-2 bg-light rounded shadow text-center">
-            <form action="/login" method="post" class="form-group ">
+            <form action="{{route("login")}}" method="post" class="form-group ">
                 @csrf
                 <input type="email" name="email" class="form-control mt-2" placeholder="Email" required>
                 <input type="password" name="senha" class="form-control mt-2" placeholder="Senha" required>
                 <input type="submit" value="Entrar" class="btn-block btn-primary rounded mt-2 mb-2">
 
             </form>
-            <a href="/novoUsuario"><button  class="btn-block btn-primary rounded">Cadastrar-se</button></a>
+            <a href="{{route("novoUsuario")}}"><button  class="btn-block btn-primary rounded">Cadastrar-se</button></a>
 
             @if(!empty($mensagem))
                 <div class="alert alert-danger mt-2">

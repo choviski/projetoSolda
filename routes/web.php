@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/entidades', function () {
     return view('entidades');
-})->middleware(CheckSession::class);
+})->middleware(CheckSession::class)->name("entidades");
 
 
 
@@ -59,7 +59,7 @@ Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy"
 Route::resource("/processo","ProcessoController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->middleware(CheckSession::class);
 
-Route::post('/login','LoginController@entrar');
+Route::post('/login','LoginController@entrar')->name("login");
 Route::get('/', "LoginController@index")->name("inicio");
 Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");
 Route::post('/cadastrar', "LoginController@cadastrar")->name("cadastrar");
