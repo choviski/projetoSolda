@@ -52,7 +52,7 @@ class SoldadorQualificacaoController extends Controller
     public function destroy(Request $request)
     {
         SoldadorQualificacao::destroy($request->id);
-        return redirect("/soldadorqualificacaos");
+        return redirect()->route("soldadorqualificacao.index");
 
     }
 }
