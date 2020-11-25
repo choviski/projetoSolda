@@ -24,6 +24,10 @@
                         <th scope="col">LANÇAMENTO QUALIFICAÇÃO</th>
                         <th scope="col">NOME CERTIFICADO</th>
                         <th scope="col">CAMINHO CERTIFICADO</th>
+                        <th scope="col">POSIÇÃO DE SOLDAGEM</th>
+                        <th scope="col">ELETRODO</th>
+                        <th scope="col">FOTO</th>
+                        <th scope="col">DESCRIÇÃO</th>
                         <th scope="col">CREATED_AT</th>
                         <th scope="col">UPDATED_AT</th>
                         <th scope="col">DELETED_AT</th>
@@ -42,6 +46,10 @@
                         <td>{{$soldadorqualificacao->lancamento_qualificacao}}</td>
                         <td>{{$soldadorqualificacao->nome_certificado}}</td>
                         <td>{{$soldadorqualificacao->caminho_certificado}}</td>
+                        <td>{{$soldadorqualificacao->posicao}}</td>
+                        <td>{{$soldadorqualificacao->eletrodo}}</td>
+                        <td>{{$soldadorqualificacao->foto}}</td>
+                        <td>{{$soldadorqualificacao->texto}}</td>
                         <td>{{$soldadorqualificacao->created_at}}</td>
                         <td>{{$soldadorqualificacao->updated_at}}</td>
                         <td>{{$soldadorqualificacao->deleted_at}}</td>

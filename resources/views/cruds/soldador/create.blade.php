@@ -12,7 +12,7 @@
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" placeholder="Insira o nome da cidade" name="nome" required>
+                <input type="text" class="form-control" id="nome" placeholder="Insira o nome do Soldador" name="nome" required>
 
                 <label  for="sinete">Sinete:</label>
                 <input type="text" class="form-control" id="sinete" placeholder="Insira o sinete" name="sinete" required>
@@ -30,6 +30,13 @@
                     @foreach($empresas as $empresa)
                         <option value="{{$empresa->id}}">{{$empresa->nome_fantasia}}</option>
                     @endforeach
+                </select>
+                <label for="status">Status:</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="-1">Selecione o status</option>
+                    <option value="1">Requalificado</option>
+                    <option value="2">Em processo</option>
+                    <option value="3">Não Qualificado</option>
                 </select>
 
 

@@ -20,7 +20,7 @@
                     <li class="list-group-item align-items-center d-flex justify-content-between mt-2">ID #{{$soldador->id}} |
                         Nome: {{$soldador->nome}} | Sinete: {{$soldador->sinete}}
                         <span class="d-flex">
-                            <form method="get" action="{{route("soldador.index",['soldador'=>$soldador->id])}}">
+                            <form method="get" action="{{route("soldador.show",["soldador"=>$soldador->id])}}">
                                 @csrf
                                  <button class="btn btn-outline-primary mr-1"> <i class="fas fa-eye"></i></button>
                             </form>

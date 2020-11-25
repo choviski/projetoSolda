@@ -19,6 +19,7 @@ class CreateSoldadorsTable extends Migration
             $table->string("sinete",100)->unique();
             $table->string("matricula",100)->unique();
             $table->string("email",100)->unique()->nullable();
+            $table->enum("status",['qualificado','em-processo','nao-qualificado']);
             $table->unsignedBigInteger("id_empresa");
             $table->foreign("id_empresa")->references("id")->on("empresas");
             $table->softDeletes();

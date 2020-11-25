@@ -45,6 +45,19 @@
                 <label  for="nome_certificado">Nome do certificado:</label>
                 <input type="text" class="form-control" id="nome_certificado" value="{{$soldadorqualificacao->nome_certificado}}" name="nome_certificado" required>
 
+                <label  for="nome_certificado">Posição de soldagem:</label>
+                <input type="text" class="form-control" id="nome_certificado" value="{{$soldadorqualificacao->posicao}}" name="posicao" required>
+
+                <label  for="nome_certificado">Eletrodo:</label>
+                <input type="text" class="form-control" id="nome_certificado" value="{{$soldadorqualificacao->eletrodo}}" name="eletrodo" required>
+
+                <label  for="nome_certificado">Foto do corpo de prova:</label>
+                <input type="file" class="form-control" id="nome_certificado" value="{{$soldadorqualificacao->foto}}" name="foto" required>
+
+                <label  for="descricao">Descrição:</label>
+                <textarea type="text" class="form-control" id="descricao" value="{{$soldadorqualificacao->texto}}" name="texto" required>{{$soldadorqualificacao->texto}}}</textarea>
+
+
                 <label  for="caminho_certificado">Insira o caminho do certificado:</label>
                 <input type="text" class="form-control" id="caminho_certificado" value="{{$soldadorqualificacao->caminho_certificado}}" name="caminho_certificado" required>
 
