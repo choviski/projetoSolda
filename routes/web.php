@@ -21,6 +21,8 @@ Route::get('/entidades', function () {
 })->middleware(CheckSession::class)->name("entidades");
 
 
+Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
+
 
 Route::resource("/cidade","CidadeController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/cidade/remover/{id}', "CidadeController@destroy")->name('cidade.remover')->middleware(CheckSession::class);

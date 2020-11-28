@@ -13,8 +13,6 @@
     <script src="https://kit.fontawesome.com/8ac21f36ef.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <title>Projeto Solda</title>
-
-
     <style>
         /* BACKGROUND */
         body{
@@ -28,9 +26,9 @@
             background-size:cover;
 
         }
+
     </style>
 </head>
-
 <body class="container-fluid">
     <header class="row">
         <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 ">
@@ -45,8 +43,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" style="font-size: 25px" href="#">Home<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link " style="font-size: 25px" href="{{route("entidades")}}"><u>Entidades</u> <span class="sr-only">(current)</span></a>
+                    <li class="nav-item active" >
+                        <a  class="nav-link"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">Entidades</a>
+                    </li>
+                    <li class="nav-item active"  >
+                        <a class="nav-link"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}">Soldadores</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

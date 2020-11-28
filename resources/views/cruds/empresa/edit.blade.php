@@ -28,7 +28,7 @@
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" value="{{$empresa->email}}" name="email" required>
 
-                <label for="id_endereco">Empresa:</label>
+                <label for="id_endereco">Endereço:</label>
                 <select class="form-control" id="id_endereco" name="id_endereco" required>
                     <option value="{{$empresa->endereco->id}}" selected>{{$empresa->endereco->cidade->nome}}, {{$empresa->endereco->cidade->estado}}, {{$empresa->endereco->bairro}}, {{$empresa->endereco->rua}}</option>
 
