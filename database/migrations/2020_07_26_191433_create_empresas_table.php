@@ -24,6 +24,8 @@ class CreateEmpresasTable extends Migration
             $table->foreign("id_endereco")->references("id")->on("enderecos");
             $table->unsignedBigInteger("id_inspetor");
             $table->foreign("id_inspetor")->references("id")->on("inspetores");
+            $table->unsignedBigInteger("id_usuario");
+            $table->foreign("id_usuario")->references("id")->on("usuarios");
             $table->softDeletes();
             $table->timestamps();
         });

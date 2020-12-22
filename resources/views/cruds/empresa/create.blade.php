@@ -26,6 +26,8 @@
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="insira o email da empresa" name="email" required>
 
+                <input type="hidden" value="1" name="id_usuario" required>
+
 
                 <label for="id_endereco">Endereço:</label>
                 <select class="form-control" id="id_endereco" name="id_endereco" required>

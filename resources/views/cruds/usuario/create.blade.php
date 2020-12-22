@@ -55,7 +55,7 @@
                         <input type="text" name="nome" class="form-control mt-2" placeholder="Nome" required>
                         <input type="email" name="email" class="form-control mt-2" placeholder="E-mail" required>
                         <input type="password" name="senha" class="form-control mt-2" placeholder="Senha" required>
-
+                        <input type="hidden" name="tipo" value=2 required>
                         <input type="submit" value="Cadastrar" class="btn-block btn-primary rounded mt-2">
 
                     </form>

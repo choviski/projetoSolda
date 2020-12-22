@@ -39,6 +39,7 @@
                     <option value="1">Requalificado</option>
                     <option value="2">Em processo</option>
                     <option value="3">Não Qualificado</option>
+                    <option value="4">Atrasado</option>
 
                 </select>
 
