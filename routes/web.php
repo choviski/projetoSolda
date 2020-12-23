@@ -16,12 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/entidades', function () {
-    return view('entidades');
-})->middleware(CheckSession::class)->name("entidades");
-
-
 Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
+Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class)->name("entidades");
+Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
+Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class)->name("cadastrar");
+Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class)->name("requalificacoes");
 
 
 Route::resource("/cidade","CidadeController",['except'=>'destroy'])->middleware(CheckSession::class);

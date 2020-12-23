@@ -41,14 +41,22 @@
             <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" style="font-size: 25px" href="#">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active" >
-                        <a  class="nav-link"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">Entidades</a>
+                        <a class="nav-link" style="font-size: 25px" href="{{route("paginaInicial")}}">Início<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"  >
                         <a class="nav-link"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}">Soldadores</a>
                     </li>
+                    @if($usuario->tipo == 1)
+                    <li class="nav-item active">
+                            <a class="nav-link" style="font-size: 25px" href="{{route("requalificacoes")}}">Requalificações<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" style="font-size: 25px" href="{{route("cadastrar")}}">Cadastro<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active" >
+                        <a  class="nav-link"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">Entidades</a>
+                    </li>
+                    @endif
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</a>

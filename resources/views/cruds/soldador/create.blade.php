@@ -25,7 +25,7 @@
 
                 <label for="id_empresa">Empresa:</label>
                 <select class="form-control" id="id_empresa" name="id_empresa" required>
-                    <option value="-1">Selecione a empresa</option>
+                    <option value="-1" disabled selected>Selecione a empresa</option>
 
                     @foreach($empresas as $empresa)
                         <option value="{{$empresa->id}}">{{$empresa->nome_fantasia}}</option>
@@ -33,8 +33,8 @@
                 </select>
                 <label for="status">Status:</label>
                 <select class="form-control" id="status" name="status" required>
-                    <option value="-1">Selecione o status</option>
-                    <option value="1">Requalificado</option>
+                    <option value="-1" disabled selected>Selecione o status</option>
+                    <option value="1">Qualificado</option>
                     <option value="2">Em processo</option>
                     <option value="3">Não Qualificado</option>
                     <option value="4">Atrasado</option>
