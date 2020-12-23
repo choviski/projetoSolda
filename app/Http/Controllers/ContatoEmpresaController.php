@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class ContatoEmpresaController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +18,9 @@ class ContatoEmpresaController extends Controller
      */
     public function index()
     {
+        $usuario = session()->get("Usuario");
         $contatoEmpresas=EmpresaContato::all();
-        return view("cruds.contatoEmpresa.index")->with(["contatoEmpresas"=>$contatoEmpresas]);
+        return view("cruds.contatoEmpresa.index")->with(["contatoEmpresas"=>$contatoEmpresas,"usuario"=>$usuario]);
     }
 
     /**
@@ -28,9 +30,10 @@ class ContatoEmpresaController extends Controller
      */
     public function create()
     {
+        $usuario = session()->get("Usuario");
         $contatos=Contato::all();
         $empresa=Empresa::all();
-        return view("cruds.contatoEmpresa.create")->with(["contatos"=>$contatos,"empresas"=>$empresa]);;
+        return view("cruds.contatoEmpresa.create")->with(["contatos"=>$contatos,"empresas"=>$empresa,"usuario"=>$usuario]);;
     }
 
     /**
@@ -41,8 +44,9 @@ class ContatoEmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario = session()->get("Usuario");
         EmpresaContato::create($request->all());
-        return redirect()->route("contatoEmpresa.index");
+        return redirect()->route("contatoEmpresa.index")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -53,9 +57,9 @@ class ContatoEmpresaController extends Controller
      */
     public function show($id)
     {
-
+        $usuario = session()->get("Usuario");
         $contatoEmpresa=EmpresaContato::find($id);
-        return view("cruds.contatoEmpresa.show")->with(["contatoEmpresa"=>$contatoEmpresa]);
+        return view("cruds.contatoEmpresa.show")->with(["contatoEmpresa"=>$contatoEmpresa,"usuario"=>$usuario]);
     }
 
     /**
@@ -66,10 +70,11 @@ class ContatoEmpresaController extends Controller
      */
     public function edit($id)
     {
+        $usuario = session()->get("Usuario");
         $contatos=Contato::all();
         $empresas=Empresa::all();
         $contatoEmpresa=EmpresaContato::find($id);
-        return view("cruds.contatoEmpresa.edit")->with(["contatoEmpresa"=>$contatoEmpresa,"contatos"=>$contatos,"empresas"=>$empresas]);
+        return view("cruds.contatoEmpresa.edit")->with(["contatoEmpresa"=>$contatoEmpresa,"contatos"=>$contatos,"empresas"=>$empresas,"usuario"=>$usuario]);
     }
 
     /**
@@ -81,8 +86,9 @@ class ContatoEmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $usuario = session()->get("Usuario");
         EmpresaContato::find($id)->update($request->all());
-        return redirect()->route("contatoEmpresa.index");
+        return redirect()->route("contatoEmpresa.index")->with(["usuario"=>$usuario]);
     }
 
     /**

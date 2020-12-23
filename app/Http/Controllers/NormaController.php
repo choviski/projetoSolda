@@ -16,8 +16,9 @@ class NormaController extends Controller
      */
     public function index()
     {
+        $usuario = session()->get("Usuario");
         $normas = Norma::all();
-        return view("cruds.norma.index")->with(["normas"=>$normas]);
+        return view("cruds.norma.index")->with(["normas"=>$normas,"usuario"=>$usuario]);
     }
 
     /**
@@ -26,8 +27,9 @@ class NormaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-        {
-        return view("cruds.norma.create");
+    {
+        $usuario = session()->get("Usuario");
+        return view("cruds.norma.create")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -38,8 +40,9 @@ class NormaController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario = session()->get("Usuario");
         Norma::create($request->all());
-        return redirect()->route("norma.index");
+        return redirect()->route("norma.index")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -50,8 +53,9 @@ class NormaController extends Controller
      */
     public function show($id)
     {
+        $usuario = session()->get("Usuario");
         $norma=Norma::find($id);
-        return view("cruds.norma.show")->with(["norma"=>$norma]);
+        return view("cruds.norma.show")->with(["norma"=>$norma,"usuario"=>$usuario]);
     }
 
     /**
@@ -62,8 +66,9 @@ class NormaController extends Controller
      */
     public function edit($id)
     {
+        $usuario = session()->get("Usuario");
         $norma=Norma::find($id);
-        return view("cruds.norma.edit")->with(["norma"=>$norma]);
+        return view("cruds.norma.edit")->with(["norma"=>$norma,"usuario"=>$usuario]);
     }
 
     /**
@@ -75,8 +80,9 @@ class NormaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $usuario = session()->get("Usuario");
         Norma::find($id)->update($request->all());
-        return redirect()->route("norma.index");
+        return redirect()->route("norma.index")->with(["usuario"=>$usuario]);
     }
 
     /**

@@ -16,8 +16,9 @@ class InspetorController extends Controller
      */
     public function index()
     {
+        $usuario = session()->get("Usuario");
         $inspetores=Inspetor::all();
-        return view("cruds.inspetor.index")->with(["inspetores"=>$inspetores]);
+        return view("cruds.inspetor.index")->with(["inspetores"=>$inspetores,"usuario"=>$usuario]);
     }
 
     /**
@@ -27,7 +28,8 @@ class InspetorController extends Controller
      */
     public function create()
     {
-        return view("cruds.inspetor.create");
+        $usuario = session()->get("Usuario");
+        return view("cruds.inspetor.create")->with(["usuario"=>$usuario]);;
     }
 
     /**
@@ -38,8 +40,9 @@ class InspetorController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario = session()->get("Usuario");
         Inspetor::create($request->all());
-        return redirect()->route("inspetor.index");
+        return redirect()->route("inspetor.index")->with(["usuario"=>$usuario]);;
     }
 
     /**
@@ -50,8 +53,9 @@ class InspetorController extends Controller
      */
     public function show($id)
     {
+        $usuario = session()->get("Usuario");
         $inspetor = Inspetor::find($id);
-        return view("cruds.inspetor.show")->with(["inspetor"=>$inspetor]);
+        return view("cruds.inspetor.show")->with(["inspetor"=>$inspetor,"usuario"=>$usuario]);
     }
 
     /**
@@ -62,8 +66,9 @@ class InspetorController extends Controller
      */
     public function edit($id)
     {
+        $usuario = session()->get("Usuario");
         $inspetor = Inspetor::find($id);
-        return view("cruds.inspetor.edit")->with(["inspetor"=>$inspetor]);
+        return view("cruds.inspetor.edit")->with(["inspetor"=>$inspetor,"usuario"=>$usuario]);
     }
 
     /**
@@ -75,8 +80,9 @@ class InspetorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $usuario = session()->get("Usuario");
         Inspetor::find($id)->update($request->all());
-        return redirect()->route("inspetor.index");
+        return redirect()->route("inspetor.index")->with(["usuario"=>$usuario]);;;
     }
 
     /**

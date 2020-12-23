@@ -9,86 +9,46 @@ use Illuminate\Http\Request;
 
 class QualificacaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        $usuario = session()->get("Usuario");
         $qualificacoes = Qualificacao::all();
-        return view("cruds.qualificacao.index")->with(["qualificacoes"=>$qualificacoes]);
+        return view("cruds.qualificacao.index")->with(["qualificacoes"=>$qualificacoes,"usuario"=>$usuario]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
+        $usuario = session()->get("Usuario");
         $processos = Processo::all();
-        return view("cruds.qualificacao.create")->with(["processos"=>$processos]);
+        return view("cruds.qualificacao.create")->with(["processos"=>$processos,"usuario"=>$usuario]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $usuario = session()->get("Usuario");
         Qualificacao::create($request->all());
-        return redirect()->route("qualificacao.index");
+        return redirect()->route("qualificacao.index")->with(["usuario"=>$usuario,"usuario"=>$usuario]);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
+        $usuario = session()->get("Usuario");
         $qualificacao=Qualificacao::find($id);
-        return view("cruds.qualificacao.show")->with(["qualificacao"=>$qualificacao]);
+        return view("cruds.qualificacao.show")->with(["qualificacao"=>$qualificacao,"usuario"=>$usuario]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+        $usuario = session()->get("Usuario");
         $processos = Processo::all();
         $qualificacao=Qualificacao::find($id);
-        return view("cruds.qualificacao.edit")->with(["qualificacao"=>$qualificacao,"processos"=>$processos]);
+        return view("cruds.qualificacao.edit")->with(["qualificacao"=>$qualificacao,"processos"=>$processos,"usuario"=>$usuario]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
+        $usuario = session()->get("Usuario");
         Qualificacao::find($id)->update($request->all());
-        return redirect()->route("qualificacao.index");
+        return redirect()->route("qualificacao.index")->with(["usuario"=>$usuario]);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
+        $usuario = session()->get("Usuario");
         Qualificacao::destroy($request->id);
         return redirect("/qualificacao");
     }

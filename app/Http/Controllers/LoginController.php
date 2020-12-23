@@ -42,7 +42,7 @@ class LoginController extends Controller
                 $request->session()->put("Usuario",$Usuario);
 
 
-                return redirect("/entidades");
+                return redirect()->route("paginaInicial");
             }
             $request->session()->flash("mensagem","Usuario ou senha incorretos");
             return redirect()->back();

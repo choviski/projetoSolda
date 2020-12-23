@@ -17,8 +17,9 @@ class EmpresaController extends Controller
      */
     public function index()
     {
+        $usuario = session()->get("Usuario");
         $empresas=Empresa::all();
-        return view("cruds.empresa.index")->with(["empresas"=>$empresas]);
+        return view("cruds.empresa.index")->with(["empresas"=>$empresas,"usuario"=>$usuario]);
     }
 
     /**
@@ -28,9 +29,10 @@ class EmpresaController extends Controller
      */
     public function create()
     {
+        $usuario = session()->get("Usuario");
         $enderecos=Endereco::all();
         $inspetors=Inspetor::all();
-        return view("cruds.empresa.create")->with(["enderecos"=>$enderecos,"inspetors"=>$inspetors]);
+        return view("cruds.empresa.create")->with(["enderecos"=>$enderecos,"inspetors"=>$inspetors,"usuario"=>$usuario]);
     }
 
     /**
@@ -41,8 +43,9 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario = session()->get("Usuario");
         Empresa::create($request->all());
-        return redirect()->route("empresa.index");
+        return redirect()->route("empresa.index")->with(["usuario"=>$usuario]);;
     }
 
     /**
@@ -53,8 +56,9 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
+        $usuario = session()->get("Usuario");
         $empresa=Empresa::find($id);
-        return view("cruds.empresa.show")->with(["empresa"=>$empresa]);
+        return view("cruds.empresa.show")->with(["empresa"=>$empresa,"usuario"=>$usuario]);
     }
 
     /**
@@ -65,10 +69,11 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
+        $usuario = session()->get("Usuario");
         $enderecos=Endereco::all();
         $inspetors=Inspetor::all();
         $empresa=Empresa::find($id);
-        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors]);
+        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"usuario"=>$usuario]);
     }
 
     /**
@@ -80,8 +85,9 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $usuario = session()->get("Usuario");
         Empresa::find($id)->update($request->all());
-        return redirect()->route("empresa.index");
+        return redirect()->route("empresa.index")->with(["usuario"=>$usuario]);
     }
 
     /**

@@ -15,8 +15,9 @@ class ContatoController extends Controller
      */
     public function index()
     {
+        $usuario = session()->get("Usuario");
         $contatos = Contato::all();
-        return view("cruds.contato.index")->with(["contatos"=>$contatos]);
+        return view("cruds.contato.index")->with(["contatos"=>$contatos,"usuario"=>$usuario]);
     }
 
     /**
@@ -26,7 +27,8 @@ class ContatoController extends Controller
      */
     public function create()
     {
-        return view("cruds.contato.create");
+        $usuario = session()->get("Usuario");
+        return view("cruds.contato.create")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -37,8 +39,9 @@ class ContatoController extends Controller
      */
     public function store(Request $request)
     {
+        $usuario = session()->get("Usuario");
         Contato::create($request->all());
-        return redirect()->route("contato.index");
+        return redirect()->route("contato.index")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -49,8 +52,9 @@ class ContatoController extends Controller
      */
     public function show($id)
     {
+        $usuario = session()->get("Usuario");
         $contato=Contato::find($id);
-        return view("cruds.contato.show")->with(["contato"=>$contato]);
+        return view("cruds.contato.show")->with(["contato"=>$contato,"usuario"=>$usuario]);
     }
 
     /**
@@ -61,8 +65,9 @@ class ContatoController extends Controller
      */
     public function edit($id)
     {
+        $usuario = session()->get("Usuario");
         $contato=Contato::find($id);
-        return view("cruds.contato.edit")->with(["contato"=>$contato]);
+        return view("cruds.contato.edit")->with(["contato"=>$contato,"usuario"=>$usuario]);
     }
 
     /**
@@ -74,8 +79,9 @@ class ContatoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $usuario = session()->get("Usuario");
         Contato::find($id)->update($request->all());
-        return redirect()->route("contato.index");
+        return redirect()->route("contato.index")->with(["usuario"=>$usuario]);
     }
 
     /**
