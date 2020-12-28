@@ -9,13 +9,12 @@
         <div class="col-md-8 col-12 ">
             @foreach($soldadorqualificacaos as $soldadorqualificacao)
                 <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm form-inline">
-                    <a> @if($usuario->tipo==1){{$soldadorqualificacao->soldador->empresa->nome_fantasia}} |@endif
-                        {{$soldadorqualificacao->soldador->nome}} |
+                    <a> @if($usuario->tipo==1){{$soldadorqualificacao->soldador->empresa->nome_fantasia}} |@endif {{$soldadorqualificacao->soldador->nome}} |
                         @if($usuario->tipo==2){{$soldadorqualificacao->soldador->matricula}} @endif
                     </a>
                     <!--IF para checar o status do soldador-->
                     @if($soldadorqualificacao->status=="em-processo")
-                        <span>
+                        <span class="d-flex justify-content-center">
                             <a class="h5"><span class="badge badge-primary text-white">Pendente</span></a>
                             @if($usuario->tipo==2)
                                 <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
@@ -24,11 +23,12 @@
                                     @csrf
                                     <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
                                     <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar" disabled>
+                                </form>
                             @endif
 
                         </span>
                     @elseif($soldadorqualificacao->status=="atrasado")
-                        <span>
+                        <span class="d-flex justify-content-center">
 
                            @if($usuario->tipo==2)
                                 <a class="h5"><span class="badge badge-warning text-white">Atrasado</span></a>
@@ -39,11 +39,12 @@
                                     @csrf
                                     <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
                                     <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
+                                </form>f
                             @endif
 
                         </span>
                     @elseif($soldadorqualificacao->status=="nao-qualificado")
-                        <span>
+                        <span class="d-flex justify-content-center">
                             @if($usuario->tipo==2)
                                 <a class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></a>
                                 <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>

@@ -10,10 +10,13 @@
             <div class="col-8 col-sm-2 col-md-8  rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
                 <form action="{{route("inserirQualificacao")}}" class="text-dark text-decoration-none" method="post">
                     @csrf
-                    <i class="fas fa-plus fa-3x"></i>
-                    <input type="hidden" name="soldador" value="{{$soldador}}">
-                    <input type="submit" class="mt-2 btn btn-outline-primary" value="Adicionar mais qualificações">
+                    <span class="d-flex flex-column">
+                        <i class="fas fa-plus fa-4x"></i>
+                        <input type="hidden" name="soldador" value="{{$soldador}}">
+                        <input type="submit" class="mt-2 btn btn-outline-primary" value="Adicionar mais qualificações">
+                    </span>
                 </form>
+
             </div>
 
         </div>

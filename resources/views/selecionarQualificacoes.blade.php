@@ -7,17 +7,14 @@
     </div>
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center">
-            <form action="{{route("adicionarQualificacao")}}" method="post">
+            <form action="{{route("adicionarQualificacao")}}" class="form-group col-12" method="post">
                 @csrf
-                <div class="form-group bg-light p-2 rounded">
+                <div class="bg-light p-2 rounded mt-2 ">
 
                     <label  for="">Código RQS:</label>
                     <input type="text" class="form-control" id="" placeholder="Insira o código RQS" name="cod_rqs" required>
 
-
                    <input type="hidden" name="id_soldador" value="{{$soldador}}">
-
-                    <div class="form-group bg-light p-2 rounded">
                         <label for="cod_eps">Código:</label>
                         <input type="text" class="form-control" id="cod_eps" placeholder="Insira o código do processo" name="cod_eps" required>
 
@@ -29,6 +26,7 @@
                                 <option value="{{$processo->id}}" name="id_processo">{{$processo->nome}}</option>
                             @endforeach
                         </select>
+
 
                         <label  for="descricao">Descrição:</label>
                         <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição da qualificação" name="descricao" required></textarea>
@@ -70,11 +68,14 @@
                             <option value="2">12 meses</option>
                             <option value="3">24 meses</option>
                         </select>
-                        <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="salvar">
+
 
                     </div>
+                <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Salvar">
 
-        </div>
             </form>
+        </div>
+    </div>
+
 
 @endsection

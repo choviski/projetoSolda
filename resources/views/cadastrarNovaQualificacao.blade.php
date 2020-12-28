@@ -59,7 +59,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
-        <a href="{{route("soldadorqualificacao.index")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        <a href="{{route("soldadorqualificacao.index")}}"><button class=" col-12 btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
 @endsection

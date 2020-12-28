@@ -24,7 +24,6 @@
                 <input type="email" class="form-control" id="email" placeholder="Insira o email" name="email" required>
 
                 <input type="hidden" name="id_empresa" value="{{$empresa}}">
-                <label for="status">Status:</label>
 
                 <input type="hidden" value="1" name="aviso" required>
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
