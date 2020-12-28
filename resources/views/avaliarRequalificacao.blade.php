@@ -49,7 +49,7 @@
 
 
 
-                <label  for="caminho_certificado">Insira a foto do corpo de prova:</label>
+                <label  for="caminho_certificado">Foto do corpo de prova:</label>
                 <input type="file" class="form-control" id="caminho_certificado" placeholder="Foto do corpo de prova" name="foto" required value="{{$requalificacao->foto}}"  disabled>
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
