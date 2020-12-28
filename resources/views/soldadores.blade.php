@@ -16,23 +16,63 @@
                     <!--IF para checar o status do soldador-->
                     @if($soldador->status=="qualificado")
                         <span>
-                            <a class="h5"><span class="badge badge-success ">Qualificado</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm" type="button">Requalificar</button>
+
+                            @if($usuario->tipo==2)
+                                <a class="h5"><span class="badge badge-success text-white">Qualificado</span></a>
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                                <form method="post" action="{{route("requalificar")}}" class="form-group">
+                                    <label class="h5"><span class="badge badge-success text-white">Qualificado!</span></label>
+                                    @csrf
+                                    <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
+                            @endif
+
                         </span>
                     @elseif($soldador->status=="em-processo")
                         <span>
-                            <a class="h5"><span class="badge badge-primary text-white">Pendente</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+
+                            @if($usuario->tipo==2)
+                                <a class="h5"><span class="badge badge-primary text-white">Pendente</span></a>
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                                <form method="post" action="{{route("requalificar")}}" class="form-group">
+                                    <label class="h5"><span class="badge badge-primary text-white">Pendente</span></label>
+                                    @csrf
+                                    <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar" disabled>
+                            @endif
+
                         </span>
                     @elseif($soldador->status=="atrasado")
                         <span>
-                            <a class="h5"><span class="badge badge-warning text-white">Atrasado</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm " type="button">Requalificar<spam class="badge badge-warning ml-1 text-white">!</spam></button>
+
+                            @if($usuario->tipo==2)
+                                <a class="h5"><span class="badge badge-warning text-white">Atrasado</span></a>
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                            <form method="post" action="{{route("requalificar")}}" class="form-group">
+                                <label class="h5"><span class="badge badge-warning text-white">Atrasado</span></label>
+                                @csrf
+                                <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
+                                <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
+                                @endif
                         </span>
                     @elseif($soldador->status=="nao-qualificado")
                         <span>
-                            <a class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm " type="button">Requalificar<spam class="badge badge-danger ml-1 text-white">!</spam></button>
+
+                            @if($usuario->tipo==2)
+                                <a class="h5"><span class="badge badge-danger text-white">Não qualificado</span></a>
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                                <form method="post" action="{{route("requalificar")}}" class="form-group">
+                                    <label class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></label>
+                                    @csrf
+                                    <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
+                                </form>
+                            @endif
+
                         </span>
                     @endif
                 </div>

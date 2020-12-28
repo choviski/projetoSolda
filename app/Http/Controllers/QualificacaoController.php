@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Controllers\Controller;
 use App\Processo;
 use App\Qualificacao;
 use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QualificacaoController extends Controller
 {
@@ -75,5 +77,29 @@ class QualificacaoController extends Controller
         $qualificacao->caminho_certificado=$request->caminho_certificado;
         $qualificacao->save();
         return redirect()->route("paginaInicial");
+    }
+
+    public function avaliarRequalificacao(Request $request)
+    {
+        $requalificacao=SoldadorQualificacao::find($request->id);
+        $usuario = session()->get("Usuario");
+        return view("avaliarRequalificacao")->with(["requalificacao"=>$requalificacao,"usuario"=>$usuario]);
+    }
+
+    public function processarRequalificacao(Request $request)
+    {
+        if ($request->aceito == 1) {
+            $requalificacao = SoldadorQualificacao::find($request->id);
+            $requalificacao->status = "qualificado";
+            $requalificacao->save();
+            return redirect()->route("requalificacoes");
+            ##daqui em diante deu pau.
+        }
+        if ($request->aceito == 0) {
+            $requalificacao = SoldadorQualificacao::find($request->id);
+            $requalificacao->status = "nao-qualificado";
+            $requalificacao->save();
+            return redirect()->route("requalificacoes");
+         }
     }
 }

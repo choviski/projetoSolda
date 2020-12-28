@@ -70,6 +70,8 @@ Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->na
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao");
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar");
+Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao");
+Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao");
 
 Route::get('envio-email',function (){
 

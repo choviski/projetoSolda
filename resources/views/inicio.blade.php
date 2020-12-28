@@ -6,9 +6,9 @@
         <p class="lead">Início:</p>
     </div>
     <div class="container-fluid d-flex justify-content-center">
-        <div class="col-md-8 col-12">
+        <div class="col-md-8 col-12 ">
             @foreach($soldadorqualificacaos as $soldadorqualificacao)
-                <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm">
+                <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm form-inline">
                     <a> @if($usuario->tipo==1){{$soldadorqualificacao->soldador->empresa->nome_fantasia}} |@endif
                         {{$soldadorqualificacao->soldador->nome}} |
                         @if($usuario->tipo==2){{$soldadorqualificacao->soldador->matricula}} @endif
@@ -20,36 +20,39 @@
                             @if($usuario->tipo==2)
                                 <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
                             @else
-                                <form method="post" action="{{route("requalificar")}}">
+                                <form method="post" action="{{route("requalificar")}}" class="form-group">
                                     @csrf
                                     <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
-                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="requalificar">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar" disabled>
                             @endif
 
                         </span>
                     @elseif($soldadorqualificacao->status=="atrasado")
                         <span>
-                            <a class="h5"><span class="badge badge-warning text-white">Atrasado</span></a>
+
                            @if($usuario->tipo==2)
-                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                                <a class="h5"><span class="badge badge-warning text-white">Atrasado</span></a>
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button"  disabled>Requalificar</button>
                             @else
-                                <form method="post" action="{{route("requalificar")}}">
+                                <form method="post" action="{{route("requalificar")}}" class="form-group">
+                                    <label class="h5"><span class="badge badge-warning text-white">Atrasado</span></label>
                                     @csrf
                                     <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
-                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="requalificar">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                             @endif
 
                         </span>
                     @elseif($soldadorqualificacao->status=="nao-qualificado")
                         <span>
-                            <a class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></a>
                             @if($usuario->tipo==2)
+                                <a class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></a>
                                 <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
                             @else
-                                <form method="post" action="{{route("requalificar")}}">
+                                <form method="post" action="{{route("requalificar")}}" class="form-group">
+                                    <label class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></label>
                                     @csrf
                                     <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
-                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="requalificar">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                                 </form>
                             @endif
 
