@@ -31,14 +31,6 @@
                         <option value="{{$empresa->id}}">{{$empresa->nome_fantasia}}</option>
                     @endforeach
                 </select>
-                <label for="status">Status:</label>
-                <select class="form-control" id="status" name="status" required>
-                    <option value="-1" disabled selected>Selecione o status</option>
-                    <option value="1">Qualificado</option>
-                    <option value="2">Em processo</option>
-                    <option value="3">Não Qualificado</option>
-                    <option value="4">Atrasado</option>
-                </select>
                 <input type="hidden" value="1" name="aviso" required>
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

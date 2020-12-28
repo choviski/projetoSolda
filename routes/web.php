@@ -60,6 +60,23 @@ Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy"
 Route::resource("/processo","ProcessoController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->name('processo.remover')->middleware(CheckSession::class);
 
+Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("selecionarEmpresa");
+Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador");
+Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador");
+Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa");
+
+Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao");
+Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao");
+Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa");
+Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao");
+Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar");
+
+Route::get('envio-email',function (){
+
+    //return new \App\Mail\Email();
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+})->name("email");
+
 Route::post('/login','LoginController@entrar')->name("login");
 Route::get('/', "LoginController@index")->name("inicio");
 Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");

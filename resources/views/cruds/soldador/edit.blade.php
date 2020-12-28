@@ -33,15 +33,7 @@
                     @endforeach
                 </select>
 
-                <label for="status">Status:</label>
-                <select class="form-control" id="status" name="status" required>
-                    <option value="{{$soldador->status}}" selected>{{$soldador->status}}</option>
-                    <option value="1">Qualificado</option>
-                    <option value="2">Em processo</option>
-                    <option value="3">Não Qualificado</option>
-                    <option value="4">Atrasado</option>
-
-                </select>
+               
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

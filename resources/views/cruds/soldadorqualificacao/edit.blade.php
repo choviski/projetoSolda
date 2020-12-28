@@ -56,7 +56,15 @@
 
                 <label  for="descricao">Descrição:</label>
                 <textarea type="text" class="form-control" id="descricao" value="{{$soldadorqualificacao->texto}}" name="texto" required>{{$soldadorqualificacao->texto}}}</textarea>
+                <label for="status">Status:</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="{{$soldadorqualificacao->status}}" selected>{{$soldadorqualificacao->status}}</option>
+                    <option value="1">Qualificado</option>
+                    <option value="2">Em processo</option>
+                    <option value="3">Não Qualificado</option>
+                    <option value="4">Atrasado</option>
 
+                </select>
 
                 <label  for="caminho_certificado">Insira o caminho do certificado:</label>
                 <input type="text" class="form-control" id="caminho_certificado" value="{{$soldadorqualificacao->caminho_certificado}}" name="caminho_certificado" required>

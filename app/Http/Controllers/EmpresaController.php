@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
 use App\Empresa;
 use App\Endereco;
 use App\Http\Controllers\Controller;
@@ -45,7 +46,7 @@ class EmpresaController extends Controller
     {
         $usuario = session()->get("Usuario");
         Empresa::create($request->all());
-        return redirect()->route("empresa.index")->with(["usuario"=>$usuario]);;
+        return redirect()->route("empresa.index")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -100,5 +101,17 @@ class EmpresaController extends Controller
     {
         Empresa::destroy($request->id);
         return redirect()->route("empresa.index");
+    }
+    public function salvar(Request $request){
+        $usuario = session()->get("Usuario");
+        Empresa::create($request->all());
+        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
+    }
+    public function selecionar(){
+        $enderecos=Endereco::all();
+        $inspetor=Inspetor::all();
+        $usuario = session()->get("Usuario");
+        return view("cadastroEmpresa")->with(["enderecos"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario]);
+
     }
 }

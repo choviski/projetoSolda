@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Soldador extends Model
 {
     protected $table="soldadores";
-    protected $fillable=["nome","sinete","matricula","email","id_empresa","status","aviso"];
+    protected $fillable=["nome","sinete","matricula","email","id_empresa","aviso"];
     use SoftDeletes;
     public function empresa(){
         return $this->belongsTo("App\Empresa",'id_empresa','id');

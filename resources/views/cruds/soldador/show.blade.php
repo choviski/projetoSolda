@@ -19,7 +19,6 @@
                             <th scope="col">MATRÍCULA</th>
                             <th scope="col">E-MAIL</th>
                             <th scope="col">EMPRESA</th>
-                            <th scope="col">STATUS</th>
                             <th scope="col">ID EMPRESA</th>
                             <th scope="col">CREATED_AT</th>
                             <th scope="col">UPDATED_AT</th>
@@ -34,7 +33,6 @@
                         <td>{{$soldador->matricula}}</td>
                         <td>{{$soldador->email}}</td>
                         <td>{{$soldador->empresa->nome_fantasia}}</td>
-                        <td>{{$soldador->status}}</td>
                         <td>{{$soldador->empresa->id}}</td>
                         <td>{{$soldador->created_at}}</td>
                         <td>{{$soldador->updated_at}}</td>

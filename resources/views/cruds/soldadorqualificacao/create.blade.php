@@ -39,6 +39,15 @@
                 <label  for="validade_qualificacao">Insira a validade da qualificação:</label>
                 <input type="date" class="form-control" id="validade_qualificacao" name="validade_qualificacao" required>
 
+                <label for="status">Status:</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="-1" disabled selected>Selecione o status</option>
+                    <option value="1">Qualificado</option>
+                    <option value="2">Em processo</option>
+                    <option value="3">Não Qualificado</option>
+                    <option value="4">Atrasado</option>
+                </select>
+
                 <label  for="lancamento_qualificacao">Insira o lançamento da qualificação:</label>
                 <input type="date" class="form-control" id="lancamento_qualificacao" name="lancamento_qualificacao" required>
 

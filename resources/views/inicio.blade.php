@@ -7,27 +7,52 @@
     </div>
     <div class="container-fluid d-flex justify-content-center">
         <div class="col-md-8 col-12">
-            @foreach($soldadores as $soldador)
+            @foreach($soldadorqualificacaos as $soldadorqualificacao)
                 <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm">
-                    <a> @if($usuario->id==1){{$soldador->empresa->nome_fantasia}} |@endif
-                        {{$soldador->nome}} |
-                        @if($usuario->id==2){{$soldador->matricula}} @endif
+                    <a> @if($usuario->tipo==1){{$soldadorqualificacao->soldador->empresa->nome_fantasia}} |@endif
+                        {{$soldadorqualificacao->soldador->nome}} |
+                        @if($usuario->tipo==2){{$soldadorqualificacao->soldador->matricula}} @endif
                     </a>
                     <!--IF para checar o status do soldador-->
-                    @if($soldador->status=="em-processo")
+                    @if($soldadorqualificacao->status=="em-processo")
                         <span>
                             <a class="h5"><span class="badge badge-primary text-white">Pendente</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @if($usuario->tipo==2)
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                                <form method="post" action="{{route("requalificar")}}">
+                                    @csrf
+                                    <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="requalificar">
+                            @endif
+
                         </span>
-                    @elseif($soldador->status=="atrasado")
+                    @elseif($soldadorqualificacao->status=="atrasado")
                         <span>
                             <a class="h5"><span class="badge badge-warning text-white">Atrasado</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm " type="button">Requalificar<spam class="badge badge-warning ml-1 text-white">!</spam></button>
+                           @if($usuario->tipo==2)
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                                <form method="post" action="{{route("requalificar")}}">
+                                    @csrf
+                                    <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="requalificar">
+                            @endif
+
                         </span>
-                    @elseif($soldador->status=="nao-qualificado")
+                    @elseif($soldadorqualificacao->status=="nao-qualificado")
                         <span>
                             <a class="h5"><span class="badge badge-danger text-white">Não qualificado!</span></a>
-                            <button class="ml-1 btn btn-secondary btn-sm " type="button">Requalificar<spam class="badge badge-danger ml-1 text-white">!</spam></button>
+                            @if($usuario->tipo==2)
+                                <button class="ml-1 btn btn-secondary btn-sm " type="button" disabled>Requalificar</button>
+                            @else
+                                <form method="post" action="{{route("requalificar")}}">
+                                    @csrf
+                                    <input type="hidden" value="{{$soldadorqualificacao->id}}" name="soldadorQualificacao">
+                                    <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="requalificar">
+                                </form>
+                            @endif
+
                         </span>
                     @endif
                 </div>

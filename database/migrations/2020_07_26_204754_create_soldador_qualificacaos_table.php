@@ -21,10 +21,11 @@ class CreateSoldadorQualificacaosTable extends Migration
             $table->unsignedBigInteger("id_qualificacao");
             $table->foreign("id_qualificacao")->references("id")->on("qualificacoes");
             $table->date("data_qualificacao");
-            $table->string("posicao");
-            $table->string("eletrodo");
-            $table->text("texto");
-            $table->string("foto");
+            $table->string("posicao")->nullable();
+            $table->string("eletrodo")->nullable();
+            $table->text("texto")->nullable();
+            $table->string("foto")->nullable();
+            $table->enum("status",['qualificado','em-processo','atrasado','nao-qualificado']);
             $table->date("validade_qualificacao");
             $table->date("lancamento_qualificacao");
             $table->string("nome_certificado");

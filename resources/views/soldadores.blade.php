@@ -9,9 +9,9 @@
         <div class="col-md-8 col-12">
             @foreach($soldadores as $soldador)
                 <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm">
-                    <a> @if($usuario->id==1){{$soldador->empresa->nome_fantasia}} |@endif
-                        {{$soldador->nome}} |
-                        @if($usuario->id==2){{$soldador->matricula}} @endif
+                    <a> @if($usuario->id==1){{$soldador->soldador->empresa->nome_fantasia}} |@endif
+                        {{$soldador->soldador->nome}} |
+                        @if($usuario->id==2){{$soldador->soldador->matricula}} @endif
                     </a>
                     <!--IF para checar o status do soldador-->
                     @if($soldador->status=="qualificado")
