@@ -7,8 +7,7 @@
     </div>
     <div class="container-fluid d-flex justify-content-center">
         <div class="col-md-8 col-12">
-            <!--Aqui começa o Foreach e plau, ali nas informações da linha 12 da pra mudar para outras que achar mais relevante. -->
-            @foreach($requalificacaos as $requalificacao)
+           @foreach($requalificacaos as $requalificacao)
                 <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm form-inline">
                     <a> {{$requalificacao->soldador->nome}} | Cod. RQS:{{$requalificacao->cod_rqs}}                  </a>
                     <span>
@@ -20,7 +19,7 @@
                     </span>
                 </div>
             @endforeach
-            <!--Aqui acaba o Foreach e plau -->
+
         </div>
     </div>
 @endsection

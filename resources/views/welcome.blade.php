@@ -46,7 +46,6 @@
                 <input type="submit" value="Entrar" class="btn-block btn-primary rounded mt-2 mb-2">
 
             </form>
-            <a href="{{route("novoUsuario")}}"><button  class="btn-block btn-primary rounded">Cadastrar-se</button></a>
 
             @if(!empty($mensagem))
                 <div class="alert alert-danger mt-2">
