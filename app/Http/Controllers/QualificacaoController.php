@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
+use App\NormaQualificacao;
 use App\Processo;
 use App\Qualificacao;
 use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class QualificacaoController extends Controller
 {
@@ -92,14 +94,23 @@ class QualificacaoController extends Controller
             $requalificacao = SoldadorQualificacao::find($request->id);
             $requalificacao->status = "qualificado";
             $requalificacao->save();
+            $tempoNorma=NormaQualificacao::where("id_qualificacao",'=',$requalificacao->id_qualificacao)->get();
+            $tempo=$tempoNorma[0]->norma->validade;
+            $validade=Carbon::parse($requalificacao->validade_qualificacao);
+            $requalificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
+            $requalificacao->data_qualificacao=Carbon::now()->toDateString();
+            $requalificacao->lancamento_qualificacao=$requalificacao->updated_at;
+
+
+            $requalificacao->save();
+
             return redirect()->route("requalificacoes");
-            ##daqui em diante deu pau.
         }
         if ($request->aceito == 0) {
             $requalificacao = SoldadorQualificacao::find($request->id);
             $requalificacao->status = "nao-qualificado";
             $requalificacao->save();
             return redirect()->route("requalificacoes");
-         }
+        }
     }
 }

@@ -21,6 +21,8 @@ Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::
 Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
 Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class)->name("cadastrar");
 Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class)->name("requalificacoes");
+Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(CheckSession::class)->name("editarUsuario");
+Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 
 
 Route::resource("/cidade","CidadeController",['except'=>'destroy'])->middleware(CheckSession::class);
@@ -72,6 +74,7 @@ Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("ed
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar");
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao");
 Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao");
+
 
 Route::get('envio-email',function (){
 

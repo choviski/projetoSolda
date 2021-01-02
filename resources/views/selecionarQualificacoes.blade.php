@@ -42,8 +42,8 @@
                         <option value="-1" disabled selected>Selecione o status</option>
                         <option value="1">Qualificado</option>
                         <option value="2">Em processo</option>
-                        <option value="3">Não Qualificado</option>
-                        <option value="4">Atrasado</option>
+                        <option value="3">Atrasado</option>
+                        <option value="4">Não Qualificado</option>
                     </select>
 
                     <label  for="lancamento_qualificacao">Insira a data de lançamento da qualificação:</label>

@@ -57,6 +57,11 @@
                         <a  class="nav-link"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">Entidades</a>
                     </li>
                     @endif
+                    @if($usuario->tipo==2)
+                        <li class="nav-item active" >
+                            <a  class="nav-link"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">Perfil</a>
+                        </li>
+                    @endif
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</a>
