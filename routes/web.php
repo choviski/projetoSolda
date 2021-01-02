@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\CheckSession;
+use App\SoldadorQualificacao;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,7 +78,14 @@ Route::post("/processarRequalificacao","QualificacaoController@processarRequalif
 Route::get('envio-email',function (){
 
     //return new \App\Mail\Email();
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+    $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
+   "))->orderBy('validade_qualificacao', 'desc')->get();
+    foreach ($qualificacaos as $qualificacao) {
+        if ($qualificacao->tempo < 40 && $qualificacao->soldador->aviso == 1) {
+            \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+        }
+    }
+    return redirect()->route("paginaInicial");
 })->name("email");
 
 Route::post('/login','LoginController@entrar')->name("login");
