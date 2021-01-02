@@ -4,7 +4,7 @@
 @section('content')
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr>
-        <p class="lead">Gerenciar Empresas:</p>
+        <p class="lead">Cadastrar Empresa:</p>
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
@@ -26,7 +26,7 @@
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="insira o email da empresa" name="email" required>
 
-                <input type="hidden" value="1" name="id_usuario" required>
+                <input type="hidden" value="-1" name="id_usuario" required>
 
 
                 <label for="id_endereco">Endereço:</label>

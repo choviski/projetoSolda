@@ -21,9 +21,20 @@ class InicioController extends Controller
         elseif($usuario->tipo==2){
             $empresa = Empresa::where('id_usuario','=',$usuario->id)->get();
             $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->get();
-            $soldadorqualificacaos=SoldadorQualificacao::where('id_soldador','=',$soldadores[0]->id)->where('status','!=','qualificado')->select()->orderBy('status','desc')->get();
-            return view("inicio")->with(["soldadorqualificacaos"=>$soldadorqualificacaos,"usuario"=>$usuario]);;
-
+            $soldadorqualificacaos=collect();
+            #Checando se a soldadores cadastrados para nao ocorrer nenhum erro na view
+            if(!$soldadores->isEmpty()) {
+                foreach ($soldadores as $soldadore) {
+                    $soldador = (SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->where('status', '!=', 'qualificado')->select()->orderBy('status', 'desc')->get());
+                    if (!empty($soldador[0]->id)) {
+                        $soldadorqualificacaos->push(SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->where('status', '!=', 'qualificado')->select()->orderBy('status', 'desc')->get());
+                    }
+                }
+                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);;
+            }else{
+                $soldadorqualificacaos=null;
+                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);;
+            }
         }
 
 

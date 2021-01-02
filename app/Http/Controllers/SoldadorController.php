@@ -97,6 +97,7 @@ class SoldadorController extends Controller
         $norma_qualificacao= new NormaQualificacao();
         $norma_qualificacao->id_norma=$norma->id;
         $norma_qualificacao->id_qualificacao=$qualificacao->id;
+        $norma_qualificacao->save();
         //cadastrando soldador-Qualificacao
         $soldador_qualificacao= new SoldadorQualificacao();
         $soldador_qualificacao->cod_rqs=$request->cod_rqs;

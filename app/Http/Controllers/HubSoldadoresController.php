@@ -21,8 +21,17 @@ class HubSoldadoresController extends Controller
         elseif($usuario->tipo==2){
             $empresa = Empresa::where('id_usuario','=',$usuario->id)->get();
             $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->get();
-            $soldadorqualificacaos=SoldadorQualificacao::where('id_soldador','=',$soldadores[0]->id)->select()->orderBy('status','desc')->get();
-            return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);;
+            $soldadorqualificacaos=collect();
+            #Checando se a soldadores cadastrados para nao ocorrer nenhum erro na view
+            if(!$soldadores->isEmpty()) {
+                foreach ($soldadores as $soldadore) {
+                    $soldadorqualificacaos->push(SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->select()->orderBy('status', 'desc')->get());
+                }
+                return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
+            }else{
+                $soldadorqualificacaos=null;
+                return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
+            }
 
         }
     }
