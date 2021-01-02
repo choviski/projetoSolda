@@ -21,7 +21,7 @@
                                         <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
                                         <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                                     </form>
-                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==1)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
                                  </span>
                             @elseif($soldador->status=="em-processo")
                                 <span class="d-flex justify-content-center">
@@ -31,7 +31,7 @@
                                         <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
                                         <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar" disabled>
                                     </form>
-                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==1)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
                                 </span>
                             @elseif($soldador->status=="atrasado")
                                 <span class="d-flex justify-content-center">
@@ -41,7 +41,7 @@
                                         <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
                                         <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                                     </form>
-                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==1)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
                                 </span>
                             @elseif($soldador->status=="nao-qualificado")
                                 <span class="d-flex justify-content-center">
@@ -51,7 +51,7 @@
                                         <input type="hidden" value="{{$soldador->id}}" name="soldadorQualificacao">
                                         <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                                     </form>
-                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==1)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+                                    <i class="fas fa-envelope ml-1"></i>@if($soldador->soldador->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
                                 </span>
                             @endif
                         </div>
