@@ -28,7 +28,7 @@
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" value="{{$empresa->email}}" name="email" required>
 
-                <label for="senha">Email:</label>
+                <label for="senha">Senha:</label>
                 <input type="text" class="form-control" id="senha" value="{{$usuarioEmpresa->senha}}" name="senha" required>
 
                 <label for="id_endereco">Endereço:</label>
