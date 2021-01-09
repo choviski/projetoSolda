@@ -50,8 +50,7 @@
 
 
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
-                <input type="file" class="form-control" id="caminho_certificado" placeholder="Foto do corpo de prova" name="foto" required value="{{$requalificacao->foto}}"  disabled>
-
+<img src="{{asset("$requalificacao->foto")}}">
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
 

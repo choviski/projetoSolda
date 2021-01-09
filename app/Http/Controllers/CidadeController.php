@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
+    public function municipio($estado){
+        $cidades=Cidade::select('nome','id')->where('estado','=',$estado)->get();
+        return Response()->json([
+            'cidade' => $cidades,
+        ]);
+
+    }
     public function index()
     {
         $usuario = session()->get("Usuario");

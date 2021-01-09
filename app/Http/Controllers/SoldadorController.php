@@ -9,7 +9,9 @@ use App\Qualificacao;
 use App\Soldador;
 use App\Empresa;
 use App\SoldadorQualificacao;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SoldadorController extends Controller
 {
@@ -86,6 +88,7 @@ class SoldadorController extends Controller
         $norma=new Norma();
         $norma->nome=$request->nome_norma;
         $norma->descricao=$request->descricao_norma;
+        $norma->validade=$request->validade;
         $norma->save();
         //cadastrando qualificacao
         $qualificacao = new Qualificacao();
@@ -105,8 +108,16 @@ class SoldadorController extends Controller
         $soldador_qualificacao->id_qualificacao=$qualificacao->id;
         $soldador_qualificacao->data_qualificacao=$request->data_qualificacao;
         $soldador_qualificacao->status=$request->status;
-        $soldador_qualificacao->validade_qualificacao=$request->validade_qualificacao;
-        $soldador_qualificacao->lancamento_qualificacao=$request->lancamento_qualificacao;
+        if($request->validade==1){
+            $tempo=6;
+        }elseif ($request->validade==2){
+            $tempo=12;
+        }else{
+            $tempo=24;
+        }
+        $validade=Carbon::parse($request->data_qualificacao);
+        $soldador_qualificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
+        $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();;
         $soldador_qualificacao->nome_certificado=$request->nome_certificado;
         $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
         $soldador_qualificacao->save();

@@ -34,9 +34,6 @@
                     <label  for="data_qualificacao">Insira a data da qualificação:</label>
                     <input type="date" class="form-control" id="data_qualificacao" name="data_qualificacao" required>
 
-                    <label  for="validade_qualificacao">Insira a validade da qualificação:</label>
-                    <input type="date" class="form-control" id="validade_qualificacao" name="validade_qualificacao" required>
-
                     <label for="status">Status:</label>
                     <select class="form-control" id="status" name="status" required>
                         <option value="-1" disabled selected>Selecione o status</option>
@@ -46,8 +43,6 @@
                         <option value="4">Não Qualificado</option>
                     </select>
 
-                    <label  for="lancamento_qualificacao">Insira a data de lançamento da qualificação:</label>
-                    <input type="date" class="form-control" id="lancamento_qualificacao" name="lancamento_qualificacao" required>
 
                     <label  for="nome_certificado">Nome do certificado:</label>
                     <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="nome_certificado" required>

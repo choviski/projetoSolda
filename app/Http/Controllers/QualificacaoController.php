@@ -11,6 +11,7 @@ use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use File;
 
 class QualificacaoController extends Controller
 {
@@ -71,7 +72,10 @@ class QualificacaoController extends Controller
         $qualificacao->posicao=$request->posicao;
         $qualificacao->eletrodo=$request->eletrodo;
         $qualificacao->texto=$request->texto;
-        $qualificacao->foto=$request->foto;
+        $imagem = $request->file('foto');
+        $extensao=$imagem->getClientOriginalExtension();
+        $imagem=File::move($imagem,public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
+        $qualificacao->foto='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
         $qualificacao->status="em-processo";
         $qualificacao->validade_qualificacao=$request->validade_qualificacao;
         $qualificacao->lancamento_qualificacao=$request->lancamento_qualificacao;
