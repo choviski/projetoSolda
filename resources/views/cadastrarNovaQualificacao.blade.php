@@ -8,7 +8,7 @@
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form class="col-12 mt-2"action="{{Route('editarQualificacao',['id'=> $soldadorQualificacao->id])}}" method="post">
+        <form class="col-12 mt-2"action="{{Route('editarQualificacao',['id'=> $soldadorQualificacao->id])}}" method="post"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
@@ -51,7 +51,7 @@
 
 
                 <label  for="caminho_certificado">Insira a foto do corpo de prova:</label>
-                <input type="file" class="form-control" id="caminho_certificado" placeholder="a foto do corpo de prova" name="foto" required>
+                <input type="file" class="form-control" id="foto" placeholder="a foto do corpo de prova" name="foto" required>
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição do processo que você ultilizou na soldagem" name="texto" required></textarea>
@@ -59,7 +59,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
-        <a href="{{route("soldadorqualificacao.index")}}"><button class=" col-12 btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        <a href="{{route("soldadorqualificacao.index")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
 @endsection

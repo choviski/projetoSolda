@@ -74,6 +74,7 @@ Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("ed
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar");
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao");
 Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao");
+Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(CheckSession::class)-> name("municipio/{estado}");
 
 
 Route::get('envio-email',function (){

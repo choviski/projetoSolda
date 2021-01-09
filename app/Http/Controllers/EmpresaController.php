@@ -106,7 +106,14 @@ class EmpresaController extends Controller
     }
     public function salvar(Request $request){
         $usuario = session()->get("Usuario");
-
+        #Criando o Endereco
+        $endereco= new Endereco();
+        $endereco->rua=$request->rua;
+        $endereco->cep=$request->cep;
+        $endereco->complemento=$request->complemento;
+        $endereco->bairro=$request->bairro;
+        $endereco->id_cidade=$request->id_cidade;
+        $endereco->save();
         #Criando a Empresa
         $empresa = new Empresa();
         $empresa->cnpj=$request->cnpj;
@@ -114,9 +121,22 @@ class EmpresaController extends Controller
         $empresa->razao_social=$request->razao_social;
         $empresa->telefone=$request->telefone;
         $empresa->email=$request->email;
-        $empresa->id_endereco=$request->id_endereco;
-        $empresa->id_inspetor=$request->id_inspetor;
-
+        $empresa->id_endereco=$endereco->id;
+        if($request->nome&&$request->crea&&$request->funcao){
+            try {
+                $inspetor = new Inspetor();
+                $inspetor->nome = $request->nome;
+                $inspetor->crea = $request->crea;
+                $inspetor->funcao = $request->funcao;
+                $inspetor->save();
+                $empresa->id_inspetor = $inspetor->id;
+            }catch (Exception $e){
+                session()->put("sem_inspetor","Preencha todos os dados do seu endereço corretamente");
+                return redirect()->back();
+            }
+        }else{
+            $empresa->id_inspetor=$request->id_inspetor;
+        }
         #Criando o usuario da empresa
         #senha aleatoria
         $senhaAleatoria = Str::random(12);
@@ -165,10 +185,10 @@ class EmpresaController extends Controller
     }
 
     public function selecionar(){
-        $enderecos=Endereco::all();
+        $enderecos=Cidade::all();
         $inspetor=Inspetor::all();
         $usuario = session()->get("Usuario");
-        return view("cadastroEmpresa")->with(["enderecos"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario]);
+        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario]);
 
     }
 }
