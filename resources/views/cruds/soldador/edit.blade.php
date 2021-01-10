@@ -33,7 +33,13 @@
                     @endforeach
                 </select>
 
-               
+                <label for="foto">Foto do soldador:</label>
+                <div  style="height: 150px">
+                    <img src="{{asset("imagens/soldador_default.png")}}" style="max-width: 100%;max-height: 100%;"  id="corpo_prova">
+                </div>
+                <!-- Aqui vai o input file pra alterar a foto do soldador -->
+
+
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

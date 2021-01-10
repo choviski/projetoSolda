@@ -50,7 +50,11 @@
 
 
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
-<img src="{{asset("$requalificacao->foto")}}">
+                <!--Deixando o tamanho da imagem meio padronizado-->
+                <div  style="height: 150px">
+                    <img src="{{asset("$requalificacao->foto")}}" style="max-width: 100%;max-height: 100%;"  id="corpo_prova" onclick="fullscreen('{{asset("$requalificacao->foto")}}')">
+                </div>
+
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
 
@@ -71,5 +75,24 @@
         $( "#negar" ).click(function() {
             $( "#aceito" ).val(0);
         });
+    </script>
+    <script>
+        function fullscreen(img){
+            $("#imagemFullscreen").attr('src',  img );
+            $("#divFullscreen").css("display", "block");
+            $("body").css("overflowY", "hidden");
+            $("#divFullscreen").addClass("d-flex justify-content-center");
+
+
+        }
+    </script>
+    <script>
+        $("#exitFullscreen").click( function()            {
+                $("#imagemFullscreen").attr('src',  "" );
+                $("#divFullscreen").css("display", "none");
+                $("body").css("overflow", "");
+                $("#divFullscreen").removeClass("d-flex justify-content-center");
+            }
+        );
     </script>
 @endsection
