@@ -14,7 +14,7 @@ class HubSoldadoresController extends Controller
         $usuario = session()->get("Usuario");
         #Pegando todos os soldadores como administrador
         if($usuario->tipo==1){
-            $soldadorqualificacaos = SoldadorQualificacao::select()->orderBy('status','desc')->get();
+            $soldadorqualificacaos = SoldadorQualificacao::all();
             return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
         }
         #Pegando os soldadores da empresa
