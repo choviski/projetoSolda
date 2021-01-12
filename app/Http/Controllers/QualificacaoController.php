@@ -74,7 +74,7 @@ class QualificacaoController extends Controller
         $qualificacao->texto=$request->texto;
         $imagem = $request->file('foto');
         $extensao=$imagem->getClientOriginalExtension();
-        chmod($imagem->path(),0755);
+        chmod($imagem->path(),0777);
         $imagem=File::move($imagem,public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
         $qualificacao->foto='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
 
