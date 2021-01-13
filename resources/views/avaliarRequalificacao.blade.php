@@ -50,26 +50,29 @@
 
 
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
-                <!--Deixando o tamanho da imagem meio padronizado-->
+                <div  style="height: 150px">
+                    <img src="{{asset("$fotos->caminho")}}" style="max-width: 100%;max-height: 100%;"  id="corpo_prova" onclick="fullscreen('{{asset("$fotos->caminho")}}')">
+                </div>
+                <!--Deixando o tamanho da imagem meio padronizado
                <div class="d-flex justify-content-center">
                 <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center" data-ride="carousel" style="width: 300px">
                     <ol class="carousel-indicators">
-                        @foreach($fotos as $foto)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->index==0)class="active"@endif></li>
-                        @endforeach
+                        @ foreach($fotos as $foto)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{ {$loop->index}}" @ if($loop->index==0)class="active" @ endif></li>
+                        @ endforeach
                     </ol>
                     <div class="carousel-inner" >
-                        @foreach($fotos as $foto)
-                            @if($loop->index==0)
+                        @ foreach($fotos as $foto)
+                            @ if($loop->index==0)
                         <div class="carousel-item active">
-                            <img class="d-block  " height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                            <img class="d-block  " height="200px" src="{ {asset($foto->caminho)}}" id="imagem{ {$ foto->id}}" onclick="fullscreen('{ {asset($foto->caminho)}}')">
                         </div>
-                            @else
+                            @ else
                                 <div class="carousel-item ">
-                                    <img class="d-block " src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                                    <img class="d-block " src="{ {asset($foto->caminho)}}"  height="200px" id="imagem{ {$foto->id}}" onclick="fullscreen('{ {asset($foto->caminho)}}')">
                                 </div>
-                            @endif
-                        @endforeach
+                            @ endif
+                        @ endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
@@ -81,7 +84,7 @@
                     </a>
                 </div>
                 </div>
-                <!--<button onclick="downloadAll(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</button>-->
+                <button onclick="downloadAll(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</button>-->
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
