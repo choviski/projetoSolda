@@ -9,7 +9,13 @@
         <div class="col-md-8 col-12">
            @foreach($requalificacaos as $requalificacao)
                 <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm form-inline">
-                    <a> {{$requalificacao->soldador->nome}} | Cod. RQS:{{$requalificacao->cod_rqs}}                  </a>
+                    <span>
+                        <div>
+                            <img src="{{asset("imagens/soldador_default.png")}}" width="100px" class="rounded-circle border">
+                        </div>
+                    <a> {{$requalificacao->soldador->nome}} | Cod. RQS:{{$requalificacao->cod_rqs}}
+                    </a>
+                        </span>
                     <span>
                         <form method="post" action="{{route("avaliarRequalificacao")}}" class="form-group">
                             @csrf

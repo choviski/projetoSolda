@@ -2,6 +2,18 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <script>
+        function formataTelefone(){
+            var telefone = document.getElementById("telefone").value;
+            var telefoneFormatado = telefone.replace(/^(\d{2})(\d{4})(\d{4}).*/, '($1) $2-$3');
+            document.getElementById("telefone").value=(telefoneFormatado);
+        }
+        function formataCNPJ(){
+            var cnpj = document.getElementById("cnpj").value;
+            var cnpjFormatado = cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{3}).*/, '$1.$2.$3/$4');
+            document.getElementById("cnpj").value=(cnpjFormatado);
+        }
+    </script>
     <script
             src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -82,7 +94,7 @@
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="cnpj">CNPJ:</label>
-                <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" required>
+                <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" maxlength="14" onchange="formataCNPJ()" required>
 
                 <label  for="razao_social">Razão Social:</label>
                 <input type="text" class="form-control" id="razao_social" placeholder="Insira a razão social da empresa" name="razao_social" required>
@@ -91,7 +103,7 @@
                 <input type="text" class="form-control" id="nome_fantasia" placeholder="Insira o nome fantasia da empresa (se tiver)" name="nome_fantasia">
 
                 <label  for="telefone">Telefone:</label>
-                <input type="tel" class="form-control" id="telefone" placeholder="insira o telefone da empresa (apenas numeros)" name="telefone" required>
+                <input type="tel" class="form-control" id="telefone" placeholder="insira o telefone da empresa (apenas numeros)" onchange="formataTelefone()" maxlength="10" name="telefone" required>
 
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="insira o email da empresa" name="email" required>
@@ -178,12 +190,5 @@
         <a href="{{route("cadastrar")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
-    <script>
-        $(document).ready(function(){
-            $('#telefone').mask('(99) 9999-9999');
-        });
-        $(document).ready(function(){
-            $('#cnpj').mask('99.999.999/9999-99');
-        });
-    </script>
+
 @endsection
