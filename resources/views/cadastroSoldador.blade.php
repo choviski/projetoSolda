@@ -30,6 +30,7 @@
                 <label  for="email">E-mail:</label>
                 <input type="email" class="form-control" id="email" placeholder="Insira o email" name="email" >
 
+
                 <input type="hidden" name="id_empresa" value="{{$empresa}}">
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">

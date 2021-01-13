@@ -16,6 +16,7 @@
         function formataCNPJ(){
             var cnpj = document.getElementById("cnpj").value;
             var cnpjFormatado = cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2}).*/, '$1.$2.$3/$4-$5');
+
             document.getElementById("cnpj").value=(cnpjFormatado);
         }
     </script>
@@ -101,6 +102,7 @@
                 <label  for="cnpj">CNPJ:</label>
                 <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" onchange="formataCNPJ()" maxlength="14" required>
 
+
                 <label  for="razao_social">Razão Social:</label>
                 <input type="text" class="form-control" id="razao_social" placeholder="Insira a razão social da empresa" name="razao_social" required>
 
@@ -112,6 +114,7 @@
 
                 <label  for="telefone">Telefone:</label>
                 <input type="tel" class="form-control" id="telefone" placeholder="insira o telefone da empresa (apenas numeros)" name="telefone" onchange="formataTelefone()" required maxlength="10">
+
 
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="insira o email da empresa" name="email" required>
@@ -206,12 +209,5 @@
         <a href="{{route("cadastrar")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
-    <script>
-        $(document).ready(function(){
-            $('#telefone').mask('(99) 9999-9999');
-        });
-        $(document).ready(function(){
-            $('#cnpj').mask('99.999.999/9999-99');
-        });
-    </script>
+
 @endsection
