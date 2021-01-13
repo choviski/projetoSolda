@@ -87,23 +87,33 @@ class QualificacaoController extends Controller
         $qualificacao->nome_certificado=$request->nome_certificado;
         $qualificacao->caminho_certificado=$request->caminho_certificado;
         $qualificacao->save();
-        foreach ($request->files as $request->filess) {
-            foreach ($request->filess as $request->file) {
+        /*$todasasfotos=$request->allFiles();
+        foreach ($todasasfotos as $todasasfoto) {
+            foreach ($todasasfoto as $foto) {
                 # cria a uma nova fotoRequalificacao
                 $fotoRequalificacao = new Foto();
                 $fotoRequalificacao->id_requalificacao = $qualificacao->id;
                 $fotoRequalificacao->caminho='';
-                chmod($request->file->getPath(),0755);
+                //chmod($request->file->getPath(),0755);
                 $fotoRequalificacao->save();
-                $imagem = $request->file;
-                $extensao = $imagem->getClientOriginalExtension();
-                $imagem = File::move($imagem, public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao);
+                $extensao = $foto->getClientOriginalExtension();
+                $imagem = File::move($foto, public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao);
+                chmod(public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao,0755);
                 $fotoRequalificacao->caminho = '/imagem-qualificacao/fotoRequalificacao-id'.$fotoRequalificacao->id.'.'.$extensao;
                 $fotoRequalificacao->save();
 
             }
         }
         chmod(public_path().'/imagem-qualificacao',0755);
+        */
+        $foto=new Foto();
+        $imagem = $request->file('foto');
+        $extensao=$imagem->getClientOriginalExtension();
+        chmod($imagem->path(),0755);
+        File::move($imagem, public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
+        $foto->caminho='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
+        $foto->id_requalificacao=$qualificacao->id;
+        $foto->save();
         return redirect()->route("paginaInicial");
     }
 
@@ -111,7 +121,8 @@ class QualificacaoController extends Controller
     {
         $requalificacao=SoldadorQualificacao::find($request->id);
         $usuario = session()->get("Usuario");
-        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->get();
+        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->first();
+
         return view("avaliarRequalificacao")->with(["requalificacao"=>$requalificacao,"usuario"=>$usuario,"fotos"=>$fotos]);
     }
 
