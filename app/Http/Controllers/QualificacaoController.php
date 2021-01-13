@@ -95,6 +95,7 @@ class QualificacaoController extends Controller
                 $fotoRequalificacao = new Foto();
                 $fotoRequalificacao->id_requalificacao = $qualificacao->id;
                 $fotoRequalificacao->caminho='';
+                chmod($request->file->getPath(),0755);
                 $fotoRequalificacao->save();
                 $imagem = $request->file;
                 $extensao = $imagem->getClientOriginalExtension();
