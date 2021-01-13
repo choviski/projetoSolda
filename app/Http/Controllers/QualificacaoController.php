@@ -123,7 +123,7 @@ class QualificacaoController extends Controller
     {
         $requalificacao=SoldadorQualificacao::find($request->id);
         $usuario = session()->get("Usuario");
-        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->first();
+        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->orderBy('id', 'desc')->first();
 
         return view("avaliarRequalificacao")->with(["requalificacao"=>$requalificacao,"usuario"=>$usuario,"fotos"=>$fotos]);
     }
