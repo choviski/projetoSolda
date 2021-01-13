@@ -65,6 +65,8 @@ class QualificacaoController extends Controller
         return view ("cadastrarNovaQualificacao")->with(["soldadorQualificacao"=>$soldadorQualificacao[0],"usuario"=>$usuario]);
     }
     public function editar($id,Request $request){
+
+
         $qualificacao=SoldadorQualificacao::find($id);
         $qualificacao->cod_rqs=$request->oi;
         $qualificacao->id_soldador=$request->id_soldador;

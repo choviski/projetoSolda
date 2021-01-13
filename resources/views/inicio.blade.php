@@ -13,6 +13,7 @@
                         <span>
                             <div>
                                  <img src="@if($soldadorqualificacao->soldador->foto){{asset($soldadorqualificacao->soldador->foto)}}@else{{asset("imagens/soldador_default.png")}}@endif" width="100px" height="100px" class="rounded-circle border">
+
                             </div>
                             <a> @if($usuario->tipo==1)
                                     {{$soldadorqualificacao->soldador->empresa->nome_fantasia}} | {{$soldadorqualificacao->soldador->nome}} | {{$soldadorqualificacao->cod_rqs}}
@@ -31,6 +32,7 @@
                                     <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar" disabled>
                                 </form>
                                 <i class="fas fa-envelope ml-1"></i>@if($soldadorqualificacao->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+
                             </span>
                         @elseif($soldadorqualificacao->status=="atrasado")
                             <span class="d-flex justify-content-center">
@@ -41,6 +43,7 @@
                                     <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                                 </form>
                                 <i class="fas fa-envelope ml-1"></i>@if($soldadorqualificacao->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+
                             </span>
                         @elseif($soldadorqualificacao->status=="nao-qualificado")
                             <span class="d-flex justify-content-center">
@@ -51,6 +54,7 @@
                                     <input type="submit" class="ml-1 btn btn-secondary btn-sm" value="Requalificar">
                                 </form>
                                 <i class="fas fa-envelope ml-1"></i>@if($soldadorqualificacao->aviso==0)<i class="fas fa-check ml-1"></i> @else<i class="fas fa-times ml-1"></i>@endif
+
                             </span>
                         @endif
                     </div>
