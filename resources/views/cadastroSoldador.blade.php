@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" id="cpf" placeholder="Insira o CPF do Soldador" name="cpf" required>
 
                 <label  for="foto">Foto:</label>
-                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto">
+                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto" required>
 
 
                 <label  for="sinete">Sinete:</label>
