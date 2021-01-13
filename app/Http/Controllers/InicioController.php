@@ -15,6 +15,7 @@ class InicioController extends Controller
         #Pegando todos os soldadores como administrador
         if($usuario->tipo==1){
             $soldadorqualificacaos = SoldadorQualificacao::where('status','!=','qualificado')->select()->orderBy('status','desc')->get();
+
             return view("inicio")->with(["soldadorqualificacaos"=>$soldadorqualificacaos,"usuario"=>$usuario]);
         }
         #Pegando os soldadores da empresa
@@ -22,18 +23,25 @@ class InicioController extends Controller
             $empresa = Empresa::where('id_usuario','=',$usuario->id)->get();
             $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->get();
             $soldadorqualificacaos=collect();
+
+
             #Checando se a soldadores cadastrados para nao ocorrer nenhum erro na view
+
             if(!$soldadores->isEmpty()) {
                 foreach ($soldadores as $soldadore) {
-                    $soldador = (SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->where('status', '!=', 'qualificado')->select()->orderBy('status', 'desc')->get());
-                    if (!empty($soldador[0]->id)) {
-                        $soldadorqualificacaos->push(SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->where('status', '!=', 'qualificado')->select()->orderBy('status', 'desc')->get());
+                    $soldadors = (SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->where('status', '!=', 'qualificado')->select()->orderBy('status', 'desc')->get());
+                    if (!empty($soldadors[0]->id)) {
+                        foreach ($soldadors as $soldador){
+                            $soldadorqualificacaos->push($soldador);
+                        }
                     }
                 }
-                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);;
+
+                $soldadorqualificacaos=$soldadorqualificacaos->sortBy(['status','desc']);
+                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);
             }else{
                 $soldadorqualificacaos=null;
-                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);;
+                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);
             }
         }
 

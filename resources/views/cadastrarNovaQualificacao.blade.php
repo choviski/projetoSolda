@@ -48,8 +48,6 @@
                 <label  for="nome_certificado">Eletrodo:</label>
                 <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o eletrodo ultilizado na soldagem" name="eletrodo" required>
 
-
-
                 <label  for="caminho_certificado">Insira a foto do corpo de prova:</label>
                 <input type="file" class="form-control" id="foto" placeholder="a foto do corpo de prova" name="foto" required>
 
