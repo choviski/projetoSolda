@@ -96,7 +96,7 @@
 
             </div>
         </form>
-        <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        <a href="{{route("requalificacoes")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
     <script>
