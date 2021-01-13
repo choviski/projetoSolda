@@ -16,10 +16,11 @@ class CreateSoldadorsTable extends Migration
         Schema::create('soldadores', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("nome");
-            $table->string("sinete",100)->unique();
-            $table->string("matricula",100)->unique();
+            $table->string("sinete");
+            $table->string("matricula");
             $table->string("email",100)->unique()->nullable();
-            $table->boolean("aviso");
+            $table->string("cpf",14)->unique();
+            $table->string("foto")->nullable();
             $table->unsignedBigInteger("id_empresa");
             $table->foreign("id_empresa")->references("id")->on("empresas");
             $table->softDeletes();

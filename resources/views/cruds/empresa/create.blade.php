@@ -20,6 +20,9 @@
                 <label  for="nome_fantasia">Nome Fantasia</label>
                 <input type="text" class="form-control" id="nome_fantasia" placeholder="Insira o nome fantasia da empresa (se tiver)" name="nome_fantasia">
 
+                <label  for="celular">Celular:</label>
+                <input type="tel" class="form-control" id="celular" placeholder="insira o celular da empresa (apenas numeros)" name="celular" >
+
                 <label  for="telefone">Telefone:</label>
                 <input type="tel" class="form-control" id="telefone" placeholder="insira o telefone da empresa (apenas numeros)" name="telefone" required>
 
@@ -59,6 +62,9 @@
         });
         $(document).ready(function(){
             $('#cnpj').mask('99.999.999/9999-99');
+        });
+        $(document).ready(function(){
+            $('#celular').mask('(99) 99999-9999');
         });
     </script>
 @endsection

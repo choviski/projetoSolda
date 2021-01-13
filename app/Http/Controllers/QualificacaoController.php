@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Foto;
 use App\Http\Controllers\Controller;
 use App\NormaQualificacao;
 use App\Processo;
@@ -74,12 +75,13 @@ class QualificacaoController extends Controller
         $qualificacao->posicao=$request->posicao;
         $qualificacao->eletrodo=$request->eletrodo;
         $qualificacao->texto=$request->texto;
-        $imagem = $request->file('foto');
+        /*$imagem = $request->file('foto');
         $extensao=$imagem->getClientOriginalExtension();
         $extensao=strtolower($extensao);
         chmod($imagem->path(),0755);
         $imagem=File::move($imagem,public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
         $qualificacao->foto='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
+*/
 
         $qualificacao->status="em-processo";
         $qualificacao->validade_qualificacao=$request->validade_qualificacao;
@@ -87,6 +89,21 @@ class QualificacaoController extends Controller
         $qualificacao->nome_certificado=$request->nome_certificado;
         $qualificacao->caminho_certificado=$request->caminho_certificado;
         $qualificacao->save();
+        foreach ($request->files as $request->filess) {
+            foreach ($request->filess as $request->file) {
+                # cria a uma nova fotoRequalificacao
+                $fotoRequalificacao = new Foto();
+                $fotoRequalificacao->id_requalificacao = $qualificacao->id;
+                $fotoRequalificacao->caminho='';
+                $fotoRequalificacao->save();
+                $imagem = $request->file;
+                $extensao = $imagem->getClientOriginalExtension();
+                $imagem = File::move($imagem, public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao);
+                $fotoRequalificacao->caminho = '/imagem-qualificacao/fotoRequalificacao-id'.$fotoRequalificacao->id.'.'.$extensao;
+                $fotoRequalificacao->save();
+
+            }
+        }
         return redirect()->route("paginaInicial");
     }
 
@@ -94,7 +111,8 @@ class QualificacaoController extends Controller
     {
         $requalificacao=SoldadorQualificacao::find($request->id);
         $usuario = session()->get("Usuario");
-        return view("avaliarRequalificacao")->with(["requalificacao"=>$requalificacao,"usuario"=>$usuario]);
+        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->get();
+        return view("avaliarRequalificacao")->with(["requalificacao"=>$requalificacao,"usuario"=>$usuario,"fotos"=>$fotos]);
     }
 
     public function processarRequalificacao(Request $request)

@@ -49,7 +49,7 @@
                 <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o eletrodo ultilizado na soldagem" name="eletrodo" required>
 
                 <label  for="caminho_certificado">Insira a foto do corpo de prova:</label>
-                <input type="file" class="form-control" id="foto" placeholder="a foto do corpo de prova" name="foto" required>
+                <input type="file" class="form-control" id="foto" placeholder="a foto do corpo de prova" name="fotos[]" multiple required>
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição do processo que você ultilizou na soldagem" name="texto" required></textarea>

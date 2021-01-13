@@ -17,8 +17,10 @@
                             <th scope="col">NOME FANTASIA</th>
                             <th scope="col">RAZAO SOCIAL</th>
                             <th scope="col">CNPJ</th>
+                            <th scope="col">CELULAR</th>
                             <th scope="col">TELEFONE</th>
                             <th scope="col">EMAIL</th>
+                            <th scope="col">SENHA</th>
                             <th scope="col">ENDEREÇO</th>
                             <th scope="col">INSPETOR</th>
                             <th scope="col">CREATED_AT</th>
@@ -32,8 +34,10 @@
                     <td>{{$empresa->nome_fantasia}}</td>
                     <td>{{$empresa->razao_social}}</td>
                     <td>{{$empresa->cnpj}}</td>
+                    <td>{{$empresa->celular}}</td>
                     <td>{{$empresa->telefone}}</td>
                     <td>{{$empresa->email}}</td>
+                    <td>{{$empresa->usuario->senha}}</td>
                     <td>Rua: {{$empresa->endereco->rua}} | {{$empresa->endereco->bairro}} CEP: {{$empresa->endereco->cep}} {{$empresa->endereco->cidade->nome}}-{{$empresa->endereco->cidade->estado}}</td>
                     <td>{{$empresa->inspetor->nome}}</td>
                     <td>{{$empresa->created_at}}</td>

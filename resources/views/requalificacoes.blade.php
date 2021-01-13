@@ -7,11 +7,12 @@
     </div>
     <div class="container-fluid d-flex justify-content-center">
         <div class="col-md-8 col-12">
-           @foreach($requalificacaos as $requalificacao)
+            @foreach($requalificacaos as $requalificacao)
                 <div class="row d-flex justify-content-between mt-2 p-2 bg-white rounded shadow-sm form-inline">
                     <span>
                         <div>
-                            <img src="{{asset("imagens/soldador_default.png")}}" width="100px" class="rounded-circle border">
+                            <img src="@if($requalificacao->soldador->foto){{asset($requalificacao->soldador->foto)}}@else{{asset("imagens/soldador_default.png")}}@endif" width="100px" height="100px" class="rounded-circle border">
+
                         </div>
                     <a> {{$requalificacao->soldador->nome}} | Cod. RQS:{{$requalificacao->cod_rqs}}
                     </a>

@@ -18,6 +18,7 @@ class CreateEmpresasTable extends Migration
             $table->string("cnpj",18);
             $table->string("nome_fantasia")->nullable();
             $table->string("razao_social");
+            $table->string("celular",15)->nullable();
             $table->string("telefone",14);
             $table->string("email",100)->unique();
             $table->unsignedBigInteger("id_endereco");

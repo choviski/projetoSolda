@@ -63,11 +63,12 @@
                 <label  for="caminho_certificado">Insira o caminho do certificado:</label>
                 <input type="text" class="form-control" id="caminho_certificado" placeholder="Insira o caminho do certificado" name="caminho_certificado" required>
 
-                <label  for="caminho_certificado">Insira a foto do corpo de prova:</label>
-                <input type="file" class="form-control" id="caminho_certificado" placeholder="a foto do corpo de prova" name="foto" required>
-
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição do processo que você ultilizou na soldagem" name="texto" required></textarea>
+
+                <input type="hidden" class="form-control" id="aviso" value=1 name="aviso" required>
+
+
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>

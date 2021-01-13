@@ -8,9 +8,15 @@
             var telefoneFormatado = telefone.replace(/^(\d{2})(\d{4})(\d{4}).*/, '($1) $2-$3');
             document.getElementById("telefone").value=(telefoneFormatado);
         }
+        function formataCelular(){
+            var celular = document.getElementById("celular").value;
+            var celularFormatado = celular.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            document.getElementById("celular").value=(celularFormatado);
+        }
         function formataCNPJ(){
             var cnpj = document.getElementById("cnpj").value;
-            var cnpjFormatado = cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{3}).*/, '$1.$2.$3/$4');
+            var cnpjFormatado = cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2}).*/, '$1.$2.$3/$4-$5');
+
             document.getElementById("cnpj").value=(cnpjFormatado);
         }
     </script>
@@ -94,7 +100,8 @@
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="cnpj">CNPJ:</label>
-                <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" maxlength="14" onchange="formataCNPJ()" required>
+                <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" onchange="formataCNPJ()" maxlength="14" required>
+
 
                 <label  for="razao_social">Razão Social:</label>
                 <input type="text" class="form-control" id="razao_social" placeholder="Insira a razão social da empresa" name="razao_social" required>
@@ -102,11 +109,18 @@
                 <label  for="nome_fantasia">Nome Fantasia</label>
                 <input type="text" class="form-control" id="nome_fantasia" placeholder="Insira o nome fantasia da empresa (se tiver)" name="nome_fantasia">
 
+                <label  for="celular">Celular:</label>
+                <input type="tel" class="form-control" id="celular" placeholder="insira o celular da empresa (apenas numeros)" name="celular" onchange="formataCelular()" maxlength="11">
+
                 <label  for="telefone">Telefone:</label>
-                <input type="tel" class="form-control" id="telefone" placeholder="insira o telefone da empresa (apenas numeros)" onchange="formataTelefone()" maxlength="10" name="telefone" required>
+                <input type="tel" class="form-control" id="telefone" placeholder="insira o telefone da empresa (apenas numeros)" name="telefone" onchange="formataTelefone()" required maxlength="10">
+
 
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="insira o email da empresa" name="email" required>
+
+                <label  for="senha">Senha (sugestão):</label>
+                <input type="text" class="form-control" id="senha" value="{{$senha}}" name="senha" required>
 
                 <input type="hidden" value="1" name="id_usuario" required>
 
@@ -124,6 +138,9 @@
 
                     <label  for="bairro">Bairro:</label>
                     <input type="text" class="form-control" id="bairro" placeholder="Insira o bairro" name="bairro" required>
+
+                    <label  for="numero">Número:</label>
+                    <input type="number" class="form-control" id="numero" placeholder="Insira o número" name="numero" required>
 
                     <label  for="complemento">Complemento:</label>
                     <input type="text" class="form-control" id="complemento" placeholder="Insira o complemento" name="complemento" required>
@@ -151,7 +168,9 @@
                     <option value="1">Selecione o Inspetor</option>
 
                     @foreach($inspetors as $inspetor)
+                        @if($inspetor->id!=1)
                         <option value="{{$inspetor->id}}">{{$inspetor->nome}}, {{$inspetor->crea}}</option>
+                        @endif
                     @endforeach
                 </select>
                 <section id="faq" class="col-12  text-dark mt-2">

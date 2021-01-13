@@ -15,6 +15,8 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">NOME</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">FOTO</th>
                             <th scope="col">SINETE</th>
                             <th scope="col">MATRÍCULA</th>
                             <th scope="col">E-MAIL</th>
@@ -29,6 +31,13 @@
                     <tr>
                         <td>{{$soldador->id}}</td>
                         <td>{{$soldador->nome}}</td>
+                        <td>{{$soldador->cpf}}</td>
+                        <td>
+                            <div  style="height: 150px">
+                                <img src="@if($soldador->foto){{asset("$soldador->foto")}}@else{{asset("imagens/soldador_default.png")}}@endif" style="max-width: 100%;max-height: 100%;"  id="fotoSoldador">
+                            </div>
+
+                        </td>
                         <td>{{$soldador->sinete}}</td>
                         <td>{{$soldador->matricula}}</td>
                         <td>{{$soldador->email}}</td>
