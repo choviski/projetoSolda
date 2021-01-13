@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" id="cpf" placeholder="Insira o CPF do Soldador" name="cpf" required>
 
                 <label  for="foto">Foto:</label>
-                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto" accept="image/jpeg,image/x-png,image/jpg">
+                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto">
 
 
                 <label  for="sinete">Sinete:</label>
@@ -28,7 +28,7 @@
                 <input type="text" class="form-control" id="matricula" placeholder="Insira o matricula" name="matricula" required>
 
                 <label  for="email">E-mail:</label>
-                <input type="email" class="form-control" id="email" placeholder="Insira o email" name="email" required>
+                <input type="email" class="form-control" id="email" placeholder="Insira o email" name="email" >
 
                 <input type="hidden" name="id_empresa" value="{{$empresa}}">
 
