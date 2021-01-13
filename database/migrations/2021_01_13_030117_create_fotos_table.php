@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInspetorsTable extends Migration
+class CreateFotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateInspetorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inspetores', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string("nome");
-            $table->string("crea")->nullable();
-            $table->string("funcao");
+        Schema::create('fotos', function (Blueprint $table) {
+            $table->id();
+            $table->string("caminho");
+            $table->unsignedBigInteger("id_requalificacao");
+            $table->foreign("id_requalificacao")->references("id")->on("soldador_qualificacoes");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateInspetorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inspetors');
+        Schema::dropIfExists('fotos');
     }
 }

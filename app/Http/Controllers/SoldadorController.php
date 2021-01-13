@@ -9,9 +9,10 @@ use App\Qualificacao;
 use App\Soldador;
 use App\Empresa;
 use App\SoldadorQualificacao;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use File;
 
 class SoldadorController extends Controller
 {
@@ -32,7 +33,19 @@ class SoldadorController extends Controller
     public function store(Request $request)
     {
         $usuario = session()->get("Usuario");
-        Soldador::create($request->all());
+        $soldador= new Soldador();
+        $soldador->nome=$request->nome;
+        $soldador->cpf=$request->cpf;
+        $soldador->sinete=$request->sinete;
+        $soldador->matricula=$request->matricula;
+        $soldador->email=$request->email;
+        $soldador->id_empresa=$request->id_empresa;
+        $soldador->save();
+        $imagem = $request->file('foto');
+        $extensao=$imagem->getClientOriginalExtension();
+        File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
+        $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
+        $soldador->save();
         return redirect()->Route("soldador.index")->with(["usuario"=>$usuario]);
     }
 
@@ -54,7 +67,20 @@ class SoldadorController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = session()->get("Usuario");
-        Soldador::find($id)->update($request->all());
+        $soldador=Soldador::find($id);
+        $soldador->nome=$request->nome;
+        $soldador->cpf=$request->cpf;
+        $soldador->sinete=$request->sinete;
+        $soldador->matricula=$request->matricula;
+        $soldador->email=$request->email;
+        $soldador->id_empresa=$request->id_empresa;
+        $imagem = $request->file('foto');
+        $extensao=$imagem->getClientOriginalExtension();
+
+        File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
+        $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
+        $soldador->save();
+
         return redirect()->Route("soldador.index")->with(["usuario"=>$usuario]);
     }
 
@@ -75,7 +101,19 @@ class SoldadorController extends Controller
         return view("cadastroSoldador")->with(["empresa"=>$request->empresa, "usuario"=>$usuario]);
     }
     public function salvar(Request $request){
-        $soldador=Soldador::create($request->all());
+        $soldador=new Soldador();
+        $soldador->nome=$request->nome;
+        $soldador->cpf=$request->cpf;
+        $soldador->sinete=$request->sinete;
+        $soldador->matricula=$request->matricula;
+        $soldador->email=$request->email;
+        $soldador->id_empresa=$request->id_empresa;
+        $soldador->save();
+        $imagem = $request->file('foto');
+        $extensao=$imagem->getClientOriginalExtension();
+        File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
+        $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
+        $soldador->save();
         $usuario = session()->get("Usuario");
         $processos=Processo::all();
         return view("selecionarQualificacoes")->with(["soldador"=>$soldador->id,"usuario"=>$usuario,"processos"=>$processos]);
@@ -104,6 +142,7 @@ class SoldadorController extends Controller
         //cadastrando soldador-Qualificacao
         $soldador_qualificacao= new SoldadorQualificacao();
         $soldador_qualificacao->cod_rqs=$request->cod_rqs;
+        $soldador_qualificacao->aviso=1;
         $soldador_qualificacao->id_soldador=$request->id_soldador;
         $soldador_qualificacao->id_qualificacao=$qualificacao->id;
         $soldador_qualificacao->data_qualificacao=$request->data_qualificacao;

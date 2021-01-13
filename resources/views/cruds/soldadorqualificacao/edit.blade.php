@@ -51,8 +51,7 @@
                 <label  for="nome_certificado">Eletrodo:</label>
                 <input type="text" class="form-control" id="nome_certificado" value="{{$soldadorqualificacao->eletrodo}}" name="eletrodo" required>
 
-                <label  for="nome_certificado">Foto do corpo de prova:</label>
-                <input type="file" class="form-control" id="nome_certificado" value="{{$soldadorqualificacao->foto}}" name="foto" required>
+                <input type="hidden" class="form-control" id="aviso" value=1 name="aviso" required>
 
                 <label  for="descricao">Descrição:</label>
                 <textarea type="text" class="form-control" id="descricao" value="{{$soldadorqualificacao->texto}}" name="texto" required>{{$soldadorqualificacao->texto}}}</textarea>

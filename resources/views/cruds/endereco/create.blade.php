@@ -91,6 +91,9 @@
                 <label  for="bairro">Bairro:</label>
                 <input type="text" class="form-control" id="bairro" placeholder="Insira o bairro" name="bairro" required>
 
+                <label  for="numero">Número:</label>
+                <input type="number" class="form-control" id="numero" placeholder="Insira o número" name="numero" required>
+
                 <label  for="complemento">Complemento:</label>
                 <input type="text" class="form-control" id="complemento" placeholder="Insira o complemento" name="complemento" required>
 

@@ -93,6 +93,9 @@
                 <label  for="bairro">Bairro:</label>
                 <input type="text" class="form-control" id="bairro" value="{{$endereco->bairro}}" name="bairro" required>
 
+                <label  for="numero">Número:</label>
+                <input type="number" class="form-control" id="numero" value="{{$endereco->numero}}" name="numero" required>
+
                 <label  for="complemento">Complemento:</label>
                 <input type="text" class="form-control" id="complemento" value="{{$endereco->complemento}}" name="complemento" required>
 

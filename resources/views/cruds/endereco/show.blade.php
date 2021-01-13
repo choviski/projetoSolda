@@ -16,6 +16,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">RUA</th>
                         <th scope="col">BAIRRO</th>
+                        <th scope="col">NÚMERO</th>
                         <th scope="col">COMPLEMENTO</th>
                         <th scope="col">CEP</th>
                         <th scope="col">CIDADE</th>
@@ -31,6 +32,7 @@
                         <td>{{$endereco->rua}}</td>
                         <td>{{$endereco->bairro}}</td>
                         <td>{{$endereco->complemento}}</td>
+                        <td>{{$endereco->numero}}</td>
                         <td>{{$endereco->cep}}</td>
                         <td>{{$endereco->cidade->nome}}</td>
                         <td>{{$endereco->cidade->id}}</td>

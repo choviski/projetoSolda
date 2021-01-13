@@ -22,6 +22,9 @@
                 <label  for="cnpj">CNPJ:</label>
                 <input type="text" class="form-control" id="cnpj" value="{{$empresa->cnpj}}" name="cnpj" required>
 
+                <label  for="celular">Celular:</label>
+                <input type="tel" class="form-control" id="celular" value="{{$empresa->celular}}" name="celular" >
+
                 <label  for="telefone">Telefone:</label>
                 <input type="text" class="form-control" id="telefone" value="{{$empresa->telefone}}" name="telefone" required>
 
@@ -57,6 +60,9 @@
         });
         $(document).ready(function(){
             $('#cnpj').mask('99.999.999/9999-99');
+        });
+        $(document).ready(function(){
+            $('#celular').mask('(99) 99999-9999');
         });
     </script>
 @endsection

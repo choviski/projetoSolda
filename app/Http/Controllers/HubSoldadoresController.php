@@ -14,7 +14,7 @@ class HubSoldadoresController extends Controller
         $usuario = session()->get("Usuario");
         #Pegando todos os soldadores como administrador
         if($usuario->tipo==1){
-            $soldadorqualificacaos = SoldadorQualificacao::all();
+            $soldadorqualificacaos = SoldadorQualificacao::select()->orderBy('status','desc')->get();
             return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
         }
         #Pegando os soldadores da empresa
@@ -27,9 +27,14 @@ class HubSoldadoresController extends Controller
             #Checando se a soldadores cadastrados para nao ocorrer nenhum erro na view
             if(!$soldadores->isEmpty()) {
                 foreach ($soldadores as $soldadore) {
-                    $soldadorqualificacaos->push(SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->select()->orderBy('status', 'desc')->get());
-                }
+                    $soldadors=SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->select()->orderBy('status', 'desc')->get();
+                    foreach ($soldadors as $soldador){
+                        $soldadorqualificacaos->push($soldador);
+                    }
+                    #$soldadorqualificacaos->push(SoldadorQualificacao::where('id_soldador', '=', $soldadore->id)->select()->orderBy('status', 'desc')->get());
 
+                }
+                $soldadorqualificacaos=$soldadorqualificacaos->sortBy(['status','desc']);
                 return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
             }else{
                 $soldadorqualificacaos=null;

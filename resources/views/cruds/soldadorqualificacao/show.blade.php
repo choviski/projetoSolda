@@ -27,7 +27,7 @@
                         <th scope="col">STATUS</th>
                         <th scope="col">POSIÇÃO DE SOLDAGEM</th>
                         <th scope="col">ELETRODO</th>
-                        <th scope="col">FOTO</th>
+                        <th scope="col">AVISO</th>
                         <th scope="col">DESCRIÇÃO</th>
                         <th scope="col">CREATED_AT</th>
                         <th scope="col">UPDATED_AT</th>
@@ -50,7 +50,7 @@
                         <td>{{$soldadorqualificacao->status}}</td>
                         <td>{{$soldadorqualificacao->posicao}}</td>
                         <td>{{$soldadorqualificacao->eletrodo}}</td>
-                        <td>{{$soldadorqualificacao->foto}}</td>
+                        <td>{{$soldadorqualificacao->aviso}}</td>
                         <td>{{$soldadorqualificacao->texto}}</td>
                         <td>{{$soldadorqualificacao->created_at}}</td>
                         <td>{{$soldadorqualificacao->updated_at}}</td>

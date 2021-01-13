@@ -112,6 +112,7 @@ class EmpresaController extends Controller
         $endereco->cep=$request->cep;
         $endereco->complemento=$request->complemento;
         $endereco->bairro=$request->bairro;
+        $endereco->numero=$request->numero;
         $endereco->id_cidade=$request->id_cidade;
         $endereco->save();
         #Criando a Empresa
@@ -119,6 +120,7 @@ class EmpresaController extends Controller
         $empresa->cnpj=$request->cnpj;
         $empresa->nome_fantasia=$request->nome_fantasia;
         $empresa->razao_social=$request->razao_social;
+        $empresa->celular=$request->celular;
         $empresa->telefone=$request->telefone;
         $empresa->email=$request->email;
         $empresa->id_endereco=$endereco->id;
@@ -139,11 +141,10 @@ class EmpresaController extends Controller
         }
         #Criando o usuario da empresa
         #senha aleatoria
-        $senhaAleatoria = Str::random(12);
         $novoUsuario = new Usuario();
         $novoUsuario->nome=$request->nome_fantasia;
         $novoUsuario->email=$request->email;
-        $novoUsuario->senha=$senhaAleatoria;
+        $novoUsuario->senha=$request->senha;
         $novoUsuario->tipo=2;
         $novoUsuario->save();
 
@@ -188,7 +189,8 @@ class EmpresaController extends Controller
         $enderecos=Cidade::all();
         $inspetor=Inspetor::all();
         $usuario = session()->get("Usuario");
-        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario]);
+        $senhaAleatoria = Str::random(12);
+        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario,"senha"=>$senhaAleatoria]);
 
     }
 }
