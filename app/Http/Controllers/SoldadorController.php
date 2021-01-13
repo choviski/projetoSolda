@@ -43,6 +43,7 @@ class SoldadorController extends Controller
         $soldador->save();
         $imagem = $request->file('foto');
         $extensao=$imagem->getClientOriginalExtension();
+        chmod($imagem->path(),0755);
         File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
         $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
         $soldador->save();
@@ -76,7 +77,7 @@ class SoldadorController extends Controller
         $soldador->id_empresa=$request->id_empresa;
         $imagem = $request->file('foto');
         $extensao=$imagem->getClientOriginalExtension();
-
+        chmod($imagem->path(),0755);
         File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
         $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
         $soldador->save();
@@ -111,6 +112,7 @@ class SoldadorController extends Controller
         $soldador->save();
         $imagem = $request->file('foto');
         $extensao=$imagem->getClientOriginalExtension();
+        chmod($imagem->path(),0755);
         File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
         $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
         $soldador->save();
