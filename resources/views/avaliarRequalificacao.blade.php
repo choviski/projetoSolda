@@ -66,12 +66,12 @@
                     <div class="carousel-inner" >
                         @foreach($fotos as $foto)
                             @if($loop->index==0)
-                        <div class="carousel-item active">
-                            <img class="d-block  " height="200px" src="{{asset($foto->caminho)}}" id="imagem{ {$ foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                        <div class="carousel-item active d-flex justify-content-center">
+                            <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
                         </div>
                             @else
-                                <div class="carousel-item ">
-                                    <img class="d-block " src="{{asset($foto->caminho)}}"  height="200px" id="imagem{ {$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                                <div class="carousel-item d-flex justify-content-center ">
+                                    <img class="d-block " src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
                                 </div>
                             @endif
                         @endforeach
