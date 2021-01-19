@@ -15,7 +15,15 @@ class HubSoldadoresController extends Controller
         #Pegando todos os soldadores como administrador
         if($usuario->tipo==1){
             $soldadorqualificacaos = SoldadorQualificacao::select()->orderBy('status','desc')->get();
-            return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
+            $i=SoldadorQualificacao::all()->count();
+            $a=0;
+            $soldadorqualificacaose=SoldadorQualificacao::all();
+            $reprovacoes[$i]=[];
+            foreach ( $soldadorqualificacaose as $s){
+                $reprovacoes[$a]=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$s->soldador->id)->where("id_qualificacao","=",$s->qualificacao->id)->count();
+                $a=$a+1;
+            }
+            return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario,"reprovacoes"=>$reprovacoes]);
         }
         #Pegando os soldadores da empresa
         elseif($usuario->tipo==2){
@@ -35,7 +43,15 @@ class HubSoldadoresController extends Controller
 
                 }
                 $soldadorqualificacaos=$soldadorqualificacaos->sortBy(['status','desc']);
-                return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);
+                $soldadorqualificacaos1=$soldadorqualificacaos->count();
+
+                $a=0;
+                $reprovacoes[$soldadorqualificacaos1]=[];
+                foreach ( $soldadorqualificacaos as $s){
+                    $reprovacoes[$a]=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$s->soldador->id)->where("id_qualificacao","=",$s->qualificacao->id)->count();
+                    $a=$a+1;
+                }
+                return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario,"reprovacoes"=>$reprovacoes]);
             }else{
                 $soldadorqualificacaos=null;
                 return view("soldadores")->with(["soldadores"=>$soldadorqualificacaos,"usuario"=>$usuario]);

@@ -65,23 +65,17 @@ class QualificacaoController extends Controller
         return view ("cadastrarNovaQualificacao")->with(["soldadorQualificacao"=>$soldadorQualificacao[0],"usuario"=>$usuario]);
     }
     public function editar($id,Request $request){
-
-
-        $qualificacao=SoldadorQualificacao::find($id);
+        SoldadorQualificacao::destroy($id);
+        $qualificacao=new SoldadorQualificacao();
         $qualificacao->cod_rqs=$request->oi;
         $qualificacao->id_soldador=$request->id_soldador;
         $qualificacao->id_qualificacao=$request->id_qualificacao;
         $qualificacao->data_qualificacao=$request->data_qualificacao;
         $qualificacao->posicao=$request->posicao;
         $qualificacao->eletrodo=$request->eletrodo;
+        $qualificacao->aviso=0;
         $qualificacao->texto=$request->texto;
-        /*$imagem = $request->file('foto');
-        $extensao=$imagem->getClientOriginalExtension();
-        $extensao=strtolower($extensao);
-        chmod($imagem->path(),0755);
-        $imagem=File::move($imagem,public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
-        $qualificacao->foto='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
-*/
+
 
         $qualificacao->status="em-processo";
         $qualificacao->validade_qualificacao=$request->validade_qualificacao;
@@ -89,33 +83,23 @@ class QualificacaoController extends Controller
         $qualificacao->nome_certificado=$request->nome_certificado;
         $qualificacao->caminho_certificado=$request->caminho_certificado;
         $qualificacao->save();
-        /*$todasasfotos=$request->allFiles();
-        foreach ($todasasfotos as $todasasfoto) {
+
+        foreach ($request->files as $todasasfoto) {
             foreach ($todasasfoto as $foto) {
                 # cria a uma nova fotoRequalificacao
                 $fotoRequalificacao = new Foto();
                 $fotoRequalificacao->id_requalificacao = $qualificacao->id;
                 $fotoRequalificacao->caminho='';
                 //chmod($request->file->getPath(),0755);
+                chmod($foto->getRealPath(),0755);
                 $fotoRequalificacao->save();
                 $extensao = $foto->getClientOriginalExtension();
                 $imagem = File::move($foto, public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao);
-                chmod(public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao,0755);
                 $fotoRequalificacao->caminho = '/imagem-qualificacao/fotoRequalificacao-id'.$fotoRequalificacao->id.'.'.$extensao;
                 $fotoRequalificacao->save();
-
             }
         }
-        chmod(public_path().'/imagem-qualificacao',0755);
-        */
-        $foto=new Foto();
-        $imagem = $request->file('foto');
-        $extensao=$imagem->getClientOriginalExtension();
-        chmod($imagem->path(),0755);
-        File::move($imagem, public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
-        $foto->caminho='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
-        $foto->id_requalificacao=$qualificacao->id;
-        $foto->save();
+        $contar=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$qualificacao->soldador->id)->where("id_qualificacao","=",$qualificacao->qualificacao->id)->count();
         return redirect()->route("paginaInicial");
     }
 
@@ -123,7 +107,7 @@ class QualificacaoController extends Controller
     {
         $requalificacao=SoldadorQualificacao::find($request->id);
         $usuario = session()->get("Usuario");
-        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->orderBy('id', 'asc')->first();
+        $fotos=Foto::where("id_requalificacao","=",$requalificacao->id)->orderBy('id', 'asc')->get();
 
         return view("avaliarRequalificacao")->with(["requalificacao"=>$requalificacao,"usuario"=>$usuario,"fotos"=>$fotos]);
     }
