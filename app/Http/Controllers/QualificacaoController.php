@@ -65,21 +65,17 @@ class QualificacaoController extends Controller
         return view ("cadastrarNovaQualificacao")->with(["soldadorQualificacao"=>$soldadorQualificacao[0],"usuario"=>$usuario]);
     }
     public function editar($id,Request $request){
-        $qualificacao=SoldadorQualificacao::find($id);
+        SoldadorQualificacao::destroy($id);
+        $qualificacao=new SoldadorQualificacao();
         $qualificacao->cod_rqs=$request->oi;
         $qualificacao->id_soldador=$request->id_soldador;
         $qualificacao->id_qualificacao=$request->id_qualificacao;
         $qualificacao->data_qualificacao=$request->data_qualificacao;
         $qualificacao->posicao=$request->posicao;
         $qualificacao->eletrodo=$request->eletrodo;
+        $qualificacao->aviso=0;
         $qualificacao->texto=$request->texto;
-        /*$imagem = $request->file('foto');
-        $extensao=$imagem->getClientOriginalExtension();
-        $extensao=strtolower($extensao);
-        chmod($imagem->path(),0755);
-        $imagem=File::move($imagem,public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
-        $qualificacao->foto='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
-*/
+
 
         $qualificacao->status="em-processo";
         $qualificacao->validade_qualificacao=$request->validade_qualificacao;
@@ -96,32 +92,14 @@ class QualificacaoController extends Controller
                 $fotoRequalificacao->caminho='';
                 //chmod($request->file->getPath(),0755);
                 chmod($foto->getRealPath(),0755);
-                dump($foto);
-                dump($foto->getRealPath());
-                dump(chmod($foto->getRealPath(),0755));
                 $fotoRequalificacao->save();
                 $extensao = $foto->getClientOriginalExtension();
                 $imagem = File::move($foto, public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao);
-                //chmod(public_path(). '/imagem-qualificacao/fotoRequalificacao-id' . $fotoRequalificacao->id . '.' . $extensao,0755);
                 $fotoRequalificacao->caminho = '/imagem-qualificacao/fotoRequalificacao-id'.$fotoRequalificacao->id.'.'.$extensao;
                 $fotoRequalificacao->save();
             }
         }
-        /*
-        $foto=new Foto();
-        $imagem = $request->file('foto');
-        $extensao=$imagem->getClientOriginalExtension();
-        dump($imagem);
-        dump($imagem->getPerms());
-        dump($imagem->path());
-        chmod($imagem->path(),0755);
-        $imagem->storePublicly('/imagem-qualificacao/falw-id'.$qualificacao->id.'.'.$extensao);
-        File::move($imagem, public_path().'/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao);
-        $foto->caminho='/imagem-qualificacao/qualificacao-id'.$qualificacao->id.'.'.$extensao;
-        $foto->id_requalificacao=$qualificacao->id;
-        $foto->save();
-        */
-
+        $contar=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$qualificacao->soldador->id)->where("id_qualificacao","=",$qualificacao->qualificacao->id)->count();
         return redirect()->route("paginaInicial");
     }
 

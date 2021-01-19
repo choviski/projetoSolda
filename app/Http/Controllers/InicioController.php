@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Empresa;
+use App\Publicacao;
 use App\Soldador;
 use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InicioController extends Controller
 {
@@ -15,8 +17,17 @@ class InicioController extends Controller
         #Pegando todos os soldadores como administrador
         if($usuario->tipo==1){
             $soldadorqualificacaos = SoldadorQualificacao::where('status','!=','qualificado')->select()->orderBy('status','desc')->get();
+            $i=SoldadorQualificacao::all()->count();
+            $a=0;
+            $soldadorqualificacaose=SoldadorQualificacao::all();
+            $reprovacoes[$i]=[];
+            foreach ( $soldadorqualificacaose as $s){
+                $reprovacoes[$a]=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$s->soldador->id)->where("id_qualificacao","=",$s->qualificacao->id)->count();
+                $a=$a+1;
+            }
 
-            return view("inicio")->with(["soldadorqualificacaos"=>$soldadorqualificacaos,"usuario"=>$usuario]);
+
+            return view("inicio")->with(["soldadorqualificacaos"=>$soldadorqualificacaos,"usuario"=>$usuario,"reprovacoes"=>$reprovacoes]);
         }
         #Pegando os soldadores da empresa
         elseif($usuario->tipo==2){
@@ -38,7 +49,17 @@ class InicioController extends Controller
                 }
 
                 $soldadorqualificacaos=$soldadorqualificacaos->sortBy(['status','desc']);
-                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);
+                $soldadorqualificacaos1=$soldadorqualificacaos->count();
+
+                $a=0;
+                $reprovacoes[$soldadorqualificacaos1]=[];
+                foreach ( $soldadorqualificacaos as $s){
+                    $reprovacoes[$a]=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$s->soldador->id)->where("id_qualificacao","=",$s->qualificacao->id)->count();
+                    $a=$a+1;
+                }
+
+
+                return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario,"reprovacoes"=>$reprovacoes]);
             }else{
                 $soldadorqualificacaos=null;
                 return view("inicio")->with(["soldadorqualificacaos" => $soldadorqualificacaos, "usuario" => $usuario]);

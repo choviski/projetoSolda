@@ -57,6 +57,9 @@
 
                             </span>
                         @endif
+                        <div>
+                            Tentativas de requalificação: {{$reprovacoes[$loop->index]}}
+                        </div>
                     </div>
                 @endforeach
             @endif
