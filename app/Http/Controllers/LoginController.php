@@ -41,7 +41,7 @@ class LoginController extends Controller
 
             if ($Usuario->senha==$request->senha){
                 $request->session()->put("Usuario",$Usuario);
-               // return redirect()->route("email");
+                return redirect()->route("email");
             }
             $request->session()->flash("mensagem","Usuario ou senha incorretos");
             return redirect()->back();

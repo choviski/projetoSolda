@@ -80,14 +80,14 @@ Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(Chec
 
 
 Route::get('envio-email',function (){
-    
-    $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
+
+    /*$qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
    "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
     foreach ($qualificacaos as $qualificacao) {
         if ($qualificacao->tempo < 40) {
             \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
         }
-    }
+    }*/
     return redirect()->route("paginaInicial");
 })->name("email");
 
