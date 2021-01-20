@@ -32,16 +32,16 @@ class email extends Mailable
     public function build()
     {
         $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
-   "))->orderBy('validade_qualificacao', 'desc')->get();
+   "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
         foreach ($qualificacaos as $qualificacao) {
-            if ($qualificacao->tempo < 40 && $qualificacao->soldador->aviso == 1) {
+            if ($qualificacao->tempo < 40) {
                 $email = $qualificacao->soldador->empresa->email;
                 $nome = $qualificacao->soldador->nome;
-                $qualificacao->soldador->aviso = 0;
+                $qualificacao->aviso = 0;
                 if($qualificacao->tempo<0){
                     $qualificacao->status="atrasado";
                 }
-                $qualificacao->soldador->save();
+                $qualificacao->save();
                 $this->subject("SUA QUALIFICACAO ESTÁ PRESTES A VENCER");
                 $this->to("$email", "$nome");
                 return $this->markdown('mail.email')->with(["dado"=>$qualificacao]);

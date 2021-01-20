@@ -7,7 +7,7 @@
     </div>
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center">
-            <form action="{{route("adicionarQualificacao")}}" class="form-group col-12" method="post">
+            <form action="{{route("adicionarQualificacao")}}" class="form-group col-12" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="bg-light p-2 rounded mt-2 ">
 
@@ -48,7 +48,7 @@
                     <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="nome_certificado" required>
 
                     <label  for="caminho_certificado">Insira o caminho do certificado:</label>
-                    <input type="text" class="form-control" id="caminho_certificado" placeholder="Insira o caminho do certificado" name="caminho_certificado" required>
+                    <input type="file" class="form-control" id="caminho_certificado" placeholder="Insira o caminho do certificado" name="caminho_certificado" required>
 
                         <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
                         <label  for="nome">Nome:</label>
