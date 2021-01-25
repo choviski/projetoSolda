@@ -175,5 +175,11 @@ class SoldadorController extends Controller
         $processos=Processo::all();
         return view("selecionarQualificacoes")->with(["soldador"=>"$request->soldador","usuario"=>$usuario,"processos"=>$processos]);
     }
+    public function perfilSoldador(Request $request){
+        $usuario = session()->get("Usuario");
+        $soldador = Soldador::where('id','=',$request->id_soldador)->first();
+        $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
+        return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador]);;
+    }
 
 }

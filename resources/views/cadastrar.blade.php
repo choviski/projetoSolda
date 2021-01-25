@@ -1,9 +1,19 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_cadastro{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <div class="col-12  bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Cadastrar Soldador/Empresa:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">CADASTRAR EMPRESA/SOLDADOR:</p>
     </div>
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center">

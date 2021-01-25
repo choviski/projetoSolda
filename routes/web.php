@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckSession;
+use App\Http\Middleware\CheckAdm;
 use App\SoldadorQualificacao;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -18,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
-Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class)->name("entidades");
-Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
+//Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
+Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class,CheckAdm::class)->name("entidades");
+//Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
 Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class)->name("cadastrar");
-Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class)->name("requalificacoes");
+Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class,CheckAdm::class)->name("requalificacoes");
 Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(CheckSession::class)->name("editarUsuario");
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 
@@ -96,5 +97,9 @@ Route::get('/', "LoginController@index")->name("inicio");
 Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");
 Route::post('/cadastrar', "LoginController@cadastrar")->name("cadastrar");
 Route::get('/sair', "LoginController@sair")->name("sair");
+
+Route::post('/perfilSoldador',"SoldadorController@perfilSoldador")->middleware(CheckSession::class)->name("perfilSoldador");
+Route::get('/listagemEmpresa',"InicioController@listarEmpresas")->middleware(CheckSession::class,CheckAdm::class)->name("paginaInicial");
+Route::get('/listagemSoldador',"InicioController@listarSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 
 

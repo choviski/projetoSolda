@@ -27,9 +27,11 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size:cover;
-
         }
-
+        #nav_entidades{
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >
@@ -48,27 +50,30 @@
             </button>
             <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" style="font-size: 25px" href="{{route("paginaInicial")}}">Início<span class="sr-only">(current)</span></a>
+                    @if($usuario->tipo == 1)
+                    <li class="nav-item active" >
+                        <a class="nav-link font-weight-light" id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMRPESAS<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"  >
-                        <a class="nav-link"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}">Soldadores</a>
-                    </li>
-                    @if($usuario->tipo == 1)
-                    <li class="nav-item active">
-                            <a class="nav-link" style="font-size: 25px" href="{{route("requalificacoes")}}">Requalificações<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" style="font-size: 25px" href="{{route("cadastrar")}}">Cadastro<span class="sr-only">(current)</span></a>
+                            <a class="nav-link font-weight-light" id="nav_requalificacao" style="font-size: 25px" href="{{route("requalificacoes")}}">REQUALIFICAÇÕES<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link font-weight-light" style="font-size: 25px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active" >
-                        <a  class="nav-link"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">Entidades</a>
+                        <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">ENTIDADES</a>
                     </li>
                     @endif
                     @if($usuario->tipo==2)
-                        <li class="nav-item active" >
-                            <a  class="nav-link"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">Perfil</a>
-                        </li>
+                            <li class="nav-item active"  >
+                                <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                            </li>
+                            <li class="nav-item active" >
+                                <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">PERFIL</a>
+                            </li>
                     @endif
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -78,7 +83,7 @@
         </nav>
     </header>
     <div class="row">
-                @yield('content')
+        @yield('content')
     </div>
 </body>
 

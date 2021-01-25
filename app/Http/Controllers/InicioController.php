@@ -86,4 +86,28 @@ class InicioController extends Controller
         return view("requalificacoes")->with(["usuario"=>$usuario,"requalificacaos"=>$requalificacaoes]);
     }
 
+    public function listarEmpresas(){
+        $usuario = session()->get("Usuario");
+        $empresas = Empresa::all();
+        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+    }
+
+    public function listarSoldadores(){
+        $usuario = session()->get("Usuario");
+        if($usuario->tipo==1){
+            $soldadores=Soldador::orderBy('nome')->get();
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores]);
+
+        }
+        if($usuario->tipo==2){
+            $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
+            $soldadores=Soldador::where('id_empresa','=',$empresa->id)->orderBy('nome')->get();
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores]);
+        }
+
+    }
+
+
+
+
 }

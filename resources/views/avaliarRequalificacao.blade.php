@@ -1,9 +1,19 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_requalificacao{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Renovar qualificacao:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">RENOVAR QUALIFICAÇÕES:</p>
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
@@ -95,7 +105,6 @@
                 <input type="submit" class="btn btn-outline-danger mt-3 col-12" value="Negar"  id="negar">
                 <input type="hidden" value="{{$requalificacao->id}}" name="id">
                 <input type="hidden" value="0" name="aceito" id="aceito">
-
             </div>
         </form>
         <a href="{{route("requalificacoes")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>

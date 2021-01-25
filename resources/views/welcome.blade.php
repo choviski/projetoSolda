@@ -29,16 +29,35 @@
             background-size:cover;
 
         }
+        @keyframes drop {
+            0% {
+                opacity: 0;
+                transform: translateY(-80px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        #loginCard{
+            transform: translateY(+20%);
+        }
+        #loginForm{
+            animation: drop 1.0s ease;
+        }
+        #loginImg{
+            animation: drop 1.5s ease;
+        }
     </style>
 </head>
 
 
 <body class="container-fluid ">
 <div class="row d-flex justify-content-center" id="warp-body" style="">
-    <div class=" col-md-6 col-sm10 text-center" style="margin-top: 10%;transform: translateY(-20%)">
-        <img src="{{asset("imagens/logo v1.png")}}" width="150px"  class="mt-5 mb-5 mb-md-0 mb-lg-0" id="logo">
+    <div class=" col-md-6 col-sm10 text-center" id="loginCard">
+        <img src="{{asset("imagens/logo v1.png")}}" id="loginImg" width="150px"  class="mt-5 mb-5 mb-md-0 mb-lg-0" id="logo">
 
-        <div class=" p-2 bg-light rounded shadow text-center">
+        <div class=" p-2 bg-light rounded shadow text-center" id="loginForm">
             <form action="{{route("login")}}" method="post" class="form-group ">
                 @csrf
                 <input type="email" name="email" class="form-control mt-2" placeholder="Email" required>
