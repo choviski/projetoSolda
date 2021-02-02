@@ -12,6 +12,7 @@ use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use DateTime;
 use File;
 
 class SoldadorController extends Controller
@@ -99,9 +100,29 @@ class SoldadorController extends Controller
     }
     public function criar(Request $request){
         $usuario = session()->get("Usuario");
-        return view("cadastroSoldador")->with(["empresa"=>$request->empresa, "usuario"=>$usuario]);
+        $erro = $request->session()->get("erro");
+        return view("cadastroSoldador")->with(["empresa"=>$request->empresa, "usuario"=>$usuario,"erro"=>$erro]);
     }
     public function salvar(Request $request){
+        $soldadores=Soldador::all();
+        foreach ($soldadores as $soldador){
+            if($soldador->cpf==$request->cpf){
+                $request->session()->flash("erro","Já existe um soldador cadastrado com esse CPF.");
+                $usuario = session()->get("Usuario");
+                $erro = $request->session()->get("erro");
+                return view("cadastroSoldador")->with(["empresa"=>$request->id_empresa, "usuario"=>$usuario,"erro"=>$erro]);
+
+            }
+            if($soldador->email) {
+                if ($soldador->email == $request->email) {
+                    $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
+                    $usuario = session()->get("Usuario");
+                    $erro = $request->session()->get("erro");
+                    return view("cadastroSoldador")->with(["empresa"=>$request->id_empresa, "usuario"=>$usuario,"erro"=>$erro]);
+
+                }
+            }
+        }
         $soldador=new Soldador();
         $soldador->nome=$request->nome;
         $soldador->cpf=$request->cpf;
@@ -110,15 +131,29 @@ class SoldadorController extends Controller
         $soldador->email=$request->email;
         $soldador->id_empresa=$request->id_empresa;
         $soldador->save();
-        $imagem = $request->file('foto');
-        $extensao=$imagem->getClientOriginalExtension();
-        chmod($imagem->path(),0755);
-        File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
-        $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
+        if($request->file('foto')) {
+            $imagem = $request->file('foto');
+            if($imagem->getClientOriginalExtension()=="JPG"){
+                $extensao = "jpg";
+            }else {
+                $extensao = $imagem->getClientOriginalExtension();
+            }
+            chmod($imagem->path(), 0755);
+            File::move($imagem, public_path() . '/imagem-soldador/soldador-id' . $soldador->id . '.' . $extensao);
+            $soldador->foto = '/imagem-soldador/soldador-id' . $soldador->id . '.' . $extensao;
+        }else{
+            $soldador->foto="imagens/soldador_default.png";
+        }
         $soldador->save();
         $usuario = session()->get("Usuario");
         $processos=Processo::all();
         return view("selecionarQualificacoes")->with(["soldador"=>$soldador->id,"usuario"=>$usuario,"processos"=>$processos]);
+    }
+    public function novaQualificacao(Request $request){
+        $usuario = session()->get("Usuario");
+        $processos=Processo::all();
+        $soldador=$request->soldador;
+        return view("selecionarQualificacoes")->with(["soldador"=>$soldador,"usuario"=>$usuario,"processos"=>$processos]);
     }
 
     public function adicionarQualificacao(Request $request){
@@ -148,7 +183,7 @@ class SoldadorController extends Controller
         $soldador_qualificacao->id_soldador=$request->id_soldador;
         $soldador_qualificacao->id_qualificacao=$qualificacao->id;
         $soldador_qualificacao->data_qualificacao=$request->data_qualificacao;
-        $soldador_qualificacao->status=$request->status;
+        $hoje=now();
         if($request->validade==1){
             $tempo=6;
         }elseif ($request->validade==2){
@@ -161,6 +196,14 @@ class SoldadorController extends Controller
         $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();;
         $soldador_qualificacao->nome_certificado=$request->nome_certificado;
         $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
+        $datetime1 = new DateTime($soldador_qualificacao->validade);
+        $datetime2 = new DateTime($hoje);
+        $interval = $datetime1->diff($datetime2);
+        if($interval->days<=0) {
+            $soldador_qualificacao->status = "atrasado";
+        }elseif (($soldador_qualificacao->validade_qualificacao)-$hoje>0){
+            $soldador_qualificacao->status="qualificado";
+        }
         $soldador_qualificacao->save();
         $certificado = $request->file('caminho_certificado');
         $extensao=$certificado->getClientOriginalExtension();
@@ -180,6 +223,16 @@ class SoldadorController extends Controller
         $soldador = Soldador::where('id','=',$request->id_soldador)->first();
         $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
         return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador]);;
+    }
+    public function listar($id){
+        $usuario = session()->get("Usuario");
+        if($usuario->tipo==1){
+            $soldadores = Soldador::where("id_empresa", "=", $id)->get();
+            return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id]);
+        }else {
+            $soldadores = Soldador::where("id_empresa", "=", $id)->get();
+            return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id]);
+        }
     }
 
 }

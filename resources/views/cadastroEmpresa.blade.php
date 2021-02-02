@@ -103,6 +103,11 @@
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">GERENCIAR EMPRESAS:</p>
+        @if(!empty($erro))
+            <div class="alert alert-danger mt-2">
+                {{$erro}}
+            </div>
+        @endif
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
@@ -153,7 +158,7 @@
                     <input type="number" class="form-control" id="numero" placeholder="Insira o número" name="numero" required>
 
                     <label  for="complemento">Complemento:</label>
-                    <input type="text" class="form-control" id="complemento" placeholder="Insira o complemento" name="complemento" required>
+                    <input type="text" class="form-control" id="complemento" placeholder="Insira o complemento" name="complemento">
 
                     <label for="id_cidade">Cidade:</label>
                     <select class="form-control" id="id_cidade" name="id_cidade" required>
@@ -196,7 +201,7 @@
                                 <div class="card card-body  col-sm-12 col-md-12 rounded">
                                     <div class="form-group bg-light p-2 rounded bg-success">
                                         <label  for="nome">Nome:</label>
-                                        <input type="text" class="form-control" id="nome" placeholder="Insira o nome do inspetor" name="nome" >
+                                        <input type="text" class="form-control" id="nome" placeholder="Insira o nome do inspetor" name="nome">
 
                                         <label  for="crea">CREA:</label>
                                         <input type="text" class="form-control" id="crea" placeholder="insira o CREA do inspetor" name="crea" >

@@ -15,6 +15,11 @@
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">CADASTRAR NOVO SOLDADOR:</p>
+        @if(!empty($erro))
+            <div class="alert alert-danger mt-2">
+                {{$erro}}
+            </div>
+        @endif
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
@@ -28,7 +33,7 @@
                 <input type="text" class="form-control" id="cpf" placeholder="Insira o CPF do Soldador" name="cpf" required>
 
                 <label  for="foto">Foto:</label>
-                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto" required>
+                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto">
 
 
                 <label  for="sinete">Sinete:</label>

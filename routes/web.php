@@ -69,7 +69,7 @@ Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("s
 Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador");
 Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador");
 Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa");
-
+Route::post("listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador");
 Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao");
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao");
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa");
@@ -78,7 +78,7 @@ Route::post("/requalificacao","QualificacaoController@requalificar")->name("requ
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao");
 Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao");
 Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(CheckSession::class)-> name("municipio/{estado}");
-
+Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao");
 
 Route::get('envio-email',function (){
 

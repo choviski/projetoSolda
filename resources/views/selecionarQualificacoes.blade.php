@@ -44,16 +44,6 @@
                     <label  for="data_qualificacao">Insira a data da qualificação:</label>
                     <input type="date" class="form-control" id="data_qualificacao" name="data_qualificacao" required>
 
-                    <label for="status">Status:</label>
-                    <select class="form-control" id="status" name="status" required>
-                        <option value="-1" disabled selected>Selecione o status</option>
-                        <option value="1">Qualificado</option>
-                        <option value="2">Em processo</option>
-                        <option value="3">Atrasado</option>
-                        <option value="4">Não Qualificado</option>
-                    </select>
-
-
                     <label  for="nome_certificado">Nome do certificado:</label>
                     <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="nome_certificado" required>
 

@@ -25,8 +25,7 @@
     <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom shadow-sm">
         @if($usuario->tipo==1)
             <div id="addEmpresa" class="col-12 mt-2 p-0">
-                <form method="#" action="#">
-                    @csrf
+                <form method="get" action="{{route("inserirEmpresa")}}">
                     <input type="hidden" name="idSoldador" id="idSoldador">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar empresa">
                 </form>
@@ -40,14 +39,13 @@
                 <p class="nomeEmpresa mt-2 border col-12">{{$empresa->nome_fantasia}}</p>
             </div>
             <div id="btnVerSoldadores" class="d-flex align-items-center">
-                <form method="#" action="#" class="">
+                <form method="post" action="{{Route("listarSoldador",['id'=>$empresa->id])}}" class="">
                     @csrf
                     <input type="hidden" id="id_empresa" name="id_empresa" value="{{$empresa->id}}">
-                    <input type="button" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR SOLDADORES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                    <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR SOLDADORES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                 </form>
             </div>
         </div>
         @endforeach
-            <!-- Aqui acaba a listagem das empresas-->
     </div>
 @endsection

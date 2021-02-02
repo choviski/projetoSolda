@@ -25,9 +25,8 @@
     <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom shadow-sm">
         @if($usuario->tipo==1)
             <div id="addSoldaodre" class="col-12 mt-2 p-0">
-                <form method="#" action="#">
-                    @csrf
-                    <input type="hidden" name="idEmpresa" id="idEmpresa">
+                <form method="get" action="{{route("selecionarEmpresa")}}">
+                    <input type="hidden" name="empresa" id="empresa" value="">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar soldador">
                 </form>
             </div>

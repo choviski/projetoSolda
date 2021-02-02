@@ -102,7 +102,7 @@ class InicioController extends Controller
         if($usuario->tipo==2){
             $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
             $soldadores=Soldador::where('id_empresa','=',$empresa->id)->orderBy('nome')->get();
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores]);
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id]);
         }
 
     }

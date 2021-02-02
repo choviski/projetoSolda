@@ -107,6 +107,20 @@ class EmpresaController extends Controller
     public function salvar(Request $request){
         $usuario = session()->get("Usuario");
         #Criando o Endereco
+        $empresas=Empresa::all();
+        foreach ($empresas as $empresa){
+            if($empresa->email==$request->email){
+                $request->session()->flash("erro","Já existe uma empresa cadastrada com esse email.");
+                return redirect()->back();
+
+            }
+            if($empresa->cnpj==$request->cnpj){
+                $request->session()->flash("erro","Já existe uma empresa cadastrada com esse CNPJ.");
+                return redirect()->back();
+
+            }
+
+        }
         $endereco= new Endereco();
         $endereco->rua=$request->rua;
         $endereco->cep=$request->cep;
@@ -142,7 +156,7 @@ class EmpresaController extends Controller
         #Criando o usuario da empresa
         #senha aleatoria
         $novoUsuario = new Usuario();
-        $novoUsuario->nome=$request->nome_fantasia;
+        $novoUsuario->nome=$request->razao_social;
         $novoUsuario->email=$request->email;
         $novoUsuario->senha=$request->senha;
         $novoUsuario->tipo=2;
@@ -185,12 +199,13 @@ class EmpresaController extends Controller
         
     }
 
-    public function selecionar(){
+    public function selecionar(Request $request){
+        $erro = $request->session()->get("erro");
         $enderecos=Cidade::all();
         $inspetor=Inspetor::all();
         $usuario = session()->get("Usuario");
         $senhaAleatoria = Str::random(12);
-        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario,"senha"=>$senhaAleatoria]);
+        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario,"senha"=>$senhaAleatoria,"erro"=>$erro]);
 
     }
 }

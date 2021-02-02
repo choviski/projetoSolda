@@ -37,9 +37,9 @@
         </div>
         @if($usuario->tipo==1)
         <div id="addQualificacao" class="col-12 mt-2 p-0">
-            <form method="#" action="#">
+            <form method="post" action="{{route("novaQualificacao")}}">
                 @csrf
-                <input type="hidden" name="idSoldador" id="idSoldador">
+                <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
                 <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar qualificação">
             </form>
         </div>
