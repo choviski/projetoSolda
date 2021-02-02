@@ -10,6 +10,11 @@ use App\Inspetor;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use DateTime;
+use File;
+
 
 class EmpresaController extends Controller
 {
@@ -164,6 +169,20 @@ class EmpresaController extends Controller
 
         #Associando o Usuario a Empresa.
         $empresa->id_usuario=$novoUsuario->id;
+        $empresa->save();
+        if($request->file('foto')) {
+            $imagem = $request->file('foto');
+            if($imagem->getClientOriginalExtension()=="JPG"){
+                $extensao = "jpg";
+            }else {
+                $extensao = $imagem->getClientOriginalExtension();
+            }
+            chmod($imagem->path(), 0755);
+            File::move($imagem, public_path() . '/imagem-empresa/empresa-id' . $empresa->id . '.' . $extensao);
+            $empresa->foto = '/imagem-empresa/empresa-id' . $empresa->id . '.' . $extensao;
+        }else{
+            $empresa->foto="imagens/empresa_default.png";
+        }
         $empresa->save();
 
         return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);

@@ -111,12 +111,14 @@
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form  class="col-12 mt-2" action="{{Route('salvarEmpresa')}}" method="post">
+        <form  class="col-12 mt-2" action="{{Route('salvarEmpresa')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="cnpj">CNPJ:</label>
                 <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" onchange="formataCNPJ()" maxlength="14" required>
 
+                <label  for="foto">Foto:</label>
+                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem da Empresa" name="foto">
 
                 <label  for="razao_social">Razão Social:</label>
                 <input type="text" class="form-control" id="razao_social" placeholder="Insira a razão social da empresa" name="razao_social" required>

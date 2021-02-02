@@ -20,6 +20,7 @@ class CreateEmpresasTable extends Migration
             $table->string("razao_social");
             $table->string("celular",15)->nullable();
             $table->string("telefone",14);
+            $table->string("foto")->nullable();
             $table->string("email",100)->unique();
             $table->unsignedBigInteger("id_endereco");
             $table->foreign("id_endereco")->references("id")->on("enderecos");
