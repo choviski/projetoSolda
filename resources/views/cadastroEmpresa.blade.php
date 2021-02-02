@@ -2,6 +2,16 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_cadastro{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <script>
         function formataTelefone(){
             var telefone = document.getElementById("telefone").value;
@@ -91,17 +101,24 @@
         });
     </script>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Gerenciar Empresas:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">GERENCIAR EMPRESAS:</p>
+        @if(!empty($erro))
+            <div class="alert alert-danger mt-2">
+                {{$erro}}
+            </div>
+        @endif
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form  class="col-12 mt-2" action="{{Route('salvarEmpresa')}}" method="post">
+        <form  class="col-12 mt-2" action="{{Route('salvarEmpresa')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="cnpj">CNPJ:</label>
                 <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" onchange="formataCNPJ()" maxlength="14" required>
 
+                <label  for="foto">Foto:</label>
+                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem da Empresa" name="foto">
 
                 <label  for="razao_social">Razão Social:</label>
                 <input type="text" class="form-control" id="razao_social" placeholder="Insira a razão social da empresa" name="razao_social" required>
@@ -143,7 +160,7 @@
                     <input type="number" class="form-control" id="numero" placeholder="Insira o número" name="numero" required>
 
                     <label  for="complemento">Complemento:</label>
-                    <input type="text" class="form-control" id="complemento" placeholder="Insira o complemento" name="complemento" required>
+                    <input type="text" class="form-control" id="complemento" placeholder="Insira o complemento" name="complemento">
 
                     <label for="id_cidade">Cidade:</label>
                     <select class="form-control" id="id_cidade" name="id_cidade" required>
@@ -186,7 +203,7 @@
                                 <div class="card card-body  col-sm-12 col-md-12 rounded">
                                     <div class="form-group bg-light p-2 rounded bg-success">
                                         <label  for="nome">Nome:</label>
-                                        <input type="text" class="form-control" id="nome" placeholder="Insira o nome do inspetor" name="nome" >
+                                        <input type="text" class="form-control" id="nome" placeholder="Insira o nome do inspetor" name="nome">
 
                                         <label  for="crea">CREA:</label>
                                         <input type="text" class="form-control" id="crea" placeholder="insira o CREA do inspetor" name="crea" >

@@ -1,9 +1,19 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_soldadores{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Soldadores:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">SOLDADORES:</p>
     </div>
     <div class="container-fluid d-flex justify-content-center">
         <div class="col-md-8 col-12">

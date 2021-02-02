@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Empresa extends Model
 {
     protected $table="empresas";
-    protected $fillable=["cnpj","razao_social","nome_fantasia","telefone","email","id_inspetor","id_endereco","id_usuario"];
+    protected $fillable=["cnpj","razao_social","nome_fantasia","telefone","email","id_inspetor","id_endereco","id_usuario","foto"];
     use SoftDeletes;
     public function endereco(){
         return $this->belongsTo("App\Endereco",'id_endereco','id');

@@ -117,6 +117,7 @@ class QualificacaoController extends Controller
         if ($request->aceito == 1) {
             $requalificacao = SoldadorQualificacao::find($request->id);
             $requalificacao->status = "qualificado";
+            $requalificacao->aviso=1;
             $requalificacao->save();
             $tempoNorma=NormaQualificacao::where("id_qualificacao",'=',$requalificacao->id_qualificacao)->get();
             $tempo=$tempoNorma[0]->norma->validade;
@@ -133,6 +134,7 @@ class QualificacaoController extends Controller
         if ($request->aceito == 0) {
             $requalificacao = SoldadorQualificacao::find($request->id);
             $requalificacao->status = "nao-qualificado";
+            $requalificacao->aviso=1;
             $requalificacao->save();
             return redirect()->route("requalificacoes");
         }

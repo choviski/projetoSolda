@@ -10,6 +10,11 @@ use App\Inspetor;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use DateTime;
+use File;
+
 
 class EmpresaController extends Controller
 {
@@ -107,6 +112,20 @@ class EmpresaController extends Controller
     public function salvar(Request $request){
         $usuario = session()->get("Usuario");
         #Criando o Endereco
+        $empresas=Empresa::all();
+        foreach ($empresas as $empresa){
+            if($empresa->email==$request->email){
+                $request->session()->flash("erro","Já existe uma empresa cadastrada com esse email.");
+                return redirect()->back();
+
+            }
+            if($empresa->cnpj==$request->cnpj){
+                $request->session()->flash("erro","Já existe uma empresa cadastrada com esse CNPJ.");
+                return redirect()->back();
+
+            }
+
+        }
         $endereco= new Endereco();
         $endereco->rua=$request->rua;
         $endereco->cep=$request->cep;
@@ -142,7 +161,7 @@ class EmpresaController extends Controller
         #Criando o usuario da empresa
         #senha aleatoria
         $novoUsuario = new Usuario();
-        $novoUsuario->nome=$request->nome_fantasia;
+        $novoUsuario->nome=$request->razao_social;
         $novoUsuario->email=$request->email;
         $novoUsuario->senha=$request->senha;
         $novoUsuario->tipo=2;
@@ -150,6 +169,20 @@ class EmpresaController extends Controller
 
         #Associando o Usuario a Empresa.
         $empresa->id_usuario=$novoUsuario->id;
+        $empresa->save();
+        if($request->file('foto')) {
+            $imagem = $request->file('foto');
+            if($imagem->getClientOriginalExtension()=="JPG"){
+                $extensao = "jpg";
+            }else {
+                $extensao = $imagem->getClientOriginalExtension();
+            }
+            chmod($imagem->path(), 0755);
+            File::move($imagem, public_path() . '/imagem-empresa/empresa-id' . $empresa->id . '.' . $extensao);
+            $empresa->foto = '/imagem-empresa/empresa-id' . $empresa->id . '.' . $extensao;
+        }else{
+            $empresa->foto="imagens/empresa_default.png";
+        }
         $empresa->save();
 
         return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
@@ -185,12 +218,13 @@ class EmpresaController extends Controller
         
     }
 
-    public function selecionar(){
+    public function selecionar(Request $request){
+        $erro = $request->session()->get("erro");
         $enderecos=Cidade::all();
         $inspetor=Inspetor::all();
         $usuario = session()->get("Usuario");
         $senhaAleatoria = Str::random(12);
-        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario,"senha"=>$senhaAleatoria]);
+        return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario,"senha"=>$senhaAleatoria,"erro"=>$erro]);
 
     }
 }

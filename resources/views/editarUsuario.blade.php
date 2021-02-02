@@ -2,13 +2,23 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_perfil{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Editar informações:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">EDITAR INFORMAÇÕES:</p>
     </div>
     <div class="row col-12 d-flex justify-content-center ">
 
-        <form class="col-12 mt-2"action="{{Route('salvarUsuario',['id'=> $empresa->id])}}" method="post">
+        <form class="col-9 p-0 mt-3"action="{{Route('salvarUsuario',['id'=> $empresa->id])}}" method="post">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
@@ -51,10 +61,10 @@
                         <option value="{{$inspetor->id}}">{{$inspetor->nome}}, {{$inspetor->crea}}</option>
                     @endforeach
                 </select>
-                <input type="submit" class="btn btn-outline-primary mt-3 col-12">
+                <input type="submit" class="btn btn-outline-primary mt-3 mb-0 col-12">
             </div>
+            <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light btn-block text-dark mt-1  mb-2 col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
         </form>
-        <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light text-dark mt-2  "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
     <script>

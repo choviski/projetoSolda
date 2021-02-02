@@ -5,8 +5,8 @@
     <!-- "Header" | Vai ficar embaixo do cabeçalho (quando tiver um) -->
 
         <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-            <hr>
-            <p class="lead">Gerenciar entidades:</p>
+            <hr class="p-0 m-0 mb-1">
+            <p class="lead p-1 m-0" style="font-size: 22px">GERENCIAR ENTIDADES:</p>
         </div>
         <!-- Conteudo da CRUD -->
 

@@ -2,9 +2,19 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_cadastro{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Renovar qualificacao:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">RENOVAR QUALIFICAÇÃO:</p>
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">

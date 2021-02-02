@@ -41,7 +41,6 @@ class LoginController extends Controller
 
             if ($Usuario->senha==$request->senha){
                 $request->session()->put("Usuario",$Usuario);
-                $qualificacao = SoldadorQualificacao::all();
                 return redirect()->route("email");
             }
             $request->session()->flash("mensagem","Usuario ou senha incorretos");

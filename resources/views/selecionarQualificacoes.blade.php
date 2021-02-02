@@ -1,13 +1,23 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_cadastro{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+    </style>
     <div class="col-12  bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Selecione quais qualificacoes esse soldador ja possui:</p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">PREENCHA A QUALIFICAÇÃO DO SOLDADOR:</p>
     </div>
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center">
-            <form action="{{route("adicionarQualificacao")}}" class="form-group col-12" method="post">
+            <form action="{{route("adicionarQualificacao")}}" class="form-group col-12" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="bg-light p-2 rounded mt-2 ">
 
@@ -34,21 +44,11 @@
                     <label  for="data_qualificacao">Insira a data da qualificação:</label>
                     <input type="date" class="form-control" id="data_qualificacao" name="data_qualificacao" required>
 
-                    <label for="status">Status:</label>
-                    <select class="form-control" id="status" name="status" required>
-                        <option value="-1" disabled selected>Selecione o status</option>
-                        <option value="1">Qualificado</option>
-                        <option value="2">Em processo</option>
-                        <option value="3">Atrasado</option>
-                        <option value="4">Não Qualificado</option>
-                    </select>
-
-
                     <label  for="nome_certificado">Nome do certificado:</label>
                     <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="nome_certificado" required>
 
                     <label  for="caminho_certificado">Insira o caminho do certificado:</label>
-                    <input type="text" class="form-control" id="caminho_certificado" placeholder="Insira o caminho do certificado" name="caminho_certificado" required>
+                    <input type="file" class="form-control" id="caminho_certificado" placeholder="Insira o caminho do certificado" name="caminho_certificado" required>
 
                         <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
                         <label  for="nome">Nome:</label>
