@@ -22,7 +22,7 @@
         <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm" >
             <div id="soldadorInfo" class="col-12 pt-3 d-flex ">
                 <div id="imagemSoldador">
-                    <img src="{{asset($soldador->foto)}}" class="rounded-circle border" width="150px" height="150px">
+                    <img src="{{asset($soldador->foto)}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" class="rounded-circle border" width="150px" height="150px">
                 </div>
                 <div id="informacaoSoldador" class="d-flex flex-column p-3">
                     <p class="p-0 font-weight-light" style="font-size: 22px">{{$soldador->nome}}</p>
@@ -73,29 +73,29 @@
                     @endif
                 @elseif($qualificacao->status=="qualificado")
                     <span class="d-flex justify-content-end mb-0 pb-0">
-                    <p class="text-right bg-success rounded p-1 text-white mb-1">Qualificado</p>
-                </span>
-                    <form method="#" action="#" class="d-flex justify-content-end">
+                        <p class="text-right bg-success rounded p-1 text-white mb-1">Qualificado</p>
+                    </span>
+                    <form method="#" action="#" class="form-group d-flex justify-content-end">
                         @csrf
-                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao">
+                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->soldador->id}}">
                         <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                     </form>
                 @elseif($qualificacao->status=="nao-qualificado")
                     <span class="d-flex justify-content-end mb-0 pb-0">
-                    <p class="text-right bg-danger rounded p-1 text-white mb-1">Não Qualificado</p>
-                </span>
-                    <form method="#" action="#" class="d-flex justify-content-end">
+                        <p class="text-right bg-danger rounded p-1 text-white mb-1">Não Qualificado</p>
+                    </span>
+                    <form method="#" action="#" class="form-group d-flex justify-content-end">
                         @csrf
-                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao">
+                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->soldador->id}}">
                         <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                     </form>
                 @elseif($qualificacao->status=="atrasado")
                     <span class="d-flex justify-content-end mb-0 pb-0">
-                    <p class="text-right bg-warning rounded p-1 text-white mb-1">Atrasado</p>
-                </span>
-                    <form method="#" action="#" class="d-flex justify-content-end">
+                        <p class="text-right bg-warning rounded p-1 text-white mb-1">Atrasado</p>
+                    </span>
+                    <form method="#" action="#" class="form-group d-flex justify-content-end">
                         @csrf
-                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao">
+                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->soldador->id}}">
                         <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                     </form>
                 @endif

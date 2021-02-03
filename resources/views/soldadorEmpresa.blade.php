@@ -35,8 +35,8 @@
         @foreach($soldadores as $soldador)
         <!-- Aqui começa a listagem das empresas-->
             <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3">
-                <div id="infoEmpresa" class="p-2 mt-1 d-flex flex-column align-items-center">
-                    <img id="imgSoldador" class="rounded-circle border" src="{{asset("$soldador->foto")}}" height="125 px" width="125px">
+                <div id="infoEmpresa" class="p-2 mt-1 d-flex justify-content-end flex-column ">
+                    <img id="imgSoldador" class="rounded-circle border" src="{{asset("$soldador->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" height="125 px" width="125px">
                     <p class="nomeSoldador mt-2 border col-12">{{$soldador->nome}}</p>
                 </div>
                 <div id="btnVerQualificacoes" class="d-flex align-items-center">
