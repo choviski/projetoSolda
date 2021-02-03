@@ -196,12 +196,12 @@ class SoldadorController extends Controller
         $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();;
         $soldador_qualificacao->nome_certificado=$request->nome_certificado;
         $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
-        $datetime1 = new DateTime($soldador_qualificacao->validade);
+        $datetime1 = new DateTime($validade);
         $datetime2 = new DateTime($hoje);
-        $interval = $datetime1->diff($datetime2);
+        $interval = $datetime2->diff($datetime1);
         if($interval->days<=0) {
             $soldador_qualificacao->status = "atrasado";
-        }elseif (($soldador_qualificacao->validade_qualificacao)-$hoje>0){
+        }else{
             $soldador_qualificacao->status="qualificado";
         }
         $soldador_qualificacao->save();

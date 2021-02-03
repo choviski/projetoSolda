@@ -36,7 +36,7 @@
         <!-- Aqui começa a listagem das empresas-->
             <div id="empresaCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3">
                 <div id="infoEmpresa" class="p-2 mt-1 d-flex  justify-content-end flex-column">
-                    <img id="imgEmpresa" class="rounded-circle border" src="{{asset("imagens/empresa_default.png")}}" onerror="this.onerror=null;this.src='{{asset("imagens/empresa_default.png")}}';"height="125 px" width="125px">
+                    <img id="imgEmpresa" class="rounded-circle border" src="{{asset("$empresa->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/empresa_default.png")}}';"height="125 px" width="125px">
                     <p class="nomeEmpresa mt-2 border col-12">{{$empresa->razao_social}}</p>
                 </div>
                 <div id="btnVerSoldadores" class="d-flex align-items-center">
