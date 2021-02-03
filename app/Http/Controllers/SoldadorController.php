@@ -198,8 +198,8 @@ class SoldadorController extends Controller
         $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
         $datetime1 = new DateTime($validade);
         $datetime2 = new DateTime($hoje);
-        $interval = $datetime2->diff($datetime1);
-        if($interval->days<=0) {
+        $interval = now()->diffInDays(($datetime1), false);
+        if($interval<=0) {
             $soldador_qualificacao->status = "atrasado";
         }else{
             $soldador_qualificacao->status="qualificado";
