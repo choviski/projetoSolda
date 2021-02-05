@@ -60,9 +60,9 @@
         <div class=" p-2 bg-light rounded shadow text-center" id="loginForm">
             <form action="{{route("login")}}" method="post" class="form-group ">
                 @csrf
-                <input type="email" name="email" class="form-control mt-2" placeholder="Email" required>
+                <input type="email" name="email" class="form-control mt-2" placeholder="Email"  required>
                 <input type="password" name="senha" class="form-control mt-2" placeholder="Senha" required>
-                <input type="submit" value="Entrar" class="btn-block btn-primary rounded mt-2 mb-2">
+                <input type="submit" value="Entrar" class="btn btn-block btn-primary rounded mt-2 mb-2">
 
             </form>
 

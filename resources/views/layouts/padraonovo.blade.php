@@ -52,7 +52,7 @@
                 <ul class="navbar-nav mr-auto">
                     @if($usuario->tipo == 1)
                     <li class="nav-item active" >
-                        <a class="nav-link font-weight-light" id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMRPESAS<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light" id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"  >
                         <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
