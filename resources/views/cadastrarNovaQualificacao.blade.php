@@ -11,6 +11,26 @@
             text-decoration: none;
             font-weight: normal;
         }
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
@@ -58,8 +78,11 @@
                 <label  for="nome_certificado">Eletrodo:</label>
                 <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o eletrodo ultilizado na soldagem" name="eletrodo" required>
 
-                <label  for="caminho_certificado">Insira a foto do corpo de prova:</label>
-                <input type="file" class="form-control" id="foto" placeholder="a foto do corpo de prova" name="fotos[]" multiple required>
+
+                <label for="foto" id="" class="mt-2 col-12 p-0">Insira a(s) foto(s) corpo de prova:</label>
+                <label for="foto" id="btnFoto" class="">Escolha a(s) foto(s)</label>
+                <input type="file" class="" id="foto" placeholder="Insira a(s) foto(s) corpo de prova:" name="fotos[]" multiple required>
+
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição do processo que você ultilizou na soldagem" name="texto" required></textarea>
@@ -67,7 +90,7 @@
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
         </form>
-        <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
 @endsection

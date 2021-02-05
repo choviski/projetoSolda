@@ -22,9 +22,9 @@
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">SOLDADORES:</p>
     </div>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom shadow-sm mb-2">
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom mb-2">
         @if($usuario->tipo==1)
-            <div id="addSoldaodre" class="col-12 mt-2 p-0">
+            <div id="addSoldaodre" class="col-12 mt-2 p-0 popin">
                 <form method="get" action="{{route("selecionarEmpresa")}}">
                     @csrf
                     <input type="hidden" name="idEmpresa" id="idEmpresa">
@@ -34,7 +34,7 @@
         @endif
         @foreach($soldadores as $soldador)
         <!-- Aqui começa a listagem das empresas-->
-            <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 font-size">
+            <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 font-size popin">
                 <div id="infoEmpresa" class="p-2 mt-1 d-flex justify-content-end flex-column ">
                     <img id="imgSoldador" class="rounded-circle border" src="{{asset("$soldador->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" height="125 px" width="125px">
                     <p class="nomeSoldador mt-2 border col-12">{{$soldador->nome}}</p>

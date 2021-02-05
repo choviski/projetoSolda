@@ -11,6 +11,26 @@
             text-decoration: none;
             font-weight: normal;
         }
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
@@ -32,11 +52,12 @@
                 <label  for="cpf">CPF:</label>
                 <input type="text" class="form-control" id="cpf" placeholder="Insira o CPF do Soldador" name="cpf" required>
 
-                <label  for="foto">Foto:</label>
-                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem do Soldador" name="foto">
+                <label for="foto" id="" class="mt-2 col-12 p-0">Insira a foto do soldador:</label>
+                <label for="foto" id="btnFoto" class="">Escolha a foto</label>
+                <input type="file" class="" id="foto" placeholder="Insira a imagem do Soldador" name="foto">
 
 
-                <label  for="sinete">Sinete:</label>
+                <label  for="sinete" class="col-12 p-0">Sinete:</label>
                 <input type="text" class="form-control" id="sinete" placeholder="Insira o sinete" name="sinete" required>
 
                 <label  for="matricula">Matricula:</label>

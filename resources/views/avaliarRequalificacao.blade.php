@@ -73,7 +73,7 @@
                             <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->index==0)class="active" @endif></li>
                         @endforeach
                     </ol>
-                    <div class="carousel-inner d-flex " >
+                    <div class="carousel-inner" >
                         @foreach($fotos as $foto)
                             @if($loop->index==0)
                                 <div class="carousel-item active align-items-center">

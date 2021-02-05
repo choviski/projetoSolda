@@ -36,7 +36,7 @@
             </div>
         </div>
         @if($usuario->tipo==1)
-        <div id="addQualificacao" class="col-12 mt-2 p-0">
+        <div id="addQualificacao" class="col-12 mt-2 p-0 popin">
             <form method="post" action="{{route("novaQualificacao")}}">
                 @csrf
                 <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
@@ -46,7 +46,7 @@
         @endif
         @foreach($qualificacoes as $qualificacao)
         <!-- Lista de qualificações do Soldador -->
-        <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-2 d-flex justify-content-between">
+        <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-2 d-flex justify-content-between popin">
             <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
                 <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
                 <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
