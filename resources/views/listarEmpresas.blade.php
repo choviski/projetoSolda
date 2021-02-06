@@ -36,6 +36,7 @@
     @endif
     @foreach($empresas as $empresa)
         <!-- Aqui começa a listagem das empresas-->
+
             <div id="empresaCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 popin">
                 <div id="infoEmpresa" class="p-2 mt-1 d-flex  justify-content-end flex-column">
                     <img id="imgEmpresa" class="rounded-circle border" src="{{asset("$empresa->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/empresa_default.png")}}';"height="125 px" width="125px">

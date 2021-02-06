@@ -89,7 +89,7 @@
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">SOLDADORES:</p>
     </div>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt- p-0 rounded-bottom mb-2">
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10  p-0 rounded-bottom mb-2">
         @if($usuario->tipo==1)
             <div id="addSoldador" class="col-12 mt-2 p-0 popin">
                 <form method="get" action="{{route("selecionarEmpresa")}}">
@@ -100,19 +100,20 @@
             </div>
         @endif
         @foreach($soldadores as $soldador)
-        <!-- Aqui começa a listagem das empresas-->
-        <div class="warpSoldadorCard popin">
-            <div class="formDelBtn">
-                <form action="#" method="">
-                    <button type="button" class="delBtn"><i class="fas fa-times"></i></button>
-                </form>
-            </div>
-            <div class="formEditBtn">
-                <form action="#" method="">
-                    <button type="button" class="editBtn"><i class="fas fa-pen"></i></button>
-                </form>
-            </div>
-
+        <!-- Aqui começa a listagem dos soldadores-->
+            <div class="warpSoldadorCard popin">
+                @if($usuario->tipo==1)
+                    <div class="formDelBtn">
+                        <form action="#" method="">
+                            <button type="button" class="delBtn"><i class="fas fa-times"></i></button>
+                        </form>
+                    </div>
+                    <div class="formEditBtn">
+                        <form action="#" method="">
+                            <button type="button" class="editBtn"><i class="fas fa-pen"></i></button>
+                        </form>
+                    </div>
+                @endif
             <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-4 font-size">
                 <div id="infoEmpresa" class="p-2 mt-1 d-flex justify-content-end flex-column ">
                     <img id="imgSoldador" class="rounded-circle border" src="{{asset("$soldador->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" height="125 px" width="125px">

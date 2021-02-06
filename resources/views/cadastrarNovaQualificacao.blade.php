@@ -38,12 +38,12 @@
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form class="col-12 mt-2"action="{{Route('editarQualificacao',['id'=> $soldadorQualificacao->id])}}" method="post"  enctype="multipart/form-data">
+        <form class="col-md-9 col-sm-10 mt-2"action="{{Route('editarQualificacao',['id'=> $soldadorQualificacao->id])}}" method="post"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
-                <label  for="">Código RQS:</label><input type="text" class="form-control"  name="cu" value="{{$soldadorQualificacao->cod_rqs}}" required disabled>
-                <input type="hidden" class="form-control" name="cu" value="{{$soldadorQualificacao->cod_rqs}}"  required disabled>
+                <label  for="">Código RQS:</label><input type="text" class="form-control"  name="codRqs" value="{{$soldadorQualificacao->cod_rqs}}" required disabled>
+                <input type="hidden" class="form-control" name="codRqs" value="{{$soldadorQualificacao->cod_rqs}}"  required disabled>
 
                 <label for="id_soldador">Soldador:</label>
                 <input type="text" class="form-control" id=""  value="{{$soldadorQualificacao->soldador->nome}}" required disabled>
@@ -79,7 +79,7 @@
                 <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o eletrodo ultilizado na soldagem" name="eletrodo" required>
 
 
-                <label for="foto" id="" class="mt-2 col-12 p-0">Insira a(s) foto(s) corpo de prova:</label>
+                <label for="foto" id="labelFotos" class="mt-2 col-12 p-0">Insira a(s) foto(s) corpo de prova:</label>
                 <label for="foto" id="btnFoto" class="">Escolha a(s) foto(s)</label>
                 <input type="file" class="" id="foto" placeholder="Insira a(s) foto(s) corpo de prova:" name="fotos[]" multiple required>
 
@@ -92,5 +92,17 @@
         </form>
         <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
+    <script >
+        $("#foto").on("change", function(){
+            nFotos = document.getElementById('foto').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Fotos escolhidas: '+nFotos;
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
 
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha a(s) foto(s):';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
+    </script>
 @endsection
