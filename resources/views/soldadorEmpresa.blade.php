@@ -122,6 +122,10 @@
                     <div id="btnVerQualificacoes" class="d-flex align-items-center">
                         <form method="POST" action="{{route("perfilSoldador")}}" class="">
                             @csrf
+                            @if(isset($rota) and isset($empresa))
+                                <input type="hidden" id="rota" name="rota" value="{{$rota}}">
+                                <input type="hidden" id="empresa" name="empresa" value="{{$empresa}}">
+                            @endif
                             <input type="hidden" id="id_soldador" name="id_soldador" value="{{$soldador->id}}">
                             <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR QUALIFICAÇÕES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                         </form>

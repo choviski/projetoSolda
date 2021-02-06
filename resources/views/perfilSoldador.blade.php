@@ -82,6 +82,7 @@
     </style>
     <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom ">
         <div class="wrapSoldadorCard popin">
+            @if($usuario->tipo==1)
             <div class="formDelBtn">
                 <form action="#" method="">
                     <button type="button" class="delBtn"><i class="fas fa-times"></i></button>
@@ -92,7 +93,7 @@
                     <button type="button" class="editBtn"><i class="fas fa-pen"></i></button>
                 </form>
             </div>
-
+            @endif
             <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm mt-2" >
                 <div id="soldadorInfo" class="col-12 pt-3 d-flex ">
                     <div id="imagemSoldador">
@@ -180,8 +181,19 @@
         </div>
         @endforeach
         <!-- Fim da lista de qualificações -->
-        <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
-
+        @if(isset($rota))
+            @if($rota=="hubSoldadores")
+                <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            @elseif($rota=="listarSoldador")
+                <form method="post" action="{{Route("listarSoldador",['id'=>$empresa])}}">
+                    @csrf
+                    <input type="hidden" id="id_empresa" name="id_empresa" value="{{$empresa}}">
+                    <button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button>
+                </form>
+            @endif
+        @else
+            <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
+        @endif
     </div>
 
 @endsection

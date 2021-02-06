@@ -69,7 +69,7 @@ Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("s
 Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador");
 Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador");
 Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa");
-Route::post("listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador");
+Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador");
 Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao");
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao");
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa");

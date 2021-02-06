@@ -38,10 +38,11 @@
     </div>
 
     <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form class="col-md-9 col-sm-10 mt-2"action="{{Route('editarQualificacao',['id'=> $soldadorQualificacao->id])}}" method="post"  enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="form-group bg-light p-2 rounded">
+        <div class="col-md-9 col-sm-10 mt-2">
+            <form action="{{Route('editarQualificacao',['id'=> $soldadorQualificacao->id])}}" method="post"  enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="form-group bg-light p-2 rounded">
                 <label  for="">Código RQS:</label><input type="text" class="form-control"  name="codRqs" value="{{$soldadorQualificacao->cod_rqs}}" required disabled>
                 <input type="hidden" class="form-control" name="codRqs" value="{{$soldadorQualificacao->cod_rqs}}"  required disabled>
 
@@ -89,8 +90,14 @@
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
-        </form>
-        <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            </form>
+            <form method="POST" action="{{route("perfilSoldador")}}" class="">
+                @csrf
+                <input type="hidden" id="id_soldador" name="id_soldador" value="{{$soldadorQualificacao->soldador->id}}">
+                <button class="btn btn-outline-light mt-1 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button>
+            </form>
+            <a href="{{route("paginaInicial")}}">
+        </div>
     </div>
     <script >
         $("#foto").on("change", function(){

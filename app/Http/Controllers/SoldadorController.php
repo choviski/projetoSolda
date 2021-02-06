@@ -11,6 +11,8 @@ use App\Empresa;
 use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+
 use Carbon\Carbon;
 use DateTime;
 use File;
@@ -218,17 +220,26 @@ class SoldadorController extends Controller
         $processos=Processo::all();
         return view("selecionarQualificacoes")->with(["soldador"=>"$request->soldador","usuario"=>$usuario,"processos"=>$processos]);
     }
+
     public function perfilSoldador(Request $request){
+
         $usuario = session()->get("Usuario");
         $soldador = Soldador::where('id','=',$request->id_soldador)->first();
         $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
-        return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador]);;
+        if($request->rota and $request->empresa){
+            $rotaAnterior= $request->rota;
+            $empresa=$request->empresa;
+            return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador,"rota"=>$rotaAnterior,"empresa"=>$empresa]);;
+        }
+        return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador]);
     }
+
     public function listar($id){
         $usuario = session()->get("Usuario");
+        $rotaAnterior=Route::getCurrentRoute()->getName();
         if($usuario->tipo==1){
             $soldadores = Soldador::where("id_empresa", "=", $id)->get();
-            return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id]);
+            return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id,"rota"=>$rotaAnterior]);
         }else {
             $soldadores = Soldador::where("id_empresa", "=", $id)->get();
             return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id]);

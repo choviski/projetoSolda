@@ -8,6 +8,8 @@ use App\Soldador;
 use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+
 
 class InicioController extends Controller
 {
@@ -94,9 +96,10 @@ class InicioController extends Controller
 
     public function listarSoldadores(){
         $usuario = session()->get("Usuario");
+        $rota=Route::getCurrentRoute()->getName();
         if($usuario->tipo==1){
             $soldadores=Soldador::orderBy('nome')->get();
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores]);
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota]);
 
         }
         if($usuario->tipo==2){
