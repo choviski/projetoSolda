@@ -10,6 +10,26 @@
             text-decoration: none;
             font-weight: normal;
         }
+        input[type="file"]{
+             margin: 0px;
+             padding: 0px;
+             display: none;
+         }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
     </style>
     <div class="col-12  bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
@@ -47,10 +67,13 @@
                     <label  for="nome_certificado">Nome do certificado:</label>
                     <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="nome_certificado" required>
 
-                    <label  for="caminho_certificado">Insira o caminho do certificado:</label>
-                    <input type="file" class="form-control" id="caminho_certificado" placeholder="Insira o caminho do certificado" name="caminho_certificado" required>
 
-                        <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
+                    <label for="caminho_certificado" id="" class="mt-2 col-12 p-0">Insira o arquivo do certificado:</label>
+                    <label for="caminho_certificado" id="btnFoto" class="">Escolha o arquivo</label>
+                    <input type="file" class="" id="caminho_certificado" placeholder="Insira a imagem do Soldador" name="caminho_certificado" required>
+
+
+                    <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
                         <label  for="nome">Nome:</label>
                         <input type="text" class="form-control" id="nome" placeholder="Insira o nome da norma" name="nome_norma" required>
 

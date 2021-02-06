@@ -11,6 +11,26 @@
             text-decoration: none;
             font-weight: normal;
         }
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
     </style>
     <script>
         function formataTelefone(){
@@ -117,8 +137,9 @@
                 <label  for="cnpj">CNPJ:</label>
                 <input type="text" class="form-control" id="cnpj" placeholder="Insira CNPJ da empresa" name="cnpj" onchange="formataCNPJ()" maxlength="14" required>
 
-                <label  for="foto">Foto:</label>
-                <input type="file" class="form-control" id="foto" placeholder="Insira a imagem da Empresa" name="foto">
+                <label for="foto" id="" class="mt-2 col-12 p-0">Insira a foto do empresa:</label>
+                <label for="foto" id="btnFoto" class="">Escolha a foto</label>
+                <input type="file" class="" id="foto" placeholder="Insira a imagem da empresa" name="foto">
 
                 <label  for="razao_social">Razão Social:</label>
                 <input type="text" class="form-control" id="razao_social" placeholder="Insira a razão social da empresa" name="razao_social" required>

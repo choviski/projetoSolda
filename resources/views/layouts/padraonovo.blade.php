@@ -32,6 +32,15 @@
             text-decoration: underline;
             font-weight: bold;
         }
+        .popin{
+            transition: 0.09s ease;
+
+        }
+        .popin:hover{
+            transform: scale(1.01);
+            transform: translateZ(1);
+            backface-visibility: hidden;
+        }
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >
@@ -52,18 +61,18 @@
                 <ul class="navbar-nav mr-auto">
                     @if($usuario->tipo == 1)
                     <li class="nav-item active" >
-                        <a class="nav-link font-weight-light" id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMRPESAS<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light popin" id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"  >
-                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                        <a class="nav-link font-weight-light popin"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active">
-                            <a class="nav-link font-weight-light" id="nav_requalificacao" style="font-size: 25px" href="{{route("requalificacoes")}}">REQUALIFICAÇÕES<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light popin" id="nav_requalificacao" style="font-size: 25px" href="{{route("requalificacoes")}}">REQUALIFICAÇÕES<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light" style="font-size: 25px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light popin" style="font-size: 25px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active" >
+                    <li class="nav-item active popin" >
                         <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">ENTIDADES</a>
                     </li>
                     @endif
@@ -76,7 +85,7 @@
                             </li>
                     @endif
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline d-flex justify-content-center my-2 my-lg-0">
                     <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</a>
                 </form>
             </div>

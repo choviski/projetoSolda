@@ -70,18 +70,18 @@
                 <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center" data-ride="carousel" style="width: 300px">
                     <ol class="carousel-indicators">
                         @foreach($fotos as $foto)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{ {$loop->index}}" @if($loop->index==0)class="active" @endif></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->index==0)class="active" @endif></li>
                         @endforeach
                     </ol>
                     <div class="carousel-inner" >
                         @foreach($fotos as $foto)
                             @if($loop->index==0)
-                        <div class="carousel-item active d-flex justify-content-center">
-                            <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
-                        </div>
+                                <div class="carousel-item active align-items-center">
+                                    <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                                </div>
                             @else
-                                <div class="carousel-item d-flex justify-content-center ">
-                                    <img class="d-block " src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                                <div class="carousel-item  ">
+                                    <img class="d-block" src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
                                 </div>
                             @endif
                         @endforeach
@@ -139,7 +139,7 @@
     </script>
 
     <script>
-        var links = [@foreach($fotos as $foto)@if(!$loop->last)'{{ $foto->caminho}}',@else'{{$foto->caminho}}'@endif @endforeach
+        var links = [@foreach($fotos as $foto)@if(!$loop->last)'{{asset($foto->caminho)}}',@else'{{asset($foto->caminho)}}'@endif @endforeach
          ];
          function downloadAll(urls) {
              var link = document.createElement('a');
