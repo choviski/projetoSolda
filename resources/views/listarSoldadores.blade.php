@@ -99,6 +99,11 @@
                 </form>
             </div>
         @endif
+        @if(isset($rota) and $soldadores->count()==0and $rota="soldadoresFiltrados")
+                <div class="alert alert-danger mt-2 text-center">
+                    <p class="m-0 ">Nenhum soldador encontrado!</p>
+                </div>
+        @endif
         @foreach($soldadores as $soldador)
         <!-- Aqui começa a listagem dos soldadores-->
             <div class="warpSoldadorCard popin">

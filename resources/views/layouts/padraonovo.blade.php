@@ -41,6 +41,33 @@
             transform: translateZ(1);
             backface-visibility: hidden;
         }
+        .formularioFiltro{
+            position: relative;
+        }
+        .botaoProcurar{
+            position: absolute;
+            right: 15px;
+            border-radius: 5px;
+            border:none;
+            color: white;
+            background-color: #007bff;
+            height: 25px;
+            width: 50px;
+            font-weight: lighter;
+
+        }
+        #nomeSoldador{
+            border-radius: 5px;
+            border-width: 1px;
+            margin-bottom: 5px;
+            font-weight: lighter;
+            padding-right: 50px;
+            height: 25px;
+            border-width: 1px;
+        }
+        #nomeSoldador:focus{
+            outline: none;
+        }
 
     </style>
 </head>
@@ -86,11 +113,22 @@
                             </li>
                     @endif
                 </ul>
-                <form class="form-inline d-flex justify-content-center my-2 my-lg-0">
-                    <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sair</a>
-                </form>
+                <div class="d-flex justify-content-center">
+                    <p class="btn btn-outline-primary mb-0 mr-sm-0 mr-md-1"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:50px"><i class="fas fa-filter"></i></p>
+                </div>
+                <div class="form-inline d-flex justify-content-center my-2 my-lg-0 mt-0">
+                    <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" style="width:50px" type="submit">Sair</a>
+                </div>
             </div>
+
         </nav>
+        <div class="collapse col-12 p-0" id="collapseExample">
+            <form class="bg-white col-12 formularioFiltro" method="post" action="{{route("soldadoresFiltrados")}}">
+                @csrf
+                <input class="col-12 " name="nomeSoldador" id="nomeSoldador" placeholder="Insira o nome do soldador..." autocomplete="off">
+                <button class="botaoProcurar"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
     </header>
     <div class="row">
         @yield('content')

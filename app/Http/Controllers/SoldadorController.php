@@ -246,4 +246,18 @@ class SoldadorController extends Controller
         }
     }
 
+    public function listarFiltrado(Request $request){
+        $usuario = session()->get("Usuario");
+        $rotaAnterior=Route::getCurrentRoute()->getName();
+        if($usuario->tipo==1){
+            $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->get();
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rotaAnterior]);
+        }else{
+            $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
+            $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where('id_empresa','=',$empresa->id)->get();
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rotaAnterior]);
+        }
+
+    }
+
 }

@@ -24,7 +24,7 @@
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">EMPRESAS:</p>
     </div>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom ">
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom ">
         @if($usuario->tipo==1)
             <div id="addEmpresa" class="col-12 mt-2 p-0 popin">
                 <form method="get" action="{{route("inserirEmpresa")}}">
