@@ -226,10 +226,20 @@ class SoldadorController extends Controller
         $usuario = session()->get("Usuario");
         $soldador = Soldador::where('id','=',$request->id_soldador)->first();
         $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
-        if($request->rota and $request->empresa){
-            $rotaAnterior= $request->rota;
-            $empresa=$request->empresa;
-            return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador,"rota"=>$rotaAnterior,"empresa"=>$empresa]);;
+
+
+
+        if($request->rota){
+            if($request->empresa){
+                $rotaAnterior = $request->rota;
+                $empresa = $request->empresa;
+                return view("perfilSoldador")->with(["usuario" => $usuario, "qualificacoes" => $qualificacoes, "soldador" => $soldador, "rota" => $rotaAnterior, "empresa" => $empresa]);;
+            }elseif ($request->rota=="soldadoresFiltrados") {
+                $rotaAnterior=$request->rota;
+                $nomeSoldador=$request->nomeSoldador;
+                return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);;
+
+            }
         }
         return view("perfilSoldador")->with(["usuario"=>$usuario,"qualificacoes"=>$qualificacoes,"soldador"=>$soldador]);
     }
@@ -249,13 +259,14 @@ class SoldadorController extends Controller
     public function listarFiltrado(Request $request){
         $usuario = session()->get("Usuario");
         $rotaAnterior=Route::getCurrentRoute()->getName();
+        $nomeSoldador=$request->nomeSoldador;
         if($usuario->tipo==1){
             $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->get();
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rotaAnterior]);
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);
         }else{
             $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
             $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where('id_empresa','=',$empresa->id)->get();
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rotaAnterior]);
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);
         }
 
     }

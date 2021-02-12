@@ -127,6 +127,8 @@
                 @csrf
                 <input class="col-12 " name="nomeSoldador" id="nomeSoldador" placeholder="Insira o nome do soldador..." autocomplete="off">
                 <button class="botaoProcurar"><i class="fas fa-search"></i></button>
+
+
             </form>
         </div>
     </header>

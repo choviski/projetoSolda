@@ -130,6 +130,9 @@
                         <input type="hidden" id="id_soldador" name="id_soldador" value="{{$soldador->id}}">
                         @if(isset($rota))
                         <input type="hidden" id="rota" name="rota" value="{{$rota}}">
+                            @if($rota=="soldadoresFiltrados")
+                                <input type="hidden" id="nomeSoldador" name="nomeSoldador" value="{{$nomeSoldador}}">
+                            @endif
                         @endif
                         <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR QUALIFICAÇÕES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                     </form>

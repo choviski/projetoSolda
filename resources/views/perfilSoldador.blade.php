@@ -190,9 +190,15 @@
                     <input type="hidden" id="id_empresa" name="id_empresa" value="{{$empresa}}">
                     <button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button>
                 </form>
+            @elseif($rota=="soldadoresFiltrados")
+                <form method="post" action="{{Route("soldadoresFiltrados")}}">
+                    @csrf
+                    <input type="hidden" id="nomeSoldador" name="nomeSoldador" value="{{$nomeSoldador}}">
+                    <button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button>
+                </form>
             @endif
         @else
-            <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i>Voltar</button></a>
         @endif
     </div>
 
