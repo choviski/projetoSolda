@@ -37,7 +37,7 @@
     </div>
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center">
-            <form action="{{route("adicionarQualificacao")}}" class="form-group col-12" method="post" enctype="multipart/form-data">
+            <form action="{{route("adicionarQualificacao")}}" class="form-group col-md-9 col-sm-10" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="bg-light p-2 rounded mt-2 ">
 
@@ -94,6 +94,17 @@
             </form>
         </div>
     </div>
+    <script >
+        $("#caminho_certificado").on("change", function(){
+            nFotos = document.getElementById('caminho_certificado').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Aquivo selecionado!';
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
 
-
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha o arquivo';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
+    </script>
 @endsection
