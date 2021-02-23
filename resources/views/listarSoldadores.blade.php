@@ -109,13 +109,16 @@
             <div class="warpSoldadorCard popin">
                 @if($usuario->tipo==1)
                     <div class="formDelBtn">
-                        <form action="#" method="">
-                            <button type="button" class="delBtn"><i class="fas fa-times"></i></button>
+                        <form method="post" action="{{route("soldador.remover",['id'=>$soldador->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldador->nome}} ?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="delBtn"><i class="fas fa-times"></i></button>
                         </form>
                     </div>
                     <div class="formEditBtn">
-                        <form action="#" method="">
-                            <button type="button" class="editBtn"><i class="fas fa-pen"></i></button>
+                        <form method="get" action="{{route("soldador.edit",['soldador'=>$soldador->id])}}">
+                            @csrf
+                            <button class="editBtn"><i class="fas fa-pen"></i></button>
                         </form>
                     </div>
                 @endif

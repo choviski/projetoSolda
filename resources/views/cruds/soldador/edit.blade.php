@@ -5,18 +5,21 @@
         <hr>
         <p class="lead">Gerenciar Soldadores</p>
     </div>
-
     <div class="row col-12 d-flex justify-content-center ">
         <form class="col-12 mt-2"action="{{Route('soldador.update',['soldador'=> $soldador->id])}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
-
+                @if(!empty($erro))
+                    <div class="alert alert-danger mt-2">
+                        {{$erro}}
+                    </div>
+                @endif
                 <label  for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" value="{{$soldador->nome}}" name="nome" required>
 
                 <label  for="cpf">CPF:</label>
-                <input type="text" class="form-control" id="cpf" value="{{$soldador->cpf}}" name="cpf" required>
+                <input type="text" class="form-control" id="cpf" value="{{$soldador->cpf}}" name="cpf" required disabled>
 
                 <label  for="foto">Foto:</label>
                 <input type="file" class="form-control" id="foto" placeholder="foto do Soldador" value="{{$soldador->foto}}" name="foto">

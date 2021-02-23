@@ -60,12 +60,13 @@ class SoldadorController extends Controller
         return view("cruds.soldador.show")->with(["soldador"=>$soldador,"usuario"=>$usuario]);
     }
 
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $usuario = session()->get("Usuario");
         $empresas=Empresa::all();
         $soldador=Soldador::find($id);
-        return view("cruds.soldador.edit")->with(["soldador"=>$soldador,"empresas"=>$empresas,"usuario"=>$usuario]);
+        $erro=$request->session()->get("erro");
+        return view("cruds.soldador.edit")->with(["soldador"=>$soldador,"empresas"=>$empresas,"usuario"=>$usuario,"erro"=>$erro]);
     }
 
     public function update(Request $request, $id)
@@ -73,26 +74,43 @@ class SoldadorController extends Controller
         $usuario = session()->get("Usuario");
         $soldador=Soldador::find($id);
         $soldador->nome=$request->nome;
-        $soldador->cpf=$request->cpf;
         $soldador->sinete=$request->sinete;
         $soldador->matricula=$request->matricula;
+        $soldadores=Soldador::all();
+        foreach ($soldadores as $soldadore) {
+            if ($soldadore->email) {
+                if ($soldadore->email == $request->email && $soldadore->id != $soldador->id) {
+                    $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
+                    $usuario = session()->get("Usuario");
+                    $erro = $request->session()->get("erro");
+                    return redirect()->back();
+
+                }
+            }
+        }
         $soldador->email=$request->email;
         $soldador->id_empresa=$request->id_empresa;
-        $imagem = $request->file('foto');
-        $extensao=$imagem->getClientOriginalExtension();
-        chmod($imagem->path(),0755);
-        File::move($imagem, public_path().'/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao);
-        $soldador->foto='/imagem-soldador/soldador-id'.$soldador->id.'.'.$extensao;
+        if($request->file('foto')) {
+            $imagem = $request->file('foto');
+            $extensao = $imagem->getClientOriginalExtension();
+            chmod($imagem->path(), 0755);
+            File::move($imagem, public_path() . '/imagem-soldador/soldador-id' . $soldador->id . '.' . $extensao);
+            $soldador->foto = '/imagem-soldador/soldador-id' . $soldador->id . '.' . $extensao;
+        }
         $soldador->save();
 
-        return redirect()->Route("soldador.index")->with(["usuario"=>$usuario]);
+        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
     }
 
     public function destroy(Request $request)
     {
         $usuario = session()->get("Usuario");
+        $qualificacaos=SoldadorQualificacao::where("id_soldador","=",$request->id)->get();
+        foreach ($qualificacaos as $qualificacao){
+            SoldadorQualificacao::destroy($qualificacao->id);
+        }
         Soldador::destroy($request->id);
-        return redirect("/soldador");
+        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
 
     }
     public function selecionarEmpresa(){

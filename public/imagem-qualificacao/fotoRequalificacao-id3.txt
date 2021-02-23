@@ -1,0 +1,8 @@
+#include <stdio.h>
+#include <string.h>
+main()
+{
+ char string1[20] = "Faturamento ";
+ char string2[20] = "Horas";
+ strcat (string1, string2);
+ printf ("\n\"%s\" contem %d caracteres.\n", string1, strlen(string1)); }
