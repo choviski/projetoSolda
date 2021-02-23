@@ -122,7 +122,7 @@
     </script>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
-        <p class="lead p-1 m-0" style="font-size: 22px">GERENCIAR EMPRESAS:</p>
+        <p class="lead p-1 m-0" style="font-size: 22px">CADASTRAR NOVA EMPRESA:</p>
         @if(!empty($erro))
             <div class="alert alert-danger mt-2">
                 {{$erro}}
@@ -130,8 +130,8 @@
         @endif
     </div>
 
-    <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form  class="col-12 mt-2" action="{{Route('salvarEmpresa')}}" method="post" enctype="multipart/form-data">
+    <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
+        <form  class="col-md-9 col-sm-10 mt-2 " action="{{Route('salvarEmpresa')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="cnpj">CNPJ:</label>
@@ -243,9 +243,23 @@
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
+            <a href="{{route("cadastrar")}}"><button class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
         </form>
-        <a href="{{route("cadastrar")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
+    <script >
+        $("#foto").on("change", function(){
+            nFotos = document.getElementById('foto').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Foto selecionada!';
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha a foto';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
+    </script>
 
 
 @endsection

@@ -16,8 +16,8 @@
         <p class="lead p-1 m-0" style="font-size: 22px">RENOVAR QUALIFICAÇÕES:</p>
     </div>
 
-    <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form class="col-12 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form">
+    <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
+        <form class="col-md-9 col-sm-10 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form">
             @csrf
             @method('POST')
             <div class="form-group bg-light p-2 rounded">
@@ -106,8 +106,9 @@
                 <input type="hidden" value="{{$requalificacao->id}}" name="id">
                 <input type="hidden" value="0" name="aceito" id="aceito">
             </div>
+            <a href="{{route("requalificacoes")}}"><button class="btn btn-outline-light mt-1 mb-3 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
         </form>
-        <a href="{{route("requalificacoes")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
 
     <script>
@@ -124,8 +125,6 @@
             $("#divFullscreen").css("display", "block");
             $("body").css("overflowY", "hidden");
             $("#divFullscreen").addClass("d-flex justify-content-center");
-
-
         }
     </script>
     <script>
@@ -139,6 +138,7 @@
     </script>
 
     <script>
+
         var links = [@foreach($fotos as $foto)@if(!$loop->last)'{{asset($foto->caminho)}}',@else'{{asset($foto->caminho)}}'@endif @endforeach
          ];
          function downloadAll(urls) {

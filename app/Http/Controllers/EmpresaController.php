@@ -7,6 +7,8 @@ use App\Empresa;
 use App\Endereco;
 use App\Http\Controllers\Controller;
 use App\Inspetor;
+use App\Soldador;
+use App\SoldadorQualificacao;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -80,8 +82,9 @@ class EmpresaController extends Controller
         $usuario = session()->get("Usuario");
         $enderecos=Endereco::all();
         $inspetors=Inspetor::all();
+        $cidades=Cidade::all();
         $empresa=Empresa::find($id);
-        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"usuario"=>$usuario]);
+        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"usuario"=>$usuario,"cidades"=>$cidades]);
     }
 
     /**
@@ -94,8 +97,65 @@ class EmpresaController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = session()->get("Usuario");
-        Empresa::find($id)->update($request->all());
-        return redirect()->route("empresa.index")->with(["usuario"=>$usuario]);
+        $empresa = Empresa::find($id);
+        $empresas=Empresa::all();
+        foreach ($empresas as $empres){
+            if($empres->email==$request->email && $empres->id != $id){
+                $request->session()->flash("erro","Já existe uma empresa cadastrada com esse email.");
+                return redirect()->back();
+
+            }
+        }
+        $endereco= new Endereco();
+        $endereco->rua=$request->rua;
+        $endereco->cep=$request->cep;
+        $endereco->complemento=$request->complemento;
+        $endereco->bairro=$request->bairro;
+        $endereco->numero=$request->numero;
+        $endereco->id_cidade=$request->id_cidade;
+        $endereco->save();
+        $empresa->cnpj=$empresa->cnpj;
+        $empresa->nome_fantasia=$request->nome_fantasia;
+        $empresa->razao_social=$empresa->razao_social;
+        $empresa->celular=$request->celular;
+        $empresa->telefone=$request->telefone;
+        $empresa->email=$request->email;
+        $empresa->id_endereco=$endereco->id;
+        $usuario=Usuario::find($request->id_usuario);
+        $usuario->email=$request->email;
+        $usuario->senha=$request->senha;
+        $usuario->update();
+        if($request->nome&&$request->crea&&$request->funcao){
+            try {
+                $inspetor = new Inspetor();
+                $inspetor->nome = $request->nome;
+                $inspetor->crea = $request->crea;
+                $inspetor->funcao = $request->funcao;
+                $inspetor->save();
+                $empresa->id_inspetor = $inspetor->id;
+            }catch (Exception $e){
+                session()->put("sem_inspetor","Preencha todos os dados do seu endereço corretamente");
+                return redirect()->back();
+            }
+        }else{
+            $empresa->id_inspetor=$request->id_inspetor;
+        }
+        if($request->file('foto')) {
+            $imagem = $request->file('foto');
+            if($imagem->getClientOriginalExtension()=="JPG"){
+                $extensao = "jpg";
+            }else {
+                $extensao = $imagem->getClientOriginalExtension();
+            }
+            chmod($imagem->path(), 0755);
+            File::move($imagem, public_path() . '/imagem-empresa/empresa-id' . $empresa->id . '.' . $extensao);
+            $empresa->foto = '/imagem-empresa/empresa-id' . $empresa->id . '.' . $extensao;
+        }else{
+            $empresa->foto="imagens/empresa_default.png";
+        }
+        $empresa->update();
+
+        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
     }
 
     /**
@@ -106,8 +166,19 @@ class EmpresaController extends Controller
      */
     public function destroy(Request $request)
     {
+        $empresa=Empresa::find($request->id);
+        $soldadores=Soldador::where("id_empresa","=",$empresa->id)->get();
+        foreach ($soldadores as $soldador){
+            $qualificacaos=SoldadorQualificacao::where("id_soldador","=",$soldador->id)->get();
+            foreach ($qualificacaos as $qualificacao){
+                SoldadorQualificacao::destroy($qualificacao->id);
+            }
+            Soldador::destroy($soldador->id);
+        }
         Empresa::destroy($request->id);
-        return redirect()->route("empresa.index");
+        Endereco::destroy($empresa->id_endereco);
+        Usuario::destroy($empresa->id_usuario);
+        return redirect()->back();
     }
     public function salvar(Request $request){
         $usuario = session()->get("Usuario");

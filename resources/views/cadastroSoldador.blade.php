@@ -42,8 +42,8 @@
         @endif
     </div>
 
-    <div class="row col-12 d-flex justify-content-center mt-2 ">
-        <form  class="col-12 mt-2" action="{{Route('salvarSoldador')}}" method="post" enctype="multipart/form-data">
+    <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
+        <form  class=" col-md-9 col-sm-10 mt-2" action="{{Route('salvarSoldador')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <label  for="nome">Nome:</label>
@@ -71,12 +71,28 @@
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
+            <a href="{{route("selecionarEmpresa")}}"><button class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+
         </form>
-        <a href="{{route("selecionarEmpresa")}}"><button class="btn btn-outline-light mt-2 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
     <script>
         $(document).ready(function(){
             $('#cpf').mask('999.999.999-99');
         });
     </script>
+
+    <script >
+        $("#foto").on("change", function(){
+            nFotos = document.getElementById('foto').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Foto selecionada!';
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha a foto';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
+    </script>
+
 @endsection

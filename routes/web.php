@@ -69,7 +69,7 @@ Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("s
 Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador");
 Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador");
 Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa");
-Route::post("listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador");
+Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador");
 Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao");
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao");
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa");
@@ -100,6 +100,8 @@ Route::get('/sair', "LoginController@sair")->name("sair");
 
 Route::post('/perfilSoldador',"SoldadorController@perfilSoldador")->middleware(CheckSession::class)->name("perfilSoldador");
 Route::get('/listagemEmpresa',"InicioController@listarEmpresas")->middleware(CheckSession::class,CheckAdm::class)->name("paginaInicial");
+Route::get('/dashboard',"DashboardController@getMonthlyAllData")->middleware(CheckSession::class,CheckAdm::class)->name("dashboard");
 Route::get('/listagemSoldador',"InicioController@listarSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
+Route::post('/listagemSoldadorFiltrados',"SoldadorController@listarFiltrado")->middleware(CheckSession::class)->name("soldadoresFiltrados");
 
 
