@@ -129,6 +129,7 @@
             <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
                 <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
                 <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
+                <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>
             </div>
 
             <div id="infoEsquerda" class="d-flex flex-column p-2 pt-1 pb-1 text-left">
@@ -201,8 +202,27 @@
                 </form>
             @endif
         @else
-            <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i>Voltar</button></a>
+            <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
         @endif
     </div>
-
+    <script>
+        var nome_certificado="";
+        var links=[];
+        function getFile(caminho,nome){
+            links = [caminho];
+            nome_certificado=nome;
+        }
+        function downloadAll(urls) {
+            console.log(window.links);
+            var link = document.createElement('a');
+            link.setAttribute('download', nome_certificado);
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            for (var i = 0; i < urls.length; i++) {
+                link.setAttribute('href', urls[i]);
+                link.click();
+            }
+            document.body.removeChild(link);
+        }
+    </script>
 @endsection

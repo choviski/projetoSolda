@@ -77,7 +77,7 @@
                         @foreach($fotos as $foto)
                             @if($loop->index==0)
                                 <div class="carousel-item active align-items-center">
-                                    <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')">
+                                    <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
                                 </div>
                             @else
                                 <div class="carousel-item  ">
@@ -96,7 +96,9 @@
                     </a>
                 </div>
                 </div>
-                <a  onclick="downloadAll(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
+                <a  onclick="getFotos();downloadAll(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
+                <label  for="downloadCerificado">Certificado atual da quailificação:</label>
+                <a  onclick="getFile('{{asset($requalificacao->caminho_certificado)}}','{{($requalificacao->nome_certificado)}}');downloadCertificado(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar certificado</a>
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
@@ -138,10 +140,30 @@
     </script>
 
     <script>
-
-        var links = [@foreach($fotos as $foto)@if(!$loop->last)'{{asset($foto->caminho)}}',@else'{{asset($foto->caminho)}}'@endif @endforeach
+        links=[];
+        nome_certificado="";
+        function getFile(caminho,nome){
+            links = [caminho];
+            nome_certificado=nome;
+        }
+        function downloadCertificado(urls) {
+            var link = document.createElement('a');
+            link.setAttribute('download', nome_certificado);
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            for (var i = 0; i < urls.length; i++) {
+                link.setAttribute('href', urls[i]);
+                link.click();
+            }
+            document.body.removeChild(link);
+            links=[];
+        }
+        function getFotos(){
+        links = [@foreach($fotos as $foto)@if(!$loop->last)'{{asset($foto->caminho)}}',@else'{{asset($foto->caminho)}}'@endif @endforeach
          ];
-         function downloadAll(urls) {
+        }
+        function downloadAll(urls) {
+             alert("download foto");
              var link = document.createElement('a');
              link.setAttribute('download', "corpo de prova");
              link.style.display = 'none';
@@ -150,7 +172,10 @@
                  link.setAttribute('href', urls[i]);
                  link.click();
              }
-         }
+             document.body.removeChild(link);
+             links=[];
+
+        }
 
 
     </script>

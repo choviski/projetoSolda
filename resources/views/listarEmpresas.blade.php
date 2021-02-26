@@ -35,7 +35,7 @@
             color: #d92b2b;
             font-weight: lighter;
             border-radius: 5px;
-            transform: translateY(+50%);
+            transform: translateY(+25%);
             align-items: center;
             text-align: center;
             transition: 0.3s ease;
@@ -67,7 +67,7 @@
             color: #228db8;
             font-weight: lighter;
             border-radius: 5px;
-            transform: translateY(+50%);
+            transform: translateY(+25%);
             align-items: center;
             text-align: center;
             border-style: solid;

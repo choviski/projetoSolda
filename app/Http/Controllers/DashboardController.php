@@ -6,6 +6,7 @@ use App\Empresa;
 use App\Soldador;
 use App\SoldadorQualificacao;
 use DateTime;
+use DB;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -56,6 +57,7 @@ class DashboardController extends Controller
 
     public function getMonthlyAllData(){
         $usuario = session()->get("Usuario");
+        $empresas = Empresa::all();
         # Pegando os dados mensais dos soldadores
         $monthly_soldador_count_array = array();
         $soldador_meses_array = $this->getAllSoldadoresMonths();
@@ -83,7 +85,7 @@ class DashboardController extends Controller
             #colocando os dados sobre os status da qualificacao
             'status_qualificado' => SoldadorQualificacao::where('status','=','qualificado')->get()->count(),
             'status_nao_qualificado' => SoldadorQualificacao::where('status','=','nao-qualificado')->get()->count(),
-            'status_em_processo' => SoldadorQualificacao::where('status','=','em-proceso')->get()->count(),
+            'status_em_processo' => SoldadorQualificacao::where('status','=','em-processo')->get()->count(),
             'status_atrasado' => SoldadorQualificacao::where('status','=','atrasado')->get()->count(),
             #colocando os dados sobre os soldadores
             'meses_soldadores' => $meses_nome__soldador_array,
@@ -93,9 +95,47 @@ class DashboardController extends Controller
             'meses_empresas' => $meses_nome__empresa_array,
             'empresas' => $monthly_empresa_count_array,
             'total_empresas' => Empresa::count(),
+            'nome'=>"TODAS EMPRESAS",
 
         );
-        return view('/dashboard')->with(['dados' => $monthly_data_array,"usuario"=>$usuario]);
+
+        return view('/dashboard')->with(['dados' => $monthly_data_array,"usuario"=>$usuario,"empresas"=>$empresas]);
     }
+
+    function dadosEmpresaAjax($id){
+        if($id==0){
+            $dados=array(
+                'status_qualificado' => SoldadorQualificacao::where('status','=','qualificado')->get()->count(),
+                'status_nao_qualificado' => SoldadorQualificacao::where('status','=','nao-qualificado')->get()->count(),
+                'status_em_processo' => SoldadorQualificacao::where('status','=','em-processo')->get()->count(),
+                'status_atrasado' => SoldadorQualificacao::where('status','=','atrasado')->get()->count(),
+                'nome'=>'TODAS EMPRESAS',
+            );
+        }else{
+            $empresa=Empresa::find($id);
+            $dados=array(
+                'nome'=>$empresa->razao_social,
+                'status_qualificado' =>DB::table('soldadores')->
+                    join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                    where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','qualificado')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
+
+                'status_nao_qualificado' =>DB::table('soldadores')->
+                join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','nao-qualificado')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
+
+                'status_em_processo' =>DB::table('soldadores')->
+                join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','em-processo')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
+
+                'status_atrasado' =>DB::table('soldadores')->
+                join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','atrasado')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
+
+
+            );
+        }
+        return $dados;
+    }
+
 
 }
