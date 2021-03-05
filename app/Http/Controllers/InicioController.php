@@ -96,6 +96,7 @@ class InicioController extends Controller
 
     public function listarSoldadores(){
         $usuario = session()->get("Usuario");
+
         $rota=Route::getCurrentRoute()->getName();
         if($usuario->tipo==1){
             $soldadores=Soldador::orderBy('nome')->get();
