@@ -163,7 +163,6 @@
          ];
         }
         function downloadAll(urls) {
-             alert("download foto");
              var link = document.createElement('a');
              link.setAttribute('download', "corpo de prova");
              link.style.display = 'none';
