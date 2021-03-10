@@ -204,12 +204,13 @@
     <script>
         function dadosEmpresa() {
             var id = $('#selectEmpresa').val();
-
+            var linkAjax = '{{route("dadosEmpresaAjax",":id")}}'
+            linkAjax = linkAjax.replace(':id', id);
             $.ajax({
-                url: '/dadosEmpresaAjax/' + id,
+                 url: linkAjax,
             }).done(
                 function (data) {
-
+                    
                     document.getElementById("doughnut-chart-status-qualificacoes").remove();
                     $("#grafico-dinamico").append("    <canvas class='doughnut-chart' style='height:400px' id='doughnut-chart-status-qualificacoes'></canvas>\n" +
                         "                ")
@@ -250,6 +251,7 @@
             ).fail(
                 function () {
                     alert("erro");
+                    
                 }
             );
         }
