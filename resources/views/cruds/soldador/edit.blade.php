@@ -32,16 +32,16 @@
         }
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
-        <hr>
-        <p class="lead">Gerenciar Soldadores: </p>
+        <hr class="p-0 m-0 mb-1">
+        <p class="lead p-1 m-0" style="font-size: 22px">EDITAR SOLDADOR:</p>
         @if(!empty($erro))
             <div class="alert alert-danger mt-2">
                 {{$erro}}
             </div>
         @endif
     </div>
-    <div class="row col-12 d-flex justify-content-center ">
-        <form class="col-12 mt-2"action="{{Route('soldador.update',['soldador'=> $soldador->id])}}" method="post" enctype="multipart/form-data">
+    <div class="row col-12 d-flex justify-content-center mt-2">
+        <form class="col-md-9 col-sm-10 mt-2"action="{{Route('soldador.update',['soldador'=> $soldador->id])}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
@@ -80,9 +80,11 @@
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
+            <a href="{{route("soldador.index")}}" class="btn btn-outline-light mt-1 mb-2 col-12 text-dark"><i class="fas fa-arrow-left"></i> Voltar</a>
+
         </form>
-        <a href="{{route("soldador.index")}}"><button class="btn btn-outline-light text-dark mt-2"><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
+
     <script >
         $("#foto").on("change", function(){
             nFotos = document.getElementById('foto').files.length;
