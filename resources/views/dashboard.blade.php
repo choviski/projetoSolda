@@ -96,8 +96,8 @@
 
                 <!---->
 
-                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnDownloadTable" onclick="resizeTable()" style="display: none" >Exportar como PDF</a>
-                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTable" onclick="excel()" style="display: none">Exportar para Excel</a>
+                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnDownloadTable" onclick="printTable()" style="display: none" >Exportar como PDF <i class="far fa-file-pdf"></i> </a>
+                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTable" onclick="excel()" style="display: none">Exportar para Excel <i class="far fa-file-excel"></i></a>
 
 
             </div>
@@ -105,7 +105,24 @@
 
         </div>
     </div>
+    <script>
+        function printTable(){
+            var getDados= document.getElementById('tabelaRelatorio').innerHTML;
+            var janela = window.open('','','width=1800','height=1200');
+            janela.document.write('<html><head>');
+            janela.document.write('<style>table,th,td{border: 1px solid grey;\n' +
+                '  \tborder-collapse: collapse;\n' +
+                '  \tfont-family: Arial;font-size: 0.7rem}</style></head>');
+            janela.document.write('<body>');
+            janela.document.write(getDados);
+            janela.document.write('</body></html>');
 
+            janela.print();
+            janela.close();
+
+        }
+
+    </script>
     <script>
         function requalificacoesMensais(){
             var mes = $('#mesRequalificacao').val();
@@ -121,6 +138,7 @@
                     $('#btnExcelTable').show();
                     $('#tabelaAppend').remove();
                     $('#warp-table').append(data.html);
+                    $('#tableTitle').text('Requalificações '+mes+'/'+ano);
                 }
             ).fail(
                 function () {
@@ -276,11 +294,10 @@
             var linkAjax = '{{route("dadosEmpresaAjax",":id")}}'
             linkAjax = linkAjax.replace(':id', id);
             $.ajax({
-                 url: linkAjax,
-
+                url: linkAjax,
             }).done(
                 function (data) {
-                    
+
                     document.getElementById("doughnut-chart-status-qualificacoes").remove();
                     $("#grafico-dinamico").append("    <canvas class='doughnut-chart' style='height:400px' id='doughnut-chart-status-qualificacoes'></canvas>\n" +
                         "                ")
@@ -321,42 +338,12 @@
             ).fail(
                 function () {
                     alert("erro");
-                    
                 }
             );
         }
     </script>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
-    <script type="text/javascript">
-        function resizeTable(){
-            $('#warp-table').css('font-size', '0.7rem')
-        }
-        $("body").on("click", "#btnDownloadTable", function () {
-
-            html2canvas($('#tabelaRelatorio')[0], {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        pageSize: 'A4',
-                        pageOrientation: 'landscape',
-                        pageMargins: [ 10, 10, 10, 10 ],
-                        content: [{
-                            image: data,
-                            width: 500,
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).download("relatório qualificações mensais.pdf");
-                }
-            });
-            setTimeout(function (){
-                $('#warp-table').css('font-size', '1rem')
-            },1000)
-        });
-    </script>
 
     <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     <script>
