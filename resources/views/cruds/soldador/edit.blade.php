@@ -1,28 +1,61 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
+    <style>
+        #nav_cadastro{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades{
+            text-decoration: none;
+            font-weight: normal;
+        }
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
+    </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr>
-        <p class="lead">Gerenciar Soldadores</p>
+        <p class="lead">Gerenciar Soldadores: </p>
+        @if(!empty($erro))
+            <div class="alert alert-danger mt-2">
+                {{$erro}}
+            </div>
+        @endif
     </div>
     <div class="row col-12 d-flex justify-content-center ">
         <form class="col-12 mt-2"action="{{Route('soldador.update',['soldador'=> $soldador->id])}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group bg-light p-2 rounded">
-                @if(!empty($erro))
-                    <div class="alert alert-danger mt-2">
-                        {{$erro}}
-                    </div>
-                @endif
+
                 <label  for="nome">Nome:</label>
                 <input type="text" class="form-control" id="nome" value="{{$soldador->nome}}" name="nome" required>
 
                 <label  for="cpf">CPF:</label>
                 <input type="text" class="form-control" id="cpf" value="{{$soldador->cpf}}" name="cpf" required disabled>
 
-                <label  for="foto">Foto:</label>
-                <input type="file" class="form-control" id="foto" placeholder="foto do Soldador" value="{{$soldador->foto}}" name="foto">
+                <label for="foto" id="" class="mt-2 col-12 p-0">Insira a foto do soldador:</label>
+                <label for="foto" id="btnFoto" class="">Escolha a foto</label>
+                <input type="file" class="" id="foto" value="{{$soldador->foto}}" name="foto">
+
                 <div  style="height: 150px">
                     <img src="@if($soldador->foto){{asset("$soldador->foto")}}@else{{asset("imagens/soldador_default.png")}}@endif" style="max-width: 100%;max-height: 100%;"  id="fotoSoldador">
                 </div>
@@ -50,5 +83,18 @@
         </form>
         <a href="{{route("soldador.index")}}"><button class="btn btn-outline-light text-dark mt-2"><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
+    <script >
+        $("#foto").on("change", function(){
+            nFotos = document.getElementById('foto').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Foto selecionada!';
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha a foto';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
+    </script>
 
 @endsection
