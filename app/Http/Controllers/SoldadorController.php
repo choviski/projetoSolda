@@ -99,8 +99,7 @@ class SoldadorController extends Controller
         }
         $soldador->save();
 
-        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
-    }
+        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);}
 
     public function destroy(Request $request)
     {
@@ -125,16 +124,19 @@ class SoldadorController extends Controller
     }
     public function salvar(Request $request){
         $soldadores=Soldador::all();
+        $lixoCpf =Soldador::onlyTrashed()->where("cpf","=",$request->cpf)->get();
+        $lixoEmail =Soldador::onlyTrashed()->where("email","=",$request->email)->get();
         foreach ($soldadores as $soldador){
-            if($soldador->cpf==$request->cpf){
+            if($soldador->cpf==$request->cpf ||$lixoCpf->isNotEmpty()){
                 $request->session()->flash("erro","Já existe um soldador cadastrado com esse CPF.");
                 $usuario = session()->get("Usuario");
                 $erro = $request->session()->get("erro");
                 return view("cadastroSoldador")->with(["empresa"=>$request->id_empresa, "usuario"=>$usuario,"erro"=>$erro]);
 
             }
+
             if($soldador->email) {
-                if ($soldador->email == $request->email) {
+                if ($soldador->email == $request->email||$lixoEmail->isNotEmpty()) {
                     $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
                     $usuario = session()->get("Usuario");
                     $erro = $request->session()->get("erro");

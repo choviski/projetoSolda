@@ -184,13 +184,15 @@ class EmpresaController extends Controller
         $usuario = session()->get("Usuario");
         #Criando o Endereco
         $empresas=Empresa::all();
+        $lixoCnpj =Empresa::onlyTrashed()->where("cnpj","=",$request->cnpj)->get();
+        $lixoEmail =Empresa::onlyTrashed()->where("email","=",$request->email)->get();
         foreach ($empresas as $empresa){
-            if($empresa->email==$request->email){
+            if($empresa->email==$request->email || $lixoEmail->isNotEmpty()){
                 $request->session()->flash("erro","Já existe uma empresa cadastrada com esse email.");
                 return redirect()->back();
 
             }
-            if($empresa->cnpj==$request->cnpj){
+            if($empresa->cnpj==$request->cnpj || $lixoCnpj->isNotEmpty()){
                 $request->session()->flash("erro","Já existe uma empresa cadastrada com esse CNPJ.");
                 return redirect()->back();
 
