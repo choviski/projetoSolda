@@ -58,10 +58,79 @@
                     <canvas class='doughnut-chart' style='height:400px' id='doughnut-chart-status-qualificacoes'></canvas>
                 </div>
             </div>
+            <div class="bg-white rounded mb-3 col-md-10 col-sm-12 pb-1 shadow-md">
+                <p class="text-center mt-1" style="font-weight: bold;font-size: 24px">REQUALIFICAÇÕES MENSAIS</p>
+                <form action="" method="" class="form-inline d-flex justify-content-around  mb-2">
+                    <div class="warp-mes col-md-6 col-sm-12 text-center pl-0 pr-2">
+                        <label>MÊS</label>
+                        <select id="mesRequalificacao" class="col-12 rounded">
+                            <option value="01">Janeiro</option>
+                            <option value="02">Fevereiro</option>
+                            <option value="03">Março</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Maio</option>
+                            <option value="06">Junho</option>
+                            <option value="07">Julho</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+                    <div class="warp-ano col-md-6 col-sm-12 text-center pl-2 pr-0" >
+                        <label>ANO</label>
+                        <select id="anoRequalificacao" class="col-12 rounded">
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                </form>
+                <a class="btn btn-outline-primary col-12" onclick="requalificacoesMensais()">Buscar</a>
+
+                <div id="warp-table" style="font-size: 1rem">
+
+                </div>
+                <!---->
+
+                <!---->
+
+                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnDownloadTable" onclick="resizeTable()" style="display: none" >Exportar como PDF</a>
+                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTable" onclick="excel()" style="display: none">Exportar para Excel</a>
+
+
+            </div>
             <a href="{{route("entidades")}}" class="btn col-10 btn-outline-light mb-2 text-dark"><i class="fas fa-arrow-left"></i> Voltar</a>
 
         </div>
     </div>
+
+    <script>
+        function requalificacoesMensais(){
+            var mes = $('#mesRequalificacao').val();
+            var ano = $('#anoRequalificacao').val();
+            var link = '{{route("requalificacoesMensaisAjax",[":mes",":ano"])}}';
+            link=link.replace(':mes',mes);
+            link=link.replace(':ano',ano);
+            $.ajax({
+                url:link,
+            }).done(
+                function (data) {
+                    $('#btnDownloadTable').show();
+                    $('#btnExcelTable').show();
+                    $('#tabelaAppend').remove();
+                    $('#warp-table').append(data.html);
+                }
+            ).fail(
+                function () {
+                    alert("Erro");
+                }
+            );
+        }
+
+    </script>
+
 
     <script> // SCRIPT PARA O GRAFICO DO USUARIO //
         var Label=[];
@@ -204,9 +273,10 @@
     <script>
         function dadosEmpresa() {
             var id = $('#selectEmpresa').val();
-
+            var linkAjax = '{{route("dadosEmpresaAjax",":id")}}'
+            linkAjax = linkAjax.replace(':id', id);
             $.ajax({
-                url: '/dadosEmpresaAjax/' + id,
+                url: linkAjax,
             }).done(
                 function (data) {
 
@@ -252,6 +322,49 @@
                     alert("erro");
                 }
             );
+        }
+    </script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <script type="text/javascript">
+        function resizeTable(){
+            $('#warp-table').css('font-size', '0.7rem')
+        }
+        $("body").on("click", "#btnDownloadTable", function () {
+
+            html2canvas($('#tabelaRelatorio')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        pageSize: 'A4',
+                        pageOrientation: 'landscape',
+                        pageMargins: [ 10, 10, 10, 10 ],
+                        content: [{
+                            image: data,
+                            width: 500,
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("relatório qualificações mensais.pdf");
+                }
+            });
+            setTimeout(function (){
+                $('#warp-table').css('font-size', '1rem')
+            },1000)
+        });
+    </script>
+
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script>
+
+        function excel(){
+            $('#tabelaRelatorio').table2excel({
+                exclude:".noExl",
+                name:"relatorio mensal qualificacoes",
+                filename:"relatorio mensal qualificacoes.xls",
+            });
         }
     </script>
 

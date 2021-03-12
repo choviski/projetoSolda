@@ -20,9 +20,9 @@
         <form class="col-md-9 col-sm-10 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form">
             @csrf
             @method('POST')
-            <div class="form-group bg-light p-2 rounded">
-                <label  for="">Código RQS:</label><input type="text" class="form-control"  name="cu" value="{{$requalificacao->cod_rqs}}" required disabled>
-                <input type="hidden" class="form-control" name="cu" value="{{$requalificacao->cod_rqs}}"  required disabled>
+            <div class="form-group bg-light col-12 p-2 rounded">
+                <label  for="">Código RQS:</label><input type="text" class="form-control"  name="rqs" value="{{$requalificacao->cod_rqs}}" required disabled>
+                <input type="hidden" class="form-control" name="rqs" value="{{$requalificacao->cod_rqs}}"  required disabled>
 
                 <label for="id_soldador">Soldador:</label>
                 <input type="text" class="form-control" id=""  value="{{$requalificacao->soldador->nome}}" required disabled>
@@ -108,11 +108,12 @@
                 <input type="hidden" value="{{$requalificacao->id}}" name="id">
                 <input type="hidden" value="0" name="aceito" id="aceito">
             </div>
-            <a href="{{route("requalificacoes")}}"><button class="btn btn-outline-light mt-1 mb-3 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
-
         </form>
-    </div>
 
+    </div>
+    <div class=" d-flex justify-content-center col-12">
+        <a href="{{route("requalificacoes")}}" class="col-md-9 col-sm-10"><button class="btn btn-outline-light mt-1 mb-3 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+    </div>
     <script>
         $( "#aceitar" ).click(function() {
             $( "#aceito" ).val(1);
