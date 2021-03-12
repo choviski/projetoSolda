@@ -105,7 +105,7 @@ class DashboardController extends Controller
 
         );
 
-        return view('/dashboard')->with(['dados' => $monthly_data_array,"usuario"=>$usuario,"empresas"=>$empresas,]);
+        return view('/dashboard')->with(['dados' => $monthly_data_array,"usuario"=>$usuario,"empresas"=>$empresas]);
     }
 
     function dadosEmpresaAjax($id){
