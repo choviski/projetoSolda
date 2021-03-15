@@ -38,27 +38,52 @@
     </div>
     <div class="container-fluid d-flex justify-content-center">
         <div class="col-md-8 col-12">
-            @foreach($requalificacaos as $requalificacao)
-                <div class="popin">
-                <p class="nomeEmpresa" style="z-index: 1">{{$requalificacao->soldador->empresa->razao_social}}</p>
-                    <div class="row d-flex justify-content-between p-2 bg-white rounded shadow-sm form-inline " style="margin-top: 30px ">
-                        <div class="">
-                            <div>
-                                <img src="@if($requalificacao->soldador->foto){{asset($requalificacao->soldador->foto)}}@else{{asset("imagens/soldador_default.png")}}@endif" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" width="100px" height="100px" class="rounded-circle border">
-                            </div>
-                            <p class="styleNomeQualificacao mb-md-0 mb-sm-1 mt-2"> {{$requalificacao->soldador->nome}} | Cod. RQS:{{$requalificacao->cod_rqs}}</p>
-                        </div>
-                        <div>
-                            <form method="post" action="{{route("avaliarRequalificacao")}}" class="form-group">
-                                @csrf
-                                <input type="hidden" value="{{$requalificacao->id}}" name="id">
-                                <input type="submit" class="ml-md-1 btn btn-primary pt-2 pb-2 pl-3 ml-sm-0 pr-3 shadow-sm" value="Avaliar Requalificação">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+            <div id="dadosRequalificacoes">
+                @include('cardRequalificacoes')
+            </div>
+            <div class="ajax-load text-center mt-2" style="display: none">
+                <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando requalificações>
+            </div>
+
 
         </div>
     </div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    >
+    </script>
+        <script>
+            var linkAjax = '{{route("requalificacoes",":pagina")}}'
+            function carregarMaisDados(pagina){
+                linkAjax = linkAjax.replace(':pagina',"page="+pagina);
+                $.ajax({
+                    url:'?page='+pagina,
+                    type:'get',
+                    beforeSend:function (){
+                        $(".ajax-load").show();
+                    }
+                })
+                    .done(function (data){
+                        if(data.html == ""){
+                            $('.ajax-load').html("");
+                            return;
+                        }
+                        $('.ajax-load').hide();
+                        $('#dadosRequalificacoes').append(data.html);
+                    })
+                    .fail(function(jqHXR,ajaxOptions,thrownError){
+                        alert("O servidor não esta respondendo")
+                    })
+            }
+            var pagina=1;
+            $(window).scroll(function (){
+                if($(window).scrollTop() + $(window).height()>= $(document).height()){
+                    pagina++;
+                    carregarMaisDados(pagina);
+                }
+            });
+
+        </script>
 @endsection

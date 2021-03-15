@@ -32,6 +32,8 @@ class DashboardController extends Controller
         return $monthly_soldador_count;
     }
 
+
+
     function getAllEmpresasMonths(){
         $empresas_meses_array = array();
         $datas_empresas = Empresa::orderBy('created_at', 'ASC')->pluck('created_at');
@@ -56,6 +58,9 @@ class DashboardController extends Controller
 
 
     public function getMonthlyAllData(){
+
+
+
         $usuario = session()->get("Usuario");
         $empresas = Empresa::all();
         # Pegando os dados mensais dos soldadores
@@ -80,6 +85,7 @@ class DashboardController extends Controller
                 array_push($meses_nome__empresa_array, $mes_nome);
             }
         }
+
         #colocando os dados na variavel
         $monthly_data_array = array (
             #colocando os dados sobre os status da qualificacao
@@ -135,6 +141,18 @@ class DashboardController extends Controller
             );
         }
         return $dados;
+    }
+
+    public function requalificacoesMensaisAjax(Request $request,$mes,$ano){
+        $requalificacoesMensais=SoldadorQualificacao::whereMonth("created_at","=",$mes)->whereYear("created_at",'=',$ano)->get();
+        if ($request->ajax()){
+            $view = view('tabelaRequalificacao')->with(["requalificacaos"=>$requalificacoesMensais])->render();
+            return response()->json(['html'=>$view]);
+        }
+        $view = view('tabelaRequalificacao')->with(["requalificacaos"=>$requalificacoesMensais])->render();
+        dd($view);
+
+
     }
 
 

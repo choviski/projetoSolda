@@ -77,14 +77,15 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $usuario = session()->get("Usuario");
         $enderecos=Endereco::all();
         $inspetors=Inspetor::all();
         $cidades=Cidade::all();
         $empresa=Empresa::find($id);
-        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"usuario"=>$usuario,"cidades"=>$cidades]);
+        $erro=$request->session()->get("erro");
+        return view("cruds.empresa.edit")->with(["empresa"=>$empresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"usuario"=>$usuario,"cidades"=>$cidades,"erro"=>$erro]);
     }
 
     /**
@@ -99,11 +100,29 @@ class EmpresaController extends Controller
         $usuario = session()->get("Usuario");
         $empresa = Empresa::find($id);
         $empresas=Empresa::all();
+        $usuarios=Usuario::all();
+        $lixoEmail=Empresa::onlyTrashed()->where("email","=",$request->email)->get();
+        $lixoEmail2=Usuario::onlyTrashed()->where("email","=",$request->email)->get();
         foreach ($empresas as $empres){
-            if($empres->email==$request->email && $empres->id != $id){
+            if($empres->email==$request->email && $empres->id != $id || $lixoEmail->isNotEmpty()){
                 $request->session()->flash("erro","Já existe uma empresa cadastrada com esse email.");
                 return redirect()->back();
 
+            }
+        }
+        foreach ($usuarios as $usu){
+            if($usu->empresa) {
+                if ($usu->email == $request->email && $usu->empresa->id != $id || $lixoEmail2->isNotEmpty()) {
+                    $request->session()->flash("erro", "Já existe uma empresa cadastrada com esse email.");
+                    return redirect()->back();
+
+                }
+            }else{
+                if ($usu->email == $request->email || $lixoEmail2->isNotEmpty()) {
+                    $request->session()->flash("erro", "Já existe uma empresa cadastrada com esse email.");
+                    return redirect()->back();
+
+                }
             }
         }
         $endereco= new Endereco();
@@ -258,18 +277,20 @@ class EmpresaController extends Controller
         }
         $empresa->save();
 
+        return redirect()->route("email2",['id'=> $novoUsuario->id]);
         return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
     }
 
-    public function editarUsuario()
+    public function editarUsuario(Request $request)
     {
         $usuario=session()->get("Usuario");
-        $empresa=Empresa::where('id_usuario','=',$usuario->id)->get();
+        $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
         $usuarioEmpresa=Usuario::find($usuario->id);
         $enderecos=Endereco::all();
         $inspetors=Inspetor::all();
+        $erro = $request->session()->get("erro");
 
-        return view("editarUsuario")->with(["usuario"=>$usuario,"usuarioEmpresa"=>$usuarioEmpresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"empresa"=>$empresa[0]]);
+        return view("editarUsuario")->with(["usuario"=>$usuario,"usuarioEmpresa"=>$usuarioEmpresa,"enderecos"=>$enderecos,"inspetors"=>$inspetors,"empresa"=>$empresa,"erro"=>$erro]);
     }
 
     public function salvarUsuario($id,Request $request){
@@ -279,6 +300,14 @@ class EmpresaController extends Controller
         $empresa->nome_fantasia=$request->nome_fantasia;
         $empresa->razao_social=$request->razao_social;
         $empresa->telefone=$request->telefone;
+        $lixoEmail =Empresa::onlyTrashed()->where("email","=",$request->email)->get();
+        $empresas=Empresa::all();
+        foreach ($empresas as $empres) {
+            if ($empres->email == $request->email && $empres->id != $empresa->id || $lixoEmail->isNotEmpty()) {
+                $request->session()->flash("erro", "Já existe um usuario cadastrado com esse email.");
+                return redirect()->back();
+            }
+        }
         $empresa->email=$request->email;
         $empresa->id_endereco=$request->id_endereco;
         $empresa->id_inspetor=$request->id_inspetor;

@@ -28,7 +28,7 @@
             font-size: 1.0rem;
             width: 25px;
             height: 25px;
-            top:0px;
+            top:-25px;
             right: 13px;
             z-index: 1;
             background-color: white;
@@ -60,7 +60,7 @@
             font-size: 1.0rem;
             width: 25px;
             height: 25px;
-            top:0px;
+            top:-25px;
             right: 43px;
             z-index: 1;
             background-color: white;
@@ -99,50 +99,56 @@
                 </form>
             </div>
         @endif
-        @if(isset($rota) and $soldadores->count()==0and $rota="soldadoresFiltrados")
+        @if(isset($rota) and $soldadores->count()==0 and $rota="soldadoresFiltrados")
                 <div class="alert alert-danger mt-2 text-center">
                     <p class="m-0 ">Nenhum soldador encontrado!</p>
                 </div>
         @endif
-        @foreach($soldadores as $soldador)
-        <!-- Aqui começa a listagem dos soldadores-->
-            <div class="warpSoldadorCard popin">
-                @if($usuario->tipo==1)
-                    <div class="formDelBtn">
-                        <form method="post" action="{{route("soldador.remover",['id'=>$soldador->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldador->nome}} ?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="delBtn"><i class="fas fa-times"></i></button>
-                        </form>
-                    </div>
-                    <div class="formEditBtn">
-                        <form method="get" action="{{route("soldador.edit",['soldador'=>$soldador->id])}}">
-                            @csrf
-                            <button class="editBtn"><i class="fas fa-pen"></i></button>
-                        </form>
-                    </div>
-                @endif
-            <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-4 font-size">
-                <div id="infoEmpresa" class="p-2 mt-1 d-flex justify-content-end flex-column ">
-                    <img id="imgSoldador" class="rounded-circle border" src="{{asset("$soldador->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" height="125 px" width="125px">
-                    <p class="nomeSoldador mt-2 border col-12">{{$soldador->nome}}</p>
-                </div>
-                <div id="btnVerQualificacoes" class="d-flex align-items-center">
-                    <form method="POST" action="{{route("perfilSoldador")}}" class="">
-                        @csrf
-                        <input type="hidden" id="id_soldador" name="id_soldador" value="{{$soldador->id}}">
-                        @if(isset($rota))
-                        <input type="hidden" id="rota" name="rota" value="{{$rota}}">
-                            @if($rota=="soldadoresFiltrados")
-                                <input type="hidden" id="nomeSoldador" name="nomeSoldador" value="{{$nomeSoldador}}">
-                            @endif
-                        @endif
-                        <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR QUALIFICAÇÕES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                    </form>
-                </div>
+            <div id="dadosSoldador">
+                @include('cardSoldadores')
             </div>
+        <div class="ajax-load text-center mt-2" style="display: none">
+            <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando soldadores>
         </div>
-            <!-- Aqui acaba a listagem das empresas-->
-        @endforeach
     </div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    >
+    </script>
+    @if($rota!="soldadoresFiltrados")
+    <script>
+        var linkAjax = '{{route("hubSoldadores",":pagina")}}'
+        function carregarMaisDados(pagina){
+            linkAjax = linkAjax.replace(':pagina',"page="+pagina);
+            $.ajax({
+                url:'?page='+pagina,
+                type:'get',
+                beforeSend:function (){
+                    $(".ajax-load").show();
+                }
+            })
+            .done(function (data){
+                if(data.html == ""){
+                    $('.ajax-load').html("");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $('#dadosSoldador').append(data.html);
+            })
+            .fail(function(jqHXR,ajaxOptions,thrownError){
+                alert("O servidor não esta respondendo")
+            })
+        }
+        var pagina=1;
+        $(window).scroll(function (){
+            if($(window).scrollTop() + $(window).height()>= $(document).height()){
+                pagina++;
+                carregarMaisDados(pagina);
+            }
+        });
+
+    </script>
+    @endif
 @endsection
