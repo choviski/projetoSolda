@@ -40,6 +40,8 @@ Route::delete('/endereco/remover/{id}', "EnderecoController@destroy")->name('end
 Route::post('/acharCidade', "EnderecoController@cidadeAjax")->name("acharCidade")->middleware(CheckSession::class);
 Route::get('/dadosEmpresaAjax/{id}', "DashboardController@dadosEmpresaAjax")->name("dadosEmpresaAjax")->middleware(CheckSession::class,CheckAdm::class);
 
+Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
+
 Route::resource("/soldadorqualificacao","SoldadorQualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/soldadorqualificacao/remover/{id}', "SoldadorQualificacaoController@destroy")->name('soldadorqualificacao.remover')->middleware(CheckSession::class);
 
@@ -67,20 +69,20 @@ Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy"
 Route::resource("/processo","ProcessoController",['except'=>'destroy'])->middleware(CheckSession::class);
 Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->name('processo.remover')->middleware(CheckSession::class);
 
-Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("selecionarEmpresa");
-Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador");
-Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador");
-Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa");
-Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador");
-Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao");
-Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao");
-Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa");
-Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao");
-Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar");
-Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao");
-Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao");
+Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("selecionarEmpresa")->middleware(CheckSession::class);
+Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador")->middleware(CheckSession::class);
+Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador")->middleware(CheckSession::class);
+Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa")->middleware(CheckSession::class);
+Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador")->middleware(CheckSession::class);
+Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao")->middleware(CheckSession::class);
+Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class);
+Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class);
+Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
+Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
+Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class);
+Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao")->middleware(CheckSession::class);
 Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(CheckSession::class)-> name("municipio/{estado}");
-Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao");
+Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao")->middleware(CheckSession::class);
 
 Route::get('envio-email',function (){
 

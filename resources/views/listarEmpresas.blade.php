@@ -28,7 +28,7 @@
             font-size: 1.0rem;
             width: 25px;
             height: 25px;
-            top:0px;
+            top:-17px;
             right: 13px;
             z-index: 1;
             background-color: white;
@@ -60,7 +60,7 @@
             font-size: 1.0rem;
             width: 25px;
             height: 25px;
-            top:0px;
+            top:-17px;
             right: 43px;
             z-index: 1;
             background-color: white;
@@ -98,38 +98,51 @@
                 </form>
             </div>
     @endif
-    @foreach($empresas as $empresa)
-        <!-- Aqui começa a listagem das empresas-->
-            <div class="warpSoldadorCard popin">
-                @if($usuario->tipo==1)
-                    <div class="formDelBtn">
-                        <form method="post" action="{{Route("empresa.remover",['id'=>$empresa->id])}}" onsubmit="return confirm('Tem certeza que deseja remover a empresa {{$empresa->razao_social}} ?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="delBtn"><i class="fas fa-times"></i></button>                        </form>
-                    </div>
-                    <div class="formEditBtn">
-                        <form method="get" action="{{Route("empresa.edit",['empresa'=>$empresa->id])}}">
-                            @csrf
-                            <button class="editBtn"><i class="fas fa-pen"></i></button>
-                        </form>
-                    </div>
-                @endif
-            <div id="empresaCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 popin">
-                <div id="infoEmpresa" class="p-2 mt-1 d-flex  justify-content-end flex-column">
-                    <img id="imgEmpresa" class="rounded-circle border" src="{{asset("$empresa->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/empresa_default.png")}}';"height="125 px" width="125px">
-                    <p class="nomeEmpresa mt-2 border col-12">{{$empresa->razao_social}}</p>
-                </div>
-                <div id="btnVerSoldadores" class="d-flex align-items-center">
-                    <form method="post" action="{{Route("listarSoldador",['id'=>$empresa->id])}}" class="">
-                        @csrf
-                        <input type="hidden" id="id_empresa" name="id_empresa" value="{{$empresa->id}}">
-                        <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR SOLDADORES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                    </form>
-                </div>
+
+            <div id="dadosempresa">
+                @include('cardEmpresas')
             </div>
+            <div class="ajax-load text-center mt-2" style="display: none">
+                <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando empresas</p>
             </div>
-    @endforeach
     <!-- Aqui acaba a listagem das empresas-->
     </div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    >
+    </script>
+    <script>
+        var linkAjax = '{{route("paginaInicial",":pagina")}}'
+        function carregarMaisDados(pagina){
+            linkAjax = linkAjax.replace(':pagina',"page="+pagina);
+            $.ajax({
+                url:'?page='+pagina,
+                type:'get',
+                beforeSend:function (){
+                    $(".ajax-load").show();
+                }
+            })
+                .done(function (data){
+                    if(data.html == ""){
+                        $('.ajax-load').html("");
+                        return;
+                    }
+                    $('.ajax-load').hide();
+                    $('#dadosempresa').append(data.html);
+                })
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                    alert("O servidor não esta respondendo")
+                })
+        }
+        var pagina=1;
+        $(window).scroll(function (){
+            if($(window).scrollTop() + $(window).height()>= $(document).height()){
+                pagina++;
+                carregarMaisDados(pagina);
+            }
+        });
+
+    </script>
 @endsection

@@ -246,7 +246,7 @@
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
-            <a href="{{route("cadastrar")}}"><button class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
+            <a href="{{route("cadastrar")}}" class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</a>
 
         </form>
     </div>
