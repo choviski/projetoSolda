@@ -77,9 +77,10 @@ class SoldadorController extends Controller
         $soldador->sinete=$request->sinete;
         $soldador->matricula=$request->matricula;
         $soldadores=Soldador::all();
+        $lixoEmail =Soldador::onlyTrashed()->where("email","=",$request->email)->get();
         foreach ($soldadores as $soldadore) {
             if ($soldadore->email) {
-                if ($soldadore->email == $request->email && $soldadore->id != $soldador->id) {
+                if ($soldadore->email == $request->email && $soldadore->id != $soldador->id || $lixoEmail->isNotEmpty()) {
                     $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
                     $usuario = session()->get("Usuario");
                     $erro = $request->session()->get("erro");
