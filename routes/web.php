@@ -94,6 +94,17 @@ Route::get('envio-email',function (){
     return redirect()->route("paginaInicial");
 })->name("email");
 
+Route::get('envio-email2/{id}',function ($id){
+    $usuario=\App\Usuario::find($id);
+            \Illuminate\Support\Facades\Mail::send(new \App\Mail\email2($usuario));
+    return redirect()->route("paginaInicial");
+})->name("email2");
+Route::get('envio-email3/{id}',function ($id){
+    $qualificacao=\App\SoldadorQualificacao::find($id);
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email3($qualificacao));
+    return redirect()->route("paginaInicial");
+})->name("email3");
+
 Route::post('/login','LoginController@entrar')->name("login");
 Route::get('/', "LoginController@index")->name("inicio");
 Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");

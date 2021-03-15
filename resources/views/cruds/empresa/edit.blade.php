@@ -122,7 +122,7 @@
     </script>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
-        <p class="lead p-1 m-0" style="font-size: 22px">CADASTRAR NOVA EMPRESA:</p>
+        <p class="lead p-1 m-0" style="font-size: 22px">EDITAR A EMPRESA {{$empresa->razao_social}}:</p>
         @if(!empty($erro))
             <div class="alert alert-danger mt-2">
                 {{$erro}}
