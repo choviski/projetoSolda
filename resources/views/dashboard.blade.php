@@ -116,9 +116,9 @@
             janela.document.write('<body>');
             janela.document.write(getDados);
             janela.document.write('</body></html>');
-
+            
             janela.print();
-            janela.close();
+
 
         }
 

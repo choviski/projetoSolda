@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" id="cnpj" value="{{$empresa->cnpj}}" name="cnpj" required disabled>
 
                 <label  for="celular">Celular:</label>
-                <input type="text" class="form-control" id="celular" value="{{$empresa->celular}}" name="celular" required>
+                <input type="text" class="form-control" id="celular" value="{{$empresa->celular}}" name="celular" >
 
                 <label  for="telefone">Telefone:</label>
                 <input type="text" class="form-control" id="telefone" value="{{$empresa->telefone}}" name="telefone" required>

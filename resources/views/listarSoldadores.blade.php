@@ -104,6 +104,7 @@
                     <p class="m-0 ">Nenhum soldador encontrado!</p>
                 </div>
         @endif
+
             <div id="dadosSoldador">
                 @include('cardSoldadores')
             </div>

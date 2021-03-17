@@ -119,9 +119,11 @@ class QualificacaoController extends Controller
             $requalificacao->status = "qualificado";
             $requalificacao->aviso=1;
             $requalificacao->save();
+
             $tempoNorma=NormaQualificacao::where("id_qualificacao",'=',$requalificacao->id_qualificacao)->get();
             $tempo=$tempoNorma[0]->norma->validade;
-            $validade=Carbon::parse($requalificacao->validade_qualificacao);
+
+            $validade=Carbon::parse(Carbon::now());
             $requalificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
             $requalificacao->data_qualificacao=Carbon::now()->toDateString();
             $requalificacao->lancamento_qualificacao=$requalificacao->updated_at;

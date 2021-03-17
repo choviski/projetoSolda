@@ -22,10 +22,12 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class,CheckAdm::class)->name("entidades");
 //Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
-Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class)->name("cadastrar");
+Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class,CheckAdm::class)->name("cadastrar");
 Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class,CheckAdm::class)->name("requalificacoes");
 Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(CheckSession::class)->name("editarUsuario");
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
+
+
 
 Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function() {
     Route::resource("/cidade","CidadeController",['except'=>'destroy']);
@@ -126,15 +128,15 @@ Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("no
 
 
 Route::get('envio-email',function (){
-
-    $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
-   "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
-    foreach ($qualificacaos as $qualificacao) {
-        if ($qualificacao->tempo < 40) {
-            \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+    /*
+        $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
+       "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
+        foreach ($qualificacaos as $qualificacao) {
+            if ($qualificacao->tempo < 40) {
+                \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+            }
         }
-    }
-    return redirect()->route("paginaInicial");
+    */    return redirect()->route("paginaInicial");
 })->name("email");
 
 Route::get('envio-email2/{id}',function ($id){

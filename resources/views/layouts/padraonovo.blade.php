@@ -68,7 +68,26 @@
         #nomeSoldador:focus{
             outline: none;
         }
-
+        .warpNotificacao{
+            position: absolute;
+            display: flex;
+            background-color: #007bff;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            justify-content: center;
+            border-radius: 50%;
+            right: -10px;
+            top: -5px;
+        }
+        .notificacao{
+            position: absolute;
+            margin: 0px;
+            color: white;
+            font-weight: lighter;
+            font-size: 0.7rem;
+            top: -2px;
+        }
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >
@@ -95,7 +114,19 @@
                         <a class="nav-link font-weight-light "  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 25px" href="{{route("requalificacoes")}}">REQUALIFICAÇÕES<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 25px;position: relative" href="{{route("requalificacoes")}}">
+
+                            <span style="position: relative">REQUALIFICAÇÕES
+                                @if((\App\SoldadorQualificacao::where('status','=','em-processo')->count()) > 0)
+                                <div class="warpNotificacao">
+                                    <p class="notificacao">{{\App\SoldadorQualificacao::where('status','=','em-processo')->count()}}</p>
+                                </div>
+                                @endif
+                            </span>
+
+                        </a>
+                            <span class="sr-only">(current)</span></a>
+
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link font-weight-light " style="font-size: 25px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
