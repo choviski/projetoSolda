@@ -1,3 +1,15 @@
+<style>
+    @media only screen and (max-width: 650px) {
+        .empCard {
+            flex-direction: column;
+        }
+        .visSold{
+            margin-bottom: 8px;
+            margin-left: 7px;
+        }
+
+    }
+</style>
 @foreach($empresas as $empresa)
     <!-- Aqui começa a listagem das empresas-->
     <div class="warpSoldadorCard popin">
@@ -15,7 +27,7 @@
                 </form>
             </div>
         @endif
-        <div id="empresaCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 popin">
+        <div id="empresaCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 popin empCard">
             <div id="infoEmpresa" class="p-2 mt-1 d-flex  justify-content-end flex-column">
                 <img id="imgEmpresa" class="rounded-circle border" src="{{asset("$empresa->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/empresa_default.png")}}';"height="125 px" width="125px">
                 <p class="nomeEmpresa mt-2 border col-12">{{$empresa->razao_social}}</p>
@@ -24,7 +36,7 @@
                 <form method="post" action="{{Route("listarSoldador",['id'=>$empresa->id])}}" class="">
                     @csrf
                     <input type="hidden" id="id_empresa" name="id_empresa" value="{{$empresa->id}}">
-                    <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR SOLDADORES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                    <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm visSold " value="VISUALIZAR SOLDADORES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                 </form>
             </div>
         </div>

@@ -99,11 +99,13 @@
                 </form>
             </div>
         @endif
-        @if(isset($rota) and $soldadores->count()==0 and $rota="soldadoresFiltrados")
+        @if(isset($rota) and $soldadores->count()==0 and $rota=="soldadoresFiltrados")
+
                 <div class="alert alert-danger mt-2 text-center">
                     <p class="m-0 ">Nenhum soldador encontrado!</p>
                 </div>
         @endif
+
             <div id="dadosSoldador">
                 @include('cardSoldadores')
             </div>

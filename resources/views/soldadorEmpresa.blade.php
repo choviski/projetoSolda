@@ -81,6 +81,16 @@
             align-items: center;
             text-align: center;
         }
+        @media only screen and (max-width: 650px) {
+            .empCard {
+                flex-direction: column;
+            }
+            .visSold{
+                margin-bottom: 8px;
+                margin-left: 7px;
+            }
+
+        }
 
 
 
@@ -117,7 +127,7 @@
                         </form>
                     </div>
                 @endif
-                <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-4 popin">
+                <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-4 popin empCard">
                     <div id="infoEmpresa" class="p-2 mt-1 d-flex justify-content-end flex-column ">
                         <img id="imgSoldador" class="rounded-circle border" src="{{asset("$soldador->foto")}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" height="125 px" width="125px">
                         <p class="nomeSoldador mt-2 border col-12">{{$soldador->nome}}</p>
@@ -130,7 +140,7 @@
                                 <input type="hidden" id="empresa" name="empresa" value="{{$empresa}}">
                             @endif
                             <input type="hidden" id="id_soldador" name="id_soldador" value="{{$soldador->id}}">
-                            <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="VISUALIZAR QUALIFICAÇÕES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                            <input type="submit" class="btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm visSold" value="VISUALIZAR QUALIFICAÇÕES"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
                         </form>
                     </div>
                 </div>

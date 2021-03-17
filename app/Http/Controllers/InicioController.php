@@ -128,7 +128,7 @@ class InicioController extends Controller
                 $view = view('cardSoldadores')->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota,"empresa"=>$empresa->id])->render();
                 return response()->json(['html'=>$view]);
             }
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id]);
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota]);
         }
 
     }

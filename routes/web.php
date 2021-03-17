@@ -22,83 +22,123 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class,CheckAdm::class)->name("entidades");
 //Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
-Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class)->name("cadastrar");
+Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class,CheckAdm::class)->name("cadastrar");
 Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class,CheckAdm::class)->name("requalificacoes");
 Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(CheckSession::class)->name("editarUsuario");
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 
 
-Route::resource("/cidade","CidadeController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/cidade/remover/{id}', "CidadeController@destroy")->name('cidade.remover')->middleware(CheckSession::class);
+Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function() {
+    Route::resource("/cidade","CidadeController",['except'=>'destroy']);
+    Route::delete('/cidade/remover/{id}', "CidadeController@destroy")->name('cidade.remover');
 
-Route::resource("/soldador","SoldadorController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/soldador/remover/{id}', "SoldadorController@destroy")->name('soldador.remover')->middleware(CheckSession::class);
+    Route::resource("/soldador","SoldadorController",['except'=>'destroy']);
+    Route::delete('/soldador/remover/{id}', "SoldadorController@destroy")->name('soldador.remover');
 
-Route::resource("/endereco","EnderecoController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/endereco/remover/{id}', "EnderecoController@destroy")->name('endereco.remover')->middleware(CheckSession::class);
+    Route::resource("/endereco","EnderecoController",['except'=>'destroy']);
+    Route::delete('/endereco/remover/{id}', "EnderecoController@destroy")->name('endereco.remover');
+
+    Route::resource("/soldadorqualificacao","SoldadorQualificacaoController",['except'=>'destroy']);
+    Route::delete('/soldadorqualificacao/remover/{id}', "SoldadorQualificacaoController@destroy")->name('soldadorqualificacao.remover');
+
+    Route::resource("/normaqualificacao","NormaQualificacaoController",['except'=>'destroy']);
+    Route::delete('/normaqualificacao/remover/{id}', "NormaQualificacaoController@destroy")->name('normaqualificacao.remover');
+
+    Route::resource("/norma","NormaController",['except'=>'destroy']);
+    Route::delete('/norma/remover/{id}', "NormaController@destroy")->name('norma.remover');
+
+    Route::resource("/contato","ContatoController",['except'=>'destroy']);
+    Route::delete('/contato/remover/{id}', "ContatoController@destroy")->name('contato.remover');
+
+    Route::resource("/inspetor","InspetorController",['except'=>'destroy']);
+    Route::delete('/inspetor/remover/{id}', "InspetorController@destroy")->name('inspetor.remover');
+
+    Route::resource("/qualificacao","QualificacaoController",['except'=>'destroy']);
+    Route::delete('/qualificacao/remover/{id}', "QualificacaoController@destroy")->name('qualificacao.remover');
+
+    Route::resource("/empresa","EmpresaController",['except'=>'destroy']);
+    Route::delete('/empresa/remover/{id}', "EmpresaController@destroy")->name('empresa.remover');
+
+    Route::resource("/contatoEmpresa","ContatoEmpresaController",['except'=>'destroy']);
+    Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy")->name('contatoEmpresa.remover');
+
+    Route::resource("/processo","ProcessoController",['except'=>'destroy']);
+    Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->name('processo.remover');
+
+});
+
+
+//Route::resource("/cidade","CidadeController",['except'=>'destroy'])->middleware(CheckSession::class,CheckAdm::class);
+//Route::delete('/cidade/remover/{id}', "CidadeController@destroy")->name('cidade.remover')->middleware(CheckSession::class,CheckAdm::class);
+
+//Route::resource("/soldador","SoldadorController",['except'=>'destroy'])->middleware(CheckSession::class,CheckAdm::class);
+//Route::delete('/soldador/remover/{id}', "SoldadorController@destroy")->name('soldador.remover')->middleware(CheckSession::class);
+
+//Route::resource("/endereco","EnderecoController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/endereco/remover/{id}', "EnderecoController@destroy")->name('endereco.remover')->middleware(CheckSession::class);
 
 Route::post('/acharCidade', "EnderecoController@cidadeAjax")->name("acharCidade")->middleware(CheckSession::class);
 Route::get('/dadosEmpresaAjax/{id}', "DashboardController@dadosEmpresaAjax")->name("dadosEmpresaAjax")->middleware(CheckSession::class,CheckAdm::class);
 
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
 
-Route::resource("/soldadorqualificacao","SoldadorQualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/soldadorqualificacao/remover/{id}', "SoldadorQualificacaoController@destroy")->name('soldadorqualificacao.remover')->middleware(CheckSession::class);
+//Route::resource("/soldadorqualificacao","SoldadorQualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/soldadorqualificacao/remover/{id}', "SoldadorQualificacaoController@destroy")->name('soldadorqualificacao.remover')->middleware(CheckSession::class);
 
-Route::resource("/normaqualificacao","NormaQualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/normaqualificacao/remover/{id}', "NormaQualificacaoController@destroy")->name('normaqualificacao.remover')->middleware(CheckSession::class);
+//Route::resource("/normaqualificacao","NormaQualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/normaqualificacao/remover/{id}', "NormaQualificacaoController@destroy")->name('normaqualificacao.remover')->middleware(CheckSession::class);
 
-Route::resource("/norma","NormaController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/norma/remover/{id}', "NormaController@destroy")->name('norma.remover')->middleware(CheckSession::class);
+//Route::resource("/norma","NormaController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/norma/remover/{id}', "NormaController@destroy")->name('norma.remover')->middleware(CheckSession::class);
 
-Route::resource("/contato","ContatoController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/contato/remover/{id}', "ContatoController@destroy")->name('contato.remover')->middleware(CheckSession::class);
+//Route::resource("/contato","ContatoController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/contato/remover/{id}', "ContatoController@destroy")->name('contato.remover')->middleware(CheckSession::class);
 
-Route::resource("/inspetor","InspetorController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/inspetor/remover/{id}', "InspetorController@destroy")->name('inspetor.remover')->middleware(CheckSession::class);
+//Route::resource("/inspetor","InspetorController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/inspetor/remover/{id}', "InspetorController@destroy")->name('inspetor.remover')->middleware(CheckSession::class);
 
-Route::resource("/qualificacao","QualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/qualificacao/remover/{id}', "QualificacaoController@destroy")->name('qualificacao.remover')->middleware(CheckSession::class);
+//Route::resource("/qualificacao","QualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/qualificacao/remover/{id}', "QualificacaoController@destroy")->name('qualificacao.remover')->middleware(CheckSession::class);
 
-Route::resource("/empresa","EmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/empresa/remover/{id}', "EmpresaController@destroy")->name('empresa.remover')->middleware(CheckSession::class);
+//Route::resource("/empresa","EmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/empresa/remover/{id}', "EmpresaController@destroy")->name('empresa.remover')->middleware(CheckSession::class);
 
-Route::resource("/contatoEmpresa","ContatoEmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy")->name('contatoEmpresa.remover')->middleware(CheckSession::class);
+//Route::resource("/contatoEmpresa","ContatoEmpresaController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/contatoEmpresa/remover/{id}', "contatoEmpresaController@destroy")->name('contatoEmpresa.remover')->middleware(CheckSession::class);
 
-Route::resource("/processo","ProcessoController",['except'=>'destroy'])->middleware(CheckSession::class);
-Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->name('processo.remover')->middleware(CheckSession::class);
+//Route::resource("/processo","ProcessoController",['except'=>'destroy'])->middleware(CheckSession::class);
+//Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->name('processo.remover')->middleware(CheckSession::class);
 
-Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("selecionarEmpresa")->middleware(CheckSession::class);
-Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador")->middleware(CheckSession::class);
-Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador")->middleware(CheckSession::class);
+Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("selecionarEmpresa")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/salvarSoldador","SoldadorController@salvar")->name("salvarSoldador")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/salvarEmpresa","EmpresaController@salvar")->name("salvarEmpresa")->middleware(CheckSession::class);
 Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSoldador")->middleware(CheckSession::class);
-Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao")->middleware(CheckSession::class);
-Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class);
-Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class);
+Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class,CheckAdm::class);
+Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
-Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class);
-Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao")->middleware(CheckSession::class);
+Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/processarRequalificacao","QualificacaoController@processarRequalificacao")->name("processarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(CheckSession::class)-> name("municipio/{estado}");
-Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao")->middleware(CheckSession::class);
+Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 
 Route::get('envio-email',function (){
-
-    $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
-   "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
-    foreach ($qualificacaos as $qualificacao) {
-        if ($qualificacao->tempo < 40) {
-            \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+    /*
+        $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
+       "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
+        foreach ($qualificacaos as $qualificacao) {
+            if ($qualificacao->tempo < 40) {
+                \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+            }
         }
-    }
-    return redirect()->route("paginaInicial");
+    */    return redirect()->route("paginaInicial");
 })->name("email");
 
 Route::post('/login','LoginController@entrar')->name("login");
 Route::get('/', "LoginController@index")->name("inicio");
-Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");
+//Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");
 Route::post('/cadastrar', "LoginController@cadastrar")->name("cadastrar");
 Route::get('/sair', "LoginController@sair")->name("sair");
 

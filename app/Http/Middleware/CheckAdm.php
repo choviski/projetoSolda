@@ -15,7 +15,9 @@ class CheckAdm
      */
     public function handle($request, Closure $next)
     {
+
         $usuario=session("Usuario");
+
         if($usuario->tipo==1){
             return $next($request);
         }elseif ($usuario->tipo==2){
