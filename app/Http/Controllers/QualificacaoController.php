@@ -130,7 +130,7 @@ class QualificacaoController extends Controller
 
 
             $requalificacao->save();
-
+            return redirect()->route("email3",['id'=> $requalificacao->id]);
             return redirect()->route("requalificacoes");
         }
         if ($request->aceito == 0) {
@@ -138,6 +138,8 @@ class QualificacaoController extends Controller
             $requalificacao->status = "nao-qualificado";
             $requalificacao->aviso=1;
             $requalificacao->save();
+            return redirect()->route("email3",['id'=> $requalificacao->id]);
+
             return redirect()->route("requalificacoes");
         }
     }

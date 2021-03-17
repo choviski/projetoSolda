@@ -96,17 +96,17 @@
 </div>
 
 <body class="container-fluid">
-    <header class="row">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 ">
-            <a class="navbar-brand" href="#">
-                <img src="{{asset("imagens/logo v1.png")}}" width="70" height="70" class="d-inline-block align-top " alt="  Projeto Solda">
-            </a>
-            <button class="navbar-toggler text-center" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    @if($usuario->tipo == 1)
+<header class="row">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 ">
+        <a class="navbar-brand" href="#">
+            <img src="{{asset("imagens/logo v1.png")}}" width="70" height="70" class="d-inline-block align-top " alt="  Projeto Solda">
+        </a>
+        <button class="navbar-toggler text-center" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @if($usuario->tipo == 1)
                     <li class="nav-item active" >
                         <a class="nav-link font-weight-light " id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
                     </li>
@@ -134,38 +134,38 @@
                     <li class="nav-item active " >
                         <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">ENTIDADES</a>
                     </li>
-                    @endif
-                    @if($usuario->tipo==2)
-                            <li class="nav-item active"  >
-                                <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
-                            </li>
-                            <li class="nav-item active" >
-                                <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">PERFIL</a>
-                            </li>
-                    @endif
-                </ul>
-                <div class="d-flex justify-content-center">
-                    <p class="btn btn-outline-primary mb-0 mr-sm-0 mr-md-1"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:50px"><i class="fas fa-search"></i></p>
-                </div>
-                <div class="form-inline d-flex justify-content-center my-2 my-lg-0 mt-0">
-                    <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" style="width:50px" type="submit">Sair</a>
-                </div>
+                @endif
+                @if($usuario->tipo==2)
+                    <li class="nav-item active"  >
+                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                    </li>
+                    <li class="nav-item active" >
+                        <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">PERFIL</a>
+                    </li>
+                @endif
+            </ul>
+            <div class="d-flex justify-content-center">
+                <p class="btn btn-outline-primary mb-0 mr-sm-0 mr-md-1"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:50px"><i class="fas fa-search"></i></p>
             </div>
-
-        </nav>
-        <div class="collapse col-12 p-0" id="collapseExample">
-            <form class="bg-white col-12 formularioFiltro" method="post" action="{{route("soldadoresFiltrados")}}">
-                @csrf
-                <input class="col-12 " name="nomeSoldador" id="nomeSoldador" placeholder="Insira o nome do soldador..." autocomplete="off">
-                <button class="botaoProcurar"><i class="fas fa-arrow-right"></i></button>
-
-
-            </form>
+            <div class="form-inline d-flex justify-content-center my-2 my-lg-0 mt-0">
+                <a href="{{route("sair")}}" class="btn btn-outline-danger my-2 my-sm-0" style="width:50px" type="submit">Sair</a>
+            </div>
         </div>
-    </header>
-    <div class="row">
-        @yield('content')
+
+    </nav>
+    <div class="collapse col-12 p-0" id="collapseExample">
+        <form class="bg-white col-12 formularioFiltro" method="post" action="{{route("soldadoresFiltrados")}}">
+            @csrf
+            <input class="col-12 " name="nomeSoldador" id="nomeSoldador" placeholder="Insira o nome do soldador..." autocomplete="off">
+            <button class="botaoProcurar"><i class="fas fa-arrow-right"></i></button>
+
+
+        </form>
     </div>
+</header>
+<div class="row">
+    @yield('content')
+</div>
 </body>
 
 </html>

@@ -41,10 +41,18 @@ class email extends Mailable
                 if($qualificacao->tempo<0){
                     $qualificacao->status="atrasado";
                 }
+                if($qualificacao->tempo>0){
+                    $mensagem="Sua qualificacao irá vencer em " .$qualificacao->tempo." dias!!";
+                }elseif ($qualificacao->tempo==0){
+                    $mensagem="Sua qualificacao vence hoje !!";
+                }else{
+                    $mensagem="Sua qualificacao venceu há " .($qualificacao->tempo*-1)." dias!!";
+
+                }
                 $qualificacao->save();
                 $this->subject("SUA QUALIFICACAO ESTÁ PRESTES A VENCER");
                 $this->to("$email", "$nome");
-                return $this->markdown('mail.email')->with(["dado"=>$qualificacao]);
+                return $this->markdown('mail.email')->with(["dado"=>$qualificacao,"mensagem"=>$mensagem]);
             }
         }
     }

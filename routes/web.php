@@ -28,6 +28,7 @@ Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(Check
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 
 
+
 Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function() {
     Route::resource("/cidade","CidadeController",['except'=>'destroy']);
     Route::delete('/cidade/remover/{id}', "CidadeController@destroy")->name('cidade.remover');
@@ -64,6 +65,7 @@ Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function()
 
     Route::resource("/processo","ProcessoController",['except'=>'destroy']);
     Route::delete('/processo/remover/{id}', "ProcessoController@destroy")->name('processo.remover');
+
 
 });
 
@@ -124,6 +126,7 @@ Route::post("/processarRequalificacao","QualificacaoController@processarRequalif
 Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(CheckSession::class)-> name("municipio/{estado}");
 Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 
+
 Route::get('envio-email',function (){
     /*
         $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
@@ -135,6 +138,17 @@ Route::get('envio-email',function (){
         }
     */    return redirect()->route("paginaInicial");
 })->name("email");
+
+Route::get('envio-email2/{id}',function ($id){
+    $usuario=\App\Usuario::find($id);
+            \Illuminate\Support\Facades\Mail::send(new \App\Mail\email2($usuario));
+    return redirect()->route("paginaInicial");
+})->name("email2");
+Route::get('envio-email3/{id}',function ($id){
+    $qualificacao=\App\SoldadorQualificacao::find($id);
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email3($qualificacao));
+    return redirect()->route("paginaInicial");
+})->name("email3");
 
 Route::post('/login','LoginController@entrar')->name("login");
 Route::get('/', "LoginController@index")->name("inicio");
