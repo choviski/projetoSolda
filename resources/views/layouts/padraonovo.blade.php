@@ -88,6 +88,14 @@
             font-size: 0.7rem;
             top: -2px;
         }
+        @keyframes fadeIn {
+            0% {opacity:0;}
+            100% {opacity:1;}
+        }
+        @keyframes fadeOut {
+            0% {opacity:1;}
+            100% {opacity:0;}
+        }
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >

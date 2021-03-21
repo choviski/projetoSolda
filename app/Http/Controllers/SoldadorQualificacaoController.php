@@ -50,6 +50,7 @@ class SoldadorQualificacaoController extends Controller
 
     public function update(Request $request, $id)
     {
+       
         $usuario = session()->get("Usuario");
         SoldadorQualificacao::find($id)->update($request->all());
         return redirect()->Route("soldadorqualificacao.index")->with(["usuario"=>$usuario]);

@@ -116,6 +116,7 @@
         </div>
         @if($usuario->tipo==1)
         <div id="addQualificacao" class="col-12 mt-2 p-0 popin">
+
             <form method="post" action="{{route("novaQualificacao")}}">
                 @csrf
                 <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
@@ -125,7 +126,24 @@
         @endif
         @foreach($qualificacoes as $qualificacao)
         <!-- Lista de qualificações do Soldador -->
-        <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-2 d-flex justify-content-between popin">
+        <div class="popin">
+            @if($usuario->tipo==1)
+                <div class="formDelBtn">
+                    <form method="post" action="{{route("soldadorqualificacao.remover",['id'=>$qualificacao->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir a qualificação de código {{$qualificacao->cod_rqs}} ?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="delBtn"><i class="fas fa-times"></i></button>
+                    </form>
+                </div>
+                <div class="formEditBtn">
+                    <form method="get" action="{{route("soldadorqualificacao.edit",['soldadorqualificacao'=>$qualificacao->id])}}">
+                        @csrf
+                        <button class="editBtn"><i class="fas fa-pen"></i></button>
+                    </form>
+                </div>
+            @endif
+        <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-3 mb-1 d-flex justify-content-between ">
+
             <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
                 <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
                 <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
@@ -182,6 +200,7 @@
                     <!-- Aqui terminha o IF para setar o status da Badge -->
                 <p class="text-right m-0 mb-0">Tentativas de Requalificação: 0</p>
             </div>
+        </div>
         </div>
         @endforeach
         <!-- Fim da lista de qualificações -->

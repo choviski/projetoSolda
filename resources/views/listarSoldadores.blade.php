@@ -113,11 +113,23 @@
             <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando soldadores>
         </div>
     </div>
+
+
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
     >
+    </script>
+    <script>
+        function popUp(id){
+            console.log(id);
+            if($('#info'+id).css("display")=='block'){
+                $('#info'+id).css("display","none")
+            }else{
+                $('#info'+id).css("display","block")
+            }
+        }
     </script>
     @if($rota!="soldadoresFiltrados")
     <script>
