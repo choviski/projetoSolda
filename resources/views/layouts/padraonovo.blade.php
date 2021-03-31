@@ -88,14 +88,6 @@
             font-size: 0.7rem;
             top: -2px;
         }
-        @keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-        }
-        @keyframes fadeOut {
-            0% {opacity:1;}
-            100% {opacity:0;}
-        }
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >
@@ -126,14 +118,30 @@
 
                             <span style="position: relative">REQUALIFICAÇÕES
                                 @if((\App\SoldadorQualificacao::where('status','=','em-processo')->count()) > 0)
-                                <div class="warpNotificacao">
+                                    <div class="warpNotificacao">
                                     <p class="notificacao">{{\App\SoldadorQualificacao::where('status','=','em-processo')->count()}}</p>
                                 </div>
                                 @endif
                             </span>
 
                         </a>
-                            <span class="sr-only">(current)</span></a>
+                        <span class="sr-only">(current)</span></a>
+
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link font-weight-light " id="nav_requisicoes" style="font-size: 25px;position: relative" href="{{route("requisicoes")}}">
+
+                            <span style="position: relative">REQUISIÇÕES
+                                @if((\App\Soldador::where('criado','=','0')->count()) > 0)
+                                    <div class="warpNotificacao">
+                                    <p class="notificacao">{{\App\Soldador::where('criado','=','0')->count()}}</p>
+                                </div>
+                                @endif
+
+                            </span>
+
+                        </a>
+                        <span class="sr-only">(current)</span></a>
 
                     </li>
                     <li class="nav-item active">
