@@ -28,6 +28,11 @@ Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(Check
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 
 
+Route::get('/requisicoes',"InicioController@requisicoes")->middleware(CheckSession::class,CheckAdm::class)->name("requisicoes");
+Route::post("/avaliarRequisicao","InicioController@avaliarRequisicao")->name("avaliarRequisicao")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/processarRequisicao","InicioController@processarRequisicao")->name("processarRequisicao")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/salvandoRequisicao","InicioController@salvandoRequisicao")->name("salvandoRequisicao")->middleware(CheckSession::class);
+Route::get("/requisitarSoldador","InicioController@requisitarSoldador")->name("requisitarSoldador")->middleware(CheckSession::class);
 
 Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function() {
     Route::resource("/cidade","CidadeController",['except'=>'destroy']);

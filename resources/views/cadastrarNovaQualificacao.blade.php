@@ -106,6 +106,8 @@
             <a href="{{route("paginaInicial")}}">
         </div>
     </div>
+
+    </div>
     <script >
         $("#foto").on("change", function(){
             nFotos = document.getElementById('foto').files.length;
@@ -118,5 +120,10 @@
                 document.getElementById('btnFoto').style.backgroundColor='#59acff';
             }
         })
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#cpf_testemunha').mask('999.999.999-99');
+        });
     </script>
 @endsection
