@@ -21,6 +21,7 @@ class CreateSoldadorsTable extends Migration
             $table->string("email",100)->unique()->nullable();
             $table->string("cpf",14)->unique();
             $table->string("foto")->nullable();
+            $table->integer("criado");
             $table->unsignedBigInteger("id_empresa");
             $table->foreign("id_empresa")->references("id")->on("empresas");
             $table->softDeletes();

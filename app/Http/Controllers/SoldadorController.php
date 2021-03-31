@@ -39,6 +39,7 @@ class SoldadorController extends Controller
         $soldador= new Soldador();
         $soldador->nome=$request->nome;
         $soldador->cpf=$request->cpf;
+        $soldador->criado=1;
         $soldador->sinete=$request->sinete;
         $soldador->matricula=$request->matricula;
         $soldador->email=$request->email;
@@ -91,6 +92,7 @@ class SoldadorController extends Controller
         }
         $soldador->email=$request->email;
         $soldador->id_empresa=$request->id_empresa;
+        $soldador->criado=1;
         if($request->file('foto')) {
             $imagem = $request->file('foto');
             $extensao = $imagem->getClientOriginalExtension();
@@ -153,6 +155,7 @@ class SoldadorController extends Controller
         $soldador->matricula=$request->matricula;
         $soldador->email=$request->email;
         $soldador->id_empresa=$request->id_empresa;
+        $soldador->criado=1;
         $soldador->save();
         if($request->file('foto')) {
             $imagem = $request->file('foto');
@@ -245,7 +248,7 @@ class SoldadorController extends Controller
     public function perfilSoldador(Request $request){
 
         $usuario = session()->get("Usuario");
-        $soldador = Soldador::where('id','=',$request->id_soldador)->first();
+        $soldador = Soldador::where('id','=',$request->id_soldador)->where("criado","=",1)->first();
         $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
 
 
@@ -269,10 +272,10 @@ class SoldadorController extends Controller
         $usuario = session()->get("Usuario");
         $rotaAnterior=Route::getCurrentRoute()->getName();
         if($usuario->tipo==1){
-            $soldadores = Soldador::where("id_empresa", "=", $id)->get();
+            $soldadores = Soldador::where("id_empresa", "=", $id)->where("criado","=",1)->get();
             return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id,"rota"=>$rotaAnterior]);
         }else {
-            $soldadores = Soldador::where("id_empresa", "=", $id)->get();
+            $soldadores = Soldador::where("id_empresa", "=", $id)->where("criado","=",1)->get();
             return view("soldadorEmpresa")->with(["usuario" => $usuario, "soldadores" => $soldadores,"empresa"=>$id]);
         }
     }
@@ -282,11 +285,11 @@ class SoldadorController extends Controller
         $rotaAnterior=Route::getCurrentRoute()->getName();
         $nomeSoldador=$request->nomeSoldador;
         if($usuario->tipo==1){
-            $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->get();
+            $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where("criado","=",1)->get();
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);
         }else{
             $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
-            $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where('id_empresa','=',$empresa->id)->get();
+            $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where('id_empresa','=',$empresa->id)->where("criado","=",1)->get();
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);
         }
 

@@ -88,7 +88,14 @@
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao" placeholder="insira a descrição do processo que você ultilizou na soldagem" name="texto" required></textarea>
 
-                <input type="submit" class="btn btn-outline-primary mt-3 col-12">
+                    <label  for="nome_testemunha">Nome da testemunha:</label>
+                    <input type="text" class="form-control" id="nome_testemunha" placeholder="Insira o nome da pessoa que testemunhou esse processo de requalificação" name="nome_testemunha" required>
+
+                    <label  for="cpf_testemunha">CPF da testemunha:</label>
+                    <input type="text" class="form-control" id="cpf_testemunha" placeholder="Insira o CPF da pessoa que testemunhou esse processo de requalificação" name="cpf_testemunha" required>
+
+
+                    <input type="submit" class="btn btn-outline-primary mt-3 col-12">
             </div>
             </form>
             <form method="POST" action="{{route("perfilSoldador")}}" class="">

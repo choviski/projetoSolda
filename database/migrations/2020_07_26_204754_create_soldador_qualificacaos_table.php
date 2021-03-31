@@ -26,6 +26,8 @@ class CreateSoldadorQualificacaosTable extends Migration
             $table->text("texto")->nullable();
             $table->string("foto")->nullable();
             $table->integer("aviso");
+            $table->string("nome_testemunha")->nullable();
+            $table->string("cpf_testemunha")->nullable();
             $table->enum("status",['qualificado','em-processo','atrasado','nao-qualificado']);
             $table->date("validade_qualificacao");
             $table->date("lancamento_qualificacao");

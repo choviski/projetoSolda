@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Certificado;
 use App\Foto;
 use App\Http\Controllers\Controller;
 use App\NormaQualificacao;
@@ -82,8 +83,9 @@ class QualificacaoController extends Controller
         $qualificacao->lancamento_qualificacao=$request->lancamento_qualificacao;
         $qualificacao->nome_certificado=$request->nome_certificado;
         $qualificacao->caminho_certificado=$request->caminho_certificado;
+        $qualificacao->nome_testemunha=$request->nome_testemunha;
+        $qualificacao->cpf_testemunha=$request->cpf_testemunha;
         $qualificacao->save();
-
         foreach ($request->files as $todasasfoto) {
             foreach ($todasasfoto as $foto) {
                 # cria a uma nova fotoRequalificacao
@@ -100,7 +102,7 @@ class QualificacaoController extends Controller
             }
         }
         $contar=SoldadorQualificacao::onlyTrashed()->where("id_soldador","=",$qualificacao->soldador->id)->where("id_qualificacao","=",$qualificacao->qualificacao->id)->count();
-        return redirect()->route("paginaInicial");
+        return redirect()->route('email4',['id'=> $qualificacao->id]);
     }
 
     public function avaliarRequalificacao(Request $request)
@@ -127,7 +129,20 @@ class QualificacaoController extends Controller
             $requalificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
             $requalificacao->data_qualificacao=Carbon::now()->toDateString();
             $requalificacao->lancamento_qualificacao=$requalificacao->updated_at;
-
+            foreach ($request->files as $todososcertificados) {
+                foreach ($todososcertificados as $certificado) {
+                    $certificadoRequalificacao = new Certificado();
+                    $certificadoRequalificacao->id_requalificacao = $requalificacao->id;
+                    $certificadoRequalificacao->caminho='';
+                    //chmod($request->file->getPath(),0755);
+                    chmod($certificado->getRealPath(),0755);
+                    $certificadoRequalificacao->save();
+                    $extensao = $certificado->getClientOriginalExtension();
+                    $imagem = File::move($certificado, public_path(). '/certificados/certificadoRequalificacao-id' . $certificadoRequalificacao->id . '.' . $extensao);
+                    $certificadoRequalificacao->caminho = '/certificados/certificadoRequalificacao-id'.$certificadoRequalificacao->id.'.'.$extensao;
+                    $certificadoRequalificacao->save();
+                }
+            }
 
             $requalificacao->save();
             return redirect()->route("email3",['id'=> $requalificacao->id]);
@@ -137,6 +152,20 @@ class QualificacaoController extends Controller
             $requalificacao = SoldadorQualificacao::find($request->id);
             $requalificacao->status = "nao-qualificado";
             $requalificacao->aviso=1;
+            foreach ($request->files as $todososcertificados) {
+                foreach ($todososcertificados as $certificado) {
+                    $certificadoRequalificacao = new Certificado();
+                    $certificadoRequalificacao->id_requalificacao = $certificadoRequalificacao->id;
+                    $certificadoRequalificacao->caminho='';
+                    //chmod($request->file->getPath(),0755);
+                    chmod($certificado->getRealPath(),0755);
+                    $certificadoRequalificacao->save();
+                    $extensao = $certificado->getClientOriginalExtension();
+                    $imagem = File::move($certificado, public_path(). '/certificados/certificadoRequalificacao-id' . $certificadoRequalificacao->id . '.' . $extensao);
+                    $certificadoRequalificacao->caminho = '/certificados/certificadoRequalificacao-id'.$certificadoRequalificacao->id.'.'.$extensao;
+                    $certificadoRequalificacao->save();
+                }
+            }
             $requalificacao->save();
             return redirect()->route("email3",['id'=> $requalificacao->id]);
 

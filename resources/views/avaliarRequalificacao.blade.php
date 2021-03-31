@@ -10,6 +10,26 @@
             text-decoration: none;
             font-weight: normal;
         }
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
@@ -17,7 +37,7 @@
     </div>
 
     <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
-        <form class="col-md-9 col-sm-10 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form">
+        <form class="col-md-9 col-sm-10 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="form-group bg-light col-12 p-2 rounded">
@@ -54,17 +74,19 @@
                 <label  for="nome_certificado">Posição de soldagem:</label>
                 <input type="text" class="form-control" id="nome_certificado" placeholder="Posição de soldagem" name="posicao" required value="{{$requalificacao->posicao}}" disabled>
 
-                <label  for="nome_certificado">Eletrodo:</label>
-                <input type="text" class="form-control" id="nome_certificado" placeholder="Eletrodo ultilizado na soldagem" name="eletrodo" required value="{{$requalificacao->eletrodo}}" disabled>
+                <label  for="eletrodo">Eletrodo:</label>
+                <input type="text" class="form-control" id="eletrodo" placeholder="Eletrodo ultilizado na soldagem" name="eletrodo" required value="{{$requalificacao->eletrodo}}" disabled>
 
+                <label  for="nome_testemunha">Testemunha:</label>
+                <input type="text" class="form-control" id="nome_testemunha" placeholder="Testemunha" name="testemunha" required value="{{$requalificacao->nome_testemunha}}, CPF: {{$requalificacao->cpf_testemunha}}" disabled>
+
+                    <label for="foto" id="labelFotos" class="mt-2 col-12 p-0">Insira o(s) certificado(s):</label>
+                <label for="foto" id="btnFoto" class="">Escolha o(s) certificado(s)</label>
+                <input type="file" class="" id="foto" placeholder="Insira o(s) certificado(s):" name="certificados[]" multiple required>
 
 
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
-                <!--
-                <div  style="height: 150px">
-                    <img src="{ {asset("$fotos->caminho")}}" style="max-width: 100%;max-height: 100%;"  id="corpo_prova" onclick="fullscreen('{ {asset("$fotos->caminho")}}')">
-                </div>
-                Deixando o tamanho da imagem meio padronizado-->
+
 
                <div class="d-flex justify-content-center">
                 <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center" data-ride="carousel" style="width: 300px">
@@ -178,5 +200,18 @@
         }
 
 
+    </script>
+    <script >
+        $("#foto").on("change", function(){
+            nFotos = document.getElementById('foto').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Certificados escolhidos: '+nFotos;
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha o(s) certificado(s):';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
     </script>
 @endsection

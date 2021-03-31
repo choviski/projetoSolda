@@ -119,6 +119,11 @@ Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSol
 Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('envio-email4/{id}',function ($id){
+    $qualificacao=\App\SoldadorQualificacao::find($id);
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email4($qualificacao));
+    return redirect()->route("paginaInicial");
+})->name("email4");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);

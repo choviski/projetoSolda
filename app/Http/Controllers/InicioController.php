@@ -35,7 +35,7 @@ class InicioController extends Controller
         #Pegando os soldadores da empresa
         elseif($usuario->tipo==2){
             $empresa = Empresa::where('id_usuario','=',$usuario->id)->get();
-            $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->get();
+            $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->where("criado","=",1)->get();
             $soldadorqualificacaos=collect();
 
 
@@ -113,7 +113,7 @@ class InicioController extends Controller
         if($usuario->tipo==1){
             //$soldadores=Soldador::orderBy('nome')->get();
             //return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota]);
-            $soldadores=Soldador::orderBy('nome')->paginate(5);
+            $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->paginate(5);
             if($request->ajax()){
                     $view = view('cardSoldadores')->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota])->render();
                     return response()->json(['html'=>$view]);
@@ -123,7 +123,7 @@ class InicioController extends Controller
         }
         if($usuario->tipo==2){
             $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
-            $soldadores=Soldador::where('id_empresa','=',$empresa->id)->orderBy('nome')->paginate(5);
+            $soldadores=Soldador::where('id_empresa','=',$empresa->id)->where("criado","=",1)->orderBy('nome')->paginate(5);
             if($request->ajax()){
                 $view = view('cardSoldadores')->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota,"empresa"=>$empresa->id])->render();
                 return response()->json(['html'=>$view]);
