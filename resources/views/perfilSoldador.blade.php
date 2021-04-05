@@ -257,7 +257,7 @@
     <script>
 
         function certificadoAjax(idQualificacao){
-            var linkAjax = '{{route("certificadoAjax",":id")}}'
+            var linkAjax = '{{route("certificadoAjax",":id")}}';
             linkAjax = linkAjax.replace(':id',idQualificacao);
             $.ajax({
                 url:linkAjax,
