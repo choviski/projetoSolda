@@ -54,36 +54,4 @@
             crossorigin="anonymous"
     >
     </script>
-        <script>
-            var linkAjax = '{{route("requalificacoes",":pagina")}}'
-            function carregarMaisDados(pagina){
-                linkAjax = linkAjax.replace(':pagina',"page="+pagina);
-                $.ajax({
-                    url:'?page='+pagina,
-                    type:'get',
-                    beforeSend:function (){
-                        $(".ajax-load").show();
-                    }
-                })
-                    .done(function (data){
-                        if(data.html == ""){
-                            $('.ajax-load').html("");
-                            return;
-                        }
-                        $('.ajax-load').hide();
-                        $('#dadosRequalificacoes').append(data.html);
-                    })
-                    .fail(function(jqHXR,ajaxOptions,thrownError){
-                        alert("O servidor não esta respondendo")
-                    })
-            }
-            var pagina=1;
-            $(window).scroll(function (){
-                if($(window).scrollTop() + $(window).height()>= $(document).height()){
-                    pagina++;
-                    carregarMaisDados(pagina);
-                }
-            });
-
-        </script>
 @endsection

@@ -128,38 +128,4 @@
             crossorigin="anonymous"
     >
     </script>
-    @if($rota!="soldadoresFiltrados")
-        <script>
-            var linkAjax = '{{route("hubSoldadores",":pagina")}}'
-            function carregarMaisDados(pagina){
-                linkAjax = linkAjax.replace(':pagina',"page="+pagina);
-                $.ajax({
-                    url:'?page='+pagina,
-                    type:'get',
-                    beforeSend:function (){
-                        $(".ajax-load").show();
-                    }
-                })
-                    .done(function (data){
-                        if(data.html == ""){
-                            $('.ajax-load').html("");
-                            return;
-                        }
-                        $('.ajax-load').hide();
-                        $('#dadosSoldador').append(data.html);
-                    })
-                    .fail(function(jqHXR,ajaxOptions,thrownError){
-                        alert("O servidor não esta respondendo")
-                    })
-            }
-            var pagina=1;
-            $(window).scroll(function (){
-                if($(window).scrollTop() + $(window).height()>= $(document).height()){
-                    pagina++;
-                    carregarMaisDados(pagina);
-                }
-            });
-
-        </script>
-    @endif
 @endsection
