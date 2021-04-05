@@ -147,7 +147,8 @@
             <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
                 <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
                 <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
-                <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>
+                <!-- a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{ {asset($qualificacao->caminho_certificado)}}','{ {$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a-->
+                <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="certificadoAjax({{$qualificacao->id}});getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>
             </div>
 
             <div id="infoEsquerda" class="d-flex flex-column p-2 pt-1 pb-1 text-left">
@@ -224,6 +225,13 @@
             <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
         @endif
     </div>
+    <div id="download"></div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    >
+        </script>
     <script>
         var nome_certificado="";
         var links=[];
@@ -232,7 +240,6 @@
             nome_certificado=nome;
         }
         function downloadAll(urls) {
-            console.log(window.links);
             var link = document.createElement('a');
             link.setAttribute('download', nome_certificado);
             link.style.display = 'none';
@@ -242,6 +249,39 @@
                 link.click();
             }
             document.body.removeChild(link);
+            links=[];
         }
+
+
     </script>
+    <script>
+
+        function certificadoAjax(idQualificacao){
+            var linkAjax = '{{route("certificadoAjax",":id")}}'
+            linkAjax = linkAjax.replace(':id',idQualificacao);
+            $.ajax({
+                url:linkAjax,
+                type:'get',
+            })
+                .done(function (data){
+                    links=data.certificados;
+                    urls=window.links;
+                    var link = document.createElement('a');
+                    link.setAttribute('download', "certificado ajax");
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    for (var i = 0; i < urls.length; i++) {
+                        link.setAttribute('href', urls[i]);
+                        link.click();
+                    }
+                    document.body.removeChild(link);
+                    links=[];
+
+                })
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                    alert("Erro ao baixar certificado.")
+                })
+            idQualificacao=0;
+            linkAjax="";
+        }</script>
 @endsection

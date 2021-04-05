@@ -86,6 +86,7 @@ Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function()
 
 Route::post('/acharCidade', "EnderecoController@cidadeAjax")->name("acharCidade")->middleware(CheckSession::class);
 Route::get('/dadosEmpresaAjax/{id}', "DashboardController@dadosEmpresaAjax")->name("dadosEmpresaAjax")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('/certificadoAjax/{id}', "InicioController@certificadoAjax")->name("certificadoAjax")->middleware(CheckSession::class);
 
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
 

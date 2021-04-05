@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Certificado;
 use App\Foto;
 use App\Empresa;
 use App\Publicacao;
@@ -120,6 +121,13 @@ class InicioController extends Controller
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota]);
         }
 
+    }
+    public function certificadoAjax($id){
+        $certificados=Certificado::where('id_requalificacao','=',$id)->pluck("caminho");
+
+        $view = view('downloadCertificados')->with(["certificados"=>$certificados])->render();
+
+        return response()->json(['certificados'=>$certificados]);
     }
 
 

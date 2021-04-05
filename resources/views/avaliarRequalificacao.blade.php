@@ -118,9 +118,9 @@
                     </a>
                 </div>
                 </div>
-                <a  onclick="getFotos();downloadAll(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
+                <a  onclick="getFotos();downloadAll(window.links);" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
                 <label  for="downloadCerificado">Certificado atual da quailificação:</label>
-                <a  onclick="getFile('{{asset($requalificacao->caminho_certificado)}}','{{($requalificacao->nome_certificado)}}');downloadCertificado(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar certificado</a>
+                <a  onclick="certificadoAjax({{$requalificacao->id}});getFile('{{asset($requalificacao->caminho_certificado)}}','{{($requalificacao->nome_certificado)}}');downloadCertificado(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar certificado</a>
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
@@ -136,6 +136,11 @@
     <div class=" d-flex justify-content-center col-12">
         <a href="{{route("requalificacoes")}}" class="col-md-9 col-sm-10"><button class="btn btn-outline-light mt-1 mb-3 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    >
     <script>
         $( "#aceitar" ).click(function() {
             $( "#aceito" ).val(1);
@@ -214,4 +219,34 @@
             }
         })
     </script>
+    <script>
+
+        function certificadoAjax(idQualificacao){
+            var linkAjax = '{{route("certificadoAjax",":id")}}'
+            linkAjax = linkAjax.replace(':id',idQualificacao);
+            $.ajax({
+                url:linkAjax,
+                type:'get',
+            })
+                .done(function (data){
+                    links=data.certificados;
+                    urls=window.links;
+                    var link = document.createElement('a');
+                    link.setAttribute('download', "certificado ajax");
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    for (var i = 0; i < urls.length; i++) {
+                        link.setAttribute('href', urls[i]);
+                        link.click();
+                    }
+                    document.body.removeChild(link);
+                    links=[];
+
+                })
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                    alert("Erro ao baixar certificado.")
+                })
+            idQualificacao=0;
+            linkAjax="";
+        }</script>
 @endsection
