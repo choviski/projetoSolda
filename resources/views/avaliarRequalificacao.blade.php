@@ -141,6 +141,7 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
     >
+    </script>
     <script>
         $( "#aceitar" ).click(function() {
             $( "#aceito" ).val(1);
