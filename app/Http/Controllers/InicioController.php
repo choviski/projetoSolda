@@ -86,21 +86,14 @@ class InicioController extends Controller
     }
     public function requalificacoes(Request $request){
         $usuario = session()->get("Usuario");
-        $requalificacaoes = SoldadorQualificacao::where('status','=','em-processo')->select()->orderBy('created_at','desc')->paginate(5);
-        if($request->ajax()){
-            $view = view('cardRequalificacoes')->with(["usuario"=>$usuario,"requalificacaos"=>$requalificacaoes])->render();
-            return response()->json(['html'=>$view]);
-        }
+        $requalificacaoes = SoldadorQualificacao::where('status','=','em-processo')->select()->orderBy('created_at','desc')->get();
         return view("requalificacoes")->with(["usuario"=>$usuario,"requalificacaos"=>$requalificacaoes]);
     }
 
     public function listarEmpresas(Request $request){
         $usuario = session()->get("Usuario");
-        $empresas = Empresa::orderBy('razao_social')->paginate(5);
-        if($request->ajax()){
-            $view = view('cardEmpresas')->with(["usuario"=>$usuario,"empresas"=>$empresas])->render();
-            return response()->json(['html'=>$view]);
-        }
+        $empresas = Empresa::orderBy('razao_social')->get();
+
         return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
     }
 
@@ -115,21 +108,15 @@ class InicioController extends Controller
         if($usuario->tipo==1){
             //$soldadores=Soldador::orderBy('nome')->get();
             //return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota]);
-            $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->paginate(5);
-            if($request->ajax()){
-                    $view = view('cardSoldadores')->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota])->render();
-                    return response()->json(['html'=>$view]);
-            }
+            $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->get();
+
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota]);
 
         }
         if($usuario->tipo==2){
             $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
-            $soldadores=Soldador::where('id_empresa','=',$empresa->id)->where("criado","=",1)->orderBy('nome')->paginate(5);
-            if($request->ajax()){
-                $view = view('cardSoldadores')->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota,"empresa"=>$empresa->id])->render();
-                return response()->json(['html'=>$view]);
-            }
+            $soldadores=Soldador::where('id_empresa','=',$empresa->id)->where("criado","=",1)->orderBy('nome')->get();
+
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota]);
         }
 
