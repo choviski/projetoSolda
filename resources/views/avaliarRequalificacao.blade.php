@@ -141,6 +141,7 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
     >
+        </script>
     <script>
         $( "#aceitar" ).click(function() {
             $( "#aceito" ).val(1);
@@ -222,7 +223,7 @@
     <script>
 
         function certificadoAjax(idQualificacao){
-            var linkAjax = '{{route("certificadoAjax",":id")}}'
+            var linkAjax = '{{route("certificadoAjax",":id")}}';
             linkAjax = linkAjax.replace(':id',idQualificacao);
             $.ajax({
                 url:linkAjax,
@@ -248,5 +249,6 @@
                 })
             idQualificacao=0;
             linkAjax="";
-        }</script>
+        }
+    </script>
 @endsection
