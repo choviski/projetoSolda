@@ -88,6 +88,7 @@
             font-size: 0.7rem;
             top: -2px;
         }
+
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >
@@ -108,13 +109,13 @@
             <ul class="navbar-nav mr-auto">
                 @if($usuario->tipo == 1)
                     <li class="nav-item active" >
-                        <a class="nav-link font-weight-light " id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light " id="nav_empresas" style="font-size: 20px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"  >
-                        <a class="nav-link font-weight-light "  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                        <a class="nav-link font-weight-light "  id="nav_soldadores" style="font-size: 20px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 25px;position: relative" href="{{route("requalificacoes")}}">
+                        <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 20px;position: relative" href="{{route("requalificacoes")}}">
 
                             <span style="position: relative">REQUALIFICAÇÕES
                                 @if((\App\SoldadorQualificacao::where('status','=','em-processo')->count()) > 0)
@@ -129,7 +130,7 @@
 
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light " id="nav_requisicoes" style="font-size: 25px;position: relative" href="{{route("requisicoes")}}">
+                        <a class="nav-link font-weight-light " id="nav_requisicoes" style="font-size: 20px;position: relative" href="{{route("requisicoes")}}">
 
                             <span style="position: relative">REQUISIÇÕES
                                 @if((\App\Soldador::where('criado','=','0')->count()) > 0)
@@ -145,18 +146,18 @@
 
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light " style="font-size: 25px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light " style="font-size: 20px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active " >
-                        <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">ENTIDADES</a>
+                        <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 20px" href="{{route("entidades")}}">ENTIDADES</a>
                     </li>
                 @endif
                 @if($usuario->tipo==2)
                     <li class="nav-item active"  >
-                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 20px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active" >
-                        <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">PERFIL</a>
+                        <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 20px" href="{{route("editarUsuario")}}">PERFIL</a>
                     </li>
                 @endif
             </ul>

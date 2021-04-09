@@ -267,7 +267,7 @@
                     links=data.certificados;
                     urls=window.links;
                     var link = document.createElement('a');
-                    link.setAttribute('download', "certificado ajax");
+                    link.setAttribute('download', "Certificado");
                     link.style.display = 'none';
                     document.body.appendChild(link);
                     for (var i = 0; i < urls.length; i++) {

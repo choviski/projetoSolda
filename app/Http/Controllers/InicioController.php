@@ -11,6 +11,7 @@ use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Carbon\Carbon;
 use File;
@@ -149,6 +150,10 @@ class InicioController extends Controller
             $soldador->criado=1;
             $soldador->save();
         }elseif ($request->aceito==0){
+            $soldador=Soldador::find($request->id);
+            $soldador->cpf=Str::random(14);;
+            $soldador->email=null;
+            $soldador->save();
             Soldador::destroy($request->id);
         }
         $usuario = session()->get("Usuario");
@@ -214,7 +219,7 @@ class InicioController extends Controller
         }
         $soldador->save();
         $usuario = session()->get("Usuario");
-        return view("selecionarQualificacoes")->with(["soldador"=>$soldador->id,"usuario"=>$usuario]);
+        return redirect()->route("hubSoldadores");
     }
 
 

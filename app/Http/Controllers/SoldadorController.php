@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 use DateTime;
 use File;
+use Illuminate\Support\Str;
 
 class SoldadorController extends Controller
 {
@@ -111,6 +112,10 @@ class SoldadorController extends Controller
         foreach ($qualificacaos as $qualificacao){
             SoldadorQualificacao::destroy($qualificacao->id);
         }
+        $soldador=Soldador::find($request->id);
+        $soldador->cpf=Str::random(14);
+        $soldador->email=null;
+        $soldador->save();
         Soldador::destroy($request->id);
         return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
 
