@@ -51,9 +51,10 @@
                 <div>
                     <img src="@if($soldador->foto){{asset($soldador->foto)}}@else{{asset("imagens/soldador_default.png")}}@endif" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" width="100px" height="100px" class="rounded-circle border">
                 </div>
+                <!--
                 <label for="foto" id="btnFoto" class="">Escolha a foto</label>
                 <input type="file" class="" id="foto" placeholder="Imagem do Soldador" name="foto">
-
+                -->
 
                 <label  for="sinete" class="col-12 p-0">Sinete:</label>
                 <input type="text" class="form-control" id="sinete" placeholder="Sinete" value="{{$soldador->sinete}}" name="sinete" required>
