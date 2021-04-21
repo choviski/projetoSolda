@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.6.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"></script>
 
-    <title>Projeto Solda</title>
+    <title>Rastrea</title>
     <style>
         /* BACKGROUND */
         body{
