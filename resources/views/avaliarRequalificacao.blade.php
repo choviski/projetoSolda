@@ -10,6 +10,26 @@
             text-decoration: none;
             font-weight: normal;
         }
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        #btnFoto{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnFoto:hover{
+            background-color: #0275d8;
+        }
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
@@ -17,7 +37,7 @@
     </div>
 
     <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
-        <form class="col-md-9 col-sm-10 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form">
+        <form class="col-md-9 col-sm-10 mt-2" action="{{route("processarRequalificacao")}}" method="post" id="form" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="form-group bg-light col-12 p-2 rounded">
@@ -54,17 +74,19 @@
                 <label  for="nome_certificado">Posição de soldagem:</label>
                 <input type="text" class="form-control" id="nome_certificado" placeholder="Posição de soldagem" name="posicao" required value="{{$requalificacao->posicao}}" disabled>
 
-                <label  for="nome_certificado">Eletrodo:</label>
-                <input type="text" class="form-control" id="nome_certificado" placeholder="Eletrodo ultilizado na soldagem" name="eletrodo" required value="{{$requalificacao->eletrodo}}" disabled>
+                <label  for="eletrodo">Eletrodo:</label>
+                <input type="text" class="form-control" id="eletrodo" placeholder="Eletrodo ultilizado na soldagem" name="eletrodo" required value="{{$requalificacao->eletrodo}}" disabled>
 
+                <label  for="nome_testemunha">Testemunha:</label>
+                <input type="text" class="form-control" id="nome_testemunha" placeholder="Testemunha" name="testemunha" required value="{{$requalificacao->nome_testemunha}}, CPF: {{$requalificacao->cpf_testemunha}}" disabled>
+
+                    <label for="foto" id="labelFotos" class="mt-2 col-12 p-0">Insira o(s) certificado(s):</label>
+                <label for="foto" id="btnFoto" class="">Escolha o(s) certificado(s)</label>
+                <input type="file" class="" id="foto" placeholder="Insira o(s) certificado(s):" name="certificados[]" multiple required>
 
 
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
-                <!--
-                <div  style="height: 150px">
-                    <img src="{ {asset("$fotos->caminho")}}" style="max-width: 100%;max-height: 100%;"  id="corpo_prova" onclick="fullscreen('{ {asset("$fotos->caminho")}}')">
-                </div>
-                Deixando o tamanho da imagem meio padronizado-->
+
 
                <div class="d-flex justify-content-center">
                 <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center" data-ride="carousel" style="width: 300px">
@@ -96,9 +118,9 @@
                     </a>
                 </div>
                 </div>
-                <a  onclick="getFotos();downloadAll(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
+                <a  onclick="getFotos();downloadAll(window.links);" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
                 <label  for="downloadCerificado">Certificado atual da quailificação:</label>
-                <a  onclick="getFile('{{asset($requalificacao->caminho_certificado)}}','{{($requalificacao->nome_certificado)}}');downloadCertificado(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar certificado</a>
+                <a  onclick="certificadoAjax({{$requalificacao->id}});getFile('{{asset($requalificacao->caminho_certificado)}}','{{($requalificacao->nome_certificado)}}');downloadCertificado(window.links)" class="btn btn-outline-primary btn-block mt-1">Baixar certificado</a>
 
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
@@ -114,6 +136,13 @@
     <div class=" d-flex justify-content-center col-12">
         <a href="{{route("requalificacoes")}}" class="col-md-9 col-sm-10"><button class="btn btn-outline-light mt-1 mb-3 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    >
+    </script>
+
     <script>
         $( "#aceitar" ).click(function() {
             $( "#aceito" ).val(1);
@@ -178,5 +207,49 @@
         }
 
 
+    </script>
+    <script >
+        $("#foto").on("change", function(){
+            nFotos = document.getElementById('foto').files.length;
+            if(nFotos>0){
+                document.getElementById('btnFoto').innerHTML='Certificados escolhidos: '+nFotos;
+                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnFoto').innerHTML='Escolha o(s) certificado(s):';
+                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+            }
+        })
+    </script>
+    <script>
+
+        function certificadoAjax(idQualificacao){
+            var linkAjax = '{{route("certificadoAjax",":id")}}';
+            linkAjax = linkAjax.replace(':id',idQualificacao);
+            $.ajax({
+                url:linkAjax,
+                type:'get',
+            })
+                .done(function (data){
+                    links=data.certificados;
+                    urls=window.links;
+                    var link = document.createElement('a');
+                    link.setAttribute('download', "Certificado");
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    for (var i = 0; i < urls.length; i++) {
+                        link.setAttribute('href', urls[i]);
+                        link.click();
+                    }
+                    document.body.removeChild(link);
+                    links=[];
+
+                })
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                    alert("Erro ao baixar certificado.")
+                })
+            idQualificacao=0;
+            linkAjax="";
+        }
     </script>
 @endsection

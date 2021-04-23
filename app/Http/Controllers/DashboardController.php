@@ -13,7 +13,7 @@ class DashboardController extends Controller
 {
     function getAllSoldadoresMonths(){
         $soldadores_meses_array = array();
-        $datas_soldadores = Soldador::orderBy('created_at', 'ASC')->pluck('created_at');
+        $datas_soldadores = Soldador::where('criado','=',1)->orderBy('created_at', 'ASC')->pluck('created_at');
         $datas_soldadores = json_decode($datas_soldadores);
         if (!empty($datas_soldadores)) {
             foreach ($datas_soldadores as $unf_datas) {
@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     function getMonthlySoldadorCount($mes)
     {
-        $monthly_soldador_count = Soldador::whereMonth('created_at', $mes)->get()->count();
+        $monthly_soldador_count = Soldador::where('criado','=',1)->whereMonth('created_at', $mes)->get()->count();
         return $monthly_soldador_count;
     }
 
@@ -96,7 +96,7 @@ class DashboardController extends Controller
             #colocando os dados sobre os soldadores
             'meses_soldadores' => $meses_nome__soldador_array,
             'soldadores' => $monthly_soldador_count_array,
-            'total_soldadores' => Soldador::count(),
+            'total_soldadores' => Soldador::where('criado','=',1)->count(),
             #colocando os dados sobre as empresas
             'meses_empresas' => $meses_nome__empresa_array,
             'empresas' => $monthly_empresa_count_array,
@@ -123,18 +123,22 @@ class DashboardController extends Controller
                 'nome'=>$empresa->razao_social,
                 'status_qualificado' =>DB::table('soldadores')->
                     join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                    where('soldadores.criado','=',1)->
                     where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','qualificado')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
 
                 'status_nao_qualificado' =>DB::table('soldadores')->
                 join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                where('soldadores.criado','=',1)->
                 where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','nao-qualificado')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
 
                 'status_em_processo' =>DB::table('soldadores')->
                 join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                where('soldadores.criado','=',1)->
                 where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','em-processo')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
 
                 'status_atrasado' =>DB::table('soldadores')->
                 join('soldador_qualificacoes','soldador_qualificacoes.id_soldador','=','soldadores.id')->
+                where('soldadores.criado','=',1)->
                 where('soldadores.id_empresa','=',$empresa->id)->where('soldador_qualificacoes.status','=','atrasado')->where('soldador_qualificacoes.deleted_at','=',null)->get()->count(),
 
 

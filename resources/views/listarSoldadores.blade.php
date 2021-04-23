@@ -99,69 +99,34 @@
                 </form>
             </div>
         @endif
+        @if($usuario->tipo==2)
+            <div id="addSoldador" class="col-12 mt-2 p-0 popin">
+                <form method="get" action="{{route("requisitarSoldador")}}">
+                    @csrf
+                    <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{\App\Empresa::where('id_usuario','=',$usuario->id)->pluck("id")[0]}}">
+                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Requisitar cadastro de soldador">
+                </form>
+            </div>
+        @endif
         @if(isset($rota) and $soldadores->count()==0 and $rota=="soldadoresFiltrados")
-                <div class="alert alert-danger mt-2 text-center">
-                    <p class="m-0 ">Nenhum soldador encontrado!</p>
-                </div>
+
+            <div class="alert alert-danger mt-2 text-center">
+                <p class="m-0 ">Nenhum soldador encontrado!</p>
+            </div>
         @endif
 
-            <div id="dadosSoldador">
-                @include('cardSoldadores')
-            </div>
+        <div id="dadosSoldador">
+            @include('cardSoldadores')
+        </div>
         <div class="ajax-load text-center mt-2" style="display: none">
             <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando soldadores>
         </div>
     </div>
-
-
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
     >
     </script>
-    <script>
-        function popUp(id){
-            console.log(id);
-            if($('#info'+id).css("display")=='block'){
-                $('#info'+id).css("display","none")
-            }else{
-                $('#info'+id).css("display","block")
-            }
-        }
-    </script>
-    @if($rota!="soldadoresFiltrados")
-    <script>
-        var linkAjax = '{{route("hubSoldadores",":pagina")}}'
-        function carregarMaisDados(pagina){
-            linkAjax = linkAjax.replace(':pagina',"page="+pagina);
-            $.ajax({
-                url:'?page='+pagina,
-                type:'get',
-                beforeSend:function (){
-                    $(".ajax-load").show();
-                }
-            })
-            .done(function (data){
-                if(data.html == ""){
-                    $('.ajax-load').html("");
-                    return;
-                }
-                $('.ajax-load').hide();
-                $('#dadosSoldador').append(data.html);
-            })
-            .fail(function(jqHXR,ajaxOptions,thrownError){
-                alert("O servidor não esta respondendo")
-            })
-        }
-        var pagina=1;
-        $(window).scroll(function (){
-            if($(window).scrollTop() + $(window).height()>= $(document).height()){
-                pagina++;
-                carregarMaisDados(pagina);
-            }
-        });
 
-    </script>
-    @endif
 @endsection

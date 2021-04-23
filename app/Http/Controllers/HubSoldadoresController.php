@@ -29,7 +29,7 @@ class HubSoldadoresController extends Controller
         elseif($usuario->tipo==2){
 
             $empresa = Empresa::where('id_usuario','=',$usuario->id)->get();
-            $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->get();
+            $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->where("criado","=",1)->get();
             $soldadorqualificacaos=collect();
 
             #Checando se a soldadores cadastrados para nao ocorrer nenhum erro na view

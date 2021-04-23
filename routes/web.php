@@ -28,6 +28,11 @@ Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(Check
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 
 
+Route::get('/requisicoes',"InicioController@requisicoes")->middleware(CheckSession::class,CheckAdm::class)->name("requisicoes");
+Route::post("/avaliarRequisicao","InicioController@avaliarRequisicao")->name("avaliarRequisicao")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/processarRequisicao","InicioController@processarRequisicao")->name("processarRequisicao")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/salvandoRequisicao","InicioController@salvandoRequisicao")->name("salvandoRequisicao")->middleware(CheckSession::class);
+Route::get("/requisitarSoldador","InicioController@requisitarSoldador")->name("requisitarSoldador")->middleware(CheckSession::class);
 
 Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function() {
     Route::resource("/cidade","CidadeController",['except'=>'destroy']);
@@ -81,6 +86,7 @@ Route::group(['middleware' => [CheckSession::class,CheckAdm::class]], function()
 
 Route::post('/acharCidade', "EnderecoController@cidadeAjax")->name("acharCidade")->middleware(CheckSession::class);
 Route::get('/dadosEmpresaAjax/{id}', "DashboardController@dadosEmpresaAjax")->name("dadosEmpresaAjax")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('/certificadoAjax/{id}', "InicioController@certificadoAjax")->name("certificadoAjax")->middleware(CheckSession::class);
 
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
 
@@ -119,6 +125,11 @@ Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSol
 Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('envio-email4/{id}',function ($id){
+    $qualificacao=\App\SoldadorQualificacao::find($id);
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email4($qualificacao));
+    return redirect()->route("paginaInicial");
+})->name("email4");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);
@@ -128,15 +139,16 @@ Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("no
 
 
 Route::get('envio-email',function (){
-    /*
+
         $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
        "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
         foreach ($qualificacaos as $qualificacao) {
             if ($qualificacao->tempo < 40) {
                 \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+                \Illuminate\Support\Facades\Mail::cc("infosolda@infosolda.com.br");
             }
         }
-    */    return redirect()->route("paginaInicial");
+       return redirect()->route("paginaInicial");
 })->name("email");
 
 Route::get('envio-email2/{id}',function ($id){

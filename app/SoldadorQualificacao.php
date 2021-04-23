@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SoldadorQualificacao extends Model
 {
     protected $table="soldador_qualificacoes";
-    protected $fillable=["id_soldador","cod_rqs","id_qualificacao","data_qualificacao","status","validade_qualificacao","lancamento_qualificacao","nome_certificado","caminho_certificado","posicao","eletrodo","foto","texto","aviso"];
+    protected $fillable=["id_soldador","cod_rqs","id_qualificacao","data_qualificacao","status","validade_qualificacao","lancamento_qualificacao","nome_certificado","caminho_certificado","posicao","eletrodo","foto","texto","aviso","nome_testemunha","cpf_testemunha"];
     public function soldador(){
         return $this->belongsTo("App\Soldador",'id_soldador','id');
     }
@@ -17,6 +17,9 @@ class SoldadorQualificacao extends Model
     }
     public function foto(){
         return $this->hasOne('App\Foto', 'id_requalificacao','id');
+    }
+    public function certificado(){
+        return $this->hasOne('App\Certificado', 'id_requalificacao','id');
     }
     use SoftDeletes;
 }

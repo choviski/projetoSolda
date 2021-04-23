@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.6.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"></script>
 
-    <title>Projeto Solda</title>
+    <title>Rastrea</title>
     <style>
         /* BACKGROUND */
         body{
@@ -88,14 +88,7 @@
             font-size: 0.7rem;
             top: -2px;
         }
-        @keyframes fadeIn {
-            0% {opacity:0;}
-            100% {opacity:1;}
-        }
-        @keyframes fadeOut {
-            0% {opacity:1;}
-            100% {opacity:0;}
-        }
+
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover" class="p-2" id="divFullscreen" >
@@ -116,39 +109,55 @@
             <ul class="navbar-nav mr-auto">
                 @if($usuario->tipo == 1)
                     <li class="nav-item active" >
-                        <a class="nav-link font-weight-light " id="nav_empresas" style="font-size: 25px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light " id="nav_empresas" style="font-size: 20px" href="{{route("paginaInicial")}}" >EMPRESAS<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"  >
-                        <a class="nav-link font-weight-light "  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                        <a class="nav-link font-weight-light "  id="nav_soldadores" style="font-size: 20px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 25px;position: relative" href="{{route("requalificacoes")}}">
+                        <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 20px;position: relative" href="{{route("requalificacoes")}}">
 
                             <span style="position: relative">REQUALIFICAÇÕES
                                 @if((\App\SoldadorQualificacao::where('status','=','em-processo')->count()) > 0)
-                                <div class="warpNotificacao">
+                                    <div class="warpNotificacao">
                                     <p class="notificacao">{{\App\SoldadorQualificacao::where('status','=','em-processo')->count()}}</p>
                                 </div>
                                 @endif
                             </span>
 
                         </a>
-                            <span class="sr-only">(current)</span></a>
+                        <span class="sr-only">(current)</span></a>
 
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link font-weight-light " style="font-size: 25px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
+                        <a class="nav-link font-weight-light " id="nav_requisicoes" style="font-size: 20px;position: relative" href="{{route("requisicoes")}}">
+
+                            <span style="position: relative">REQUISIÇÕES
+                                @if((\App\Soldador::where('criado','=','0')->count()) > 0)
+                                    <div class="warpNotificacao">
+                                    <p class="notificacao">{{\App\Soldador::where('criado','=','0')->count()}}</p>
+                                </div>
+                                @endif
+
+                            </span>
+
+                        </a>
+                        <span class="sr-only">(current)</span></a>
+
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link font-weight-light " style="font-size: 20px" id="nav_cadastro" href="{{route("cadastrar")}}">CADASTRAR<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active " >
-                        <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 25px" href="{{route("entidades")}}">ENTIDADES</a>
+                        <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 20px" href="{{route("entidades")}}">ENTIDADES</a>
                     </li>
                 @endif
                 @if($usuario->tipo==2)
                     <li class="nav-item active"  >
-                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 25px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                        <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 20px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
                     <li class="nav-item active" >
-                        <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 25px" href="{{route("editarUsuario")}}">PERFIL</a>
+                        <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 20px" href="{{route("editarUsuario")}}">PERFIL</a>
                     </li>
                 @endif
             </ul>
