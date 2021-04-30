@@ -127,7 +127,7 @@ Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->na
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
 Route::get('envio-email4/{id}',function ($id){
     $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email4($qualificacao));
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email4($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email4");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
@@ -153,12 +153,12 @@ Route::get('envio-email',function (){
 
 Route::get('envio-email2/{id}',function ($id){
     $usuario=\App\Usuario::find($id);
-            \Illuminate\Support\Facades\Mail::send(new \App\Mail\email2($usuario));
+            \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email2($usuario));
     return redirect()->route("paginaInicial");
 })->name("email2");
 Route::get('envio-email3/{id}',function ($id){
     $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email3($qualificacao));
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email3($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email3");
 
