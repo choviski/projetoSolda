@@ -5,7 +5,7 @@ use App\Http\Middleware\CheckAdm;
 use App\SoldadorQualificacao;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -130,6 +130,13 @@ Route::get('envio-email4/{id}',function ($id){
     \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email4($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email4");
+Route::get('envio-email5',function (Request $request){
+    $usuario = new stdClass();
+    $usuario->email=$request->email;
+    $usuario->telefone=$request->telefone;
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email5($usuario));
+    return redirect()->route("inicio");
+})->name("email5");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);
