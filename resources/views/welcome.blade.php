@@ -155,6 +155,14 @@
                 transform: translateY(0px);
             }
         }
+        #email{
+            font-size: 20px;
+            border-radius: 15px;
+        }
+        #telefone{
+            font-size: 20px;
+            border-radius: 15px;
+        }
 
 
         @media (max-width: 1150px) {
@@ -184,6 +192,12 @@
             }
             .info{
                 display: none;
+            }
+            #email{
+                font-size: 15px;
+            }
+            #telefone{
+                font-size: 15px;
             }
         }
     </style>
@@ -239,8 +253,8 @@
     <div class="popup-content">
         <h2 style="text-align: center">Deixe seus dados para entrarmos em contato.</h2>
         <form method="get" action="{{route("email5")}}">
-            <input type="email" name="email" class="form-control mt-5" placeholder="Email" style="font-size: 20px;border-radius: 15px;"  required>
-            <input type="tel" id="telefone" name="telefone" class="form-control mt-4 mt-sm-2" placeholder="Número de telefone" onchange="formataTelefone()" required maxlength="10" style="font-size: 20px;border-radius: 15px;" required>
+            <input type="email" id="email" name="email" class="form-control mt-5" placeholder="Email"  required>
+            <input type="tel" id="telefone" name="telefone" class="form-control mt-4 mt-sm-2" placeholder="Número de telefone" onchange="formataTelefone()" required maxlength="11" required>
             <input type="submit" value="Enviar" class="btn btn-block btn-outline-dark btn-login mt-sm-2  mt-4 mb-2" style="font-size: 20px;font-weight: bold;border-radius: 15px;" >
         </form>
         <button class="close-popup btn btn-outline-dark" onclick="popup()">X</button>

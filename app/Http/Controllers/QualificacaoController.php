@@ -155,7 +155,7 @@ class QualificacaoController extends Controller
             foreach ($request->files as $todososcertificados) {
                 foreach ($todososcertificados as $certificado) {
                     $certificadoRequalificacao = new Certificado();
-                    $certificadoRequalificacao->id_requalificacao = $certificadoRequalificacao->id;
+                    $certificadoRequalificacao->id_requalificacao = $requalificacao->id;
                     $certificadoRequalificacao->caminho='';
                     //chmod($request->file->getPath(),0755);
                     chmod($certificado->getRealPath(),0755);
