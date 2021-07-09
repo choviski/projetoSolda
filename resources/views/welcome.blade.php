@@ -187,10 +187,14 @@
             }
         }
     </style>
-    <script>
+        <script>
         function formataTelefone(){
             var telefone = document.getElementById("telefone").value;
-            var telefoneFormatado = telefone.replace(/^(\d{2})(\d{4})(\d{4}).*/, '($1) $2-$3');
+            if(telefone.length==11){
+                var telefoneFormatado = telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            }else{
+                var telefoneFormatado = telefone.replace(/^(\d{2})(\d{4})(\d{4}).*/, '($1) $2-$3');
+            }
             document.getElementById("telefone").value=(telefoneFormatado);
         }
     </script>
