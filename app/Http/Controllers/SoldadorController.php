@@ -78,20 +78,6 @@ class SoldadorController extends Controller
         $soldador->nome=$request->nome;
         $soldador->sinete=$request->sinete;
         $soldador->matricula=$request->matricula;
-        $soldadores=Soldador::all();
-        $lixoEmail =Soldador::onlyTrashed()->where("email","=",$request->email)->get();
-        foreach ($soldadores as $soldadore) {
-            if ($soldadore->email) {
-                if ($soldadore->email == $request->email && $soldadore->id != $soldador->id || $lixoEmail->isNotEmpty() && !is_null($request->email)) {
-                    $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
-                    $usuario = session()->get("Usuario");
-                    $erro = $request->session()->get("erro");
-                    return redirect()->back();
-
-                }
-            }
-        }
-        $soldador->email=$request->email;
         $soldador->id_empresa=$request->id_empresa;
         $soldador->criado=1;
         if($request->file('foto')) {
@@ -133,7 +119,6 @@ class SoldadorController extends Controller
     public function salvar(Request $request){
         $soldadores=Soldador::all();
         $lixoCpf =Soldador::onlyTrashed()->where("cpf","=",$request->cpf)->get();
-        $lixoEmail =Soldador::onlyTrashed()->where("email","=",$request->email)->get();
         foreach ($soldadores as $soldador){
             if($soldador->cpf==$request->cpf ||$lixoCpf->isNotEmpty()){
                 $request->session()->flash("erro","Já existe um soldador cadastrado com esse CPF.");
@@ -143,25 +128,16 @@ class SoldadorController extends Controller
 
             }
 
-            if($soldador->email) {
-                if ($soldador->email == $request->email||$lixoEmail->isNotEmpty() && !is_null($request->email)) {
-                    $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
-                    $usuario = session()->get("Usuario");
-                    $erro = $request->session()->get("erro");
-                    return view("cadastroSoldador")->with(["empresa"=>$request->id_empresa, "usuario"=>$usuario,"erro"=>$erro]);
-
-                }
-            }
         }
         $soldador=new Soldador();
         $soldador->nome=$request->nome;
         $soldador->cpf=$request->cpf;
         $soldador->sinete=$request->sinete;
         $soldador->matricula=$request->matricula;
-        $soldador->email=$request->email;
         $soldador->id_empresa=$request->id_empresa;
         $soldador->criado=1;
         $soldador->save();
+        $soldador->email=$soldador->empresa->email;
         if($request->file('foto')) {
             $imagem = $request->file('foto');
             if($imagem->getClientOriginalExtension()=="JPG"){

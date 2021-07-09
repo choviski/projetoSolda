@@ -83,19 +83,19 @@
     <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom ">
         <div class="wrapSoldadorCard popin">
             @if($usuario->tipo==1)
-            <div class="formDelBtn">
-                <form method="post" action="{{route("soldador.remover",['id'=>$soldador->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldador->nome}} ?')">
-                    @csrf
-                    @method('DELETE')
-                    <button class="delBtn"><i class="fas fa-times"></i></button>
-                </form>
-            </div>
-            <div class="formEditBtn">
-                <form method="get" action="{{route("soldador.edit",['soldador'=>$soldador->id])}}">
-                    @csrf
-                    <button class="editBtn"><i class="fas fa-pen"></i></button>
-                </form>
-            </div>
+                <div class="formDelBtn">
+                    <form method="post" action="{{route("soldador.remover",['id'=>$soldador->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir {{$soldador->nome}} ?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="delBtn"><i class="fas fa-times"></i></button>
+                    </form>
+                </div>
+                <div class="formEditBtn">
+                    <form method="get" action="{{route("soldador.edit",['soldador'=>$soldador->id])}}">
+                        @csrf
+                        <button class="editBtn"><i class="fas fa-pen"></i></button>
+                    </form>
+                </div>
             @endif
             <div id="soldadorCard" class="col-12 bg-white rounded shadow-sm mt-2" >
                 <div id="soldadorInfo" class="col-12 pt-3 d-flex ">
@@ -115,96 +115,96 @@
             </div>
         </div>
         @if($usuario->tipo==1)
-        <div id="addQualificacao" class="col-12 mt-2 p-0 popin">
+            <div id="addQualificacao" class="col-12 mt-2 p-0 popin">
 
-            <form method="post" action="{{route("novaQualificacao")}}">
-                @csrf
-                <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
-                <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar qualificação">
-            </form>
-        </div>
+                <form method="post" action="{{route("novaQualificacao")}}">
+                    @csrf
+                    <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
+                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar qualificação">
+                </form>
+            </div>
         @endif
         @foreach($qualificacoes as $qualificacao)
         <!-- Lista de qualificações do Soldador -->
-        <div class="popin">
-            @if($usuario->tipo==1)
-                <div class="formDelBtn">
-                    <form method="post" action="{{route("soldadorqualificacao.remover",['id'=>$qualificacao->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir a qualificação de código {{$qualificacao->cod_rqs}} ?')">
-                        @csrf
-                        @method('DELETE')
-                        <button class="delBtn"><i class="fas fa-times"></i></button>
-                    </form>
-                </div>
-                <div class="formEditBtn">
-                    <form method="get" action="{{route("soldadorqualificacao.edit",['soldadorqualificacao'=>$qualificacao->id])}}">
-                        @csrf
-                        <button class="editBtn"><i class="fas fa-pen"></i></button>
-                    </form>
-                </div>
-            @endif
-        <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-3 mb-1 d-flex justify-content-between ">
+            <div class="popin">
+                @if($usuario->tipo==1)
+                    <div class="formDelBtn">
+                        <form method="post" action="{{route("soldadorqualificacao.remover",['id'=>$qualificacao->id])}}" onsubmit="return confirm('Tem certeza que deseja excluir a qualificação de código {{$qualificacao->cod_rqs}} ?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="delBtn"><i class="fas fa-times"></i></button>
+                        </form>
+                    </div>
+                    <div class="formEditBtn">
+                        <form method="get" action="{{route("soldadorqualificacao.edit",['soldadorqualificacao'=>$qualificacao->id])}}">
+                            @csrf
+                            <button class="editBtn"><i class="fas fa-pen"></i></button>
+                        </form>
+                    </div>
+                @endif
+                <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-3 mb-1 d-flex justify-content-between ">
 
-            <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
-                <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
-                <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
-                <!-- a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{ {asset($qualificacao->caminho_certificado)}}','{ {$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a-->
-                <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="certificadoAjax({{$qualificacao->id}});getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>
-            </div>
+                    <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
+                        <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
+                        <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
+                        <!-- a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{ {asset($qualificacao->caminho_certificado)}}','{ {$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a-->
+                        <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="certificadoAjax({{$qualificacao->id}});getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>
+                    </div>
 
-            <div id="infoEsquerda" class="d-flex flex-column p-2 pt-1 pb-1 text-left">
-                <!-- Aqui vai o IF para setar o status da Badge -->
-                @if($qualificacao->status=="em-processo")
-                <span class="d-flex justify-content-end mb-0 pb-0">
+                    <div id="infoEsquerda" class="d-flex flex-column p-2 pt-1 pb-1 text-left">
+                        <!-- Aqui vai o IF para setar o status da Badge -->
+                        @if($qualificacao->status=="em-processo")
+                            <span class="d-flex justify-content-end mb-0 pb-0">
                     <p class="text-right bg-primary rounded p-1 text-white mb-1">Em Avaliação</p>
                 </span>
-                @if($usuario->tipo==2)
-                <form method="post" action="{{route("requalificar")}}" class="d-flex justify-content-end">
-                    @csrf
-                    <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
-                    <input type="submit" class="btn btn-secondary" value="Requalificar" disabled> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                </form>
-                    @elseif($usuario->tipo==1)
-                        <form method="post" action="{{route("avaliarRequalificacao")}}" class="d-flex justify-content-end">
-                            @csrf
-                            <input type="hidden" id="id" name="id" value="{{$qualificacao->id}}">
-                            <input type="submit" class="btn btn-secondary" value="Avaliar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                        </form>
-                    @endif
-                @elseif($qualificacao->status=="qualificado")
-                    <span class="d-flex justify-content-end mb-0 pb-0">
+                            @if($usuario->tipo==2)
+                                <form method="post" action="{{route("requalificar")}}" class="d-flex justify-content-end">
+                                    @csrf
+                                    <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
+                                    <input type="submit" class="btn btn-secondary" value="Requalificar" disabled> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                                </form>
+                            @elseif($usuario->tipo==1)
+                                <form method="post" action="{{route("avaliarRequalificacao")}}" class="d-flex justify-content-end">
+                                    @csrf
+                                    <input type="hidden" id="id" name="id" value="{{$qualificacao->id}}">
+                                    <input type="submit" class="btn btn-secondary" value="Avaliar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                                </form>
+                            @endif
+                        @elseif($qualificacao->status=="qualificado")
+                            <span class="d-flex justify-content-end mb-0 pb-0">
                         <p class="text-right bg-success rounded p-1 text-white mb-1">Qualificado</p>
                     </span>
-                    <form method="post" action="{{route("requalificar")}}" class="form-group d-flex justify-content-end">
-                        @csrf
-                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
-                        <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                    </form>
-                @elseif($qualificacao->status=="nao-qualificado")
-                    <span class="d-flex justify-content-end mb-0 pb-0">
+                            <form method="post" action="{{route("requalificar")}}" class="form-group d-flex justify-content-end">
+                                @csrf
+                                <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
+                                <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                            </form>
+                        @elseif($qualificacao->status=="nao-qualificado")
+                            <span class="d-flex justify-content-end mb-0 pb-0">
                         <p class="text-right bg-danger rounded p-1 text-white mb-1">Não Qualificado</p>
                     </span>
-                    <form method="post" action="{{route("requalificar")}}" class="form-group d-flex justify-content-end">
-                        @csrf
-                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
-                        <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                    </form>
-                @elseif($qualificacao->status=="atrasado")
-                    <span class="d-flex justify-content-end mb-0 pb-0">
+                            <form method="post" action="{{route("requalificar")}}" class="form-group d-flex justify-content-end">
+                                @csrf
+                                <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
+                                <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                            </form>
+                        @elseif($qualificacao->status=="atrasado")
+                            <span class="d-flex justify-content-end mb-0 pb-0">
                         <p class="text-right bg-warning rounded p-1 text-white mb-1">Atrasado</p>
                     </span>
-                    <form method="post" action="{{route("requalificar")}}" class="form-group d-flex justify-content-end">
-                        @csrf
-                        <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
-                        <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
-                    </form>
-                @endif
+                            <form method="post" action="{{route("requalificar")}}" class="form-group d-flex justify-content-end">
+                                @csrf
+                                <input type="hidden" id="soldadorQualificacao" name="soldadorQualificacao" value="{{$qualificacao->id}}">
+                                <input type="submit" class="btn btn-secondary" value="Requalificar"> <!-- Mini IF para verificar o Status e setar como DISABLED el botao -->
+                            </form>
+                    @endif
                     <!-- Aqui terminha o IF para setar o status da Badge -->
-                <p class="text-right m-0 mb-0">Tentativas de Requalificação: 0</p>
+                        <p class="text-right m-0 mb-0">Tentativas de Requalificação: 0</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
         @endforeach
-        <!-- Fim da lista de qualificações -->
+    <!-- Fim da lista de qualificações -->
         @if(isset($rota))
             @if($rota=="hubSoldadores")
                 <a href="{{route("hubSoldadores")}}"><button class="btn btn-outline-light mt-2 mb-2 text-dark col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
@@ -231,7 +231,7 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
     >
-        </script>
+    </script>
     <script>
         var nome_certificado="";
         var links=[];
@@ -264,6 +264,7 @@
                 type:'get',
             })
                 .done(function (data){
+                    console.log(data);
                     links=data.certificados;
                     urls=window.links;
                     var link = document.createElement('a');
@@ -271,7 +272,9 @@
                     link.style.display = 'none';
                     document.body.appendChild(link);
                     for (var i = 0; i < urls.length; i++) {
-                        link.setAttribute('href', urls[i]);
+                        // no site da infosolda fica como: link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
+                        link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
+                        // local host fica como: link.setAttribute('href',urls[i]);
                         link.click();
                     }
                     document.body.removeChild(link);

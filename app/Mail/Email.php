@@ -51,7 +51,8 @@ class email extends Mailable
                 }
                 $qualificacao->save();
                 $this->subject("SUA QUALIFICACAO ESTÁ PRESTES A VENCER");
-                $this->cc("infosolda@infosolda.com.br","infosolda");
+                $this->cc("infosolda@infolda.com.br","infosolda");
+                $this->cc("tsi.soldagem@gmail.com","TSI SOLDAGEM");
                 $this->to("$email", "$nome");
                 return $this->markdown('mail.email')->with(["dado"=>$qualificacao,"mensagem"=>$mensagem]);
             }

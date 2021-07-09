@@ -1,0 +1,14 @@
+ $sql="select distinct A.street as rua_1,B.street as rua_2,
+     A.pub_utc_date as dia_1, B.pub_utc_date as dia_2,
+     ST_distance(A.geom::geography,B.geom::geography) as distancia from waze.jams as B
+inner join waze.jams as A on (date(A.pub_utc_date)=date(B.pub_utc_date))
+where date(A.pub_utc_date) between '".$_GET['data_inicial']."' and '".$_GET['data_final']."'
+and date(B.pub_utc_date) between '".$_GET['data_inicial']."') and '".$_GET['data_final']."'
+and (( A.pub_utc_date:: time) between '".$_GET['hora_inicial']."' and '".$_GET['hora_final']."')
+and (( B.pub_utc_date:: time) between '".$_GET['hora_inicial']."' and '".$_GET['hora_final']."')
+and A.street <> B.street
+and (A.level>= ".$_GET['level']." or A.level=-1) and (B.level>=".$_GET['level']." or B.level=-1)
+and A.delay>=".$_GET['delay']." and B.delay>=".$_GET['delay']."
+and A.speed <= ".$_GET['speed']."and B.speed <=".$_GET['speed']."
+and (ST_distance(A.geom::geography,B.geom::geography))<=2000
+limit ".$_GET['limit'].";";

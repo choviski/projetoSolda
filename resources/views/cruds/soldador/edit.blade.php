@@ -66,9 +66,6 @@
                 <label  for="matricula">Matricula:</label>
                 <input type="text" class="form-control" id="matricula" value="{{$soldador->matricula}}" name="matricula" required>
 
-                <label  for="email">E-mail:</label>
-                <input type="email" class="form-control" id="email" value="{{$soldador->email}}" name="email">
-
                 <label for="id_empresa">Empresa:</label>
                 <select class="form-control" id="id_empresa" name="id_empresa" required>
                     <option value="{{$soldador->empresa->id}}" selected>{{$soldador->empresa->nome_fantasia}}</option>

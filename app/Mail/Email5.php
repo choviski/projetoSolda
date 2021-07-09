@@ -30,9 +30,10 @@ class Email5 extends Mailable
     public function build()
     {
         $this->subject("HÁ UM NOVO CLIENTE INTERESSADO NO APP RASTREA");
-        $this->to("infosolda@infosolda.com.br", "InfoSolda");
+        $this->to("wojeicchowskinicholas@gmail.com", "InfoSolda");
         $mensagem="Entre em contato com o cliente pelo email {$this->usuario->email},
         ou pelo telefone {$this->usuario->telefone}.";
+        $this->cc("tsi.soldagem@gmail.com","TSI SOLDAGEM");
         return $this->markdown('mail.email5')->with(["mensagem"=>$mensagem]);
     }
 }

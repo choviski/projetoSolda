@@ -201,7 +201,7 @@
             }
         }
     </style>
-    <script>
+        <script>
         function formataTelefone(){
             var telefone = document.getElementById("telefone").value;
             if(telefone.length==11){

@@ -18,7 +18,7 @@ class CreateSoldadorsTable extends Migration
             $table->string("nome");
             $table->string("sinete");
             $table->string("matricula");
-            $table->string("email",100)->unique()->nullable();
+            $table->string("email",100)->nullable();
             $table->string("cpf",14)->unique();
             $table->string("foto")->nullable();
             $table->integer("criado");
