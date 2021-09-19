@@ -127,6 +127,7 @@ class SoldadorController extends Controller
                 return view("cadastroSoldador")->with(["empresa"=>$request->id_empresa, "usuario"=>$usuario,"erro"=>$erro]);
 
             }
+
         }
         $soldador=new Soldador();
         $soldador->nome=$request->nome;
