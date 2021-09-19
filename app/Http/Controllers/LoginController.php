@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Acesso;
 use App\Http\Controllers\Controller;
 use App\SoldadorQualificacao;
 use App\Usuario;
@@ -41,6 +42,9 @@ class LoginController extends Controller
 
             if ($Usuario->senha==$request->senha){
                 $request->session()->put("Usuario",$Usuario);
+                $acesso = new Acesso();
+                $acesso->id_usuario=$Usuario->id;
+                $acesso->save();
                 return redirect()->route("email");
             }
             $request->session()->flash("mensagem","Usuario ou senha incorretos");

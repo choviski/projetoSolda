@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Acesso' => $baseDir . '/app/Acesso.php',
     'App\\Certificado' => $baseDir . '/app/Certificado.php',
     'App\\Cidade' => $baseDir . '/app/Cidade.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -44,6 +45,8 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Inspetor' => $baseDir . '/app/Inspetor.php',
+    'App\\Mail\\Email4' => $baseDir . '/app/Mail/Email4.php',
+    'App\\Mail\\Email5' => $baseDir . '/app/Mail/Email5.php',
     'App\\Norma' => $baseDir . '/app/Norma.php',
     'App\\NormaQualificacao' => $baseDir . '/app/NormaQualificacao.php',
     'App\\Processo' => $baseDir . '/app/Processo.php',

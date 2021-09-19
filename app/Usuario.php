@@ -12,5 +12,8 @@ class Usuario extends Model
     public function empresa(){
         return $this->hasOne('App\Empresa', 'id_usuario','id');
     }
+    public function usuario(){
+        return $this->hasOne("App\Usuario",'id_usuario','id');
+    }
     use SoftDeletes;
 }
