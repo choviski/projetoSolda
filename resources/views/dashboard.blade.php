@@ -25,7 +25,7 @@
 
 
     </style>
-    <!-- "Header" | Vai ficar embaixo do cabeçalho (quando tiver um) -->
+   
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">DASHBOARD:</p>
@@ -92,10 +92,7 @@
                 <div id="warp-table" style="font-size: 1rem">
 
                 </div>
-                <!---->
-
-                <!---->
-
+              
                 <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnDownloadTable" onclick="printTable()" style="display: none" >Exportar como PDF <i class="far fa-file-pdf"></i> </a>
                 <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTable" onclick="excel()" style="display: none">Exportar para Excel <i class="far fa-file-excel"></i></a>
 
@@ -203,7 +200,7 @@
         });
     </script>
 
-    <script> // SCRIPT PARA O GRAFICO DO ANIMAL //
+    <script> // SCRIPT PARA O GRAFICO DAS EMPRESAS //
         var Label=[];
         @foreach($dados['meses_empresas'] as $numero =>$valor)
         var add = Label.push("{{($valor)}}");

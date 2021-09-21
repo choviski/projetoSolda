@@ -19,9 +19,7 @@ use Illuminate\Http\Request;
 
 
 
-//Route::get('/hubSoldadores',"HubSoldadoresController@hubSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class,CheckAdm::class)->name("entidades");
-//Route::get('/inicio',"InicioController@inicio")->middleware(CheckSession::class)->name("paginaInicial");
 Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class,CheckAdm::class)->name("cadastrar");
 Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class,CheckAdm::class)->name("requalificacoes");
 Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(CheckSession::class)->name("editarUsuario");
@@ -89,6 +87,7 @@ Route::get('/dadosEmpresaAjax/{id}', "DashboardController@dadosEmpresaAjax")->na
 Route::get('/certificadoAjax/{id}', "InicioController@certificadoAjax")->name("certificadoAjax")->middleware(CheckSession::class);
 
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('/controleAcessoAjax/{dataInicial}/{dataFinal}', "AcessoController@controleAcessoAjax")->name("controleAcessoAjax")->middleware(CheckSession::class,CheckAdm::class);
 
 //Route::resource("/soldadorqualificacao","SoldadorQualificacaoController",['except'=>'destroy'])->middleware(CheckSession::class);
 //Route::delete('/soldadorqualificacao/remover/{id}', "SoldadorQualificacaoController@destroy")->name('soldadorqualificacao.remover')->middleware(CheckSession::class);
@@ -126,15 +125,15 @@ Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
 Route::get('envio-email4/{id}',function ($id){
-    $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email4($qualificacao));
+    //$qualificacao=\App\SoldadorQualificacao::find($id);
+    //\Illuminate\Support\Facades\Mail::send(new \App\Mail\Email4($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email4");
 Route::get('envio-email5',function (Request $request){
-    $usuario = new stdClass();
-    $usuario->email=$request->email;
-    $usuario->telefone=$request->telefone;
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email5($usuario));
+    //$usuario = new stdClass();
+    //$usuario->email=$request->email;
+    //$usuario->telefone=$request->telefone;
+    //\Illuminate\Support\Facades\Mail::send(new \App\Mail\Email5($usuario));
     return redirect()->route("inicio");
 })->name("email5");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
@@ -146,7 +145,7 @@ Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("no
 
 
 Route::get('envio-email',function (){
-
+        /*
         $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
        "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
         foreach ($qualificacaos as $qualificacao) {
@@ -155,17 +154,17 @@ Route::get('envio-email',function (){
                 \Illuminate\Support\Facades\Mail::cc("infosolda@infosolda.com.br");
             }
         }
-       return redirect()->route("paginaInicial");
+       */return redirect()->route("paginaInicial");
 })->name("email");
 
 Route::get('envio-email2/{id}',function ($id){
-    $usuario=\App\Usuario::find($id);
-            \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email2($usuario));
+    //$usuario=\App\Usuario::find($id);
+    //\Illuminate\Support\Facades\Mail::send(new \App\Mail\Email2($usuario));
     return redirect()->route("paginaInicial");
 })->name("email2");
 Route::get('envio-email3/{id}',function ($id){
-    $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email3($qualificacao));
+    //$qualificacao=\App\SoldadorQualificacao::find($id);
+    //\Illuminate\Support\Facades\Mail::send(new \App\Mail\Email3($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email3");
 
@@ -178,6 +177,7 @@ Route::get('/sair', "LoginController@sair")->name("sair");
 Route::post('/perfilSoldador',"SoldadorController@perfilSoldador")->middleware(CheckSession::class)->name("perfilSoldador");
 Route::get('/listagemEmpresa',"InicioController@listarEmpresas")->middleware(CheckSession::class,CheckAdm::class)->name("paginaInicial");
 Route::get('/dashboard',"DashboardController@getMonthlyAllData")->middleware(CheckSession::class,CheckAdm::class)->name("dashboard");
+Route::get('/controleAcesso',"AcessoController@acessoControler")->middleware(CheckSession::class,CheckAdm::class)->name("controleAcesso");
 Route::get('/listagemSoldador',"InicioController@listarSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 Route::post('/listagemSoldadorFiltrados',"SoldadorController@listarFiltrado")->middleware(CheckSession::class)->name("soldadoresFiltrados");
 

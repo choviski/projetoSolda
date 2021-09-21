@@ -12,7 +12,7 @@
         .nomeEmpresa{
             position: relative;
             top:34px;
-            left: -15px;
+            left: -10px;
             margin-bottom: 0px;
             background-color: white;
             width:auto;
@@ -41,11 +41,11 @@
             <div id="dadosRequalificacoes">
                 @include('cardRequalificacoes')
             </div>
+            <!-- 
             <div class="ajax-load text-center mt-2" style="display: none">
                 <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando requalificações>
             </div>
-
-
+            -->
         </div>
     </div>
     <script
