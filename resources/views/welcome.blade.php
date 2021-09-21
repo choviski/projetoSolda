@@ -55,7 +55,7 @@
         }
         .info{
             position: absolute;
-            top: 100%;
+            top: 97%;
             z-index: 5;
             width: 100%;
             background: white;
@@ -229,8 +229,8 @@
                 <form action="{{route("login")}}" method="post" class="form-group col-12 mb-5 formulario" >
                     @csrf
                     <input type="email" name="email" class="form-control mt-5" placeholder="Email" style="font-size: 20px;border-radius: 15px;"  required>
-                    <input type="password" name="senha" class="form-control mt-4" placeholder="Senha" style="font-size: 20px;border-radius: 15px;" required>
-                    <input type="submit" value="Entrar" class="btn btn-block btn-outline-light btn-login  mt-4 mb-2" style="font-size: 20px;font-weight: bold;border-radius: 15px;" >
+                    <input type="password" name="senha" class="form-control mt-3" placeholder="Senha" style="font-size: 20px;border-radius: 15px;" required>
+                    <input type="submit" value="Entrar" class="btn btn-block btn-outline-light btn-login  mt-3 mb-2" style="font-size: 20px;font-weight: bold;border-radius: 15px;" >
                     @if(!empty($mensagem))
                         <div class="alert alert-danger mt-2">
                             {{$mensagem}}

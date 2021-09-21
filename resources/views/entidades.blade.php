@@ -2,13 +2,11 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
-    <!-- "Header" | Vai ficar embaixo do cabeçalho (quando tiver um) -->
 
         <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
             <hr class="p-0 m-0 mb-1">
             <p class="lead p-1 m-0" style="font-size: 22px">GERENCIAR ENTIDADES:</p>
         </div>
-        <!-- Conteudo da CRUD -->
 
         <div class="container-fluid">
             <div class="row text-center d-flex justify-content-center">
@@ -16,6 +14,12 @@
                     <a href="{{route("dashboard")}}" class="text-dark">
                         <i class="fas fa-chart-line fa-3x"></i>
                         <h4 class="mt-2">Dados</h4>
+                    </a>
+                </div>
+                <div class="col-md-9 col-sm-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
+                    <a href="{{route("controleAcesso")}}" class="text-dark">
+                    <i class="fas fa-calendar-alt fa-3x"></i>
+                        <h4 class="mt-2">Controle de Acesso</h4>
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">

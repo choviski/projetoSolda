@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use DateTime;
 use File;
 use Illuminate\Support\Str;
+use Psr\Log\NullLogger;
 
 class SoldadorController extends Controller
 {
@@ -89,7 +90,8 @@ class SoldadorController extends Controller
         }
         $soldador->save();
 
-        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);}
+        return redirect()->route("paginaInicial")->with(["usuario"=>$usuario]);
+    }
 
     public function destroy(Request $request)
     {
