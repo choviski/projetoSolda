@@ -47,7 +47,7 @@
                 <input type="date" class="form-control" id="data_qualificacao" name="data_qualificacao" required value="{{$soldadorqualificacao->data_qualificacao}}">
 
                 <label  for="validade_qualificacao">Insira a validade da qualificação:</label>
-                <input type="date" class="form-control" id="validade_qualificacao" name="validade_qualificacao" required value="{{$soldadorqualificacao->lancamento_qualificacao}}">
+                <input type="date" class="form-control" id="validade_qualificacao" name="validade_qualificacao" required value="{{$soldadorqualificacao->validade_qualificacao}}">
 
                 <label  for="lancamento_qualificacao">Insira o lançamento da qualificação:</label>
                 <input type="date" class="form-control" id="lancamento_qualificacao" name="lancamento_qualificacao" required value="{{$soldadorqualificacao->lancamento_qualificacao}}">

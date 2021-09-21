@@ -186,16 +186,26 @@ class EmpresaController extends Controller
     public function destroy(Request $request)
     {
         $empresa=Empresa::find($request->id);
+        $empresa->cnpj=Str::random(18);
+        $empresa->email=Str::random(20);
+        $empresa->save();
         $soldadores=Soldador::where("id_empresa","=",$empresa->id)->get();
         foreach ($soldadores as $soldador){
             $qualificacaos=SoldadorQualificacao::where("id_soldador","=",$soldador->id)->get();
             foreach ($qualificacaos as $qualificacao){
                 SoldadorQualificacao::destroy($qualificacao->id);
             }
+            $soldador=Soldador::find($soldador->id);
+            $soldador->cpf=Str::random(14);
+            $soldador->email=Str::random(20);
+            $soldador->save();
             Soldador::destroy($soldador->id);
         }
         Empresa::destroy($request->id);
         Endereco::destroy($empresa->id_endereco);
+        $usuario=Usuario::find($empresa->id_usuario);
+        $usuario->email=Str::random(20);
+        $usuario->save();
         Usuario::destroy($empresa->id_usuario);
         return redirect()->back();
     }

@@ -88,35 +88,35 @@
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
 
 
-               <div class="d-flex justify-content-center">
-                <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center" data-ride="carousel" style="width: 300px">
-                    <ol class="carousel-indicators">
-                        @foreach($fotos as $foto)
-                            <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->index==0)class="active" @endif></li>
-                        @endforeach
-                    </ol>
-                    <div class="carousel-inner" >
-                        @foreach($fotos as $foto)
-                            @if($loop->index==0)
-                                <div class="carousel-item active align-items-center">
-                                    <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
-                                </div>
-                            @else
-                                <div class="carousel-item ">
-                                    <img class="d-block" src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
-                                </div>
-                            @endif
-                        @endforeach
+                <div class="d-flex justify-content-center">
+                    <div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center" data-ride="carousel" style="width: 300px">
+                        <ol class="carousel-indicators">
+                            @foreach($fotos as $foto)
+                                <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->index==0)class="active" @endif></li>
+                            @endforeach
+                        </ol>
+                        <div class="carousel-inner" >
+                            @foreach($fotos as $foto)
+                                @if($loop->index==0)
+                                    <div class="carousel-item active align-items-center">
+                                        <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
+                                    </div>
+                                @else
+                                    <div class="carousel-item ">
+                                        <img class="d-block" src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+                            <span class="sr-only text-secondary">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+                            <span class="sr-only text-secondary">Next</span>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
-                        <span class="sr-only text-secondary">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
-                        <span class="sr-only text-secondary">Next</span>
-                    </a>
-                </div>
                 </div>
                 <a  onclick="getFotos();downloadAll(window.links);" class="btn btn-outline-primary btn-block mt-1">Baixar fotos</a>
                 <label  for="downloadCerificado">Certificado atual da quailificação:</label>
@@ -197,20 +197,20 @@
             links=[];
         }
         function getFotos(){
-        links = [@foreach($fotos as $foto)@if(!$loop->last)'{{asset($foto->caminho)}}',@else'{{asset($foto->caminho)}}'@endif @endforeach
-         ];
+            links = [@foreach($fotos as $foto)@if(!$loop->last)'{{asset($foto->caminho)}}',@else'{{asset($foto->caminho)}}'@endif @endforeach
+            ];
         }
         function downloadAll(urls) {
-             var link = document.createElement('a');
-             link.setAttribute('download', "corpo de prova");
-             link.style.display = 'none';
-             document.body.appendChild(link);
-             for (var i = 0; i < urls.length; i++) {
-                 link.setAttribute('href', urls[i]);
-                 link.click();
-             }
-             document.body.removeChild(link);
-             links=[];
+            var link = document.createElement('a');
+            link.setAttribute('download', "corpo de prova");
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            for (var i = 0; i < urls.length; i++) {
+                link.setAttribute('href', urls[i]);
+                link.click();
+            }
+            document.body.removeChild(link);
+            links=[];
 
         }
 

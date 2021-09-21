@@ -486,6 +486,7 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
     );
 
     public static $classMap = array (
+        'App\\Acesso' => __DIR__ . '/../..' . '/app/Acesso.php',
         'App\\Certificado' => __DIR__ . '/../..' . '/app/Certificado.php',
         'App\\Cidade' => __DIR__ . '/../..' . '/app/Cidade.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -524,6 +525,8 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Inspetor' => __DIR__ . '/../..' . '/app/Inspetor.php',
+        'App\\Mail\\Email4' => __DIR__ . '/../..' . '/app/Mail/Email4.php',
+        'App\\Mail\\Email5' => __DIR__ . '/../..' . '/app/Mail/Email5.php',
         'App\\Norma' => __DIR__ . '/../..' . '/app/Norma.php',
         'App\\NormaQualificacao' => __DIR__ . '/../..' . '/app/NormaQualificacao.php',
         'App\\Processo' => __DIR__ . '/../..' . '/app/Processo.php',

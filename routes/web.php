@@ -5,7 +5,7 @@ use App\Http\Middleware\CheckAdm;
 use App\SoldadorQualificacao;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,9 +127,16 @@ Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->na
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
 Route::get('envio-email4/{id}',function ($id){
     $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email4($qualificacao));
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email4($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email4");
+Route::get('envio-email5',function (Request $request){
+    $usuario = new stdClass();
+    $usuario->email=$request->email;
+    $usuario->telefone=$request->telefone;
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email5($usuario));
+    return redirect()->route("inicio");
+})->name("email5");
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);
@@ -139,25 +146,26 @@ Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("no
 
 
 Route::get('envio-email',function (){
-    /*
+
         $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
        "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
         foreach ($qualificacaos as $qualificacao) {
             if ($qualificacao->tempo < 40) {
                 \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
+                \Illuminate\Support\Facades\Mail::cc("infosolda@infosolda.com.br");
             }
         }
-    */    return redirect()->route("paginaInicial");
+       return redirect()->route("paginaInicial");
 })->name("email");
 
 Route::get('envio-email2/{id}',function ($id){
     $usuario=\App\Usuario::find($id);
-            \Illuminate\Support\Facades\Mail::send(new \App\Mail\email2($usuario));
+            \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email2($usuario));
     return redirect()->route("paginaInicial");
 })->name("email2");
 Route::get('envio-email3/{id}',function ($id){
     $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\email3($qualificacao));
+    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email3($qualificacao));
     return redirect()->route("paginaInicial");
 })->name("email3");
 
