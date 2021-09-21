@@ -77,7 +77,6 @@ class QualificacaoController extends Controller
         $qualificacao->aviso=0;
         $qualificacao->texto=$request->texto;
 
-
         $qualificacao->status="em-processo";
         $qualificacao->validade_qualificacao=$request->validade_qualificacao;
         $qualificacao->lancamento_qualificacao=$request->lancamento_qualificacao;
@@ -152,10 +151,11 @@ class QualificacaoController extends Controller
             $requalificacao = SoldadorQualificacao::find($request->id);
             $requalificacao->status = "nao-qualificado";
             $requalificacao->aviso=1;
+            $requalificacao->save();
             foreach ($request->files as $todososcertificados) {
                 foreach ($todososcertificados as $certificado) {
                     $certificadoRequalificacao = new Certificado();
-                    $certificadoRequalificacao->id_requalificacao = $certificadoRequalificacao->id;
+                    $certificadoRequalificacao->id_requalificacao = $requalificacao->id;
                     $certificadoRequalificacao->caminho='';
                     //chmod($request->file->getPath(),0755);
                     chmod($certificado->getRealPath(),0755);
@@ -166,7 +166,7 @@ class QualificacaoController extends Controller
                     $certificadoRequalificacao->save();
                 }
             }
-            $requalificacao->save();
+
             return redirect()->route("email3",['id'=> $requalificacao->id]);
 
             return redirect()->route("requalificacoes");

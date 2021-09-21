@@ -15,7 +15,7 @@
             padding: 0px;
             display: none;
         }
-        #btnFoto{
+        #btncertificados{
             background-color: #59acff;
             cursor: pointer;
             color: white;
@@ -27,7 +27,7 @@
             text-align: center;
             transition: 0.3s ease;
         }
-        #btnFoto:hover{
+        #btncertificados:hover{
             background-color: #0275d8;
         }
     </style>
@@ -80,9 +80,9 @@
                 <label  for="nome_testemunha">Testemunha:</label>
                 <input type="text" class="form-control" id="nome_testemunha" placeholder="Testemunha" name="testemunha" required value="{{$requalificacao->nome_testemunha}}, CPF: {{$requalificacao->cpf_testemunha}}" disabled>
 
-                    <label for="foto" id="labelFotos" class="mt-2 col-12 p-0">Insira o(s) certificado(s):</label>
-                <label for="foto" id="btnFoto" class="">Escolha o(s) certificado(s)</label>
-                <input type="file" class="" id="foto" placeholder="Insira o(s) certificado(s):" name="certificados[]" multiple required>
+                <label for="certificados" id="labelcertificados" class="mt-2 col-12 p-0">Insira o(s) certificado(s):</label>
+                <label for="certificados" id="btncertificados" class="">Escolha o(s) certificado(s)</label>
+                <input type="file" class="" id="certificados" placeholder="Insira o(s) certificado(s):" name="certificados[]" multiple required>
 
 
                 <label  for="caminho_certificado">Foto do corpo de prova:</label>
@@ -102,7 +102,7 @@
                                     <img class="d-block" height="200px" src="{{asset($foto->caminho)}}" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
                                 </div>
                             @else
-                                <div class="carousel-item  ">
+                                <div class="carousel-item ">
                                     <img class="d-block" src="{{asset($foto->caminho)}}"  height="200px" id="imagem{{$foto->id}}" onclick="fullscreen('{{asset($foto->caminho)}}')" style="margin: auto">
                                 </div>
                             @endif
@@ -125,8 +125,8 @@
                 <label  for="descricao">Descrição do processo de soldagem:</label>
                 <textarea type="text" class="form-control" id="descricao"  placeholder="Descrição do processo que você ultilizou na soldagem" name="texto"  required  disabled>{{$requalificacao->texto}}</textarea>
 
-                <input type="submit" class="btn btn-outline-success mt-3 col-12" value="Aceitar" id="aceitar">
-                <input type="submit" class="btn btn-outline-danger mt-3 col-12" value="Negar"  id="negar">
+                <input type="submit" class="btn btn-outline-success mt-3 col-12" value="Aceitar" id="aceitar" onclick="verificarCertificado()">
+                <input type="submit" class="btn btn-outline-danger mt-3 col-12" value="Negar"  id="negar" onclick="verificarCertificado()">
                 <input type="hidden" value="{{$requalificacao->id}}" name="id">
                 <input type="hidden" value="0" name="aceito" id="aceito">
             </div>
@@ -141,6 +141,14 @@
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"
     >
+    </script>
+
+    <script>
+        function verificarCertificado() {
+            if (document.getElementById("certificados").files.length == 0) {
+                alert("É necessaria a inserção de pelo menos um certificado.");
+            }
+        }
     </script>
 
     <script>
@@ -209,15 +217,15 @@
 
     </script>
     <script >
-        $("#foto").on("change", function(){
-            nFotos = document.getElementById('foto').files.length;
+        $("#certificados").on("change", function(){
+            nFotos = document.getElementById('certificados').files.length;
             if(nFotos>0){
-                document.getElementById('btnFoto').innerHTML='Certificados escolhidos: '+nFotos;
-                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+                document.getElementById('btncertificados').innerHTML='Certificados escolhidos: '+nFotos;
+                document.getElementById('btncertificados').style.backgroundColor='#0275d8';
 
             }else{
-                document.getElementById('btnFoto').innerHTML='Escolha o(s) certificado(s):';
-                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+                document.getElementById('btncertificados').innerHTML='Escolha o(s) certificado(s):';
+                document.getElementById('btncertificados').style.backgroundColor='#59acff';
             }
         })
     </script>

@@ -264,6 +264,7 @@
                 type:'get',
             })
                 .done(function (data){
+                    console.log(data);
                     links=data.certificados;
                     urls=window.links;
                     var link = document.createElement('a');
@@ -271,7 +272,9 @@
                     link.style.display = 'none';
                     document.body.appendChild(link);
                     for (var i = 0; i < urls.length; i++) {
-                        link.setAttribute('href', urls[i]);
+                        // no site da infosolda fica como: link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
+                        link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
+                        // local host fica como: link.setAttribute('href',urls[i]);
                         link.click();
                     }
                     document.body.removeChild(link);

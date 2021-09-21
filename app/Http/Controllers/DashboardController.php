@@ -148,6 +148,7 @@ class DashboardController extends Controller
     }
 
     public function requalificacoesMensaisAjax(Request $request,$mes,$ano){
+
         $requalificacoesMensais=SoldadorQualificacao::whereMonth("created_at","=",$mes)->whereYear("created_at",'=',$ano)->get();
         if ($request->ajax()){
             $view = view('tabelaRequalificacao')->with(["requalificacaos"=>$requalificacoesMensais])->render();

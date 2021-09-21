@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use DateTime;
 use File;
 use Illuminate\Support\Str;
+use Psr\Log\NullLogger;
 
 class SoldadorController extends Controller
 {
@@ -82,7 +83,7 @@ class SoldadorController extends Controller
         $lixoEmail =Soldador::onlyTrashed()->where("email","=",$request->email)->get();
         foreach ($soldadores as $soldadore) {
             if ($soldadore->email) {
-                if ($soldadore->email == $request->email && $soldadore->id != $soldador->id || $lixoEmail->isNotEmpty()) {
+                if ($soldadore->email == $request->email && $soldadore->id != $soldador->id || $lixoEmail->isNotEmpty() && !is_null($request->email)) {
                     $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
                     $usuario = session()->get("Usuario");
                     $erro = $request->session()->get("erro");
@@ -144,7 +145,7 @@ class SoldadorController extends Controller
             }
 
             if($soldador->email) {
-                if ($soldador->email == $request->email||$lixoEmail->isNotEmpty()) {
+                if ($soldador->email == $request->email||$lixoEmail->isNotEmpty() && !is_null($request->email)) {
                     $request->session()->flash("erro", "Já existe um soldador cadastrado com esse email.");
                     $usuario = session()->get("Usuario");
                     $erro = $request->session()->get("erro");
