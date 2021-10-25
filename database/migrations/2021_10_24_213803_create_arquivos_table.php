@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQualificacaosTable extends Migration
+class CreateArquivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateQualificacaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('qualificacoes', function (Blueprint $table) {
+        Schema::create('arquivos', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger("id_processo");
-            $table->foreign("id_processo")->references("id")->on("processos");
+            $table->string("caminho");
             $table->unsignedBigInteger("id_eps");
             $table->foreign("id_eps")->references("id")->on("eps");
-            $table->text("descricao");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateQualificacaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualificacaos');
+        Schema::dropIfExists('arquivos');
     }
 }

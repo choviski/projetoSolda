@@ -19,4 +19,7 @@ class Qualificacao extends Model
     public function processo(){
         return $this->belongsTo("App\Processo",'id_processo','id');
     }
+    public function eps(){
+        return $this->belongsTo("App\Eps",'id_eps','id');
+    }
 }

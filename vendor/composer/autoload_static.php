@@ -487,6 +487,7 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
 
     public static $classMap = array (
         'App\\Acesso' => __DIR__ . '/../..' . '/app/Acesso.php',
+        'App\\Arquivo' => __DIR__ . '/../..' . '/app/Arquivo.php',
         'App\\Certificado' => __DIR__ . '/../..' . '/app/Certificado.php',
         'App\\Cidade' => __DIR__ . '/../..' . '/app/Cidade.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -494,8 +495,10 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'App\\Empresa' => __DIR__ . '/../..' . '/app/Empresa.php',
         'App\\EmpresaContato' => __DIR__ . '/../..' . '/app/EmpresaContato.php',
         'App\\Endereco' => __DIR__ . '/../..' . '/app/Endereco.php',
+        'App\\Eps' => __DIR__ . '/../..' . '/app/Eps.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Foto' => __DIR__ . '/../..' . '/app/Foto.php',
+        'App\\Http\\Controllers\\AcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/AcessoController.php',
         'App\\Http\\Controllers\\CidadeController' => __DIR__ . '/../..' . '/app/Http/Controllers/CidadeController.php',
         'App\\Http\\Controllers\\ContatoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContatoController.php',
         'App\\Http\\Controllers\\ContatoEmpresaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContatoEmpresaController.php',
@@ -527,6 +530,7 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'App\\Inspetor' => __DIR__ . '/../..' . '/app/Inspetor.php',
         'App\\Mail\\Email4' => __DIR__ . '/../..' . '/app/Mail/Email4.php',
         'App\\Mail\\Email5' => __DIR__ . '/../..' . '/app/Mail/Email5.php',
+        'App\\Mail\\Email6' => __DIR__ . '/../..' . '/app/Mail/Email6.php',
         'App\\Norma' => __DIR__ . '/../..' . '/app/Norma.php',
         'App\\NormaQualificacao' => __DIR__ . '/../..' . '/app/NormaQualificacao.php',
         'App\\Processo' => __DIR__ . '/../..' . '/app/Processo.php',

@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Acesso' => $baseDir . '/app/Acesso.php',
+    'App\\Arquivo' => $baseDir . '/app/Arquivo.php',
     'App\\Certificado' => $baseDir . '/app/Certificado.php',
     'App\\Cidade' => $baseDir . '/app/Cidade.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -14,8 +15,10 @@ return array(
     'App\\Empresa' => $baseDir . '/app/Empresa.php',
     'App\\EmpresaContato' => $baseDir . '/app/EmpresaContato.php',
     'App\\Endereco' => $baseDir . '/app/Endereco.php',
+    'App\\Eps' => $baseDir . '/app/Eps.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Foto' => $baseDir . '/app/Foto.php',
+    'App\\Http\\Controllers\\AcessoController' => $baseDir . '/app/Http/Controllers/AcessoController.php',
     'App\\Http\\Controllers\\CidadeController' => $baseDir . '/app/Http/Controllers/CidadeController.php',
     'App\\Http\\Controllers\\ContatoController' => $baseDir . '/app/Http/Controllers/ContatoController.php',
     'App\\Http\\Controllers\\ContatoEmpresaController' => $baseDir . '/app/Http/Controllers/ContatoEmpresaController.php',
@@ -47,6 +50,7 @@ return array(
     'App\\Inspetor' => $baseDir . '/app/Inspetor.php',
     'App\\Mail\\Email4' => $baseDir . '/app/Mail/Email4.php',
     'App\\Mail\\Email5' => $baseDir . '/app/Mail/Email5.php',
+    'App\\Mail\\Email6' => $baseDir . '/app/Mail/Email6.php',
     'App\\Norma' => $baseDir . '/app/Norma.php',
     'App\\NormaQualificacao' => $baseDir . '/app/NormaQualificacao.php',
     'App\\Processo' => $baseDir . '/app/Processo.php',
