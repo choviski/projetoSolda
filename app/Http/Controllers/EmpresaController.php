@@ -335,6 +335,7 @@ class EmpresaController extends Controller
         $enderecos=Cidade::all();
         $inspetor=Inspetor::all();
         $usuario = session()->get("Usuario");
+ 
         $senhaAleatoria = Str::random(12);
         return view("cadastroEmpresa")->with(["cidades"=>$enderecos,"inspetors"=>$inspetor,"usuario"=>$usuario,"senha"=>$senhaAleatoria,"erro"=>$erro]);
 

@@ -6,7 +6,7 @@
         <hr>
         <p class="lead">Gerenciar Empresas:</p>
     </div>
-
+    
     <div class="row col-12 d-flex justify-content-center mt-2 ">
         <form  class="col-12 mt-2" action="{{Route('empresa.store')}}" method="post">
             @csrf
@@ -40,7 +40,7 @@
                         <option value="{{$endereco->id}}">{{$endereco->cidade->nome}}, {{$endereco->cidade->estado}}, {{$endereco->bairro}}, {{$endereco->rua}}</option>
                     @endforeach
                 </select>
-
+                
                 <label for="id_inspetor">Inspetor:</label>
                 <select class="form-control" id="id_inspetor" name="id_inspetor" required>
                     <option value="-1">Selecione o Inspetor</option>

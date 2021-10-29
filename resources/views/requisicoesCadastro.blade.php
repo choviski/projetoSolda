@@ -12,7 +12,7 @@
         .nomeEmpresa{
             position: relative;
             top:34px;
-            left: -15px;
+            left: -1px;
             margin-bottom: 0px;
             background-color: white;
             width:auto;
@@ -40,6 +40,13 @@
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">REQUISIÇÕES:</p>
     </div>
+    @if(count($soldadores)>0)
+    <div class="container-fluid d-flex justify-content-center  mt-3">
+        <div class="col-md-8 col-12 bg-white rounded text-center">
+            <a style="text-decoration:none; color:black">SOLDADORES</a>
+        </div>
+    </div>
+    @endif
     @foreach($soldadores as $soldador)
     <div class="container-fluid d-flex justify-content-center">
         <div class="col-md-8 col-12">
@@ -57,7 +64,41 @@
                             <form method="post" action="{{route("avaliarRequisicao")}}" class="form-group">
                                 @csrf
                                 <input type="hidden" value="{{$soldador->id}}" name="id">
-                                <input type="submit" class="ml-md-1 btn btn-primary pt-2 pb-2 pl-3 ml-sm-0 pr-3 shadow-sm" value="Avaliar Cadastro">
+                                <input type="submit" class="mt-2 col-12 btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="Avaliar Cadastro">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    @endforeach
+    @if(count($epss)>0)
+    <div class="container-fluid d-flex justify-content-center  mt-3">
+        <div class="col-md-8 col-12 bg-white rounded text-center">
+            <a style="text-decoration:none; color:black">EPS</a>
+        </div>
+    </div>
+    @endif
+    @foreach($epss as $eps)
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="col-md-8 col-12">
+            <div id="dadosRequalificacoes">
+                <div class="popin">
+                    <p class="nomeEmpresa" style="z-index: 1">{{$eps->empresa->razao_social}}</p>
+                    <div class="row d-flex justify-content-between p-2 bg-white rounded shadow-sm form-inline " style="margin-top: 30px ">
+                        <div class="">                           
+                            <p class="styleNomeQualificacao mb-md-0 mb-sm-1 mt-2"> {{$eps->nome}}</p>
+                        </div>
+                        <div>
+                            <form method="post" action="{{route("avaliarRequisicaoEps")}}" class="form-group">
+                                <!--  -->
+                                @csrf
+                                <input type="hidden" value="{{$eps->id}}" name="id">
+                                <input type="submit" class="mt-2 col-12 btn btn-primary pt-2 pb-2 pl-3 pr-3 shadow-sm" value="Avaliar Cadastro">
                             </form>
                         </div>
                     </div>

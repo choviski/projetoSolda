@@ -7,6 +7,8 @@ use App\Foto;
 use App\Empresa;
 use App\Publicacao;
 use App\Soldador;
+use App\Eps;
+use App\Arquivo;
 use App\SoldadorQualificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,7 +102,12 @@ class InicioController extends Controller
     }
 
 
-
+    public function listarEps(Request $request){
+        $usuario = session()->get("Usuario");
+        $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
+       
+        return view("listarEps")->with(["usuario"=>$usuario,"epss"=>$epss]);
+    }
 
 
     public function listarSoldadores(Request $request){
@@ -130,18 +137,46 @@ class InicioController extends Controller
 
         return response()->json(['certificados'=>$certificados]);
     }
+    public function arquivoAjax($id){
+        $certificados=Arquivo::where('id_eps','=',$id)->pluck("caminho");
 
+        $view = view('downloadCertificados')->with(["certificados"=>$certificados])->render();
+
+        return response()->json(['certificados'=>$certificados]);
+    }
 
     public function requisicoes(Request $request){
         $usuario = session()->get("Usuario");
         $soldadores=Soldador::where('criado','=',0)->get();
-        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores]);
+        $epss=Eps::where('criado','=',0)->get();
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss]);
     }
 
     public function avaliarRequisicao(Request $request){
         $soldador=Soldador::where('id','=',$request->id)->first();
         $usuario = session()->get("Usuario");
         return view("avaliarRequisicao")->with(["usuario"=>$usuario,"soldador"=>$soldador]);
+    }
+
+    public function avaliarRequisicaoEps(Request $request){
+        $eps=EPS::where('id','=',$request->id)->first();
+        $usuario = session()->get("Usuario");
+        $arquivos=Arquivo::where('id_eps','=',$eps->id)->get();
+      
+        return view("avaliarRequisicaoEps")->with(["usuario"=>$usuario,"eps"=>$eps,"arquivos"=>$arquivos]);
+    }
+
+    public function processarRequisicaoEps(Request $request){
+        if($request->aceito==1){
+            $eps=Eps::find($request->id);
+            $eps->criado=1;
+            $eps->save();      
+        }
+        $usuario = session()->get("Usuario");
+        $soldadores=Soldador::where('criado','=',0)->get();
+        $epss=Eps::where('criado','=',0)->get();
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss]);
+  
     }
 
     public function processarRequisicao(Request $request){
@@ -158,14 +193,17 @@ class InicioController extends Controller
         }
         $usuario = session()->get("Usuario");
         $soldadores=Soldador::where('criado','=',0)->get();
-        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores]);
-
+        $epss=Eps::where('criado','=',0)->get();
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss]);
+    
     }
     public function requisitarSoldador(Request $request){
         $usuario = session()->get("Usuario");
         $empresa = $request->idEmpresa;
         return view("requisitarSoldador")->with(["usuario"=>$usuario,"empresa"=>$empresa]);
     }
+
+  
 
     public function salvandoRequisicao(Request $request){
 
@@ -222,8 +260,35 @@ class InicioController extends Controller
         return redirect()->route("hubSoldadores");
     }
 
+    public function requisitarEps(Request $request){
+        $usuario = session()->get("Usuario");
+        $empresa = $request->idEmpresa;
+        return view("requisitarEps")->with(["usuario"=>$usuario,"empresa"=>$empresa]);
+    }
 
-
+    public function salvandoRequisicaoEps(Request $request){
+        $eps = new Eps();
+        $eps->nome=$request->nome;
+        $eps->id_empresa=$request->id_empresa;
+        $eps->criado=0;
+        $eps->save();
+        foreach ($request->files as $todosarquivos) {
+            foreach ($todosarquivos as $arquivo) {
+                # cria um novo arquivoEps
+                $arquivoEps = new Arquivo();
+                $arquivoEps->id_eps = $eps->id;
+                $arquivoEps->caminho='';
+                //chmod($request->file->getPath(),0755);
+                chmod($arquivo->getRealPath(),0755);
+                $arquivoEps->save();
+                $extensao = $arquivo->getClientOriginalExtension();
+                $imagem = File::move($arquivo, public_path(). '/arquivos/arquivoEPS-id' . $arquivoEps->id . '.' . $extensao);
+                $arquivoEps->caminho = '/arquivos/arquivoEPS-id'.$arquivoEps->id.'.'.$extensao;
+                $arquivoEps->save();
+            }
+        }
+        return redirect()->route("paginaInicial");
+    }
 
 
 

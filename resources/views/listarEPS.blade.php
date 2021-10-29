@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        .nomeSoldador{
+        .nomeEps{
             text-align: center;
             padding: 0.5rem 0.8rem;
             border-radius: 0.5rem;
@@ -10,16 +10,34 @@
             background-color: #eeeeee;
         }
         #nav_soldadores{
-            text-decoration: underline;
+            text-decoration: none;
             font-weight: bold;
         }
         #nav_entidades{
             text-decoration: none;
             font-weight: normal;
         }
+        #nav_eps{
+            text-decoration: underline;
+            font-weight: normal;
+        }
         .formDelBtn{
             position: relative;
             transition: 0.3s ease;
+        }
+        .nomeEmpresa{
+            position: relative;
+            top:22px;
+            left: 15px;
+            margin-bottom: 0px;
+            background-color: white;
+            width:auto;
+            display:inline-block;
+            padding: 0 0.5vw 0 0.5vw;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            text-decoration: underline;
+            text-align: center;
         }
         .delBtn{
             padding: 0px;
@@ -28,7 +46,7 @@
             font-size: 1.0rem;
             width: 25px;
             height: 25px;
-            top:-25px;
+            top:-10px;
             right: 13px;
             z-index: 1;
             background-color: white;
@@ -60,7 +78,7 @@
             font-size: 1.0rem;
             width: 25px;
             height: 25px;
-            top:-25px;
+            top:-10px;
             right: 43px;
             z-index: 1;
             background-color: white;
@@ -81,44 +99,36 @@
             align-items: center;
             text-align: center;
         }
-
-
-
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
-        <p class="lead p-1 m-0" style="font-size: 22px">SOLDADORES:</p>
+        <p class="lead p-1 m-0" style="font-size: 22px">EPS:</p>
     </div>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10  p-0 rounded-bottom mb-2">
-        @if($usuario->tipo==1)
-            <div id="addSoldador" class="col-12 mt-2 p-0 popin">
-                <form method="get" action="{{route("selecionarEmpresa")}}">
+
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom ">
+    @if($usuario->tipo==1)
+            <div id="addEps" class="col-12 mt-2 p-0 popin">
+               
+                <form method="get" action="#"><!--Aqui vai para o formulario de cadastrar EPS que o Chowski ta fazendo-->
                     @csrf
                     <input type="hidden" name="idEmpresa" id="idEmpresa">
-                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar soldador">
+                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar EPS">
                 </form>
             </div>
         @endif
         @if($usuario->tipo==2)
-            <div id="addSoldador" class="col-12 mt-2 p-0 popin">
-                <form method="get" action="{{route("requisitarSoldador")}}">
+            <div id="addEps" class="col-12 mt-2 p-0 popin">
+                <form method="get" action="{{route("requisitarEps")}}"><!-- Aqui vai para o formulario de cadastrar EPS que eu to fazendo, como o criado setado como false-->
                     @csrf
                     <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{\App\Empresa::where('id_usuario','=',$usuario->id)->pluck("id")[0]}}">
-                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Requisitar cadastro de soldador">
+                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Requisitar cadastro de nova EPS">
                 </form>
             </div>
         @endif
-        @if(isset($rota) and $soldadores->count()==0 and $rota=="soldadoresFiltrados")
-
-            <div class="alert alert-danger mt-2 text-center">
-                <p class="m-0 ">Nenhum soldador encontrado!</p>
-            </div>
-        @endif
-
-        <div id="dadosSoldador">
-            @include('cardSoldadores')
+  
+        <div id="dadoseps">
+            @include('cardEps')
         </div>
-        
     </div>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
