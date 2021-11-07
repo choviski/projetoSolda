@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Qualificacao extends Model
 {
     protected $table="qualificacoes";
-    protected $fillable=["id_processo","cod_eps","descricao"];
+    protected $fillable=["id_processo","id_eps","descricao"];
     use SoftDeletes;
     public function norma(){
         return $this->hasOne('App\NormaQualificacao', 'id_qualificacao','id');
@@ -18,5 +18,8 @@ class Qualificacao extends Model
     }
     public function processo(){
         return $this->belongsTo("App\Processo",'id_processo','id');
+    }
+    public function eps(){
+        return $this->belongsTo("App\Eps",'id_eps','id');
     }
 }

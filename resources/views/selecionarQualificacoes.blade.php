@@ -45,9 +45,14 @@
                     <input type="text" class="form-control" id="" placeholder="Insira o código RQS" name="cod_rqs" required>
 
                    <input type="hidden" name="id_soldador" value="{{$soldador}}">
-                        <label for="cod_eps">Código:</label>
-                        <input type="text" class="form-control" id="cod_eps" placeholder="Insira o código do processo" name="cod_eps" required>
+                    <label for="id_eps">EPS:</label>
+                        <select class="form-control" id="id_eps" name="id_eps" required>
+                            <option id="op1" value="-1" selected>Selecione o EPS</option>
 
+                            @foreach($epss as $eps)
+                                <option value="{{$eps->id}}" name="id_eps">{{$eps->nome}}</option>
+                            @endforeach
+                        </select>
                         <label for="id_processo">Processo:</label>
                         <select class="form-control" id="id_processo" name="id_processo" required>
                             <option id="op1" value="-1" selected>Selecione o processo</option>

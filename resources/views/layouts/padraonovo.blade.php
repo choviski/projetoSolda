@@ -117,6 +117,9 @@
                     <li class="nav-item active"  >
                         <a class="nav-link font-weight-light "  id="nav_soldadores" style="font-size: 20px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
                     </li>
+                    <li class="nav-item active"  >
+                        <a class="nav-link font-weight-light"  id="nav_eps" style="font-size: 20px" href="{{route("listarEps")}}" >EPS</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link font-weight-light " id="nav_requalificacao" style="font-size: 20px;position: relative" href="{{route("requalificacoes")}}">
 
@@ -136,9 +139,13 @@
                         <a class="nav-link font-weight-light " id="nav_requisicoes" style="font-size: 20px;position: relative" href="{{route("requisicoes")}}">
 
                             <span style="position: relative">REQUISIÇÕES
-                                @if((\App\Soldador::where('criado','=','0')->count()) > 0)
+                                @if(((\App\Soldador::where('criado','=','0')->count()) > 0)or((\App\Eps::where('criado','=','0')->count()) > 0))
                                     <div class="warpNotificacao">
-                                    <p class="notificacao">{{\App\Soldador::where('criado','=','0')->count()}}</p>
+                                        <div id="valoresRequisicao" style="display: none"> 
+                                            {{$soldadores=\App\Soldador::where('criado','=','0')->count()}}
+                                            {{$eps=\App\Eps::where('criado','=','0')->count()}}
+                                        </div>
+                                    <p class="notificacao">{{$soldadores+$eps}}</p>
                                 </div>
                                 @endif
 
@@ -155,9 +162,15 @@
                         <a  class="nav-link font-weight-light"  id="nav_entidades"  style="font-size: 20px" href="{{route("entidades")}}">ENTIDADES</a>
                     </li>
                 @endif
+                <li>
+
+                </li>
                 @if($usuario->tipo==2)
                     <li class="nav-item active"  >
                         <a class="nav-link font-weight-light"  id="nav_soldadores" style="font-size: 20px" href="{{route("hubSoldadores")}}" >SOLDADORES</a>
+                    </li>
+                    <li class="nav-item active"  >
+                        <a class="nav-link font-weight-light"  id="nav_eps" style="font-size: 20px" href="{{route("listarEps")}}" >EPS</a>
                     </li>
                     <li class="nav-item active" >
                         <a  class="nav-link font-weight-light"  id="nav_perfil"  style="font-size: 20px" href="{{route("editarUsuario")}}">PERFIL</a>

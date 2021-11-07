@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Eps;
 use App\Norma;
 use App\NormaQualificacao;
 use App\Processo;
@@ -156,13 +157,16 @@ class SoldadorController extends Controller
         $soldador->save();
         $usuario = session()->get("Usuario");
         $processos=Processo::all();
-        return view("selecionarQualificacoes")->with(["soldador"=>$soldador->id,"usuario"=>$usuario,"processos"=>$processos]);
+        $eps=Eps::where("id_empresa","=",$soldador->empresa->id)->get();
+        return view("selecionarQualificacoes")->with(["soldador"=>$soldador->id,"usuario"=>$usuario,"processos"=>$processos,"epss"=>$eps]);
     }
     public function novaQualificacao(Request $request){
         $usuario = session()->get("Usuario");
         $processos=Processo::all();
+        $soldadorEmpresa=Soldador::find($request->soldador);
+        $eps=Eps::where("id_empresa","=",$soldadorEmpresa->empresa->id)->get();
         $soldador=$request->soldador;
-        return view("selecionarQualificacoes")->with(["soldador"=>$soldador,"usuario"=>$usuario,"processos"=>$processos]);
+        return view("selecionarQualificacoes")->with(["soldador"=>$soldador,"usuario"=>$usuario,"processos"=>$processos,"epss"=>$eps]);
     }
 
     public function adicionarQualificacao(Request $request){
@@ -177,7 +181,7 @@ class SoldadorController extends Controller
         //cadastrando qualificacao
         $qualificacao = new Qualificacao();
         $qualificacao->id_processo=$request->id_processo;
-        $qualificacao->cod_eps=$request->cod_eps;
+        $qualificacao->id_eps=$request->id_eps;
         $qualificacao->descricao=$request->descricao;
         $qualificacao->save();
         //cadastrando norma-qualificacao
