@@ -165,4 +165,8 @@ Route::get('/controleAcesso',"AcessoController@acessoControler")->middleware(Che
 Route::get('/listagemSoldador',"InicioController@listarSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 Route::post('/listagemSoldadorFiltrados',"SoldadorController@listarFiltrado")->middleware(CheckSession::class)->name("soldadoresFiltrados");
 
-
+Route::get("/inserirEps","EpsController@create")->name("inserirEps")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/cadastrarEps","EpsController@store")->name("cadastrarEps")->middleware(CheckSession::class,CheckAdm::class);
+Route::post("/deletarEps","EpsController@destroy")->name("deletarEps")->middleware(CheckSession::class,CheckAdm::class);
+Route::put("/editarQualificacaoSoldador/{id}","SoldadorQualificacaoController@editar")->name("editarQualificacaoSoldador")->middleware(CheckSession::class);
+Route::post("/updateQualificacao","SoldadorQualificacaoController@atualizar")->name("updateQualificacao")->middleware(CheckSession::class);

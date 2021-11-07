@@ -17,17 +17,11 @@
         <p class="nomeEmpresa" style="z-index: 1">{{$eps->empresa->razao_social}}</p>
         @if($usuario->tipo==1)
             <div class="formDelBtn">
-                <form method="post" action="#" onsubmit="return confirm('Tem certeza que deseja remover esse EPS ?')"> <!--Rota eps.delete-->
+                <form method="post" action="{{route("deletarEps")}}" onsubmit="return confirm('Tem certeza que deseja remover esse EPS ?')"> <!--Rota eps.delete-->
                     @csrf
-                    @method('DELETE')
-                    <button class="delBtn"><i class="fas fa-times"></i></button>                        
+                    <input type="hidden" name="id" value="{{$eps->id}}">
+                    <button class="delBtn"><i class="fas fa-times"></i></button>
 		        </form>
-            </div>
-            <div class="formEditBtn">
-                <form method="get" action="#"> <!--Rota eps.edit-->
-                    @csrf
-                    <button class="editBtn"><i class="fas fa-pen"></i></button>
-                </form>
             </div>
         @endif
         <div id="epsCard" class="col-12 bg-white rounded shadow-sm d-flex justify-content-between mt-3 popin epsCard">
@@ -55,9 +49,9 @@
                     document.body.appendChild(link);
                     for (var i = 0; i < urls.length; i++) {
                         // no site da infosolda fica como: link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
-                        link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
+                       //link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
                         // local host fica como: link.setAttribute('href',urls[i]);
-                        //link.setAttribute('href',urls[i]);
+                        link.setAttribute('href',urls[i]);
                         link.click();
                     }
                     document.body.removeChild(link);

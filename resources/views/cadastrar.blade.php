@@ -33,5 +33,14 @@
                 </a>
             </div>
         </div>
+        <div class="row text-center d-flex justify-content-center">
+            <div class="col-8 col-sm-2 col-md-8 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
+                <a href="{{route("inserirEps")}}" class="text-dark text-decoration-none">
+                    <i class="fas fa-plus"></i> <i class="fas fa-file-contract fa-4x"></i>
+                    <h4 class="mt-2">EPS</h4>
+                </a>
+            </div>
+        </div>
     </div>
+
 @endsection

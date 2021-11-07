@@ -172,6 +172,9 @@ class InicioController extends Controller
             $eps->criado=1;
             $eps->save();      
         }
+        elseif($request->aceito==0){
+            Eps::destroy($request->id);
+        }
         $usuario = session()->get("Usuario");
         $soldadores=Soldador::where('criado','=',0)->get();
         $epss=Eps::where('criado','=',0)->get();

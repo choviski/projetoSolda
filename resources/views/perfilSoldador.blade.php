@@ -136,8 +136,9 @@
                         </form>
                     </div>
                     <div class="formEditBtn">
-                        <form method="get" action="{{route("soldadorqualificacao.edit",['soldadorqualificacao'=>$qualificacao->id])}}">
+                        <form method="post" action="{{route("editarQualificacaoSoldador",['id'=>$qualificacao->id])}}">
                             @csrf
+                            @method('PUT')
                             <button class="editBtn"><i class="fas fa-pen"></i></button>
                         </form>
                     </div>
@@ -145,7 +146,7 @@
                 <div id="qualificacoes" class="col-12 bg-white rounded shadow-sm mt-3 mb-1 d-flex justify-content-between ">
 
                     <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
-                        <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->cod_rqs}}</p>
+                        <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->qualificacao->eps->nome}}</p>
                         <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
                         <!-- a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{ {asset($qualificacao->caminho_certificado)}}','{ {$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a-->
                         <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="certificadoAjax({{$qualificacao->id}});getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>

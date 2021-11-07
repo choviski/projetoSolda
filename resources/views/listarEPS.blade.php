@@ -109,7 +109,7 @@
     @if($usuario->tipo==1)
             <div id="addEps" class="col-12 mt-2 p-0 popin">
                
-                <form method="get" action="#"><!--Aqui vai para o formulario de cadastrar EPS que o Chowski ta fazendo-->
+                <form method="get" action="{{route("inserirEps")}}">
                     @csrf
                     <input type="hidden" name="idEmpresa" id="idEmpresa">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar EPS">
@@ -118,7 +118,7 @@
         @endif
         @if($usuario->tipo==2)
             <div id="addEps" class="col-12 mt-2 p-0 popin">
-                <form method="get" action="{{route("requisitarEps")}}"><!-- Aqui vai para o formulario de cadastrar EPS que eu to fazendo, como o criado setado como false-->
+                <form method="get" action="{{route("requisitarEps")}}">
                     @csrf
                     <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{\App\Empresa::where('id_usuario','=',$usuario->id)->pluck("id")[0]}}">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Requisitar cadastro de nova EPS">
