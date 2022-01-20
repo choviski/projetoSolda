@@ -103,9 +103,9 @@
                         <img src="{{asset($soldador->foto)}}" onerror="this.onerror=null;this.src='{{asset("imagens/soldador_default.png")}}';" class="rounded-circle border" width="150px" height="150px">
                     </div>
                     <div id="informacaoSoldador" class="d-flex flex-column p-3">
-                        <p class="p-0 font-weight-light" style="font-size: 22px">{{$soldador->nome}}</p>
-                        <p class="p-0 font-weight-light" style="font-size: 22px">{{$soldador->cpf}}</p>
-                        <p class="p-0 font-weight-light" style="font-size: 22px">{{$soldador->matricula}}</p>
+                        <p class="p-0 font-weight-light" style="font-size: 22px">Nome: {{$soldador->nome}}</p>
+                        <p class="p-0 font-weight-light" style="font-size: 22px">CPF: {{$soldador->cpf}}</p>
+                        <p class="p-0 font-weight-light" style="font-size: 22px">Matrícula: {{$soldador->matricula}}</p>
                     </div>
                 </div>
                 <div class="col-12 text-center">

@@ -237,6 +237,13 @@ class SoldadorController extends Controller
         $usuario = session()->get("Usuario");
         $soldador = Soldador::where('id','=',$request->id_soldador)->where("criado","=",1)->first();
         $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
+        foreach ($qualificacoes as $qualificacao){
+            $tempoVencimentoRestante = now()->diffInDays(($qualificacao->validade_qualificacao), false);
+            if($tempoVencimentoRestante<=0){
+                $qualificacao->status = 'atrasado';
+                $qualificacao->save();
+            }
+        }
 
 
 
