@@ -35,7 +35,7 @@ class email3 extends Mailable
     {
         $this->subject("SEU REQUERIMENTO DE REQUALIFICAÇÃO FOI RESPONDIDO!!!");
         $this->to("{$this->qualificacao->soldador->empresa->email}", "{$this->qualificacao->soldador->empresa->razao_social}");
-        if($this->qualificacao->status="qualificado"){
+        if($this->qualificacao->status=="qualificado"){
             $mensagem="Sua requalificacao foi aprovada";
             $m="aprovada";
         }else{
