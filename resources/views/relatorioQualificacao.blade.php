@@ -7,45 +7,28 @@
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous">
 </script>
-<style>
-    input[type="date"]{
-        background-color:#0080ff;
-        padding: 10px;
-        font-family: "Roboto Mono",monospace;
-        color: #ffffff;
-        font-size:15px;
-        border:none;
-        outline:none;
-        border-radius:5px;
-    }
-    ::-webkit-calendar-picker-indicator{
-        background-color:#ffffff;
-        padding:5px;
-        cursor: pointer;
-        border-radius:3px;
-    }
-</style>
+
 
 <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
     <hr class="p-0 m-0 mb-1">
-    <p class="lead p-1 m-0" style="font-size: 22px">CONTROLE DE ACESSO:</p>
+    <p class="lead p-1 m-0" style="font-size: 22px">RELATÓRIO DE QUALIFICAÇÕES:</p>
 </div>
 <div class="container-fluid">
     <div class="row justify-content-around">
         <div class="bg-white rounded mt-3 mb-3 col-md-10 col-sm-12 pb-1 shadow-md">
-            <p class="text-center mt-1" style="font-weight: bold;font-size: 24px">REQUALIFICAÇÕES MENSAIS</p>
+            <p class="text-center mt-1" style="font-weight: bold;font-size: 24px">REQUALIFICAÇÕES</p>
             <form action="" method="" class="form-inline d-flex justify-content-around  mb-2">
-                <div class="warp-mes col-md-6 col-sm-12 text-center pl-0 pr-2">
-                    <label>DATA INICIAL</label>
-                    
-                    <input type="date" id="dataInicial" name="dataInicial">
-                </div>
-                <div class="warp-ano col-md-6 col-sm-12 text-center pl-2 pr-0" >
-                    <label>DATA FINAL</label>
-                    <input type="date" id="dataFinal" name="dataFinal">
-                </div>
+                <div class="warp-estado col-md-12 col-sm-12 text-center p-0">
+                    <select name="opcao" id="opcao" class="col-12 form-select">
+                        <option value="0" selected>Todas</option>
+                        <option value="1">Qualificadas</option>
+                        <option value="2">Não qualificadas</option>
+                        <option value="3">Vencidas</option>
+                        <option value="4">Em avaliação</option>
+                    </select>
+                </div>                
             </form>
-            <a class="btn btn-outline-primary col-12 mb-2" onclick="controleAcesso()">Buscar</a>
+            <a class="btn btn-outline-primary col-12 mb-2" onclick="relatorioQulificacoes()">Buscar</a>
 
             <div id="warp-table" style="font-size: 1rem">
 
@@ -66,7 +49,7 @@
 
 <script>
         function printTable(){
-            var getDados= document.getElementById('tabelaAcessos').innerHTML;
+            var getDados= document.getElementById('tabelaRequalificacoes').innerHTML;
             var janela = window.open('','','width=1800','height=1200');
             janela.document.write('<html><head>');
             janela.document.write('<style>table,th,td{border: 1px solid grey;\n' +
@@ -79,12 +62,11 @@
         }
 </script>
 <script>
-    function controleAcesso(){
-        var dataInicial = $('#dataInicial').val();
-        var dataFinal = $('#dataFinal').val();        
-        var link = '{{route("controleAcessoAjax",[":dataInicial",":dataFinal"])}}';
-        link=link.replace(':dataInicial',dataInicial);
-        link=link.replace(':dataFinal',dataFinal);
+    function relatorioQulificacoes(){      
+        var opcao = $('#opcao').val();        
+        var link = '{{route("relatorioQualificacaoAjax",[":opcao"])}}';
+        link=link.replace(':opcao',opcao);        
+        console.log(link);
         $.ajax({
             url:link,
         }).done(
@@ -93,7 +75,7 @@
                 $('#btnExcelTable').show();
                 $('#tabelaAppend').remove();
                 $('#warp-table').append(data.html);
-                $('#tableTitle').text('Acessos do dia '+dataInicial+' até '+dataFinal);
+                $('#tableTitle').text(data.nomeOpcao);
             }
         ).fail(
             function () {
@@ -103,20 +85,11 @@
     }
 
 </script>
-<script>
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
 
-    today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("dataInicial").value = today;
-    document.getElementById("dataFinal").value = today;
-</script>
 <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 <script>
     function excel(){
-        $('#tabelaAcessos').table2excel({
+        $('#tabelaRequalificacoes').table2excel({
             exclude:".noExl",
             name:"Controle de Acesso",
             filename:"Controle de Acesso",

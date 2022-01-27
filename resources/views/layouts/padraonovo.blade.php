@@ -101,7 +101,7 @@
 
 <body class="container-fluid">
 <header class="row">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 "id="header">
         <a class="navbar-brand" href="#">
             <img src="{{asset("imagens/logo v1.png")}}" width="70" height="70" class="d-inline-block align-top " alt="  Projeto Solda">
         </a>

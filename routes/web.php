@@ -94,6 +94,10 @@ Route::get('/arquivoAjax/{id}', "InicioController@arquivoAjax")->name("arquivoAj
 
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
 Route::get('/controleAcessoAjax/{dataInicial}/{dataFinal}', "AcessoController@controleAcessoAjax")->name("controleAcessoAjax")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('/relatorioQualificacaoAjax/{opcao}', "RelatorioQualificacao@relatorioQualificacaoAjax")->name("relatorioQualificacaoAjax")->middleware(CheckSession::class,CheckAdm::class);
+
+
+Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
 
 Route::get("/selecionarEmpresa","SoldadorController@selecionarEmpresa")->name("selecionarEmpresa")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/cadastroSoldador","SoldadorController@criar")->name("cadastroSoldador")->middleware(CheckSession::class,CheckAdm::class);
@@ -164,6 +168,8 @@ Route::get('/dashboard',"DashboardController@getMonthlyAllData")->middleware(Che
 Route::get('/controleAcesso',"AcessoController@acessoControler")->middleware(CheckSession::class,CheckAdm::class)->name("controleAcesso");
 Route::get('/listagemSoldador',"InicioController@listarSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
 Route::post('/listagemSoldadorFiltrados',"SoldadorController@listarFiltrado")->middleware(CheckSession::class)->name("soldadoresFiltrados");
+Route::get('/relatorioQualificacao',"RelatorioQualificacao@relatorioQualificacao")->middleware(CheckSession::class,CheckAdm::class)->name("relatorioQualificacao");
+
 
 Route::get("/inserirEps","EpsController@create")->name("inserirEps")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/cadastrarEps","EpsController@store")->name("cadastrarEps")->middleware(CheckSession::class,CheckAdm::class);

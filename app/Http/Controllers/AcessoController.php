@@ -24,7 +24,7 @@ class AcessoController extends Controller
             return response()->json(['html'=>$view]);
         }
         $view = view('tabelaAcessos')->with(["acessos"=>$acessos])->render();
-        dd($view);
+        //dd($view);
 
 
     }
