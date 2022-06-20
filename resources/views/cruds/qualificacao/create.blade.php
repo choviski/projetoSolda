@@ -16,7 +16,7 @@
 
                 <label for="id_processo">Processo:</label>
                 <select class="form-control" id="id_processo" name="id_processo" required>
-                    <option id="op1" value="-1" selected>Selecione o processo</option>
+                    <option id="op1" value="" selected>Selecione o processo</option>
 
                     @foreach($processos as $processo)
                         <option value="{{$processo->id}}" name="id_processo">{{$processo->nome}}</option>

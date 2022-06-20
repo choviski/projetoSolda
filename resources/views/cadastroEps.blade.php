@@ -52,7 +52,7 @@
 
                 <label for="id_empresa">Empresa:</label>
                 <select class="form-control" id="id_empresa" name="id_empresa" required>
-                    <option id="op1" value="-1" selected>Selecione a empresa</option>
+                    <option id="op1" value="" selected>Selecione a empresa</option>
 
                     @foreach($empresas as $empresa)
                         <option value="{{$empresa->id}}" name="id_empresa">{{$empresa->razao_social}}</option>

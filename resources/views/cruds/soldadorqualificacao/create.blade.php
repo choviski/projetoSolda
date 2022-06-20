@@ -17,7 +17,7 @@
 
                 <label for="id_soldador">Soldador:</label>
                 <select class="form-control" id="id_soldador" name="id_soldador" required>
-                    <option value="-1">Selecione o Soldador</option>
+                    <option value="">Selecione o Soldador</option>
 
                     @foreach($soldadors as $soldador)
                         <option value="{{$soldador->id}}">{{$soldador->nome}}</option>
@@ -26,7 +26,7 @@
 
                 <label for="id_qualificacao">Código da Qualificação:</label>
                 <select class="form-control" id="id_qualificacao" name="id_qualificacao" required>
-                    <option value="-1">Selecione a qualificação</option>
+                    <option value="">Selecione a qualificação</option>
 
                     @foreach($qualificaos as $qualificaos)
                         <option value="{{$qualificaos->id}}">{{$qualificaos->cod_eps}}</option>
@@ -41,7 +41,7 @@
 
                 <label for="status">Status:</label>
                 <select class="form-control" id="status" name="status" required>
-                    <option value="-1" disabled selected>Selecione o status</option>
+                    <option value="" disabled selected>Selecione o status</option>
                     <option value="1">Qualificado</option>
                     <option value="2">Em processo</option>
                     <option value="3">Não Qualificado</option>

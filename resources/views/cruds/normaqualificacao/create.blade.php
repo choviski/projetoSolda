@@ -14,7 +14,7 @@
 
                 <label for="id_norma">Norma:</label>
                 <select class="form-control" id="id_norma" name="id_norma" required>
-                    <option value="-1">Selecione a norma</option>
+                    <option value="">Selecione a norma</option>
 
                     @foreach($normas as $norma)
                         <option value="{{$norma->id}}">{{$norma->nome}}</option>
@@ -23,7 +23,7 @@
 
                 <label for="id_qualificacao">Código RQS Qualificação:</label>
                 <select class="form-control" id="id_qualificacao" name="id_qualificacao" required>
-                    <option value="-1">Selecione a qualificação</option>
+                    <option value="">Selecione a qualificação</option>
 
                     @foreach($qualificacaos as $qualificacao)
                         <option value="{{$qualificacao->id}}">código {{$qualificacao->processo->nome}}: {{$qualificacao->cod_eps}}</option>
