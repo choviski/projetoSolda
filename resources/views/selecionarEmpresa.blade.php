@@ -20,7 +20,7 @@
             <form action="{{route("cadastroSoldador")}}" class="col-8" method="post">
                 @csrf
                 <select class="form-control" id="empresa" name="empresa" required>
-                    <option value="-1" disabled>Selecione a Empresa:</option>
+                    <option value="" disabled>Selecione a Empresa:</option>
                     @foreach($empresas as $empresa)
                         <option value="{{$empresa->id}}">{{$empresa->razao_social}}</option>
                     @endforeach

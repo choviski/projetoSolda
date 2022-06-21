@@ -14,7 +14,7 @@
 
                 <label for="id_empresa">Empresa:</label>
                 <select class="form-control" id="id_empresa" name="id_empresa" required>
-                    <option value="-1">Selecione a empresa</option>
+                    <option value="">Selecione a empresa</option>
 
                     @foreach($empresas as $empresa)
                         <option value="{{$empresa->id}}">{{$empresa->nome_fantasia}}</option>
@@ -23,7 +23,7 @@
 
                 <label for="id_contato">Contato:</label>
                 <select class="form-control" id="id_contato" name="id_contato" required>
-                    <option value="-1">Selecione o Contato</option>
+                    <option value="">Selecione o Contato</option>
 
                     @foreach($contatos as $contato)
                         <option value="{{$contato->id}}">{{$contato->nome}}</option>

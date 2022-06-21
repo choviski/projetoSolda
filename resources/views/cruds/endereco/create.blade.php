@@ -99,7 +99,7 @@
 
                 <label for="id_cidade">Cidade:</label>
                 <select class="form-control" id="id_cidade" name="id_cidade" required>
-                    <option id="op1" value="-1" selected>Selecione a cidade</option>
+                    <option id="op1" value="" selected>Selecione a cidade</option>
 
                     @foreach($cidades as $cidade)
                         <option value="{{$cidade->id}}">{{$cidade->nome}}, {{$cidade->estado}}</option>

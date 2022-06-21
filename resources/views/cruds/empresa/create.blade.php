@@ -34,7 +34,7 @@
 
                 <label for="id_endereco">Endereço:</label>
                 <select class="form-control" id="id_endereco" name="id_endereco" required>
-                    <option value="-1">Selecione o Endereço</option>
+                    <option value="">Selecione o Endereço</option>
 
                     @foreach($enderecos as $endereco)
                         <option value="{{$endereco->id}}">{{$endereco->cidade->nome}}, {{$endereco->cidade->estado}}, {{$endereco->bairro}}, {{$endereco->rua}}</option>
@@ -43,7 +43,7 @@
                 
                 <label for="id_inspetor">Inspetor:</label>
                 <select class="form-control" id="id_inspetor" name="id_inspetor" required>
-                    <option value="-1">Selecione o Inspetor</option>
+                    <option value="">Selecione o Inspetor</option>
 
                     @foreach($inspetors as $inspetor)
                         <option value="{{$inspetor->id}}">{{$inspetor->nome}}, {{$inspetor->crea}}</option>

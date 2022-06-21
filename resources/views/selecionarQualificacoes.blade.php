@@ -47,7 +47,7 @@
                    <input type="hidden" name="id_soldador" value="{{$soldador}}">
                     <label for="id_eps">EPS:</label>
                         <select class="form-control" id="id_eps" name="id_eps" required>
-                            <option id="op1" value="-1" selected>Selecione o EPS</option>
+                            <option id="op1" value="" selected disabled>Selecione o EPS</option>
 
                             @foreach($epss as $eps)
                                 <option value="{{$eps->id}}" name="id_eps">{{$eps->nome}}</option>
@@ -55,7 +55,7 @@
                         </select>
                         <label for="id_processo">Processo:</label>
                         <select class="form-control" id="id_processo" name="id_processo" required>
-                            <option id="op1" value="-1" selected>Selecione o processo</option>
+                            <option id="op1" value="" selected disabled>Selecione o processo</option>
 
                             @foreach($processos as $processo)
                                 <option value="{{$processo->id}}" name="id_processo">{{$processo->nome}}</option>
