@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cidade;
 use App\Empresa;
 use App\Endereco;
+use App\Eps;
 use App\Http\Controllers\Controller;
 use App\Inspetor;
 use App\Soldador;
@@ -200,6 +201,10 @@ class EmpresaController extends Controller
             $soldador->email=Str::random(20);
             $soldador->save();
             Soldador::destroy($soldador->id);
+        }
+        $epss=Eps::where("id_empresa",$empresa->id)->get();
+        foreach($epss as $eps){
+            Eps::destroy($eps->id);
         }
         Empresa::destroy($request->id);
         Endereco::destroy($empresa->id_endereco);
