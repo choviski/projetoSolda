@@ -150,6 +150,10 @@
                         <p class="font-weight-light pt-1 mt-0 mb-0">Data Validade: {{$qualificacao->validade_qualificacao}}</p>
                         <!-- a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{ {asset($qualificacao->caminho_certificado)}}','{ {$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a-->
                         <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="certificadoAjax({{$qualificacao->id}});getFile('{{asset($qualificacao->caminho_certificado)}}','{{$qualificacao->nome_certificado}}');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download certificado</a>
+                        
+                        @if($qualificacao->caminho_instrucao)
+                            <a class="font-weight-light pt-1 mt-0 mb-0" style="text-decoration: none;cursor: pointer;" onclick="getFile('{{asset($qualificacao->caminho_instrucao)}}','Instrução da Qualificação');downloadAll(window.links)"><i class="fas fa-file-download"></i> Download instrução</a>
+                        @endif
                     </div>
 
                     <div id="infoEsquerda" class="d-flex flex-column p-2 pt-1 pb-1 text-left">
@@ -200,7 +204,7 @@
                             </form>
                     @endif
                     <!-- Aqui terminha o IF para setar o status da Badge -->
-                        <p class="text-right m-0 mb-0">Tentativas de Requalificação: 0</p>
+                        <p class="text-right">Tentativas de Requalificação: 0</p>
                     </div>
                 </div>
             </div>
@@ -252,11 +256,8 @@
             document.body.removeChild(link);
             links=[];
         }
-
-
     </script>
     <script>
-
         function certificadoAjax(idQualificacao){
             var linkAjax = '{{route("certificadoAjax",":id")}}';
             linkAjax = linkAjax.replace(':id',idQualificacao);
