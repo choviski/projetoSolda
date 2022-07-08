@@ -130,6 +130,7 @@ class InicioController extends Controller
         }
 
     }
+    
     public function certificadoAjax($id){
         $certificados=Certificado::where('id_requalificacao','=',$id)->pluck("caminho");
 
@@ -137,6 +138,7 @@ class InicioController extends Controller
 
         return response()->json(['certificados'=>$certificados]);
     }
+
     public function arquivoAjax($id){
         $certificados=Arquivo::where('id_eps','=',$id)->pluck("caminho");
 
