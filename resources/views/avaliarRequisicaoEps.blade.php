@@ -49,7 +49,7 @@
 
               
                 <input type="hidden" name="id_empresa" value="value="{{$eps->id_empresa}}">
-                <a  onclick="getFotos();downloadAll(window.links);" class="btn btn-outline-primary btn-block mt-1">Baixar arquivos do EPS</a>
+                <a  onclick="getFotos();downloadAll(window.links);" class="btn btn-outline-primary btn-block mt-2">Baixar arquivos do EPS</a>
                 <input type="submit" class="btn btn-outline-success mt-3 col-12" value="Aceitar" id="aceitar">
                 <input type="submit" class="btn btn-outline-danger mt-3 col-12" value="Negar"  id="negar">
                 <input type="hidden" value="{{$eps->id}}" name="id">
@@ -70,7 +70,7 @@
         <a href="{{route("requisicoes")}}" class="col-md-9 col-sm-10"><button class="btn btn-outline-light mt-1 mb-3 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</button></a>
     </div>
     <script>
-      function getFotos(){
+        function getFotos(){
             links = [@foreach($arquivos as $arquivo)@if(!$loop->last)'{{asset($arquivo->caminho)}}',@else'{{asset($arquivo->caminho)}}'@endif @endforeach
             ];
         }

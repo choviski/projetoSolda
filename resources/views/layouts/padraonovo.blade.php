@@ -139,14 +139,15 @@
                         <a class="nav-link font-weight-light " id="nav_requisicoes" style="font-size: 20px;position: relative" href="{{route("requisicoes")}}">
 
                             <span style="position: relative">REQUISIÇÕES
-                                @if(((\App\Soldador::where('criado','=','0')->count()) > 0)or((\App\Eps::where('criado','=','0')->count()) > 0))
+                                @if(((\App\SoldadorQualificacao::where('criado','=','0')->count()) > 0) or ((\App\Soldador::where('criado','=','0')->count()) > 0) or ((\App\Eps::where('criado','=','0')->count()) > 0) )
                                     <div class="warpNotificacao">
                                         <div id="valoresRequisicao" style="display: none"> 
                                             {{$soldadores=\App\Soldador::where('criado','=','0')->count()}}
                                             {{$eps=\App\Eps::where('criado','=','0')->count()}}
+                                            {{$qualificacao=\App\SoldadorQualificacao::where('criado','=','0')->count()}}
                                         </div>
-                                    <p class="notificacao">{{$soldadores+$eps}}</p>
-                                </div>
+                                        <p class="notificacao">{{$soldadores+$eps+$qualificacao}}</p>
+                                    </div>
                                 @endif
 
                             </span>

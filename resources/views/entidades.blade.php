@@ -73,10 +73,9 @@
             </div>
             
         </div>      
-        <div id="warpMoreOptions">
-            
+        <div id="warpMoreOptions">            
             <div class="more-options">
-            <div class="container-fluid options" id="options">
+                <div class="container-fluid options" id="options">
                     <div class="row text-center d-flex justify-content-center">
                         <div class="col-md-3 col-sm-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
                             <a href="{{route("cidade.index")}}" class="text-dark">

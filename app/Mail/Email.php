@@ -31,7 +31,7 @@ class email extends Mailable
      */
     public function build()
     {
-        $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
+        $qualificacaos = SoldadorQualificacao::where("criado",1)->select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
    "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
         foreach ($qualificacaos as $qualificacao) {
             if ($qualificacao->tempo < 40) {

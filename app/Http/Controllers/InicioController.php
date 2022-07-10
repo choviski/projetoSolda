@@ -7,6 +7,10 @@ use App\Foto;
 use App\Empresa;
 use App\Publicacao;
 use App\Soldador;
+use App\Norma;
+use App\Qualificacao;
+use App\NormaQualificacao;
+use App\Processo;
 use App\Eps;
 use App\Arquivo;
 use App\SoldadorQualificacao;
@@ -17,6 +21,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Carbon\Carbon;
 use File;
+use DateTime;
 
 class InicioController extends Controller
 {
@@ -104,7 +109,11 @@ class InicioController extends Controller
 
     public function listarEps(Request $request){
         $usuario = session()->get("Usuario");
-        $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
+        if($usuario->tipo==1){
+            $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
+        }else{
+            $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();       
+        }
        
         return view("listarEps")->with(["usuario"=>$usuario,"epss"=>$epss]);
     }
@@ -150,8 +159,9 @@ class InicioController extends Controller
     public function requisicoes(Request $request){
         $usuario = session()->get("Usuario");
         $soldadores=Soldador::where('criado','=',0)->get();
+        $qualificacaos=SoldadorQualificacao::where('criado','=',0)->get();
         $epss=Eps::where('criado','=',0)->get();
-        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss]);
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss,"qualificacaos"=>$qualificacaos]);
     }
 
     public function avaliarRequisicao(Request $request){
@@ -168,6 +178,13 @@ class InicioController extends Controller
         return view("avaliarRequisicaoEps")->with(["usuario"=>$usuario,"eps"=>$eps,"arquivos"=>$arquivos]);
     }
 
+    public function avaliarRequisicaoQualificacao(Request $request){
+        $qualificacao=SoldadorQualificacao::where('id','=',$request->id)->first();
+        $usuario = session()->get("Usuario");
+      
+        return view("avaliarRequisicaoQualificacao")->with(["usuario"=>$usuario,"qualificacao"=>$qualificacao]);
+    }
+
     public function processarRequisicaoEps(Request $request){
         if($request->aceito==1){
             $eps=Eps::find($request->id);
@@ -179,9 +196,25 @@ class InicioController extends Controller
         }
         $usuario = session()->get("Usuario");
         $soldadores=Soldador::where('criado','=',0)->get();
+        $qualificacaos=SoldadorQualificacao::where('criado','=',0)->get();
         $epss=Eps::where('criado','=',0)->get();
-        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss]);
-  
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss,"qualificacaos"=>$qualificacaos]);
+    }
+
+    public function processarRequisicaoQualificacao(Request $request){
+        if($request->aceito==1){
+            $qualificacao=SoldadorQualificacao::find($request->id);
+            $qualificacao->criado=1;
+            $qualificacao->save();      
+        }
+        elseif($request->aceito==0){
+            SoldadorQualificacao::destroy($request->id);
+        }
+        $usuario = session()->get("Usuario");
+        $soldadores=Soldador::where('criado','=',0)->get();
+        $qualificacaos=SoldadorQualificacao::where('criado','=',0)->get();
+        $epss=Eps::where('criado','=',0)->get();
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss,"qualificacaos"=>$qualificacaos]);
     }
 
     public function processarRequisicao(Request $request){
@@ -198,17 +231,26 @@ class InicioController extends Controller
         }
         $usuario = session()->get("Usuario");
         $soldadores=Soldador::where('criado','=',0)->get();
+        $qualificacaos=SoldadorQualificacao::where('criado','=',0)->get();
         $epss=Eps::where('criado','=',0)->get();
-        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss]);
+        return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss,"qualificacaos"=>$qualificacaos]);
     
     }
+
     public function requisitarSoldador(Request $request){
         $usuario = session()->get("Usuario");
         $empresa = $request->idEmpresa;
         return view("requisitarSoldador")->with(["usuario"=>$usuario,"empresa"=>$empresa]);
     }
 
-  
+    public function requisitarQualificacao(Request $request){
+        $usuario = session()->get("Usuario");
+        $soldador = $request->soldador;
+        $empresa = $request->idEmpresa;
+        $epss=Eps::where("id_empresa","=",$empresa)->where('criado','=',1)->get();
+        $processos=Processo::all();
+        return view("requisitarQualificacao")->with(["usuario"=>$usuario,"soldador"=>$soldador,"empresa"=>$empresa,"epss"=>$epss,"processos"=>$processos]);
+    }
 
     public function salvandoRequisicao(Request $request){
 
@@ -292,6 +334,76 @@ class InicioController extends Controller
                 $arquivoEps->save();
             }
         }
+        return redirect()->route("paginaInicial");
+    }
+
+    public function salvandoRequisicaoQualificacao(Request $request){
+        $usuario = session()->get("Usuario");
+
+        //cadastrando norma
+        $norma=new Norma();
+        $norma->nome=$request->nome_norma;
+        $norma->descricao=$request->descricao_norma;
+        $norma->validade=$request->validade;
+        $norma->save();
+        //cadastrando qualificacao
+        $qualificacao = new Qualificacao();
+        $qualificacao->id_processo=$request->id_processo;
+        $qualificacao->id_eps=$request->id_eps;
+        $qualificacao->descricao=$request->descricao;
+        $qualificacao->save();
+        //cadastrando norma-qualificacao
+        $norma_qualificacao= new NormaQualificacao();
+        $norma_qualificacao->id_norma=$norma->id;
+        $norma_qualificacao->id_qualificacao=$qualificacao->id;
+        $norma_qualificacao->save();
+        //cadastrando soldador-Qualificacao
+        $soldador_qualificacao= new SoldadorQualificacao();
+        $soldador_qualificacao->cod_rqs=$request->cod_rqs;
+        $soldador_qualificacao->aviso=1;
+        $soldador_qualificacao->id_soldador=$request->id_soldador;
+        $soldador_qualificacao->id_qualificacao=$qualificacao->id;
+        $soldador_qualificacao->data_qualificacao=$request->data_qualificacao;
+        $hoje=now();
+        if($request->validade==1){
+            $tempo=6;
+        }elseif ($request->validade==2){
+            $tempo=12;
+        }else{
+            $tempo=24;
+        }
+        $validade=Carbon::parse($request->data_qualificacao);
+        $soldador_qualificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
+        $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();
+        $soldador_qualificacao->nome_certificado=$request->nome_certificado;
+        $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
+        $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
+        $soldador_qualificacao->criado=0;
+        $datetime1 = new DateTime($validade);
+        $datetime2 = new DateTime($hoje);
+        $interval = now()->diffInDays(($datetime1), false);
+        if($interval<=0) {
+            $soldador_qualificacao->status = "atrasado";
+        }else{
+            $soldador_qualificacao->status="qualificado";
+        }
+        $soldador_qualificacao->save();
+
+        $certificado = $request->file('caminho_certificado');
+        $extensao=$certificado->getClientOriginalExtension();
+        chmod($certificado->path(),0755);
+        File::move($certificado, public_path().'/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao);
+        $soldador_qualificacao->caminho_certificado='/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao;
+        
+        if($request->file('caminho_instrucao')){
+            $instrucao = $request->file('caminho_instrucao');
+            $extensao=$instrucao->getClientOriginalExtension();
+            chmod($instrucao->path(),0755);
+            File::move($instrucao, public_path().'/instrucoes/instrucao-id'.$soldador_qualificacao->id.'.'.$extensao);
+            $soldador_qualificacao->caminho_instrucao='/instrucoes/instrucao-id'.$soldador_qualificacao->id.'.'.$extensao; 
+        }
+        
+        $soldador_qualificacao->save();
         return redirect()->route("paginaInicial");
     }
 

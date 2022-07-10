@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AdicionaCaminhoInstrucaoEmSoldadorQualificacoes extends Migration
+class AdicionaColunaCriadoEmSoldadorQualificacaoes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AdicionaCaminhoInstrucaoEmSoldadorQualificacoes extends Migration
     public function up()
     {
         Schema::table('soldador_qualificacoes', function($table) {
-            if(!Schema::hasColumn('soldador_qualificacoes', 'caminho_instrucao')){
-                $table->string('caminho_instrucao')->nullable()->after('caminho_certificado');
+            if(!Schema::hasColumn('soldador_qualificacoes', 'criado')){
+                $table->string('criado')->default(1)->after('caminho_instrucao');
             }   
         });
     }
@@ -28,7 +28,7 @@ class AdicionaCaminhoInstrucaoEmSoldadorQualificacoes extends Migration
     public function down()
     {
         Schema::table('soldador_qualificacoes', function($table) {
-            $table->dropColumn('caminho_instrucao');
+            $table->dropColumn('criado');
         });
     }
 }

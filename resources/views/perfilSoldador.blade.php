@@ -116,11 +116,20 @@
         </div>
         @if($usuario->tipo==1)
             <div id="addQualificacao" class="col-12 mt-2 p-0 popin">
-
                 <form method="post" action="{{route("novaQualificacao")}}">
                     @csrf
                     <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar qualificação">
+                </form>
+            </div>
+        @endif
+        @if($usuario->tipo==2)
+            <div id="addQualificacao" class="col-12 mt-2 p-0 popin">
+                <form method="get" action="{{route("requisitarQualificacao")}}">
+                    @csrf
+                    <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{\App\Empresa::where('id_usuario','=',$usuario->id)->pluck("id")[0]}}">
+                    <input type="hidden" name="soldador" id="soldador" value="{{$soldador->id}}">
+                    <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Requisitar cadastro de qualificação">
                 </form>
             </div>
         @endif

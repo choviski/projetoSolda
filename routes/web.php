@@ -31,6 +31,10 @@ Route::post("/avaliarRequisicao","InicioController@avaliarRequisicao")->name("av
 Route::post("/processarRequisicao","InicioController@processarRequisicao")->name("processarRequisicao")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/salvandoRequisicao","InicioController@salvandoRequisicao")->name("salvandoRequisicao")->middleware(CheckSession::class);
 Route::get("/requisitarSoldador","InicioController@requisitarSoldador")->name("requisitarSoldador")->middleware(CheckSession::class);
+Route::get("/requisitarQualificacao","InicioController@requisitarQualificacao")->name("requisitarQualificacao")->middleware(CheckSession::class);
+Route::post("/salvandoRequisicaoQualificacao","InicioController@salvandoRequisicaoQualificacao")->name("salvandoRequisicaoQualificacao")->middleware(CheckSession::class);
+Route::post("/avaliarRequisicaoQualificacao","InicioController@avaliarRequisicaoQualificacao")->name("avaliarRequisicaoQualificacao")->middleware(CheckSession::class);
+Route::post("/processarRequisicaoQualificacao","InicioController@processarRequisicaoQualificacao")->name("processarRequisicaoQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::get("/requisitarEps","InicioController@requisitarEps")->name("requisitarEps")->middleware(CheckSession::class);
 Route::post("/salvandoRequisicaoEps","InicioController@salvandoRequisicaoEps")->name("salvandoRequisicaoEps")->middleware(CheckSession::class);
 Route::post("/avaliarRequisicaoEps","InicioController@avaliarRequisicaoEps")->name("avaliarRequisicaoEps")->middleware(CheckSession::class,CheckAdm::class);
