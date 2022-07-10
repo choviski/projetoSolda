@@ -52,7 +52,7 @@
                     <label  for="data_qualificacao">Insira a data da qualificação:</label>
                     <input type="date" class="form-control" id="data_qualificacao" name="data_qualificacao" value="{{$soldadorQualificacao->data_qualificacao}}" required>
 
-                    <label  for="nome">Nome:</label>
+                    <label  for="nome">Nome da norma:</label>
                     <input type="text" class="form-control" id="nome" value="{{$soldadorQualificacao->qualificacao->norma->norma->nome}}" name="nome_norma" required>
 
                     <label  for="descricao">Descrição:</label>

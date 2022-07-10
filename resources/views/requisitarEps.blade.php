@@ -4,6 +4,10 @@
 @section('content')
     <style>
         #nav_soldadores{
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #nav_eps{
             text-decoration: underline;
             font-weight: bold;
         }

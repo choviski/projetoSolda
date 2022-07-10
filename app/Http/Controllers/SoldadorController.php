@@ -206,7 +206,7 @@ class SoldadorController extends Controller
         }
         $validade=Carbon::parse($request->data_qualificacao);
         $soldador_qualificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
-        $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();;
+        $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();
         $soldador_qualificacao->nome_certificado=$request->nome_certificado;
         $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
         $datetime1 = new DateTime($validade);
@@ -247,7 +247,7 @@ class SoldadorController extends Controller
 
         $usuario = session()->get("Usuario");
         $soldador = Soldador::where('id','=',$request->id_soldador)->where("criado","=",1)->first();
-        $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->get();
+        $qualificacoes=SoldadorQualificacao::where('id_soldador','=',$request->id_soldador)->where("criado",1)->get();
         foreach ($qualificacoes as $qualificacao){
             $tempoVencimentoRestante = now()->diffInDays(($qualificacao->validade_qualificacao), false);
             if($tempoVencimentoRestante<=0){

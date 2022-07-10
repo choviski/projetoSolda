@@ -89,10 +89,10 @@ class DashboardController extends Controller
         #colocando os dados na variavel
         $monthly_data_array = array (
             #colocando os dados sobre os status da qualificacao
-            'status_qualificado' => SoldadorQualificacao::where('status','=','qualificado')->get()->count(),
-            'status_nao_qualificado' => SoldadorQualificacao::where('status','=','nao-qualificado')->get()->count(),
-            'status_em_processo' => SoldadorQualificacao::where('status','=','em-processo')->get()->count(),
-            'status_atrasado' => SoldadorQualificacao::where('status','=','atrasado')->get()->count(),
+            'status_qualificado' => SoldadorQualificacao::where('status','=','qualificado')->where('criado',1)->get()->count(),
+            'status_nao_qualificado' => SoldadorQualificacao::where('status','=','nao-qualificado')->where('criado',1)->get()->count(),
+            'status_em_processo' => SoldadorQualificacao::where('status','=','em-processo')->where('criado',1)->get()->count(),
+            'status_atrasado' => SoldadorQualificacao::where('status','=','atrasado')->where('criado',1)->get()->count(),
             #colocando os dados sobre os soldadores
             'meses_soldadores' => $meses_nome__soldador_array,
             'soldadores' => $monthly_soldador_count_array,
@@ -111,10 +111,10 @@ class DashboardController extends Controller
     function dadosEmpresaAjax($id){
         if($id==0){
             $dados=array(
-                'status_qualificado' => SoldadorQualificacao::where('status','=','qualificado')->get()->count(),
-                'status_nao_qualificado' => SoldadorQualificacao::where('status','=','nao-qualificado')->get()->count(),
-                'status_em_processo' => SoldadorQualificacao::where('status','=','em-processo')->get()->count(),
-                'status_atrasado' => SoldadorQualificacao::where('status','=','atrasado')->get()->count(),
+                'status_qualificado' => SoldadorQualificacao::where('status','=','qualificado')->where('criado',1)->get()->count(),
+                'status_nao_qualificado' => SoldadorQualificacao::where('status','=','nao-qualificado')->where('criado',1)->get()->count(),
+                'status_em_processo' => SoldadorQualificacao::where('status','=','em-processo')->where('criado',1)->get()->count(),
+                'status_atrasado' => SoldadorQualificacao::where('status','=','atrasado')->where('criado',1)->get()->count(),
                 'nome'=>'TODAS EMPRESAS',
             );
         }else{
@@ -149,7 +149,7 @@ class DashboardController extends Controller
 
     public function requalificacoesMensaisAjax(Request $request,$mes,$ano){
 
-        $requalificacoesMensais=SoldadorQualificacao::whereMonth("created_at","=",$mes)->whereYear("created_at",'=',$ano)->get();
+        $requalificacoesMensais=SoldadorQualificacao::whereMonth("created_at","=",$mes)->whereYear("created_at",'=',$ano)->where('criado',1)->get();
         if ($request->ajax()){
             $view = view('tabelaRequalificacao')->with(["requalificacaos"=>$requalificacoesMensais])->render();
             return response()->json(['html'=>$view]);
