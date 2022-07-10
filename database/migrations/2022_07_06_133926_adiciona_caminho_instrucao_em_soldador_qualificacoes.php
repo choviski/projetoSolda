@@ -14,10 +14,10 @@ class AdicionaCaminhoInstrucaoEmSoldadorQualificacoes extends Migration
     public function up()
     {
         Schema::table('soldador_qualificacoes', function($table) {
-            if(!$table->hasColumn('caminho_instrucao')){
+            if(!Schema::hasColumn('soldador_qualificacoes', 'caminho_instrucao')){
                 $table->string('caminho_instrucao')->nullable()->after('caminho_certificado');
             }   
-    });
+        });
     }
 
     /**
