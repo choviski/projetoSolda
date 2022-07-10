@@ -218,14 +218,25 @@ class SoldadorController extends Controller
             $soldador_qualificacao->status="qualificado";
         }
         $soldador_qualificacao->save();
+
         $certificado = $request->file('caminho_certificado');
         $extensao=$certificado->getClientOriginalExtension();
         chmod($certificado->path(),0755);
         File::move($certificado, public_path().'/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao);
         $soldador_qualificacao->caminho_certificado='/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao;
+        
+        if($request->file('caminho_instrucao')){
+            $instrucao = $request->file('caminho_instrucao');
+            $extensao=$instrucao->getClientOriginalExtension();
+            chmod($instrucao->path(),0755);
+            File::move($instrucao, public_path().'/instrucoes/instrucao-id'.$soldador_qualificacao->id.'.'.$extensao);
+            $soldador_qualificacao->caminho_instrucao='/instrucoes/instrucao-id'.$soldador_qualificacao->id.'.'.$extensao; 
+        }
+        
         $soldador_qualificacao->save();
         return view("escolha")->with(["soldador"=>$request->id_soldador,"usuario"=>$usuario]);
     }
+
     public function inserirQualificacao(Request $request){
         $usuario = session()->get("Usuario");
         $processos=Processo::all();

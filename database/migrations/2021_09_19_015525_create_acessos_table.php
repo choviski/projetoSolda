@@ -13,13 +13,15 @@ class CreateAcessosTable extends Migration
      */
     public function up()
     {
-        Schema::create('acessos', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger("id_usuario");
-            $table->foreign("id_usuario")->references("id")->on("usuarios");
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('acessos')) {
+            Schema::create('acessos', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger("id_usuario");
+                $table->foreign("id_usuario")->references("id")->on("usuarios");
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

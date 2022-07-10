@@ -13,15 +13,17 @@ class CreateEpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('eps', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string("nome");
-            $table->integer("criado");
-            $table->unsignedBigInteger("id_empresa");
-            $table->foreign("id_empresa")->references("id")->on("empresas");
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('eps')) {
+            Schema::create('eps', function (Blueprint $table) {
+                $table->bigIncrements("id");
+                $table->string("nome");
+                $table->integer("criado");
+                $table->unsignedBigInteger("id_empresa");
+                $table->foreign("id_empresa")->references("id")->on("empresas");
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

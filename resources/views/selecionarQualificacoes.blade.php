@@ -15,7 +15,7 @@
              padding: 0px;
              display: none;
          }
-        #btnFoto{
+        #btnCertificado{
             background-color: #59acff;
             cursor: pointer;
             color: white;
@@ -27,7 +27,22 @@
             text-align: center;
             transition: 0.3s ease;
         }
-        #btnFoto:hover{
+        #btnCertificado:hover{
+            background-color: #0275d8;
+        }
+        #btnInstrucao{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        #btnInstrucao:hover{
             background-color: #0275d8;
         }
     </style>
@@ -74,9 +89,12 @@
 
 
                     <label for="caminho_certificado" id="" class="mt-2 col-12 p-0">Insira o arquivo do certificado:</label>
-                    <label for="caminho_certificado" id="btnFoto" class="">Escolha o arquivo</label>
-                    <input type="file" class="" id="caminho_certificado" placeholder="Insira a imagem do Soldador" name="caminho_certificado" required>
+                    <label for="caminho_certificado" id="btnCertificado" class="">Escolha o arquivo de certificado</label>
+                    <input type="file" class="" id="caminho_certificado" placeholder="Insira o arquivo de certificado" name="caminho_certificado" required>
 
+                    <label for="caminho_instrucao" id="" class="mt-2 col-12 p-0">Insira o arquivo do instrução:</label>
+                    <label for="caminho_instrucao" id="btnInstrucao" class="">Escolha o arquivo de instrução</label>
+                    <input type="file" class="" id="caminho_instrucao" placeholder="Insira o arquivo de instrução" name="caminho_instrucao">
 
                     <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
                         <label  for="nome">Nome:</label>
@@ -101,14 +119,26 @@
     </div>
     <script >
         $("#caminho_certificado").on("change", function(){
-            nFotos = document.getElementById('caminho_certificado').files.length;
-            if(nFotos>0){
-                document.getElementById('btnFoto').innerHTML='Aquivo selecionado!';
-                document.getElementById('btnFoto').style.backgroundColor='#0275d8';
+            nCertificados = document.getElementById('caminho_certificado').files.length;
+            if(nCertificados>0){
+                document.getElementById('btnCertificado').innerHTML='Certificado selecionado!';
+                document.getElementById('btnCertificado').style.backgroundColor='#0275d8';
 
             }else{
-                document.getElementById('btnFoto').innerHTML='Escolha o arquivo';
-                document.getElementById('btnFoto').style.backgroundColor='#59acff';
+                document.getElementById('btnCertificado').innerHTML='Escolha o arquivo do certificado';
+                document.getElementById('btnCertificado').style.backgroundColor='#59acff';
+            }
+        })
+
+        $("#caminho_instrucao").on("change", function(){
+            nInstrucoes = document.getElementById('caminho_instrucao').files.length;
+            if(nInstrucoes>0){
+                document.getElementById('btnInstrucao').innerHTML='Arquivo de Instrução selecionado!';
+                document.getElementById('btnInstrucao').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnInstrucao').innerHTML='Escolha o arquivo de instrução';
+                document.getElementById('btnInstrucao').style.backgroundColor='#59acff';
             }
         })
     </script>

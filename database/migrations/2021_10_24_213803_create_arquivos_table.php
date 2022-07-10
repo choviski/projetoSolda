@@ -13,14 +13,16 @@ class CreateArquivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('arquivos', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string("caminho");
-            $table->unsignedBigInteger("id_eps");
-            $table->foreign("id_eps")->references("id")->on("eps");
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('arquivos')) {
+            Schema::create('arquivos', function (Blueprint $table) {
+                $table->bigIncrements("id");
+                $table->string("caminho");
+                $table->unsignedBigInteger("id_eps");
+                $table->foreign("id_eps")->references("id")->on("eps");
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

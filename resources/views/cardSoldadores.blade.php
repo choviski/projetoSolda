@@ -11,8 +11,6 @@
     }
 </style>
 @foreach($soldadores as $soldador)
-
-    <!-- Aqui começa a listagem dos soldadores-->
     <div class="warpSoldadorCard popibg-white shadow-sm">
         @if($usuario->tipo==1)
             <div class="formDelBtn">
@@ -59,5 +57,4 @@
             </div>
         </div>
     </div>
-    <!-- Aqui acaba a listagem das empresas-->
 @endforeach
