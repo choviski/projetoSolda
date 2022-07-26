@@ -97,14 +97,14 @@
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar empresa">
                 </form>
             </div>
-    @endif
+        @endif
 
-            <div id="dadosempresa">
-                @include('cardEmpresas')
-            </div>
-            <div class="ajax-load text-center mt-2" style="display: none">
-                <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando empresas</p>
-            </div>
+        <div id="dadosempresa">
+            @include('cardEmpresas')
+        </div>
+        <div class="ajax-load text-center mt-2" style="display: none">
+            <p><img src="{{asset("imagens/loading.gif")}}" height="50px"/>Carregando empresas</p>
+        </div>
     <!-- Aqui acaba a listagem das empresas-->
     </div>
     <script

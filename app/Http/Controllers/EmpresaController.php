@@ -323,11 +323,9 @@ class EmpresaController extends Controller
                 return redirect()->back();
             }
         }
-        $empresa->email=$request->email;
         $empresa->id_endereco=$request->id_endereco;
         $empresa->id_inspetor=$request->id_inspetor;
         $usuarioEmpresa=Usuario::find($empresa->id_usuario);
-        $usuarioEmpresa->senha = $request->senha;
         $empresa->update();
         $usuarioEmpresa->update();
 
