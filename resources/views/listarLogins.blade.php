@@ -176,7 +176,7 @@
     <div id="logins">
         <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom">
             <div id="addLogin" class="col-12 mt-2 mb-2 p-0 popin">
-                <form method="get" action="#">
+                <form method="get" action="{{"cadastroLogin"}}">
                     @csrf
                     <input type="hidden" name="idEmpresa" id="idEmpresa">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Adicionar login">

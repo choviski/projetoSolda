@@ -73,7 +73,7 @@
                     </div>
                 </a>
                 
-                <a href="{{route("listagemLogins")}}" class="col-md-5 col-sm-12">
+                <a href="{{route("listagemLogin")}}" class="col-md-5 col-sm-12">
                     <div class="col-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
                         <i class="fa fa-sign-in fa-3x text-dark"></i>
                         <h4 class="mt-2 text-dark text-decoration-underline">Logins</h4>
