@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 
 
 Route::get('/entidades',"InicioController@entidades")->middleware(CheckSession::class,CheckAdm::class)->name("entidades");
+Route::get('/listagemLogins',"InicioController@listagemLogins")->middleware(CheckSession::class,CheckAdm::class)->name("listagemLogins");
 Route::get('/cadastrar',"InicioController@cadastrar")->middleware(CheckSession::class,CheckAdm::class)->name("cadastrar");
 Route::get('/requalificacoes',"InicioController@requalificacoes")->middleware(CheckSession::class,CheckAdm::class)->name("requalificacoes");
 Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(CheckSession::class)->name("editarUsuario");
