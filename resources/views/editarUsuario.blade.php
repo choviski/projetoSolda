@@ -106,7 +106,7 @@
     <div id="logins" class="bloco_inativo">
         <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom">
             @if($usuario->tipo<=2)
-                <div id="addEmpresa" class="col-12 mt-2 mb-2 p-0 popin">
+                <div id="addLogin" class="col-12 mt-2 mb-2 p-0 popin">
                     <form method="get" action="#">
                         @csrf
                         <input type="hidden" name="idEmpresa" id="idEmpresa">
@@ -121,11 +121,9 @@
                     <p class="m-0">Email: emaildaempresa@email.com</p>
                 </div>
                 <div class="login_info col-11 mt-2 mx-auto" style="padding: 0px; border:0px">
-                    <span style="position: relative">
-                        <input id="senha-1" type="password" disabled value="InternacionalCampeaoDeTudo" class="form-control text-center ">
-                        <i id="mostrar-senha-1" class="fa fa-eye" onclick="mostrarSenha(1)" aria-hidden="true" style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
-                        <!-- Onde tem "1" como valor nos ids e na funcao do onclick mudar para a { { empresa->id } } -->
-                    </span>
+                    <input id="senha-1" type="password" disabled value="SenhaEmpresa" class="form-control text-center ">
+                    <i id="mostrar-senha-1" class="fa fa-eye" onclick="mostrarSenha(1)" aria-hidden="true" style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
+                    <!-- Onde tem "1" como valor nos ids e na funcao do onclick mudar para a { { empresa->id } } -->
                 </div>
                 <div class="login_info col-11 mt-2 mb-4 mx-auto">
                     <p class="m-0">Nível de acesso: Master</p>

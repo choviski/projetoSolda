@@ -115,7 +115,7 @@ class InicioController extends Controller
             $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();       
         }
        
-        return view("listarEps")->with(["usuario"=>$usuario,"epss"=>$epss]);
+        return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss]);
     }
 
 
@@ -405,6 +405,13 @@ class InicioController extends Controller
         
         $soldador_qualificacao->save();
         return redirect()->route("paginaInicial");
+    }
+
+    public function listagemLogins(){
+        $usuario = session()->get("Usuario");
+        //pegar todos os logins/usuarios
+        //listar em ordem alfabetica da empresa (?)
+        return view('/listarLogins')->with(["usuario"=>$usuario]);
     }
 
 

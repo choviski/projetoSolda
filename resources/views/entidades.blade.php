@@ -50,32 +50,42 @@
             <p class="lead p-1 m-0" style="font-size: 22px">GERENCIAR ENTIDADES:</p>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid mb-3">
             <div class="row text-center d-flex justify-content-center">
-                <div class="col-md-9 col-sm-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="{{route("dashboard")}}" class="text-dark">
-                        <i class="fas fa-chart-line fa-3x"></i>
-                        <h4 class="mt-2">Dados</h4>
-                    </a>
-                </div>
-                <div class="col-md-9 col-sm-12 rounded mb-2 ml-md-1 mb-ms-1 mt-ms-1 pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="{{route("controleAcesso")}}" class="text-dark">
-                    <i class="fas fa-calendar-alt fa-3x"></i>
-                        <h4 class="mt-2">Controle de Acesso</h4>
-                    </a>
-                </div>
-                <div class="col-md-9 col-sm-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                    <a href="{{route("relatorioQualificacao")}}" class="text-dark">
-                    <i class="fas fa-certificate fa-3x"></i>
-                        <h4 class="mt-2">Relatório das Qualificações</h4>
-                    </a>
-                </div>              
+                <a href="{{route("dashboard")}}"  class="col-md-5 col-sm-12">
+                    <div class="col-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
+                        <i class="fas fa-chart-line fa-3x text-dark"></i>
+                        <h4 class="mt-2 text-dark text-decoration-underline">Dados</h4>
+                    </div>
+                </a>
+                
+                <a href="{{route("controleAcesso")}}" class="col-md-5 col-sm-12">                        
+                    <div class="col-12 rounded mb-2 ml-md-1 mb-ms-1 mt-ms-1 pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
+                        <i class="fas fa-calendar-alt fa-3x text-dark"></i>
+                        <h4 class="mt-2 text-dark text-decoration-underline">Controle de Acesso</h4>                    
+                    </div>
+                </a>
+                
+                <a href="{{route("relatorioQualificacao")}}" class="col-md-5 col-sm-12">
+                    <div class="col-12 rounded mb-2 ml-md-1 pt-4 mt-3 text-center shadow-md btn btn-outline-light rounded" style="height: 150px">                  
+                        <i class="fas fa-certificate fa-3x text-dark"></i>
+                        <h4 class="mt-2 text-dark text-decoration-underline">Relatório das Qualificações</h4>
+                    </div>
+                </a>
+                
+                <a href="{{route("listagemLogins")}}" class="col-md-5 col-sm-12">
+                    <div class="col-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
+                        <i class="fa fa-sign-in fa-3x text-dark"></i>
+                        <h4 class="mt-2 text-dark text-decoration-underline">Logins</h4>
+                    </div>              
+                </a>
+                
             </div>
             
         </div>      
         <div id="warpMoreOptions">            
             <div class="more-options">
-                <div class="container-fluid options" id="options">
+                <div class="container-fluid options" id="options" style="margin-top: 80px">
                     <div class="row text-center d-flex justify-content-center">
                         <div class="col-md-3 col-sm-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
                             <a href="{{route("cidade.index")}}" class="text-dark">
@@ -168,16 +178,12 @@
         <script>
             location.hash="";
             function moreOptions(){                
-                var options = document.getElementById("options");  
-              
-
-
+                var options = document.getElementById("options");       
                 var iconOptions = document.getElementById("iconOptions");  
                 iconOptions.classList.toggle("fa-chevron-down");     
                 iconOptions.classList.toggle("fa-chevron-up");    
                 var moreOptionsText = document.getElementById("moreOptionsText").textContent;      
-                if(moreOptionsText=="Mais opções"){  
-                             
+                if(moreOptionsText=="Mais opções"){                               
                     document.getElementById("warpMoreOptions").style.position="absolute";             
                     document.getElementById("moreOptionsText").textContent =  "Menos opções";
                     location.hash="#moreOptionsText";
@@ -198,15 +204,9 @@
 
                     setTimeout(() => {
                         moreOptionsTextObj.classList.toggle("pop-in");
-                    }, 800);
-                    
-                    
-                       
-                   
-                  
-                        
-                }
-              
+                    }, 800);               
+      
+                }              
             }
         </script>
 
