@@ -79,8 +79,7 @@
     </div>
     <script>
         function getArquivos(){
-            links = ['{{asset($qualificacao->caminho_certificado)}}'@if($qualificacao->caminho_instrucao),'{{asset($qualificacao->caminho_instrucao)}}'@endif
-            ];
+            links = ['{{asset($qualificacao->caminho_certificado)}}'];
         }
         function downloadAll(urls) {
             var link = document.createElement('a');

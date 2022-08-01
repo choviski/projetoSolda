@@ -395,14 +395,6 @@ class InicioController extends Controller
         File::move($certificado, public_path().'/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao);
         $soldador_qualificacao->caminho_certificado='/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao;
         
-        if($request->file('caminho_instrucao')){
-            $instrucao = $request->file('caminho_instrucao');
-            $extensao=$instrucao->getClientOriginalExtension();
-            chmod($instrucao->path(),0755);
-            File::move($instrucao, public_path().'/instrucoes/instrucao-id'.$soldador_qualificacao->id.'.'.$extensao);
-            $soldador_qualificacao->caminho_instrucao='/instrucoes/instrucao-id'.$soldador_qualificacao->id.'.'.$extensao; 
-        }
-        
         $soldador_qualificacao->save();
         return redirect()->route("paginaInicial");
     }

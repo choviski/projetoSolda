@@ -92,10 +92,6 @@
                     <label for="caminho_certificado" id="btnCertificado" class="">Escolha o arquivo de certificado</label>
                     <input type="file" class="" id="caminho_certificado" placeholder="Insira o arquivo de certificado" name="caminho_certificado" required>
 
-                    <label for="caminho_instrucao" id="" class="mt-2 col-12 p-0">Insira o arquivo do instrução:</label>
-                    <label for="caminho_instrucao" id="btnInstrucao" class="">Escolha o arquivo de instrução</label>
-                    <input type="file" class="" id="caminho_instrucao" placeholder="Insira o arquivo de instrução" name="caminho_instrucao">
-
                     <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
                         <label  for="nome">Nome:</label>
                         <input type="text" class="form-control" id="nome" placeholder="Insira o nome da norma" name="nome_norma" required>
@@ -109,7 +105,6 @@
                             <option value="2">12 meses</option>
                             <option value="3">24 meses</option>
                         </select>
-
 
                     </div>
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Salvar">
