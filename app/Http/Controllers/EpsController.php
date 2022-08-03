@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Empresa;
+use App\Arquivo;
 use App\Eps;
+use File;
 use Illuminate\Http\Request;
 
 class EpsController extends Controller
@@ -14,7 +16,22 @@ class EpsController extends Controller
         return view("cadastroEps")->with(["empresas"=>$empresas,"usuario"=>$usuario]);
     }
     public function store(Request $request){
-        Eps::create($request->all());
+        $eps = Eps::create($request->all());
+        foreach ($request->files as $todosarquivos) {
+            foreach ($todosarquivos as $arquivo) {
+                # cria um novo arquivoEps
+                $arquivoEps = new Arquivo();
+                $arquivoEps->id_eps = $eps->id;
+                $arquivoEps->caminho='';
+                //chmod($request->file->getPath(),0755);
+                chmod($arquivo->getRealPath(),0755);
+                $arquivoEps->save();
+                $extensao = $arquivo->getClientOriginalExtension();
+                $imagem = File::move($arquivo, public_path(). '/arquivos/arquivoEPS-id' . $arquivoEps->id . '.' . $extensao);
+                $arquivoEps->caminho = '/arquivos/arquivoEPS-id'.$arquivoEps->id.'.'.$extensao;
+                $arquivoEps->save();
+            }
+        }
         $usuario = session()->get("Usuario");
         $empresas = Empresa::orderBy('razao_social')->get();
         return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
