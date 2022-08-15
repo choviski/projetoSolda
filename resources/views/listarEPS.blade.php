@@ -98,15 +98,96 @@
             color: white;
             align-items: center;
             text-align: center;
+        }.formularioFiltro{
+            position: relative;
+        }
+        .botaoProcurar{
+            position: absolute;
+            right: 0px;
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+            border:none;
+            color: white;
+            background-color: #007bff;
+            height: 30px;
+            width: 32px;
+            padding: 2px;
+            font-weight: lighter;
+        }
+        .select{
+            height: 38px;
+        }
+        .filteredBy{
+            background: #5398ff;
+            color:white;
+            border-radius: 5px;
+            padding: 2px 12px;
+        }
+        .removeFilter{
+            background: #ff6464;
+            color:white;
+            border-radius: 5px;
+            padding: 2px 6px 2px 12px;
+            cursor: pointer;
+        }
+        .removeFilterBtn{
+            background: white;
+            color:#ff6464;
+            border-radius: 100%;
+            width: 15px;
+            height: 15px;
+            position: relative;
         }
     </style>
     <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">EPS:</p>
+        <div class="d-flex justify-content-center pr-2" style="position: absolute;top:5px; right:0px;">
+            <p class="btn btn-outline-primary mb-0 mr-sm-0 mr-md-1"  data-toggle="collapse" href="#filtroForm" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:50px"><i class="fas fa-search"></i></p>
+        </div>        
+        <div class="collapse col-12 p-0" id="filtroForm">
+            <form class="bg-white col-12 formularioFiltro p-0 mb-2" method="get" action="#">
+                @csrf  
+                @if ($usuario->tipo==1)
+                <select class="form-control col-12" id="filtro" name="filtro" required>
+                    <option id="op1" value=""  selected>Selecione a empresa</option>
+                    @foreach($empresas as $empresas)
+                        <option value="{{$empresas->id}}">{{$empresas->nome_fantasia}}</option>
+                    @endforeach
+                </select>              
+                <button class="botaoProcurar select" style="top:0px; "><i class="fas fa-arrow-right"></i></button>    
+                @else
+                <input class="col-12" name="filtro" id="filtro" placeholder="Insira o nome do eps..." autocomplete="off">
+                <button class="botaoProcurar"><i class="fas fa-arrow-right"></i></button>  
+                @endif
+                  
+            </form>
+        </div>
     </div>
 
     <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom ">
-    @if($usuario->tipo==1)
+        @if($termo)
+            <div class="d-flex mt-2">
+                <div class="filteredBy shadow mr-2 ">
+                    <a>Filtrado por: "<b>{{$termo}}</b>"</a>
+                </div>
+                <form method="get" action="#">
+                    @csrf            
+                    <input type="hidden" name="filtro" id="filtro" value="">
+                    <button style="background-color: transparent; padding: 0px; border:none; box-size:border-box">
+                        <div class="removeFilter shadow d-flex align-items-center">                    
+                            <a>Remover filtro                        
+                            </a>
+                            <div class="removeFilterBtn ml-1">
+                                <span style="position: absolute; top:-6px; right:4px ">x</span>
+                            </div>
+                        </div>
+                    </button>    
+                </form>                
+            </div>
+        @endif
+
+        @if($usuario->tipo==1)
             <div id="addEps" class="col-12 mt-2 p-0 popin">
                
                 <form method="get" action="{{route("inserirEps")}}">

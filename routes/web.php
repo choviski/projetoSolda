@@ -164,14 +164,14 @@ Route::get('/', "LoginController@index")->name("inicio");
 Route::post('/cadastrar', "LoginController@cadastrar")->name("cadastrar");
 Route::get('/sair', "LoginController@sair")->name("sair");
 
-Route::get('/listagemEps',"InicioController@listarEPS")->middleware(CheckSession::class)->name("listarEps");
+Route::get('/listagemEps',"InicioController@listarEps")->middleware(CheckSession::class)->name("listarEps");
 
 Route::post('/perfilSoldador',"SoldadorController@perfilSoldador")->middleware(CheckSession::class)->name("perfilSoldador");
 Route::get('/listagemEmpresa',"InicioController@listarEmpresas")->middleware(CheckSession::class,CheckAdm::class)->name("paginaInicial");
 Route::get('/dashboard',"DashboardController@getMonthlyAllData")->middleware(CheckSession::class,CheckAdm::class)->name("dashboard");
 Route::get('/controleAcesso',"AcessoController@acessoControler")->middleware(CheckSession::class,CheckAdm::class)->name("controleAcesso");
 Route::get('/listagemSoldador',"InicioController@listarSoldadores")->middleware(CheckSession::class)->name("hubSoldadores");
-Route::post('/listagemSoldadorFiltrados',"SoldadorController@listarFiltrado")->middleware(CheckSession::class)->name("soldadoresFiltrados");
+//Route::post('/listagemSoldadorFiltrados',"SoldadorController@listarFiltrado")->middleware(CheckSession::class)->name("soldadoresFiltrados");
 Route::get('/relatorioQualificacao',"RelatorioQualificacao@relatorioQualificacao")->middleware(CheckSession::class,CheckAdm::class)->name("relatorioQualificacao");
 
 
