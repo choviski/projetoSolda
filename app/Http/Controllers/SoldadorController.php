@@ -201,8 +201,10 @@ class SoldadorController extends Controller
             $tempo=6;
         }elseif ($request->validade==2){
             $tempo=12;
-        }else{
+        }elseif ($request->validade==3){
             $tempo=24;
+        }elseif ($request->validade==4){
+            $tempo=36;
         }
         $validade=Carbon::parse($request->data_qualificacao);
         $soldador_qualificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
