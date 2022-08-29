@@ -101,41 +101,70 @@ class InicioController extends Controller
 
     public function listarEmpresas(Request $request){
         $usuario = session()->get("Usuario");
-        $empresas = Empresa::orderBy('razao_social')->get();
+        $termo = $request->filtro;
+        if($termo){
+            $empresas = Empresa::where("razao_social","LIKE",'%'.$termo.'%')->orderBy('razao_social')->get();
+        }else{
+            $empresas = Empresa::orderBy('razao_social')->get();
+        }        
 
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
     }
 
 
     public function listarEps(Request $request){
         $usuario = session()->get("Usuario");
+        $termo = $request->filtro;
+
         if($usuario->tipo==1){
-            $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
+            $empresas = Empresa::all();
+            if($termo){
+                $epss = Eps::where("criado","=",1)->where('id_empresa',$termo)->orderBy('nome')->get();
+                $termo = Empresa::where('id',$termo)->pluck('nome_fantasia')->first();
+            }else{
+                $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
+            }
+            return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo,"empresas"=>$empresas]);         
         }else{
-            $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();       
-        }
-       
-        return view("listarEps")->with(["usuario"=>$usuario,"epss"=>$epss]);
+            if($termo){
+                $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)
+                ->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get(); 
+            }else{
+                $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();  
+            }
+            return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo]);
+        }       
+        
     }
 
 
     public function listarSoldadores(Request $request){
         $usuario = session()->get("Usuario");
+        $termo = $request->filtro;
 
         $rota=Route::getCurrentRoute()->getName();
-        if($usuario->tipo==1){
-            //$soldadores=Soldador::orderBy('nome')->get();
-            //return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota]);
-            $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->get();
+        if($usuario->tipo==1){            
+            if($termo){
+                $soldadores=Soldador::where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
+            }else{
+                $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->get();
+            }            
 
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota]);
-
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota,"termo"=>$termo]);
         }
         if($usuario->tipo==2){
-            $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
-            $soldadores=Soldador::where('id_empresa','=',$empresa->id)->where("criado","=",1)->orderBy('nome')->get();
 
-            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota]);
+            $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
+
+            if($termo){
+                $soldadores=Soldador::where('id_empresa','=',$empresa->id)
+                ->where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
+            }else{
+                $soldadores=Soldador::where('id_empresa','=',$empresa->id)
+                ->where("criado","=",1)->orderBy('nome')->get();
+            }   
+
+            return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota,"termo"=>$termo]);
         }
 
     }
