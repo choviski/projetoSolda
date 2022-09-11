@@ -430,6 +430,40 @@ class InicioController extends Controller
         return redirect()->route("paginaInicial");
     }
 
+    public function listagemLogin(){
+        $usuario = session()->get("Usuario");
+        //pegar todos os logins/usuarios
+        //listar em ordem alfabetica da empresa (?)
+        return view('/listarLogins')->with(["usuario"=>$usuario]);
+    }
+
+    public function cadastroLogin(){
+        $usuario = session()->get("Usuario");
+        if($usuario->tipo == 1){
+            $empresas = Empresa::all();
+            return view('/cadastroLogin')->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        }else{
+            return view('/cadastroLogin')->with(["usuario"=>$usuario]);
+        }        
+    }
+
+    public function listagemLogin(){
+        $usuario = session()->get("Usuario");
+        //pegar todos os logins/usuarios
+        //listar em ordem alfabetica da empresa (?)
+        return view('/listarLogins')->with(["usuario"=>$usuario]);
+    }
+
+    public function cadastroLogin(){
+        $usuario = session()->get("Usuario");
+        if($usuario->tipo == 1){
+            $empresas = Empresa::all();
+            return view('/cadastroLogin')->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        }else{
+            return view('/cadastroLogin')->with(["usuario"=>$usuario]);
+        }        
+    }
+
 
 
 }

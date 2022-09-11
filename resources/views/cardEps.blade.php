@@ -6,8 +6,7 @@
         .visSold{
             margin-bottom: 8px;
             margin-left: 7px;
-        }
-     
+        }    
 
     }
 </style>
