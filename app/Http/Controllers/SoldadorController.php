@@ -287,7 +287,7 @@ class SoldadorController extends Controller
             $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where("criado","=",1)->get();
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);
         }else{
-            $empresa=Empresa::where('id_usuario','=',$usuario->id)->first();
+            $empresa=$usuario->empresa;
             $soldadores = Soldador::where('nome','like','%'.$request->nomeSoldador.'%')->where('id_empresa','=',$empresa->id)->where("criado","=",1)->get();
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rotaAnterior,"nomeSoldador"=>$nomeSoldador]);
         }

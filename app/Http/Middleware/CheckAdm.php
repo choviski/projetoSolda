@@ -20,7 +20,7 @@ class CheckAdm
 
         if($usuario->tipo==1){
             return $next($request);
-        }elseif ($usuario->tipo==2){
+        }else{
             return redirect()->route('hubSoldadores');
         }
     }

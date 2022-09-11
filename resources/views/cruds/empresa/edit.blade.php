@@ -163,9 +163,6 @@
                 <label  for="senha">Senha (sugestão):</label>
                 <input type="text" class="form-control" id="senha" value="{{$empresa->usuario->senha}}" name="senha" required>
 
-                <input type="hidden" value="{{$empresa->id_usuario}}" name="id_usuario" required>
-
-
                 <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
                     <hr>
                     <p class="lead">Endereço:</p>

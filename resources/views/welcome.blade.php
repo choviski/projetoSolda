@@ -228,7 +228,7 @@
             <div class="second-section-content shadow-lg">
                 <form action="{{route("login")}}" method="post" class="form-group col-12 mb-5 formulario" >
                     @csrf
-                    <input type="email" name="email" class="form-control mt-5" placeholder="Email" style="font-size: 20px;border-radius: 15px;"  required>
+                    <input type="email" name="email" class="form-control mt-4" placeholder="Email" style="font-size: 20px;border-radius: 15px;"  required>
                     <input type="password" name="senha" class="form-control mt-3" placeholder="Senha" style="font-size: 20px;border-radius: 15px;" required>
                     <input type="submit" value="Entrar" class="btn btn-block btn-outline-light btn-login  mt-3 mb-2" style="font-size: 20px;font-weight: bold;border-radius: 15px;" >
                     @if(!empty($mensagem))
