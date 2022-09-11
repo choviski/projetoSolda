@@ -201,7 +201,7 @@
             <div id="addEps" class="col-12 mt-2 p-0 popin">
                 <form method="get" action="{{route("requisitarEps")}}">
                     @csrf
-                    <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{\App\Empresa::where('id_usuario','=',$usuario->id)->pluck("id")[0]}}">
+                    <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{$usuario->empresa->id}}">
                     <input type="submit" class="btn btn-primary btn-block font-weight-light" value="Requisitar cadastro de nova EPS">
                 </form>
             </div>

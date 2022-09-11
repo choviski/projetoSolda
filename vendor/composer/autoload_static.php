@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit79ac326a3685e1b86becde837684de42
+class ComposerStaticInit6600e64ab7c733ebca5c8520295fac4b
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -533,6 +533,9 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'App\\Mail\\Email4' => __DIR__ . '/../..' . '/app/Mail/Email4.php',
         'App\\Mail\\Email5' => __DIR__ . '/../..' . '/app/Mail/Email5.php',
         'App\\Mail\\Email6' => __DIR__ . '/../..' . '/app/Mail/Email6.php',
+        'App\\Mail\\email' => __DIR__ . '/../..' . '/app/Mail/Email.php',
+        'App\\Mail\\email2' => __DIR__ . '/../..' . '/app/Mail/Email2.php',
+        'App\\Mail\\email3' => __DIR__ . '/../..' . '/app/Mail/Email3.php',
         'App\\Norma' => __DIR__ . '/../..' . '/app/Norma.php',
         'App\\NormaQualificacao' => __DIR__ . '/../..' . '/app/NormaQualificacao.php',
         'App\\Processo' => __DIR__ . '/../..' . '/app/Processo.php',
@@ -637,7 +640,6 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -4314,6 +4316,7 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'Symfony\\Component\\EventDispatcher\\Debug\\TraceableEventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php',
         'Symfony\\Component\\EventDispatcher\\Debug\\WrappedListener' => __DIR__ . '/..' . '/symfony/event-dispatcher/Debug/WrappedListener.php',
         'Symfony\\Component\\EventDispatcher\\DependencyInjection\\AddEventAliasesPass' => __DIR__ . '/..' . '/symfony/event-dispatcher/DependencyInjection/AddEventAliasesPass.php',
+        'Symfony\\Component\\EventDispatcher\\DependencyInjection\\ExtractingEventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/DependencyInjection/RegisterListenersPass.php',
         'Symfony\\Component\\EventDispatcher\\DependencyInjection\\RegisterListenersPass' => __DIR__ . '/..' . '/symfony/event-dispatcher/DependencyInjection/RegisterListenersPass.php',
         'Symfony\\Component\\EventDispatcher\\EventDispatcher' => __DIR__ . '/..' . '/symfony/event-dispatcher/EventDispatcher.php',
         'Symfony\\Component\\EventDispatcher\\EventDispatcherInterface' => __DIR__ . '/..' . '/symfony/event-dispatcher/EventDispatcherInterface.php',
@@ -4682,6 +4685,7 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
         'Symfony\\Component\\Routing\\Loader\\GlobFileLoader' => __DIR__ . '/..' . '/symfony/routing/Loader/GlobFileLoader.php',
         'Symfony\\Component\\Routing\\Loader\\ObjectLoader' => __DIR__ . '/..' . '/symfony/routing/Loader/ObjectLoader.php',
         'Symfony\\Component\\Routing\\Loader\\PhpFileLoader' => __DIR__ . '/..' . '/symfony/routing/Loader/PhpFileLoader.php',
+        'Symfony\\Component\\Routing\\Loader\\ProtectedPhpFileLoader' => __DIR__ . '/..' . '/symfony/routing/Loader/PhpFileLoader.php',
         'Symfony\\Component\\Routing\\Loader\\XmlFileLoader' => __DIR__ . '/..' . '/symfony/routing/Loader/XmlFileLoader.php',
         'Symfony\\Component\\Routing\\Loader\\YamlFileLoader' => __DIR__ . '/..' . '/symfony/routing/Loader/YamlFileLoader.php',
         'Symfony\\Component\\Routing\\Matcher\\CompiledUrlMatcher' => __DIR__ . '/..' . '/symfony/routing/Matcher/CompiledUrlMatcher.php',
@@ -5016,10 +5020,10 @@ class ComposerStaticInit79ac326a3685e1b86becde837684de42
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit79ac326a3685e1b86becde837684de42::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit79ac326a3685e1b86becde837684de42::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit79ac326a3685e1b86becde837684de42::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit79ac326a3685e1b86becde837684de42::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6600e64ab7c733ebca5c8520295fac4b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6600e64ab7c733ebca5c8520295fac4b::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6600e64ab7c733ebca5c8520295fac4b::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6600e64ab7c733ebca5c8520295fac4b::$classMap;
 
         }, null, ClassLoader::class);
     }

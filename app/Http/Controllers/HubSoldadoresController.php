@@ -28,7 +28,7 @@ class HubSoldadoresController extends Controller
         #Pegando os soldadores da empresa
         elseif($usuario->tipo==2){
 
-            $empresa = Empresa::where('id_usuario','=',$usuario->id)->get();
+            $empresa = $usuario->empresa;
             $soldadores = Soldador::where('id_empresa','=',$empresa[0]->id)->where("criado","=",1)->get();
             $soldadorqualificacaos=collect();
 
