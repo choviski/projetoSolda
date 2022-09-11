@@ -26,6 +26,7 @@ Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(Check
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 Route::get('/listagemLogin',"InicioController@listagemLogin")->middleware(CheckSession::class,CheckAdm::class)->name("listagemLogin");
 Route::get('/cadastroLogin',"InicioController@cadastroLogin")->middleware(CheckSession::class)->name("cadastroLogin");
+Route::post('/novoUsuario',"UsuarioController@cadastrarNovoUsuario")->middleware(CheckSession::class)->name("novoUsuario");
 
 
 Route::get('/requisicoes',"InicioController@requisicoes")->middleware(CheckSession::class,CheckAdm::class)->name("requisicoes");

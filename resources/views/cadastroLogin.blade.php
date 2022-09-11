@@ -31,7 +31,7 @@
     </div>
 
     <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
-        <form  class=" col-md-9 col-sm-10 mt-2" action="#" method="post">
+        <form  class=" col-md-9 col-sm-10 mt-2" action="{{route('novoUsuario')}}" method="post">
       
             @csrf
             <div class="form-group bg-light p-2 rounded">
@@ -44,7 +44,7 @@
                         @endforeach
                     </select> 
                 @else
-                    <input type="hidden" name="idEmpresa" id="idEmpresa" value="{{$usuario->empresa->id}}">
+                    <input type="hidden" name="empresa" id="idEmpresa" value="{{$usuario->empresa->id}}">
                 @endif
             
                 <label for="email" class="mb-0">Email:</label>

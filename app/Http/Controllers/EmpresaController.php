@@ -301,12 +301,13 @@ class EmpresaController extends Controller
     {
         $usuario = session()->get("Usuario");
         $empresa = $usuario->empresa;
+        $usuarios = Usuario::where('id_empresa',$usuario->id_empresa)->get();
         $usuarioEmpresa = Usuario::find($usuario->id);
         $enderecos = Endereco::all();
         $inspetors = Inspetor::all();
         $erro = $request->session()->get("erro");
 
-        return view("editarUsuario")->with(["usuario" => $usuario, "usuarioEmpresa" => $usuarioEmpresa, "enderecos" => $enderecos, "inspetors" => $inspetors, "empresa" => $empresa, "erro" => $erro]);
+        return view("editarUsuario")->with(["usuario" => $usuario,"usuarios" => $usuarios, "usuarioEmpresa" => $usuarioEmpresa, "enderecos" => $enderecos, "inspetors" => $inspetors, "empresa" => $empresa, "erro" => $erro]);
     }
 
     public function salvarUsuario($id, Request $request)
@@ -325,13 +326,9 @@ class EmpresaController extends Controller
                 return redirect()->back();
             }
         }
-        $empresa->email=$request->email;
         $empresa->id_endereco=$request->id_endereco;
         $empresa->id_inspetor=$request->id_inspetor;
-        $usuarioEmpresa=Usuario::find($empresa->id_usuario);
-        $usuarioEmpresa->senha = $request->senha;
         $empresa->update();
-        $usuarioEmpresa->update();
 
         return redirect()->route("paginaInicial")->with(["usuario" => $usuario]);
 

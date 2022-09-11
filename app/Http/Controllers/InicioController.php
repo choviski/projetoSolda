@@ -14,6 +14,7 @@ use App\Processo;
 use App\Eps;
 use App\Arquivo;
 use App\SoldadorQualificacao;
+use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -106,7 +107,7 @@ class InicioController extends Controller
             $empresas = Empresa::where("razao_social","LIKE",'%'.$termo.'%')->orderBy('razao_social')->get();
         }else{
             $empresas = Empresa::orderBy('razao_social')->get();
-        }        
+        }
 
         return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
     }
@@ -124,17 +125,17 @@ class InicioController extends Controller
             }else{
                 $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
             }
-            return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo,"empresas"=>$empresas]);         
+            return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo,"empresas"=>$empresas]);
         }else{
             if($termo){
                 $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)
-                ->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get(); 
+                ->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
             }else{
-                $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();  
+                $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();
             }
             return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo]);
-        }       
-        
+        }
+
     }
 
 
@@ -143,16 +144,16 @@ class InicioController extends Controller
         $termo = $request->filtro;
 
         $rota=Route::getCurrentRoute()->getName();
-        if($usuario->tipo==1){            
+        if($usuario->tipo==1){
             if($termo){
                 $soldadores=Soldador::where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
             }else{
                 $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->get();
-            }            
+            }
 
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota,"termo"=>$termo]);
         }
-        if($usuario->tipo==2){
+        if($usuario->tipo!=1){
 
             $empresa=$usuario->empresa;
 
@@ -162,13 +163,13 @@ class InicioController extends Controller
             }else{
                 $soldadores=Soldador::where('id_empresa','=',$empresa->id)
                 ->where("criado","=",1)->orderBy('nome')->get();
-            }   
+            }
 
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota,"termo"=>$termo]);
         }
 
     }
-    
+
     public function certificadoAjax($id){
         $certificados=Certificado::where('id_requalificacao','=',$id)->pluck("caminho");
 
@@ -203,14 +204,14 @@ class InicioController extends Controller
         $eps=EPS::where('id','=',$request->id)->first();
         $usuario = session()->get("Usuario");
         $arquivos=Arquivo::where('id_eps','=',$eps->id)->get();
-      
+
         return view("avaliarRequisicaoEps")->with(["usuario"=>$usuario,"eps"=>$eps,"arquivos"=>$arquivos]);
     }
 
     public function avaliarRequisicaoQualificacao(Request $request){
         $qualificacao=SoldadorQualificacao::where('id','=',$request->id)->first();
         $usuario = session()->get("Usuario");
-      
+
         return view("avaliarRequisicaoQualificacao")->with(["usuario"=>$usuario,"qualificacao"=>$qualificacao]);
     }
 
@@ -218,7 +219,7 @@ class InicioController extends Controller
         if($request->aceito==1){
             $eps=Eps::find($request->id);
             $eps->criado=1;
-            $eps->save();      
+            $eps->save();
         }
         elseif($request->aceito==0){
             Eps::destroy($request->id);
@@ -234,7 +235,7 @@ class InicioController extends Controller
         if($request->aceito==1){
             $qualificacao=SoldadorQualificacao::find($request->id);
             $qualificacao->criado=1;
-            $qualificacao->save();      
+            $qualificacao->save();
         }
         elseif($request->aceito==0){
             SoldadorQualificacao::destroy($request->id);
@@ -263,7 +264,7 @@ class InicioController extends Controller
         $qualificacaos=SoldadorQualificacao::where('criado','=',0)->get();
         $epss=Eps::where('criado','=',0)->get();
         return view("requisicoesCadastro")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"epss"=>$epss,"qualificacaos"=>$qualificacaos]);
-    
+
     }
 
     public function requisitarSoldador(Request $request){
@@ -425,18 +426,11 @@ class InicioController extends Controller
         chmod($certificado->path(),0755);
         File::move($certificado, public_path().'/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao);
         $soldador_qualificacao->caminho_certificado='/certificados/certificado-id'.$soldador_qualificacao->id.'.'.$extensao;
-        
+
         $soldador_qualificacao->save();
         return redirect()->route("paginaInicial");
     }
 
-    public function listagemLogin(){
-        $usuario = session()->get("Usuario");
-        //pegar todos os logins/usuarios
-        //listar em ordem alfabetica da empresa (?)
-        return view('/listarLogins')->with(["usuario"=>$usuario]);
-    }
-
     public function cadastroLogin(){
         $usuario = session()->get("Usuario");
         if($usuario->tipo == 1){
@@ -444,26 +438,13 @@ class InicioController extends Controller
             return view('/cadastroLogin')->with(["usuario"=>$usuario,"empresas"=>$empresas]);
         }else{
             return view('/cadastroLogin')->with(["usuario"=>$usuario]);
-        }        
+        }
     }
 
     public function listagemLogin(){
         $usuario = session()->get("Usuario");
-        //pegar todos os logins/usuarios
-        //listar em ordem alfabetica da empresa (?)
-        return view('/listarLogins')->with(["usuario"=>$usuario]);
+
+        $usuarios = Usuario::where('id_empresa',$usuario->id_empresa)->get();
+        return view('/listarLogins')->with(["usuarios"=>$usuarios]);
     }
-
-    public function cadastroLogin(){
-        $usuario = session()->get("Usuario");
-        if($usuario->tipo == 1){
-            $empresas = Empresa::all();
-            return view('/cadastroLogin')->with(["usuario"=>$usuario,"empresas"=>$empresas]);
-        }else{
-            return view('/cadastroLogin')->with(["usuario"=>$usuario]);
-        }        
-    }
-
-
-
 }
