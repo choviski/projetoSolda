@@ -141,10 +141,7 @@ class EmpresaController extends Controller
         $empresa->telefone = $request->telefone;
         $empresa->email = $request->email;
         $empresa->id_endereco = $endereco->id;
-        $usuario = Usuario::where('empresa_id',$empresa->id)->where('tipo',2)->first();
-        $usuario->email = $request->email;
-        $usuario->senha = $request->senha;
-        $usuario->update();
+
         if ($request->nome && $request->crea && $request->funcao) {
             try {
                 $inspetor = new Inspetor();

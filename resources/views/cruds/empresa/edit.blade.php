@@ -160,9 +160,6 @@
                 <label  for="email">Email:</label>
                 <input type="email" class="form-control" id="email" value="{{$empresa->email}}" name="email" required>
 
-                <label  for="senha">Senha (sugestão):</label>
-                <input type="text" class="form-control" id="senha" value="{{$empresa->usuario->senha}}" name="senha" required>
-
                 <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
                     <hr>
                     <p class="lead">Endereço:</p>
