@@ -271,7 +271,7 @@ class EmpresaController extends Controller
         #Criando o usuario da empresa
         #senha aleatoria
         $novoUsuario = Usuario::create([
-            'nome' => $request->razao,
+            'nome' => $request->razao_social,
             'email' => $request->email,
             'senha' => $request->senha,
             'tipo' => 2,
