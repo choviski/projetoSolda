@@ -142,9 +142,9 @@
                         <p class="m-0">Email: {{$usuario->email}}</p>
                     </div>
                     <div class="login_info col-11 mt-2 mx-auto" style="padding: 0px; border:0px">
-                        <input id="senha-1" type="password" disabled value="{{$usuario->senha}}"
+                        <input id="senha-{{$usuario->id}}" type="password" disabled value="{{$usuario->senha}}"
                                class="form-control text-center ">
-                        <i id="mostrar-senha-1" class="fa fa-eye" onclick="mostrarSenha(1)" aria-hidden="true"
+                        <i id="mostrar-senha-{{$usuario->id}}" class="fa fa-eye" onclick="mostrarSenha({{$usuario->id}})" aria-hidden="true"
                            style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
                         <!-- Onde tem "1" como valor nos ids e na funcao do onclick mudar para a { { empresa->id } } -->
                     </div>

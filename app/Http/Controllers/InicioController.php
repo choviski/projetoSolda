@@ -441,10 +441,22 @@ class InicioController extends Controller
         }
     }
 
-    public function listagemLogin(){
+    public function listagemLogin(Request $request){
         $usuario = session()->get("Usuario");
-
-        $usuarios = Usuario::where('id_empresa',$usuario->id_empresa)->get();
-        return view('/listarLogins')->with(["usuarios"=>$usuarios]);
+        $termo = $request->filtro;
+        if($usuario->tipo == 1){
+            $empresas = Empresa::all();
+            if($termo){
+                $logins = Usuario::where('id_empresa',$termo)->orderBy("created_at","ASC")->get();
+                $termo = Empresa::where('id',$termo)->pluck('razao_social')->first();
+            }else{
+                $logins = Usuario::orderBy("created_at","ASC")->get();
+            }                       
+            return view('/listarLogins')->with(["usuario"=>$usuario,"logins"=>$logins,"empresas"=>$empresas,"termo"=>$termo]);
+        }else{
+            $logins = Usuario::where('id_empresa',$usuario->id_empresa)->get();
+            return view('/listarLogins')->with(["usuario"=>$usuario,"logins"=>$logins]);
+        }
+        
     }
 }
