@@ -34,12 +34,12 @@ class EpsController extends Controller
         }
         $usuario = session()->get("Usuario");
         $empresas = Empresa::orderBy('razao_social')->get();
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        return redirect()->route('listarEps');
     }
     public function destroy(Request $request){
         Eps::destroy($request->id);
         $usuario = session()->get("Usuario");
         $empresas = Empresa::orderBy('razao_social')->get();
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        return redirect()->route('listarEps');
     }
 }
