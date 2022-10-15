@@ -30,7 +30,8 @@ class Email6 extends Mailable
     {
         $usuario=session()->get("Usuario");
         $this->subject("HÁ UM NOVO ACESSO NO SISTEMA RASTREA");
-        $this->to("wojeicchowskinicholas@gmail.com", "InfoSolda");
+        $this->to("infosolda@infosolda.com.br", "InfoSolda");
+        $this->cc("tsi.soldagem@gmail.com", "TSI Soldagem");
         $mensagem="O usuário {$usuario->nome} acaba de fazer um acesso no sistema Rastrea";
 
         return $this->markdown('mail.email6')->with(["mensagem"=>$mensagem]);
