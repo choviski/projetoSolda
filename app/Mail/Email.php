@@ -19,9 +19,13 @@ class email extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    private $soldadorQualificacao;
+
+    public function __construct(
+        SoldadorQualificacao $soldadorQualificacao
+    )
     {
-        //
+        $this->soldadorQualificacao = $soldadorQualificacao;
     }
 
     /**
@@ -31,31 +35,27 @@ class email extends Mailable
      */
     public function build()
     {
-        $qualificacaos = SoldadorQualificacao::where("criado",1)->select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
-   "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
-        foreach ($qualificacaos as $qualificacao) {
-            if ($qualificacao->tempo < 40) {
-                $email = $qualificacao->soldador->empresa->email;
-                $nome = $qualificacao->soldador->nome;
-                $qualificacao->aviso = 0;
-                if($qualificacao->tempo<0){
-                    $qualificacao->status="atrasado";
-                }
-                if($qualificacao->tempo>0){
-                    $mensagem="Sua qualificacao irá vencer em " .$qualificacao->tempo." dias!!";
-                }elseif ($qualificacao->tempo==0){
-                    $mensagem="Sua qualificacao vence hoje !!";
-                }else{
-                    $mensagem="Sua qualificacao venceu há " .($qualificacao->tempo*-1)." dias!!";
-
-                }
-                $qualificacao->save();
-                $this->subject("SUA QUALIFICACAO ESTÁ PRESTES A VENCER");
-                $this->cc("infosolda@infolda.com.br","infosolda");
-                $this->cc("tsi.soldagem@gmail.com","TSI SOLDAGEM");
-                $this->to("$email", "$nome");
-                return $this->markdown('mail.email')->with(["dado"=>$qualificacao,"mensagem"=>$mensagem]);
+        if ($this->soldadorQualificacao->tempo < 40) {
+            $email = $this->soldadorQualificacao->soldador->empresa->email;
+            $nome = $this->soldadorQualificacao->soldador->nome;
+            $this->soldadorQualificacao->aviso = 0;
+            if ($this->soldadorQualificacao->tempo < 0) {
+                $this->soldadorQualificacao->status = "atrasado";
             }
+            if ($this->soldadorQualificacao->tempo > 0) {
+                $mensagem = "Sua qualificacao irá vencer em " . $this->soldadorQualificacao->tempo . " dias!!";
+            } elseif ($this->soldadorQualificacao->tempo == 0) {
+                $mensagem = "Sua qualificacao vence hoje !!";
+            } else {
+                $mensagem = "Sua qualificacao venceu há " . ($this->soldadorQualificacao->tempo * -1) . " dias!!";
+
+            }
+            $this->soldadorQualificacao->save();
+            $this->subject("SUA QUALIFICACAO ESTÁ PRESTES A VENCER");
+            $this->cc("treinasolda@infolda.com.br","Treina Solda");
+            $this->cc("tsi.soldagem@gmail.com","TSI SOLDAGEM");
+            $this->to($email, $nome);
+            return $this->markdown('mail.email')->with(["dado" => $this->soldadorQualificacao, "mensagem" => $mensagem]);
         }
     }
 }

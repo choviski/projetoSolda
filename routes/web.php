@@ -6,6 +6,8 @@ use App\SoldadorQualificacao;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Email;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,18 +116,7 @@ Route::post("/listarSoldador/{id}","SoldadorController@listar")->name("listarSol
 Route::post("/adicionarQualificacao","SoldadorController@adicionarQualificacao")->name("adicionarQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::post("/inserirQualificacao","SoldadorController@inserirQualificacao")->name("inserirQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 Route::get("/inserirEmpresa","EmpresaController@selecionar")->name("inserirEmpresa")->middleware(CheckSession::class,CheckAdm::class);
-Route::get('envio-email4/{id}',function ($id){/*
-    $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email4($qualificacao));*/
-    return redirect()->route("paginaInicial");
-})->name("email4");
-Route::get('envio-email5',function (Request $request){/*
-    $usuario = new stdClass();
-    $usuario->email=$request->email;
-    $usuario->telefone=$request->telefone;
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email5($usuario));*/
-    return redirect()->route("inicio");
-})->name("email5");
+
 Route::put("/editarQualificacao/{id}","QualificacaoController@editar")->name("editarQualificacao")->middleware(CheckSession::class);
 Route::post("/requalificacao","QualificacaoController@requalificar")->name("requalificar")->middleware(CheckSession::class);
 Route::post("/avaliarRequalificacao","QualificacaoController@avaliarRequalificacao")->name("avaliarRequalificacao")->middleware(CheckSession::class,CheckAdm::class);
@@ -133,37 +124,14 @@ Route::post("/processarRequalificacao","QualificacaoController@processarRequalif
 Route::post('/municipio/{estado}',"CidadeController@municipio")->middleware(CheckSession::class)-> name("municipio/{estado}");
 Route::post("/novaQualificacao","SoldadorController@novaQualificacao")->name("novaQualificacao")->middleware(CheckSession::class,CheckAdm::class);
 
-
-Route::get('envio-email',function (){/*
-
-        $qualificacaos = SoldadorQualificacao::select(DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo
-       "))->orderBy('validade_qualificacao', 'desc')->where("aviso","=",1)->get();
-        foreach ($qualificacaos as $qualificacao) {
-            if ($qualificacao->tempo < 40) {
-                \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email());
-                \Illuminate\Support\Facades\Mail::cc("infosolda@infosolda.com.br");
-            }
-        }
-        \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email6());*/
-       return redirect()->route("paginaInicial");
-})->name("email");
-
-Route::get('envio-email2/{id}',function ($id){
-    /*
-    $usuario=\App\Usuario::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email2($usuario));*/
-    return redirect()->route("paginaInicial");
-})->name("email2");
-Route::get('envio-email3/{id}',function ($id){
-    /*
-    $qualificacao=\App\SoldadorQualificacao::find($id);
-    \Illuminate\Support\Facades\Mail::send(new \App\Mail\Email3($qualificacao));*/
-    return redirect()->route("paginaInicial");
-})->name("email3");
+Route::get('envio-email',"EmailController@envioEmailQualificacao")->name("email");
+Route::get('envio-email2/{id}',"EmailController@envioEmailCadastro")->name("email2");
+Route::get('envio-email3/{id}',"EmailController@envioEmailRespostaRequalificacao")->name("email3");
+Route::get('envio-email4/{id}','EmailController@envioEmailRequisicaoRequalificacao')->name("email4");
+Route::get('envio-email5',"EmailController@envioEmailLead")->name("email5");
 
 Route::post('/login','LoginController@entrar')->name("login");
 Route::get('/', "LoginController@index")->name("inicio");
-//Route::get('/novoUsuario', "LoginController@create")->name("novoUsuario");
 Route::post('/cadastrar', "LoginController@cadastrar")->name("cadastrar");
 Route::get('/sair', "LoginController@sair")->name("sair");
 

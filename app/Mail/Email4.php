@@ -34,6 +34,7 @@ class Email4 extends Mailable
             $mensagem="A requalificação {$this->qualificacao->qualificacao->cod_eps}, do Soldador, {$this->qualificacao->soldador->nome}
             está disponível para avaliação";
         $this->cc("tsi.soldagem@gmail.com","TSI SOLDAGEM");
+        $this->cc("treinasolda@infosolda.com.br","Treina Solda");
 
         return $this->markdown('mail.email4')->with(["mensagem"=>$mensagem,"dado"=>$this->qualificacao]);
     }
