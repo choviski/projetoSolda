@@ -52,7 +52,7 @@ class email extends Mailable
             }
             $this->soldadorQualificacao->save();
             $this->subject("SUA QUALIFICACAO ESTÁ PRESTES A VENCER");
-            $this->cc("treinasolda@infolda.com.br","Treina Solda");
+            $this->cc("treinasolda@infosolda.com.br","Treina Solda");
             $this->cc("tsi.soldagem@gmail.com","TSI SOLDAGEM");
             $this->to($email, $nome);
             return $this->markdown('mail.email')->with(["dado" => $this->soldadorQualificacao, "mensagem" => $mensagem]);

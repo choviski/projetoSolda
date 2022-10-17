@@ -231,10 +231,12 @@ class SoldadorController extends Controller
         return view("escolha")->with(["soldador"=>$request->id_soldador,"usuario"=>$usuario]);
     }
 
-    public function inserirQualificacao(Request $request){
+    public function inserirQualificacao(Request $request){        
         $usuario = session()->get("Usuario");
         $processos=Processo::all();
-        return view("selecionarQualificacoes")->with(["soldador"=>"$request->soldador","usuario"=>$usuario,"processos"=>$processos]);
+        $soldador=Soldador::where('id',$request->soldador)->first();
+        $epss=Eps::where("id_empresa","=",$soldador->id_empresa)->get();       
+        return view("selecionarQualificacoes")->with(["soldador"=>"$request->soldador","usuario"=>$usuario,"processos"=>$processos,"epss"=>$epss]);
     }
 
     public function perfilSoldador(Request $request){
