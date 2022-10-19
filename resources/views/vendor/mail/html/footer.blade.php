@@ -3,7 +3,7 @@
 <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
 <tr>
 <td class="content-cell" align="center">
-    © 2021 Info Solda. All rights reserved.
+    © 2021 Infosolda. All rights reserved.
 </td>
 </tr>
 </table>
