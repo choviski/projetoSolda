@@ -104,6 +104,7 @@ Route::get('/arquivoAjax/{id}', "InicioController@arquivoAjax")->name("arquivoAj
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);
 Route::get('/controleAcessoAjax/{dataInicial}/{dataFinal}', "AcessoController@controleAcessoAjax")->name("controleAcessoAjax")->middleware(CheckSession::class,CheckAdm::class);
 Route::get('/relatorioQualificacaoAjax/{opcao}', "RelatorioQualificacao@relatorioQualificacaoAjax")->name("relatorioQualificacaoAjax")->middleware(CheckSession::class,CheckAdm::class);
+Route::get('/relatorioVencimentoAjax/{ano}', "RelatorioQualificacao@relatorioVencimentoAjax")->name("relatorioVencimentoAjax")->middleware(CheckSession::class,CheckAdm::class);
 
 
 Route::get('/requalificacoesMensaisAjax/{mes}/{ano}', "DashboardController@requalificacoesMensaisAjax")->name("requalificacoesMensaisAjax")->middleware(CheckSession::class,CheckAdm::class);

@@ -11,8 +11,18 @@ class RelatorioQualificacao extends Controller
         $usuario = session()->get("Usuario");
         return view('/relatorioQualificacao')->with(["usuario"=>$usuario]);
     }
-    public function relatorioQualificacaoAjax(Request $request, $opcao){
 
+    public function relatorioVencimentoAjax(Request $request, $ano){
+        if($request->ajax()){
+            $nomeOpcao=$request->ano;
+            $qualificacacoes = SoldadorQualificacao::orderBy('validade_qualificacao')->whereYear('validade_qualificacao',$request->ano)->get();
+            $view = view('tabelaRelatorioVencimentos')->with(["qualificacaoes"=>$qualificacacoes])->render();
+            return response()->json(['html'=>$view,'nomeOpcao'=>$nomeOpcao]);
+        }
+        return back();
+    }
+
+    public function relatorioQualificacaoAjax(Request $request, $opcao){
         if($request->ajax()){
             if($request->opcao==0){ //todas as qualificacoes
                 $qualificacaoes=SoldadorQualificacao::orderBy('cod_rqs')->where("criado",1)->get();
