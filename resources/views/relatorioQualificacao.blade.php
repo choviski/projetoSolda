@@ -35,7 +35,7 @@
                 </div>
               
                 <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnDownloadTable" onclick="printTable('tabelaRequalificacoes')" style="display: none" >Exportar como PDF <i class="far fa-file-pdf"></i> </a>
-                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTable" onclick="excel()" style="display: none">Exportar para Excel <i class="far fa-file-excel"></i></a>
+                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTable" onclick="excel('tabelaRequalificacoes','Tabela Requalificacoes')" style="display: none">Exportar para Excel <i class="far fa-file-excel"></i></a>
             </div>
 
             <div class="bg-white rounded mt-3 mb-3 col-md-10 col-sm-12 pb-1 shadow-md">
@@ -59,7 +59,7 @@
                 </div>
                   
                 <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnDownloadTableVencimento" onclick="printTable('tabelaVencimentos')" style="display: none" >Exportar como PDF <i class="far fa-file-pdf"></i> </a>
-                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTableVencimento" onclick="excelVencimento()" style="display: none">Exportar para Excel <i class="far fa-file-excel"></i></a>
+                <a class="btn btn-outline-success col-12 mb-2 mt-1" id="btnExcelTableVencimento" onclick="excel('tabelaVencimentos','Tabela de Vencimentos das Qualificacoes')" style="display: none">Exportar para Excel <i class="far fa-file-excel"></i></a>
             </div>
 
             <a href="{{route("entidades")}}" class="btn col-10 btn-outline-light mb-2 text-dark"><i class="fas fa-arrow-left"></i> Voltar</a>
@@ -133,18 +133,12 @@
 
 <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 <script>
-    function excel(){
-        $('#tabelaRequalificacoes').table2excel({
+    function excel(idTabela,nomeArquivo){
+        console.log(idTabela)
+        $('#'+idTabela).table2excel({
             exclude:".noExl",
-            name:"Tabela de Requalificacoes",
-            filename:"Tabela de Requalificacoes",
-        });
-    }
-    function excelVencimento(){
-        $('#tabelaVencimentos').table2excel({
-            exclude:".noExl",
-            name:"Tabela de Vencimentos",
-            filename:"Tabela de Vencimentos",
+            name:nomeArquivo,
+            filename:nomeArquivo,
         });
     }
 </script>
