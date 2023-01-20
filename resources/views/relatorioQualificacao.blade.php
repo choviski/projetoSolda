@@ -116,7 +116,6 @@
             url:link,
         }).done(
             function (data) {
-                console.log(data);
                 $('#btnDownloadTableVencimento').show();
                 $('#btnExcelTableVencimento').show();
                 $('#tabelaVencimentoAppend').remove();
@@ -134,7 +133,6 @@
 <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 <script>
     function excel(idTabela,nomeArquivo){
-        console.log(idTabela)
         $('#'+idTabela).table2excel({
             exclude:".noExl",
             name:nomeArquivo,
