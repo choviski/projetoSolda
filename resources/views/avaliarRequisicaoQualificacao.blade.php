@@ -46,17 +46,9 @@
                 <label  for="descricao">Descrição:</label>
                 <textarea type="text" class="form-control" id="descricao" name="descricao_norma" disabled>{{$qualificacao->qualificacao->norma->norma->descricao}}</textarea>
 
-                <label for="validade">Validade:</label>                
-                @if($qualificacao->qualificacao->norma->norma->validade==6)
-                <input  type="text" name="validade" class="form-control" id="validade" value="6 meses" disabled>
-                @endif
-                @if($qualificacao->qualificacao->norma->norma->validade==12)
-                <input  type="text" name="validade" class="form-control" id="validade" value="12 meses" disabled>
-                @endif
-
-                @if($qualificacao->qualificacao->norma->norma->validade==24)
-                <input  type="text" name="validade" class="form-control" id="validade" value="24 meses" disabled>
-                @endif
+                <label for="validade">Validade:</label>         
+                <input  type="text" name="validade" class="form-control" id="validade" value="{{$qualificacao->qualificacao->norma->norma->validade}} meses" disabled>
+                
 
                 <a  onclick="getArquivos();downloadAll(window.links);" class="btn btn-outline-primary btn-block mt-2">Baixar arquivos da Qualificação</a>
                 <input type="submit" class="btn btn-outline-success mt-3 col-12" value="Aceitar" id="aceitar">

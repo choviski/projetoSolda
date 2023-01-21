@@ -16,7 +16,7 @@
         <hr class="p-0 m-0 mb-1">
         <p class="lead p-1 m-0" style="font-size: 22px">EDITAR INFORMAÇÕES:</p>
     </div>
-    <div class="row col-12 d-flex justify-content-center ">
+    <div class="row col-12 d-flex justify-content-center">
 
         <form class="col-9 p-0 mt-3"action="{{route("updateQualificacao")}}" method="post">
             @csrf
@@ -60,28 +60,27 @@
 
                     <label for="validade">Validade:</label>
                     <select name="validade" class="form-control" id="validade">
-                        @if($soldadorQualificacao->qualificacao->norma->norma->validade==6)
-                            <option value="1" selected>6 meses</option>
-                        @endif
-                        @if($soldadorQualificacao->qualificacao->norma->norma->validade==12)
-                            <option value="2" selected>12 meses</option>
-                        @endif
-
-                        @if($soldadorQualificacao->qualificacao->norma->norma->validade==24)
-                            <option value="3" selected>24 meses</option>
-                        @endif
-                        <option value="1">6 meses</option>
-                        <option value="2">12 meses</option>
-                        <option value="3">24 meses</option>
-                        <option value="4">36 meses</option>
+                        <option value="{{$soldadorQualificacao->qualificacao->norma->norma->validade}}" selected>
+                            {{$soldadorQualificacao->qualificacao->norma->norma->validade}} meses
+                        </option>
+                        <option value="3">3 meses</option>
+                        <option value="6">6 meses</option>
+                        <option value="9">9 meses</option>
+                        <option value="12">12 meses</option>
+                        <option value="24">24 meses</option>
+                        <option value="36">36 meses</option>
                     </select>
 
 
                 </div>
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Salvar">
             </div>
-            <a href="{{route("paginaInicial")}}"><button class="btn btn-outline-light btn-block text-dark mt-1  mb-2 col-12"><i class="fas fa-arrow-left"></i> Voltar</button></a>
         </form>
+        <span class="col-9 p-0">
+            <a href="{{route("paginaInicial")}}">            
+                <button class="btn btn-outline-light btn-block text-dark mt-1  mb-2 col-12"><i class="fas fa-arrow-left"></i> Voltar</button>
+            </a>
+        </span>
     </div>
 
 

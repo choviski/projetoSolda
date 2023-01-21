@@ -19,10 +19,12 @@
 
                 <label for="validade">Validade:</label>
                 <select name="validade" class="form-control" id="validade">
-                    <option value="1">6 meses</option>
-                    <option value="2">12 meses</option>
-                    <option value="3">24 meses</option>
-                    <option value="4">36 meses</option>
+                    <option value="3">3 meses</option>
+                    <option value="6">6 meses</option>
+                    <option value="9">9 meses</option>
+                    <option value="12">12 meses</option>
+                    <option value="24">24 meses</option>
+                    <option value="36">36 meses</option>
                 </select>
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12">

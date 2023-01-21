@@ -91,7 +91,7 @@
                     <label for="caminho_certificado" id="" class="mt-2 col-12 p-0">Insira o arquivo do certificado:</label>
                     <label for="caminho_certificado" id="btnCertificado" class="">Escolha o arquivo de certificado</label>
                     <input type="file" class="" id="caminho_certificado" placeholder="Insira o arquivo de certificado" name="caminho_certificado" required>
-
+                    <hr>
                     <p class="lead">Insira as informações sobre qual a norma que fala sobre essa qualificação:</p>
                         <label  for="nome">Nome:</label>
                         <input type="text" class="form-control" id="nome" placeholder="Insira o nome da norma" name="nome_norma" required>
@@ -101,10 +101,12 @@
 
                         <label for="validade">Validade:</label>
                         <select name="validade" class="form-control" id="validade">
-                            <option value="1">6 meses</option>
-                            <option value="2">12 meses</option>
-                            <option value="3">24 meses</option>
-                            <option value="4">36 meses</option>
+                            <option value="3">3 meses</option>
+                            <option value="6">6 meses</option>
+                            <option value="9">9 meses</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                            <option value="36">36 meses</option>
                         </select>
 
                     </div>

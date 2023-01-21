@@ -87,19 +87,11 @@ class SoldadorQualificacaoController extends Controller
 
     }
     public function atualizar(Request $request){
+        $termo = $request->filtro;
         $soldadorQualificacao=SoldadorQualificacao::find($request->id);
         $soldadorQualificacao->cod_rqs=$request->cod_rqs;
         $soldadorQualificacao->data_qualificacao=$request->data_qualificacao;
-
-        if($request->validade==1){
-            $tempo=6;
-        }elseif ($request->validade==2){
-            $tempo=12;
-        }elseif ($request->validade==3){
-            $tempo=24;
-        }elseif ($request->validade==4){
-            $tempo=36;
-        }
+        $tempo=$request->validade;
         $validade=Carbon::parse($request->data_qualificacao);
         $soldadorQualificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
         $datetime1 = new DateTime($validade);
@@ -122,7 +114,7 @@ class SoldadorQualificacaoController extends Controller
         $norma->save();
         $usuario=session()->get("Usuario");
         $empresas = Empresa::orderBy('razao_social')->get();
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
 
     }
 }

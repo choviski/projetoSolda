@@ -197,15 +197,7 @@ class SoldadorController extends Controller
         $soldador_qualificacao->id_qualificacao=$qualificacao->id;
         $soldador_qualificacao->data_qualificacao=$request->data_qualificacao;
         $hoje=now();
-        if($request->validade==1){
-            $tempo=6;
-        }elseif ($request->validade==2){
-            $tempo=12;
-        }elseif ($request->validade==3){
-            $tempo=24;
-        }elseif ($request->validade==4){
-            $tempo=36;
-        }
+        $tempo=$request->validade;
         $validade=Carbon::parse($request->data_qualificacao);
         $soldador_qualificacao->validade_qualificacao=($validade->addMonth($tempo)->toDateString());
         $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();
