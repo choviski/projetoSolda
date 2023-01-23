@@ -18,6 +18,12 @@
         .yellow{
             background-color:yellow;
         }
+        .redirect{
+            cursor: pointer;
+        }
+        .redirect:hover{
+            background-color: #eeeeee
+        }
     </style>
     <div class="col-12">
         <div class="table table-sm table-responsive" id="tabelaRequalificacoes">
@@ -35,9 +41,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($qualificacaoes as $qualificacao)
-                    <tr>
-                        <td colspan="3">{{$qualificacao->soldador->nome}}</td>
+                @foreach($qualificacaoes as $qualificacao)                  
+                    <tr >                                                               
+                        <td colspan="3" onclick="redirect({{$qualificacao->soldador->id}})" class="redirect">
+                            {{$qualificacao->soldador->nome}}
+                        </td>
                         <td colspan="3">{{$qualificacao->soldador->empresa->nome_fantasia}}</td>      
                         <td colspan="3">{{$qualificacao->cod_rqs}}</td>  
                         <td colspan="3">
@@ -59,11 +67,26 @@
                                 <div class="color-code blue"></div>                         
                             @endif
                             </span>
-                        </td>                    
+                        </td>      
                     </tr>
+                   
+                    
                 @endforeach
                 </tbody>
             </table>
+
+            <form method="POST" action="{{route("perfilSoldador")}}" id="redirectForm">
+                <input type="hidden" name="id_soldador" value="">
+                @csrf
+                @method('POST')  
+            </form>   
         </div>
     </div>
 </div>
+
+<script>
+    function redirect(id){
+        $('input[name="id_soldador"]').val(id);
+        $("#redirectForm").submit();
+    }
+</script>
