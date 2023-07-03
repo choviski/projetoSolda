@@ -176,6 +176,10 @@
             @include('cardSoldadores')
         </div>
         
+        <div class="mt-2" style="display">
+            {{$soldadores->links()}}
+        </div>
+        
     </div>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"

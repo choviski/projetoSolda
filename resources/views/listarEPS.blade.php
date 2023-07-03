@@ -210,6 +210,9 @@
         <div id="dadoseps">
             @include('cardEps')
         </div>
+        <div class="mt-2" style="display">
+            {{$epss->links()}}
+        </div>
     </div>
     <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"

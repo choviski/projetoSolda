@@ -104,9 +104,9 @@ class InicioController extends Controller
         $usuario = session()->get("Usuario");
         $termo = $request->filtro;
         if($termo){
-            $empresas = Empresa::where("razao_social","LIKE",'%'.$termo.'%')->orderBy('razao_social')->get();
+            $empresas = Empresa::where("razao_social","LIKE",'%'.$termo.'%')->orderBy('razao_social')->paginate(10)->withQueryString();
         }else{
-            $empresas = Empresa::orderBy('razao_social')->get();
+            $empresas = Empresa::orderBy('razao_social')->paginate(10)->withQueryString();
         }
 
         return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
@@ -120,18 +120,18 @@ class InicioController extends Controller
         if($usuario->tipo==1){
             $empresas = Empresa::all();
             if($termo){
-                $epss = Eps::where("criado","=",1)->where('id_empresa',$termo)->orderBy('nome')->get();
+                $epss = Eps::where("criado","=",1)->where('id_empresa',$termo)->orderBy('nome')->paginate(10)->withQueryString();
                 $termo = Empresa::where('id',$termo)->pluck('nome_fantasia')->first();
             }else{
-                $epss = Eps::where("criado","=",1)->orderBy('nome')->get();
+                $epss = Eps::where("criado","=",1)->orderBy('nome')->paginate(10)->withQueryString();
             }
             return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo,"empresas"=>$empresas]);
         }else{
             if($termo){
                 $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)
-                ->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
+                ->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->paginate(10)->withQueryString();
             }else{
-                $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->get();
+                $epss = Eps::where("criado","=",1)->where('id_empresa',$usuario->empresa->id)->orderBy('nome')->paginate(10)->withQueryString();
             }
             return view("listarEPS")->with(["usuario"=>$usuario,"epss"=>$epss,"termo"=>$termo]);
         }
@@ -146,10 +146,12 @@ class InicioController extends Controller
         $rota=Route::getCurrentRoute()->getName();
         if($usuario->tipo==1){
             if($termo){
-                $soldadores=Soldador::where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
+                $soldadores=Soldador::where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->paginate(10)->withQueryString();
             }else{
-                $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->get();
+                $soldadores=Soldador::where("criado","=",1)->orderBy('nome')->paginate(10)->withQueryString();
             }
+
+            
 
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"rota"=>$rota,"termo"=>$termo]);
         }
