@@ -18,7 +18,7 @@ use stdClass;
 class EmailController extends Controller
 {
     public function envioEmailQualificacao()
-    {
+    {/*
         $qualificacaos = SoldadorQualificacao::select(
             DB::raw("*,(TIMESTAMPDIFF(day,now(),validade_qualificacao)) as tempo")
         )
@@ -32,19 +32,20 @@ class EmailController extends Controller
             }
         }
         $this->envioEmailAcesso();
-
+*/
         return redirect()->route("paginaInicial");
     }
 
     private function envioEmailAcesso()
     {
-        Mail::send(new Email6());
+        
+        //Mail::send(new Email6());
     }
 
     public function envioEmailCadastro($id)
     {
         $usuario = Usuario::find($id);
-        Mail::send(new Email2($usuario));
+       // Mail::send(new Email2($usuario));
 
         return redirect()->route("paginaInicial");
     }
@@ -52,7 +53,7 @@ class EmailController extends Controller
     public function envioEmailRespostaRequalificacao($id)
     {
         $qualificacao=SoldadorQualificacao::find($id);
-        Mail::send(new Email3($qualificacao));
+        //Mail::send(new Email3($qualificacao));
 
         return redirect()->route("paginaInicial");
     }
@@ -60,7 +61,7 @@ class EmailController extends Controller
     public function envioEmailRequisicaoRequalificacao($id)
     {
         $qualificacao=SoldadorQualificacao::find($id);
-        Mail::send(new Email4($qualificacao));
+        //Mail::send(new Email4($qualificacao));
 
         return redirect()->route("paginaInicial");
     }
@@ -70,7 +71,7 @@ class EmailController extends Controller
         $usuario = new stdClass();
         $usuario->email=$request->email;
         $usuario->telefone=$request->telefone;
-        Mail::send(new Email5($usuario));
+        //Mail::send(new Email5($usuario));
 
         return redirect()->route("inicio");
     }
