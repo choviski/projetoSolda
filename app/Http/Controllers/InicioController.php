@@ -161,10 +161,10 @@ class InicioController extends Controller
 
             if($termo){
                 $soldadores=Soldador::where('id_empresa','=',$empresa->id)
-                ->where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->get();
+                ->where("criado","=",1)->where("nome","LIKE",'%'.$termo.'%')->orderBy('nome')->paginate(10)->withQueryString();
             }else{
                 $soldadores=Soldador::where('id_empresa','=',$empresa->id)
-                ->where("criado","=",1)->orderBy('nome')->get();
+                ->where("criado","=",1)->orderBy('nome')->paginate(10)->withQueryString();
             }
 
             return view("listarSoldadores")->with(["usuario"=>$usuario,"soldadores"=>$soldadores,"empresa"=>$empresa->id,"rota"=>$rota,"termo"=>$termo]);
