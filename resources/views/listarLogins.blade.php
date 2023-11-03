@@ -31,32 +31,15 @@
             text-align: center;
         }
 
-        .delBtn {
-            padding: 0px;
-            margin: 0px;
-            position: absolute;
-            font-size: 1.0rem;
-            width: 25px;
-            height: 25px;
-            top: -10px;
-            right: 13px;
-            z-index: 1;
-            background-color: white;
-            color: #d92b2b;
-            font-weight: lighter;
-            border-radius: 5px;
-            transform: translateY(+50%);
-            align-items: center;
-            text-align: center;
-            transition: 0.3s ease;
-            border-style: solid;
-            border-width: 1px;
-            border-color: #d92b2b;
-        }
-
         .formDelBtn {
             position: relative;
             transition: 0.3s ease;
+        }
+        
+        .wrapForm{
+            position: absolute;
+            right: -150px;
+            top: -20px;
         }
 
         .nomeEmpresa {
@@ -82,8 +65,8 @@
             width: 25px;
             height: 25px;
             top: -10px;
-            right: 13px;
-            z-index: 1;
+            right: 165px;
+            z-index: 10;
             background-color: white;
             color: #d92b2b;
             font-weight: lighter;
@@ -97,17 +80,24 @@
             border-color: #d92b2b;
         }
 
-        .delBtn:hover {
-            background-color: #d92b2b;
-            color: white;
-        }
-
-        .delBtn:hover {
-            background-color: #d92b2b;
-        }
 
         .formEditBtn {
             position: relative;
+            width: 100%;
+            z-index: 100;
+        }
+
+
+        .editBtn:hover {
+            background-color: #0c7eab;
+            color: white;
+            align-items: center;
+            text-align: center;
+        }
+
+        .delBtn:hover {
+            background-color: #d92b2b;
+            color: white;
         }
 
         .editBtn {
@@ -118,7 +108,7 @@
             width: 25px;
             height: 25px;
             top: -10px;
-            right: 43px;
+            right: 200px;
             z-index: 1;
             background-color: white;
             color: #228db8;
@@ -133,57 +123,7 @@
             transition: 0.3s ease;
         }
 
-        .editBtn:hover {
-            background-color: #0c7eab;
-            color: white;
-            align-items: center;
-            text-align: center;
-        }
-
-        .delBtn:hover {
-            background-color: #d92b2b;
-            color: white;
-        }
-
-        .delBtn:hover {
-            background-color: #d92b2b;
-        }
-
-        .formEditBtn {
-            position: relative;
-        }
-
-        .editBtn {
-            padding: 0px;
-            margin: 0px;
-            position: absolute;
-            font-size: 1.0rem;
-            width: 25px;
-            height: 25px;
-            top: -10px;
-            right: 43px;
-            z-index: 1;
-            background-color: white;
-            color: #228db8;
-            font-weight: lighter;
-            border-radius: 5px;
-            transform: translateY(+50%);
-            align-items: center;
-            text-align: center;
-            border-style: solid;
-            border-width: 1px;
-            border-color: #0c7eab;
-            transition: 0.3s ease;
-        }
-
-        .editBtn:hover {
-            background-color: #0c7eab;
-            color: white;
-            align-items: center;
-            text-align: center;
-        }
-
-    }.formularioFiltro{
+        .formularioFiltro{
             position: relative;
         }
         .botaoProcurar{
@@ -286,6 +226,23 @@
             @foreach($logins as $login)
                 <div class="warpLogin popin" style="relative">
                     <div class="col-sm-12 col-md-8 mx-auto mt-4 p-0 bg-white rounded d-flex align-itens-center flex-column">
+                        <div class="wrapForm">
+                            @if($usuario->tipo==1)
+                            <div class="formDelBtn">
+                                <form method="post" action="{{route("deletarLogin",['id'=>$login->id])}}" onsubmit="return confirm('Tem certeza que deseja remover o login {{$login->email}} ?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="delBtn"><i class="fas fa-times"></i></button> 
+                                </form>
+                            </div>
+                            <div class="formEditBtn">
+                                <form method="post" action="{{route("editarLogin",['id'=>$login->id])}}">
+                                    @csrf
+                                    <button class="editBtn"><i class="fas fa-pen"></i></button>
+                                </form>
+                            </div>
+                            @endif
+                        </div>
                         <p class="nomeEmpresa" style="z-index: 1">{{$login->empresa ? $login->empresa->razao_social : 'Info Solda'}}</p>
                         <div class="login_info col-11 p-1 mt-4 mx-auto">
                             <p class="m-0">Email: {{$login->email}}</p>
@@ -297,7 +254,10 @@
                                style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
                         </div>
                         <div class="login_info col-11 mt-2 mb-4 mx-auto">
-                            <p class="m-0">Nível de acesso: Administrador</p>
+                            Nível de acesso: @if($login->tipo==1) Administrador Sistema 
+                                            @elseif ($login->tipo==2) Master
+                                            @elseif ($login->tipo == 3)Consulta
+                                            @endif
                         </div>
                     </div>
                 </div>

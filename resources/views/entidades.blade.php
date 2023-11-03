@@ -10,7 +10,7 @@
                 width:100%;
                 height:40px;
                 padding: 0px;
-                             
+
             }
             .more-options{
                 background-color:rgba(255,255,255,0.3);
@@ -35,8 +35,8 @@
             }
             @keyframes pop-in {
             0% {
-                opacity: 0;   
-                transform: translateY(-110px);             
+                opacity: 0;
+                transform: translateY(-110px);
             }
             100% {
                 opacity: 1;
@@ -58,32 +58,32 @@
                         <h4 class="mt-2 text-dark text-decoration-underline">Dados</h4>
                     </div>
                 </a>
-                
-                <a href="{{route("controleAcesso")}}" class="col-md-5 col-sm-12">                        
+
+                <a href="{{route("controleAcesso")}}" class="col-md-5 col-sm-12">
                     <div class="col-12 rounded mb-2 ml-md-1 mb-ms-1 mt-ms-1 pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
-                        <i class="fas fa-calendar-alt fa-3x text-dark"></i>
-                        <h4 class="mt-2 text-dark text-decoration-underline">Controle de Acesso</h4>                    
+                        <i class="fas fa-calendar-alt fa-3x   text-dark"></i>
+                        <h4 class="mt-2  text-dark text-decoration-underline">Controle de Acesso</h4>
                     </div>
                 </a>
-                
+
                 <a href="{{route("relatorioQualificacao")}}" class="col-md-5 col-sm-12">
-                    <div class="col-12 rounded mb-2 ml-md-1 pt-4 mt-3 text-center shadow-md btn btn-outline-light rounded" style="height: 150px">                  
+                    <div class="col-12 rounded mb-2 ml-md-1 pt-4 mt-3 text-center shadow-md btn btn-outline-light rounded" style="height: 150px">
                         <i class="fas fa-certificate fa-3x text-dark"></i>
                         <h4 class="mt-2 text-dark text-decoration-underline">Relatório das Qualificações</h4>
                     </div>
                 </a>
-                
+
                 <a href="{{route("listagemLogin")}}" class="col-md-5 col-sm-12">
                     <div class="col-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
                         <i class="fa fa-sign-in fa-3x text-dark"></i>
                         <h4 class="mt-2 text-dark text-decoration-underline">Logins</h4>
-                    </div>              
+                    </div>
                 </a>
-                
+
             </div>
-            
-        </div>      
-        <div id="warpMoreOptions">            
+
+        </div>
+        <div id="warpMoreOptions">
             <div class="more-options">
                 <div class="container-fluid options" id="options" style="margin-top: 80px">
                     <div class="row text-center d-flex justify-content-center">
@@ -161,56 +161,10 @@
                                 <i class="fas fa-certificate fa-3x"></i>
                                 <h4 class="mt-2">Soldador-Qualificação</h4>
                             </a>
-                        </div>  
-                    </div>              
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-center expand-option" >
-                        <a onclick="moreOptions()" id="moreOptionsButton"> <a  onclick="moreOptions()" id="moreOptionsText" style="color:black;text-decoration:none">Mais opções</a> <i  onclick="moreOptions()" class="fas fa-chevron-down" id="iconOptions"></i> </a>
-                    </p>
-                    <hr class="p-0 m-0 mb-1">
-                </div>
-                
             </div>
-        </div> 
-
-
-        <script>
-            location.hash="";
-            function moreOptions(){                
-                var options = document.getElementById("options");       
-                var iconOptions = document.getElementById("iconOptions");  
-                iconOptions.classList.toggle("fa-chevron-down");     
-                iconOptions.classList.toggle("fa-chevron-up");    
-                var moreOptionsText = document.getElementById("moreOptionsText").textContent;      
-                if(moreOptionsText=="Mais opções"){                               
-                    document.getElementById("warpMoreOptions").style.position="absolute";             
-                    document.getElementById("moreOptionsText").textContent =  "Menos opções";
-                    location.hash="#moreOptionsText";
-                    options.classList.toggle("options");
-                }
-                if(moreOptionsText=="Menos opções"){
-                    
-                    location.hash="#header";                     
-                    var moreOptionsTextObj = document.getElementById("moreOptionsText");             
-                       
-                    setTimeout(() => {                                             
-                        moreOptionsTextObj.classList.toggle("pop-in");
-                        options.classList.toggle("options");
-                        document.getElementById("warpMoreOptions").style.position="fixed";
-                        document.getElementById("moreOptionsText").textContent = "Mais opções"; 
-                        
-                    }, 500);
-
-                    setTimeout(() => {
-                        moreOptionsTextObj.classList.toggle("pop-in");
-                    }, 800);               
-      
-                }              
-            }
-        </script>
-
-
-
+        </div>
 
 @endsection

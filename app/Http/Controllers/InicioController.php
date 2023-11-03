@@ -403,7 +403,6 @@ class InicioController extends Controller
         $soldador_qualificacao->lancamento_qualificacao=Carbon::now()->toDateString();
         $soldador_qualificacao->nome_certificado=$request->nome_certificado;
         $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
-        $soldador_qualificacao->caminho_certificado=$request->caminho_certificado;
         $soldador_qualificacao->criado=0;
         $datetime1 = new DateTime($validade);
         $datetime2 = new DateTime($hoje);
@@ -445,12 +444,34 @@ class InicioController extends Controller
                 $termo = Empresa::where('id',$termo)->pluck('razao_social')->first();
             }else{
                 $logins = Usuario::orderBy("created_at","ASC")->get();
-            }                       
+            }
             return view('/listarLogins')->with(["usuario"=>$usuario,"logins"=>$logins,"empresas"=>$empresas,"termo"=>$termo]);
         }else{
             $logins = Usuario::where('id_empresa',$usuario->id_empresa)->get();
             return view('/listarLogins')->with(["usuario"=>$usuario,"logins"=>$logins]);
         }
-        
+
+    }
+
+    public function editarLogin(Request $request){
+        $usuario = session()->get("Usuario");
+        $id = $request->id;
+        $login = Usuario::where("id",$id)->first();
+        return view('/editarLogin')->with(["usuario"=>$usuario,"login"=>$login]);
+    }
+
+    public function salvarLogin(Request $request){
+        $usuario = session()->get("Usuario");
+        $login = Usuario::find($request->id);
+        $login->email=$request->email;
+        $login->tipo=$request->tipo;
+        $login->senha=$request->senha;
+        $login->update();
+        return redirect()->route('listagemLogin');
+    }
+
+    public function deletarLogin(Request $request){
+        Usuario::destroy($request->id);
+        return redirect()->route('listagemLogin');
     }
 }

@@ -220,7 +220,8 @@
             <div class="first-section-content">
                 <img src="{{asset("imagens/logo.png")}}" width="100%" style="margin: 0px">
                 <p class="info shadow-sm">
-                    Deixe que o Rastrea cuide para que sua empresa se mantenha em dia e adequada às exigências das normas de qualificação dos processos de soldagem.
+                    Deixe que o Rastrea cuide para que sua empresa se mantenha em dia e adequada às exigências das normas de qualificação dos processos de soldagem. Saiba mais 
+                    <a href="https://infosolda.com.br/pag-rastrea/">clicando aqui</a>
                 </p>
             </div>
         </div>

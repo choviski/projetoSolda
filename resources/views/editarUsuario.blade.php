@@ -33,6 +33,88 @@
             border-radius: 5px;
             border: solid 1px #ced4da;
         }
+        .delBtn {
+            padding: 0px;
+            margin: 0px;
+            position: absolute;
+            font-size: 1.0rem;
+            width: 25px;
+            height: 25px;
+            top: -10px;
+            right: 165px;
+            z-index: 10;
+            background-color: white;
+            color: #d92b2b;
+            font-weight: lighter;
+            border-radius: 5px;
+            transform: translateY(+50%);
+            align-items: center;
+            text-align: center;
+            transition: 0.3s ease;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #d92b2b;
+        }
+
+        .formEditBtn {
+            position: relative;
+            width: 100%;
+            z-index: 100;
+        }
+
+
+        .editBtn:hover {
+            background-color: #0c7eab;
+            color: white;
+            align-items: center;
+            text-align: center;
+        }
+
+        .delBtn:hover {
+            background-color: #d92b2b;
+            color: white;
+        }
+
+          
+        .formDelBtn {
+            position: relative;
+            transition: 0.3s ease;
+        }
+        
+        .wrapForm{
+            position: absolute;
+            right: -150px;
+            top: -20px;
+        }
+
+        .formEditBtn {
+            position: relative;
+            right: 0px;
+            width: 100%;
+        }
+
+        .editBtn {
+            padding: 0px;
+            margin: 0px;
+            position: absolute;
+            font-size: 1.0rem;
+            width: 25px;
+            height: 25px;
+            top: -10px;
+            right: 200px;
+            z-index: 1;
+            background-color: white;
+            color: #228db8;
+            font-weight: lighter;
+            border-radius: 5px;
+            transform: translateY(+50%);
+            align-items: center;
+            text-align: center;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #0c7eab;
+            transition: 0.3s ease;
+        }
     </style>
     <div class="col-12 bg-white text-center shadow-sm ">
         <hr class="p-0 m-0 mb-1">
@@ -137,21 +219,40 @@
             @endif
 
             @foreach($usuarios as $usuario)
-                <div class="col-sm-12 col-md-8 mx-auto mt-2 p-0 bg-white rounded d-flex align-itens-center flex-column">
-                    <div class="login_info col-11 p-1 mt-4 mx-auto">
-                        <p class="m-0">Email: {{$usuario->email}}</p>
-                    </div>
-                    <div class="login_info col-11 mt-2 mx-auto" style="padding: 0px; border:0px">
-                        <input id="senha-{{$usuario->id}}" type="password" disabled value="{{$usuario->senha}}"
-                               class="form-control text-center ">
-                        <i id="mostrar-senha-{{$usuario->id}}" class="fa fa-eye" onclick="mostrarSenha({{$usuario->id}})" aria-hidden="true"
-                           style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
-                        <!-- Onde tem "1" como valor nos ids e na funcao do onclick mudar para a { { empresa->id } } -->
-                    </div>
-                    <div class="login_info col-11 mt-2 mb-4 mx-auto">
-                        <p class="m-0">
-                            Nível de acesso: {{$usuario->tipo == 2 ? 'Master' : 'Consulta'}}
-                        </p>
+                <div class="warpLogin popin" style="relative">
+                    <div class="col-sm-12 col-md-8 mx-auto mt-3 p-0 bg-white rounded d-flex align-itens-center flex-column">
+                        @if($usuario->tipo==2)
+                        <div class="wrapForm">
+                            <div class="formDelBtn">
+                                <form method="post" action="{{route("deletarLogin",['id'=>$usuario->id,'id_empresa'=>$usuario->id_empresa])}}" onsubmit="return confirm('Tem certeza que deseja remover o login {{$usuario->email}} ?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="delBtn"><i class="fas fa-times"></i></button> 
+                                </form>
+                            </div>
+                            <div class="formEditBtn">
+                                <form method="post" action="{{route("editarLogin",['id'=>$usuario->id,'id_empresa'=>$usuario->id_empresa])}}">
+                                    @csrf
+                                    <button class="editBtn"><i class="fas fa-pen"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        @endif                        
+                        <div class="login_info col-11 p-1 mt-4 mx-auto">
+                            <p class="m-0">Email: {{$usuario->email}}</p>
+                        </div>
+                        <div class="login_info col-11 mt-2 mx-auto" style="padding: 0px; border:0px">
+                            <input id="senha-{{$usuario->id}}" type="password" disabled value="{{$usuario->senha}}"
+                                class="form-control text-center ">
+                            <i id="mostrar-senha-{{$usuario->id}}" class="fa fa-eye" onclick="mostrarSenha({{$usuario->id}})" aria-hidden="true"
+                            style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
+                            <!-- Onde tem "1" como valor nos ids e na funcao do onclick mudar para a { { empresa->id } } -->
+                        </div>
+                        <div class="login_info col-11 mt-2 mb-4 mx-auto">
+                            <p class="m-0">
+                                Nível de acesso: {{$usuario->tipo == 2 ? 'Master' : 'Consulta'}}
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <!-- Fim das listagens -->

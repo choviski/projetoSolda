@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\CheckSession;
 use App\Http\Middleware\CheckAdm;
+use App\Http\Middleware\CheckAdmOrMaster;
 use App\SoldadorQualificacao;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,9 @@ Route::get("/editarUsuario","EmpresaController@editarUsuario")->middleware(Check
 Route::put("/salvarUsuario/{id}","EmpresaController@salvarUsuario")->middleware(CheckSession::class)->name("salvarUsuario");
 Route::get('/listagemLogin',"InicioController@listagemLogin")->middleware(CheckSession::class,CheckAdm::class)->name("listagemLogin");
 Route::get('/cadastroLogin',"InicioController@cadastroLogin")->middleware(CheckSession::class)->name("cadastroLogin");
+Route::post('/editarLogin/{id}',"InicioController@editarLogin")->middleware(CheckAdmOrMaster::class)->name("editarLogin");
+Route::put("/salvarLogin/{id}","InicioController@salvarLogin")->middleware(CheckAdmOrMaster::class)->name("salvarLogin");
+Route::delete("/deletarLogin/{id}","InicioController@deletarLogin")->middleware(CheckAdmOrMaster::class)->name("deletarLogin");
 Route::post('/novoUsuario',"UsuarioController@cadastrarNovoUsuario")->middleware(CheckSession::class)->name("novoUsuario");
 
 
