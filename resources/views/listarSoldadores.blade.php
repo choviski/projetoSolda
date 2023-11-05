@@ -133,7 +133,7 @@
             </form>
         </div> 
     </div>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10  p-0 rounded-bottom mb-2">
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-8 col-sm-10  p-0 rounded-bottom mb-2">
         @if($termo)
             <div class="d-flex mt-2">
                 <div class="filteredBy shadow mr-2 ">
@@ -176,7 +176,7 @@
             @include('cardSoldadores')
         </div>
         
-        <div class="mt-2" style="display">
+        <div class="ad-margin">
             {{$soldadores->links()}}
         </div>
         

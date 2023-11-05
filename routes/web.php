@@ -156,3 +156,8 @@ Route::post("/cadastrarEps","EpsController@store")->name("cadastrarEps")->middle
 Route::post("/deletarEps","EpsController@destroy")->name("deletarEps")->middleware(CheckSession::class,CheckAdm::class);
 Route::put("/editarQualificacaoSoldador/{id}","SoldadorQualificacaoController@editar")->name("editarQualificacaoSoldador")->middleware(CheckSession::class);
 Route::post("/updateQualificacao","SoldadorQualificacaoController@atualizar")->name("updateQualificacao")->middleware(CheckSession::class);
+
+
+// Anuncios
+// Por enquanto está na IncioController, mas quando formos deixar funcional criamos uma controller só pros anúncios.
+Route::get("/cadastrarAd","InicioController@cadastrarAd")->name("cadastrarAd")->middleware(CheckSession::class,CheckAdm::class);

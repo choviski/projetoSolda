@@ -92,6 +92,52 @@
             top: -2px;
         }
 
+        .ad{
+            width: 190px;
+            height: 400px;
+            background: white;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .right{
+            right: 1%;
+        }
+
+       .left{
+            left: 1%;
+        }
+
+        .ad-margin{
+                margin-top: 15px;
+            }
+
+        @media (max-width: 1200px) {
+            .ad{
+                width: 90%;
+                height: 100px;
+                background: red;
+                position: fixed;                
+                top: 100%;
+                transform: translate(50%,-110%);
+                z-index: 100;
+                right: 50%;
+            }
+
+            .left{
+                display: none;
+            }
+
+            .right{
+               
+            }
+
+            .ad-margin{
+                margin-bottom: 110px;
+            }
+        }
+
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover"
@@ -204,9 +250,18 @@
     </nav>
 
 </header>
+
 <div class="row">
+        <div class="ad left">
+            <p>Ad left</p>
+        </div>
+        <div class="ad right">
+            <p>Ad right</p>
+        </div>
+   
     @yield('content')
 </div>
+
 </body>
 
 </html>

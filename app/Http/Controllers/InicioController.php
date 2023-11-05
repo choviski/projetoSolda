@@ -474,4 +474,11 @@ class InicioController extends Controller
         Usuario::destroy($request->id);
         return redirect()->route('listagemLogin');
     }
+
+    public function cadastrarAd(Request $request){
+        $usuario = session()->get("Usuario");
+        return view('/cadastroAd')->with(["usuario"=>$usuario]);
+    }
+
 }
+

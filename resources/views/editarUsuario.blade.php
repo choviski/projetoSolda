@@ -116,10 +116,6 @@
             transition: 0.3s ease;
         }
     </style>
-    <div class="col-12 bg-white text-center shadow-sm ">
-        <hr class="p-0 m-0 mb-1">
-        <p class="lead p-1 m-0" style="font-size: 22px">EDITAR INFORMAÇÕES:</p>
-    </div>
     <div class="col-12 p-0 bg-white text-center d-md-flex shadow-sm rounded-bottom">
         <div class="col-md-6 col-sm-12 border p-2 ativo" id="info_option" style="font-size: 16px; cursor: pointer"
              onclick="mostrarInfo()">
@@ -134,8 +130,8 @@
     </div>
     <!--  Inicio Bloco de informacoes da empresa -->
     <div id="form_info" class="bloco_ativo">
-        <div class="row col-12 d-flex justify-content-center ">
-            <form class="col-md-9 col-sm-12 p-0 mt-3" action="{{Route('salvarUsuario',['id'=> $empresa->id])}}"
+        <div class="row col-12 d-flex justify-content-center ad-margin ">
+            <form class="col-md-8 col-sm-12 p-0 mt-3" action="{{Route('salvarUsuario',['id'=> $empresa->id])}}"
                   method="post">
                 @csrf
                 @method('PUT')
@@ -206,7 +202,7 @@
     <!--  Inicio Bloco de listagem de logins -->
 
     <div id="logins" class="bloco_inativo">
-        <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom">
+        <div class="container-fluid d-flex justify-content-center flex-column col-md-8 col-sm-10 p-0 rounded-bottom ad-margin">
             @if($usuario->tipo<=2)
                 <div id="addLogin" class="col-12 mt-2 mb-2 p-0 popin">
                     <form method="get" action="{{"cadastroLogin"}}">
