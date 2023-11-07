@@ -203,31 +203,13 @@
 
     <div id="logins" class="bloco_inativo">
         <div class="container-fluid d-flex justify-content-center flex-column col-md-8 col-sm-10 p-0 rounded-bottom ad-margin">
-            @if($usuario->tipo<=2)
-                <div id="addLogin" class="col-12 mt-2 mb-2 p-0 popin">
-                    <form method="get" action="{{"cadastroLogin"}}">
-                        @csrf
-                        <input type="hidden" name="idEmpresa" id="idEmpresa">
-                        <input type="submit" class="btn btn-primary btn-block font-weight-light"
-                               value="Adicionar login">
-                    </form>
-                </div>
-            @endif
-
-            @foreach($usuarios as $usuario)
+            @foreach($usuarios as $user)
                 <div class="warpLogin popin" style="relative">
                     <div class="col-sm-12 col-md-8 mx-auto mt-3 p-0 bg-white rounded d-flex align-itens-center flex-column">
                         @if($usuario->tipo==2)
-                        <div class="wrapForm">
-                            <div class="formDelBtn">
-                                <form method="post" action="{{route("deletarLogin",['id'=>$usuario->id,'id_empresa'=>$usuario->id_empresa])}}" onsubmit="return confirm('Tem certeza que deseja remover o login {{$usuario->email}} ?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="delBtn"><i class="fas fa-times"></i></button> 
-                                </form>
-                            </div>
+                        <div class="wrapForm">                           
                             <div class="formEditBtn">
-                                <form method="post" action="{{route("editarLogin",['id'=>$usuario->id,'id_empresa'=>$usuario->id_empresa])}}">
+                                <form method="post" action="{{route("editarLogin",['id'=>$user->id,'id_empresa'=>$user->id_empresa])}}">
                                     @csrf
                                     <button class="editBtn"><i class="fas fa-pen"></i></button>
                                 </form>
@@ -235,18 +217,18 @@
                         </div>
                         @endif                        
                         <div class="login_info col-11 p-1 mt-4 mx-auto">
-                            <p class="m-0">Email: {{$usuario->email}}</p>
+                            <p class="m-0">Email: {{$user->email}}</p>
                         </div>
                         <div class="login_info col-11 mt-2 mx-auto" style="padding: 0px; border:0px">
-                            <input id="senha-{{$usuario->id}}" type="password" disabled value="{{$usuario->senha}}"
+                            <input id="senha-{{$user->id}}" type="password" disabled value="{{$user->senha}}"
                                 class="form-control text-center ">
-                            <i id="mostrar-senha-{{$usuario->id}}" class="fa fa-eye" onclick="mostrarSenha({{$usuario->id}})" aria-hidden="true"
+                            <i id="mostrar-senha-{{$user->id}}" class="fa fa-eye" onclick="mostrarSenha({{$user->id}})" aria-hidden="true"
                             style="position: absolute; right:25px; top:12px; cursor: pointer"></i>
                             <!-- Onde tem "1" como valor nos ids e na funcao do onclick mudar para a { { empresa->id } } -->
                         </div>
                         <div class="login_info col-11 mt-2 mb-4 mx-auto">
                             <p class="m-0">
-                                Nível de acesso: {{$usuario->tipo == 2 ? 'Master' : 'Consulta'}}
+                                Nível de acesso: {{$user->tipo == 2 ? 'Master' : 'Consulta'}}
                             </p>
                         </div>
                     </div>

@@ -252,13 +252,14 @@
 </header>
 
 <div class="row">
+    @if($usuario->tipo==5)
         <div class="ad left">
             <p>Ad left</p>
         </div>
         <div class="ad right">
             <p>Ad right</p>
         </div>
-   
+    @endif
     @yield('content')
 </div>
 
