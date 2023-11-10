@@ -94,12 +94,38 @@
 
         .ad{
             width: 190px;
-            height: 400px;
+            height: 450px;
             background: white;
             position: fixed;
             top: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             transform: translateY(-50%);
         }
+
+        .ad-bottom{
+            width: 90%;
+            height: 100px;
+            background: red;
+            position: fixed;                
+            top: 100%;
+            transform: translate(50%,-110%);
+            z-index: 100;
+            right: 50%;
+            display: none;
+            justify-content: center;
+        }
+
+        .ad-click{
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .ad-img{
+            max-width: 100%;
+        }
+
 
         .right{
             right: 1%;
@@ -113,16 +139,11 @@
                 margin-top: 15px;
             }
 
-        @media (max-width: 1200px) {
-            .ad{
-                width: 90%;
-                height: 100px;
-                background: red;
-                position: fixed;                
-                top: 100%;
-                transform: translate(50%,-110%);
-                z-index: 100;
-                right: 50%;
+        @media (max-width: 1220px) {
+          
+
+            .ad-img{
+                max-height: 100%;
             }
 
             .left{
@@ -130,7 +151,11 @@
             }
 
             .right{
-               
+               display: none
+            }
+
+            .ad-bottom{
+                display: flex;
             }
 
             .ad-margin{
@@ -252,12 +277,34 @@
 </header>
 
 <div class="row">
-    @if($usuario->tipo==5)
+    @if($usuario->tipo!=1)
+        <!-- Ad da esquerda -->
         <div class="ad left">
             <p>Ad left</p>
         </div>
+
+        <!-- Ad da direita -->
         <div class="ad right">
-            <p>Ad right</p>
+            <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
+                    <div class="carousel-item active">
+                        <a href="facebook.com" class="ad-click">
+                            <img class="d-block w-100 ad-img" src="{{asset("imagens/soldador_default.png")}}" alt="NOME">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="facebook.com" class="ad-click">
+                            <img class="d-block w-100 ad-img"  src="{{asset("imagem-soldador/soldador-id78.png")}}" alt="NOME">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad de baixo, nao esquecer de colocar a imagem na horizontal! -->
+        <div class="ad-bottom">
+            <p>Ad bottom</p>
         </div>
     @endif
     @yield('content')

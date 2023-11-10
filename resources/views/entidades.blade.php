@@ -80,7 +80,7 @@
                     </div>
                 </a>
 
-                <a href="{{route("cadastrarAd")}}" class="col-md-10 col-sm-12">
+                <a href="{{route("listarAds")}}" class="col-md-10 col-sm-12">
                     <div class="col-12 rounded mb-2 ml-md-1  pt-4 mt-3 text-center shadow-md  btn btn-outline-light rounded" style="height: 150px">
                         <i class="fa fa-ad  fa-3x text-dark"></i>
                         <h4 class="mt-2 text-dark text-decoration-underline">Anúncios</h4>

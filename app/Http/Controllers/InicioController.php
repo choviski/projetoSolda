@@ -475,10 +475,6 @@ class InicioController extends Controller
         return redirect()->route('listagemLogin');
     }
 
-    public function cadastrarAd(Request $request){
-        $usuario = session()->get("Usuario");
-        return view('/cadastroAd')->with(["usuario"=>$usuario]);
-    }
 
 }
 

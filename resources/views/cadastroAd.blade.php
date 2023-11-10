@@ -46,6 +46,10 @@
         <form class=" col-md-9 col-sm-10 mt-2" action="#"enctype="multipart/form-data">
             @csrf
             <div class="form-group bg-light p-2 rounded">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control mb-2" id="nome" placeholder="Insira o nome do anúncio" name="nome" required>
+
+
                 <label for="ad">Link para redirecionar:</label>
                 <input type="text" class="form-control" id="ad" placeholder="Insira o link para redirecionar quando o anúncio for clicado" name="ad" required>
 
@@ -57,16 +61,11 @@
 
                 <label for="imgH" id="labelImgs2" class="mt-2 col-12 p-0">Escolha a imagem horizontal do anúncio: </label>
                 <label for="imgH" id="labelImgH" class="btnImg">Escolha a imagem horizontal do anúncio</label>
-                <input type="file"id="imgH"  name="imgH" multiple required>
-
-
-
-
-                <input type="hidden" name="criado" value="1">
+                <input type="file"id="imgH"  name="imgH" multiple required>      <input type="hidden" name="criado" value="1">
 
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Cadastrar">
             </div>
-            <a href="{{route("paginaInicial")}}" class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</a>
+            <a href="{{route("listarAds")}}" class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Voltar</a>
 
         </form>
     </div>
