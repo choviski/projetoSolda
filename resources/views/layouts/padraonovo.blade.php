@@ -92,7 +92,7 @@
             top: -2px;
         }
 
-        .ad{
+        .ad {
             width: 190px;
             height: 450px;
             background: white;
@@ -104,61 +104,61 @@
             transform: translateY(-50%);
         }
 
-        .ad-bottom{
+        .ad-bottom {
             width: 90%;
             height: 100px;
-            background: red;
-            position: fixed;                
+            background: white;
+            position: fixed;
             top: 100%;
-            transform: translate(50%,-110%);
+            transform: translate(50%, -110%);
             z-index: 100;
             right: 50%;
             display: none;
             justify-content: center;
         }
 
-        .ad-click{
+        .ad-click {
             text-decoration: none;
             cursor: pointer;
         }
 
-        .ad-img{
+        .ad-img {
             max-width: 100%;
         }
 
 
-        .right{
+        .right {
             right: 1%;
         }
 
-       .left{
+        .left {
             left: 1%;
         }
 
-        .ad-margin{
-                margin-top: 15px;
-            }
+        .ad-margin {
+            margin-top: 15px;
+        }
 
         @media (max-width: 1220px) {
-          
 
-            .ad-img{
+
+            .ad-img {
                 max-height: 100%;
             }
 
-            .left{
+            .left {
                 display: none;
             }
 
-            .right{
-               display: none
+            .right {
+                display: none
             }
 
-            .ad-bottom{
+            .ad-bottom {
                 display: flex;
             }
 
-            .ad-margin{
+            .ad-margin {
                 margin-bottom: 110px;
             }
         }
@@ -173,6 +173,7 @@
 </div>
 
 <body class="container-fluid">
+@php($anuncios = \App\Anuncio::all())
 <header class="row">
     <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 " id="header">
         <a class="navbar-brand" href="#">
@@ -222,7 +223,7 @@
                             <span style="position: relative">REQUISIÇÕES
                                 @if(((\App\SoldadorQualificacao::where('criado','=','0')->count()) > 0) or ((\App\Soldador::where('criado','=','0')->count()) > 0) or ((\App\Eps::where('criado','=','0')->count()) > 0) )
                                     <div class="warpNotificacao">
-                                        <div id="valoresRequisicao" style="display: none"> 
+                                        <div id="valoresRequisicao" style="display: none">
                                             {{$soldadores=\App\Soldador::where('criado','=','0')->count()}}
                                             {{$eps=\App\Eps::where('criado','=','0')->count()}}
                                             {{$qualificacao=\App\SoldadorQualificacao::where('criado','=','0')->count()}}
@@ -280,7 +281,20 @@
     @if($usuario->tipo!=1)
         <!-- Ad da esquerda -->
         <div class="ad left">
-            <p>Ad left</p>
+            <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
+                    @foreach($anuncios as $index => $anuncio)
+
+                        <div class="carousel-item @if($index ==0) active @endif">
+                            <a href="{{$anuncio->link}}" class="ad-click">
+                                <img class="d-block w-100 ad-img" src="{{asset($anuncio->imagem_vertical)}}"
+                                     alt="{{$anuncio->nome}}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
 
         <!-- Ad da direita -->
@@ -288,23 +302,35 @@
             <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
-                    <div class="carousel-item active">
-                        <a href="facebook.com" class="ad-click">
-                            <img class="d-block w-100 ad-img" src="{{asset("imagens/soldador_default.png")}}" alt="NOME">
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="facebook.com" class="ad-click">
-                            <img class="d-block w-100 ad-img"  src="{{asset("imagem-soldador/soldador-id78.png")}}" alt="NOME">
-                        </a>
-                    </div>
+                    @foreach($anuncios as $index => $anuncio)
+
+                        <div class="carousel-item @if($index ==0) active @endif">
+                            <a href="{{$anuncio->link}}" class="ad-click">
+                                <img class="d-block w-100 ad-img" src="{{asset($anuncio->imagem_vertical)}}"
+                                     alt="{{$anuncio->nome}}">
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
 
         <!-- Ad de baixo, nao esquecer de colocar a imagem na horizontal! -->
         <div class="ad-bottom">
-            <p>Ad bottom</p>
+            <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
+                    @foreach($anuncios as $index => $anuncio)
+
+                        <div class="carousel-item @if($index ==0) active @endif">
+                            <a href="{{$anuncio->link}}" class="ad-click">
+                                <img class="d-block ad-img" style="height: 100px" src="{{asset($anuncio->imagem_horizontal)}}"
+                                     alt="{{$anuncio->nome}}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     @endif
     @yield('content')
