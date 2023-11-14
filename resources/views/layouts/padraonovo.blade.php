@@ -95,7 +95,8 @@
         .ad {
             width: 190px;
             height: 450px;
-            background: white;
+            background: rgba(255,255,255,0.9);
+            border-radius: 5px;
             position: fixed;
             top: 50%;
             display: flex;
@@ -155,6 +156,8 @@
             }
 
             .ad-bottom {
+                border-radius: 5px;
+                background-color: rgba(255,255,255,0.9);
                 display: flex;
             }
 
@@ -173,7 +176,6 @@
 </div>
 
 <body class="container-fluid">
-@php($anuncios = \App\Anuncio::all())
 <header class="row">
     <nav class="navbar navbar-expand-lg navbar-light bg-white col-12 " id="header">
         <a class="navbar-brand" href="#">
@@ -279,6 +281,7 @@
 
 <div class="row">
     @if($usuario->tipo!=1)
+    @php($anuncios = \App\Anuncio::all())
         <!-- Ad da esquerda -->
         <div class="ad left">
             <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
