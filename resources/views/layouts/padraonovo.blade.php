@@ -282,6 +282,7 @@
 <div class="row">
     @if($usuario->tipo!=1)
     @php($anuncios = \App\Anuncio::all())
+        @if($anuncios->count()>0)
         <!-- Ad da esquerda -->
         <div class="ad left">
             <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
@@ -335,6 +336,7 @@
                 </div>
             </div>
         </div>
+    @endif
     @endif
     @yield('content')
 </div>
