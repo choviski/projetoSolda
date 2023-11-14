@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\EnvioEmailJob;
 use App\Mail\email;
 use App\Mail\email2;
 use App\Mail\email3;
