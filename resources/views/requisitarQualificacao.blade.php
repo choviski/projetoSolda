@@ -52,9 +52,9 @@
     </div>
     <div class="container-fluid">
         <div class="row text-center d-flex justify-content-center">
-            <form action="{{route("salvandoRequisicaoQualificacao")}}" class="form-group col-md-9 col-sm-10" method="post" enctype="multipart/form-data">
+            <form action="{{route("salvandoRequisicaoQualificacao")}}" class="form-group col-md-8 col-sm-10 ad-margin" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="bg-light p-2 rounded mt-2 ">
+                <div class="bg-light p-2 rounded mt-2 mb-2">
 
                     <label  for="">Código RQS:</label>
                     <input type="text" class="form-control" id="" placeholder="Insira o código RQS" name="cod_rqs" required>
@@ -107,12 +107,9 @@
                             <option value="12">12 meses</option>
                             <option value="24">24 meses</option>
                             <option value="36">36 meses</option>
-                        </select>
-
-
+                        </select>                        
+                        <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Salvar">
                     </div>
-                <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Salvar">
-
             </form>
         </div>
     </div>

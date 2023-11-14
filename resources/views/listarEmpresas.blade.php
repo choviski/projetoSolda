@@ -133,7 +133,7 @@
             </form>
         </div>
     </div>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 p-0 rounded-bottom ">
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-7 col-sm-10 p-0 rounded-bottom ">
         @if($termo)
             <div class="d-flex mt-2">
                 <div class="filteredBy shadow mr-2 ">

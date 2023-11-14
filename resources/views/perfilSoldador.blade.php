@@ -88,7 +88,7 @@
 
 
     </style>
-    <div class="container-fluid d-flex justify-content-center flex-column col-md-9 col-sm-10 mt-3 p-0 rounded-bottom ">
+    <div class="container-fluid d-flex justify-content-center flex-column col-md-8 col-sm-10 mt-3 p-0 rounded-bottom ad-margin ">
         <div class="wrapSoldadorCard popin">
             @if($usuario->tipo==1)
                 <div class="formDelBtn">
@@ -168,7 +168,6 @@
                 @endif
                 <div id="qualificacoes"
                      class="col-12 bg-white rounded shadow-sm mt-3 mb-1 d-flex justify-content-between ">
-
                     <div id="infoDireita" class="d-flex flex-column p-2 pt-3">
                         <p class="border mb-0 mt-2 codigoQualificacao">{{$qualificacao->qualificacao->eps->nome}}</p>
                         <p class="font-weight-light pt-1 mt-0 mb-0">Data

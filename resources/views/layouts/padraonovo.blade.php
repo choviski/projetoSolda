@@ -92,6 +92,80 @@
             top: -2px;
         }
 
+        .ad {
+            width: 190px;
+            height: 450px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 5px;
+            position: fixed;
+            top: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform: translateY(-50%);
+        }
+
+        .ad-bottom {
+            width: 90%;
+            height: 100px;
+            background: white;
+            position: fixed;
+            top: 100%;
+            transform: translate(50%, -110%);
+            z-index: 100;
+            right: 50%;
+            display: none;
+            justify-content: center;
+        }
+
+        .ad-click {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .ad-img {
+            max-width: 100%;
+        }
+
+
+        .right {
+            right: 1%;
+        }
+
+        .left {
+            left: 1%;
+        }
+
+        .ad-margin {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 1220px) {
+
+
+            .ad-img {
+                max-height: 100%;
+            }
+
+            .left {
+                display: none;
+            }
+
+            .right {
+                display: none
+            }
+
+            .ad-bottom {
+                border-radius: 5px;
+                background-color: rgba(255,255,255,0.9);
+                display: flex;
+            }
+
+            .ad-margin {
+                margin-bottom: 110px;
+            }
+        }
+
     </style>
 </head>
 <div style="width:100%;height:100%;background-color: rgba(255,255,255,0.8);position: fixed;left: 0px;display: none; z-index: 10000;background-repeat: no-repeat; background-size: cover"
@@ -151,7 +225,7 @@
                             <span style="position: relative">REQUISIÇÕES
                                 @if(((\App\SoldadorQualificacao::where('criado','=','0')->count()) > 0) or ((\App\Soldador::where('criado','=','0')->count()) > 0) or ((\App\Eps::where('criado','=','0')->count()) > 0) )
                                     <div class="warpNotificacao">
-                                        <div id="valoresRequisicao" style="display: none"> 
+                                        <div id="valoresRequisicao" style="display: none">
                                             {{$soldadores=\App\Soldador::where('criado','=','0')->count()}}
                                             {{$eps=\App\Eps::where('criado','=','0')->count()}}
                                             {{$qualificacao=\App\SoldadorQualificacao::where('criado','=','0')->count()}}
@@ -204,9 +278,69 @@
     </nav>
 
 </header>
+
 <div class="row">
+    @if($usuario->tipo!=1)
+    @php($anuncios = \App\Anuncio::all())
+        @if($anuncios->count()>0)
+        <!-- Ad da esquerda -->
+        <div class="ad left">
+            <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
+                    @foreach($anuncios as $index => $anuncio)
+
+                        <div class="carousel-item @if($index ==0) active @endif">
+                            <a href="{{$anuncio->link}}" class="ad-click">
+                                <img class="d-block w-100 ad-img" src="{{asset($anuncio->imagem_vertical)}}"
+                                     alt="{{$anuncio->nome}}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad da direita -->
+        <div class="ad right">
+            <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
+                    @foreach($anuncios as $index => $anuncio)
+
+                        <div class="carousel-item @if($index ==0) active @endif">
+                            <a href="{{$anuncio->link}}" class="ad-click">
+                                <img class="d-block w-100 ad-img" src="{{asset($anuncio->imagem_vertical)}}"
+                                     alt="{{$anuncio->nome}}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad de baixo, nao esquecer de colocar a imagem na horizontal! -->
+        <div class="ad-bottom">
+            <div id="carousel-ad-right" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- fazer um foreach aqui, so n pode esquecer de colocar o active no primeiro -->
+                    @foreach($anuncios as $index => $anuncio)
+
+                        <div class="carousel-item @if($index ==0) active @endif">
+                            <a href="{{$anuncio->link}}" class="ad-click">
+                                <img class="d-block ad-img" style="height: 100px" src="{{asset($anuncio->imagem_horizontal)}}"
+                                     alt="{{$anuncio->nome}}">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+    @endif
     @yield('content')
 </div>
+
 </body>
 
 </html>

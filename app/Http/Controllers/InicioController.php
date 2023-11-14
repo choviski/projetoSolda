@@ -474,4 +474,7 @@ class InicioController extends Controller
         Usuario::destroy($request->id);
         return redirect()->route('listagemLogin');
     }
+
+
 }
+

@@ -30,8 +30,8 @@
         @endif
     </div>
 
-    <div class="container-fluid col-12 d-flex justify-content-center mt-2 ">
-        <form  class=" col-md-9 col-sm-10 mt-2" action="{{route('novoUsuario')}}" method="post">
+    <div class="container-fluid col-12 d-flex justify-content-center mt-2 ad-margin">
+        <form  class=" col-md-8 col-sm-10 mt-2" action="{{route('novoUsuario')}}" method="post">
       
             @csrf
             <div class="form-group bg-light p-2 rounded">
