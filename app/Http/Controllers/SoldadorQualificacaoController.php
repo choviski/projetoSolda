@@ -67,10 +67,11 @@ class SoldadorQualificacaoController extends Controller
 
     public function destroy(Request $request)
     {
-        SoldadorQualificacao::destroy($request->id);
-        $empresas = Empresa::orderBy("razao_social")->get();
+        $termo = $request->filtro;
+        #SoldadorQualificacao::destroy($request->id);
+        $empresas = Empresa::orderBy("razao_social")->paginate(10);
         $usuario=session()->get("Usuario");
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
+        return view("listarEmpresas")->with(["usuario"=>$usuario,"termo"=>$termo,"soldador"=>$empresas]);
 
     }
     public function editar($id)
@@ -113,7 +114,7 @@ class SoldadorQualificacaoController extends Controller
         $norma->validade=$request->validade;
         $norma->save();
         $usuario=session()->get("Usuario");
-        $empresas = Empresa::orderBy('razao_social')->get();
+        $empresas = Empresa::orderBy('razao_social')->paginate(10);
         return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
 
     }
