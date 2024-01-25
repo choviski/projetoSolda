@@ -23,4 +23,10 @@ class Empresa extends Model
     public function contato(){
         return $this->hasOne('App\EmpresaContato', 'id_empresa','id');
     }
+    public function eps(){
+        return $this->hasMany('App\Eps','id_empresa','id');
+    }
+    public function epsAvancada(){
+        return $this->hasMany('App\EpsAvancada','id_empresa','id');
+    }
 }

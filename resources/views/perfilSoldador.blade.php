@@ -328,8 +328,9 @@
                     document.body.appendChild(link);
                     for (var i = 0; i < urls.length; i++) {
                         // no site da infosolda fica como: link.setAttribute('href','https://infosolda.com.br/rastrea'+ urls[i]);
-                        link.setAttribute('href', 'https://infosolda.com.br/rastrea' + urls[i]);
+                        //link.setAttribute('href', 'https://infosolda.com.br/rastrea' + urls[i]);
                         // local host fica como: link.setAttribute('href',urls[i]);
+                        //link.setAttribute('href',urls[i]);
                         link.click();
                     }
                     document.body.removeChild(link);

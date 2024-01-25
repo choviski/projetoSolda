@@ -16,7 +16,8 @@ class EpsAvancada extends Model
     protected $fillable = [
         'nome',
         'data',
-        'informacao_tecnica_id'
+        'informacao_tecnica_id',
+        'id_empresa'
     ];
 
     public function informacaoTecnica(): BelongsTo
@@ -30,6 +31,14 @@ class EpsAvancada extends Model
             EpsProcesso::class,
             'eps_avancadas_processos',
             'eps_processo_id'
+        );
+        
+    }
+    public function empresa(){
+        return $this->belongsTo(
+            "App\Empresa",
+            'id_empresa',
+            'id'
         );
     }
 }
