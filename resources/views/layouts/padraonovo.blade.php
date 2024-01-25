@@ -70,7 +70,7 @@
             outline: none;
         }
 
-        .warpNotificacao {
+        .wrapNotificacao {
             position: absolute;
             display: flex;
             background-color: #007bff;
@@ -138,6 +138,13 @@
 
         .ad-margin {
             margin-top: 15px;
+        }
+
+        .badge-novo{
+            position: absolute;
+            top: 0%;
+            display: flex;
+            right:-10%;
         }
 
         @media (max-width: 1220px) {
@@ -208,7 +215,7 @@
 
                             <span style="position: relative">REQUALIFICAÇÕES
                                 @if((\App\SoldadorQualificacao::where('status','=','em-processo')->count()) > 0)
-                                    <div class="warpNotificacao">
+                                    <div class="wrapNotificacao">
                                     <p class="notificacao">{{\App\SoldadorQualificacao::where('status','=','em-processo')->count()}}</p>
                                 </div>
                                 @endif
@@ -224,7 +231,7 @@
 
                             <span style="position: relative">REQUISIÇÕES
                                 @if(((\App\SoldadorQualificacao::where('criado','=','0')->count()) > 0) or ((\App\Soldador::where('criado','=','0')->count()) > 0) or ((\App\Eps::where('criado','=','0')->count()) > 0) )
-                                    <div class="warpNotificacao">
+                                    <div class="wrapNotificacao">
                                         <div id="valoresRequisicao" style="display: none">
                                             {{$soldadores=\App\Soldador::where('criado','=','0')->count()}}
                                             {{$eps=\App\Eps::where('criado','=','0')->count()}}
@@ -260,6 +267,16 @@
                     <li class="nav-item active">
                         <a class="nav-link font-weight-light" id="nav_eps" style="font-size: 20px"
                            href="{{route("listarEps")}}">EPS</a>
+                    </li>
+                    <li class="nav-item active position-relative">
+                        <a class="nav-link font-weight-light" id="nav_eps_avancada" style="font-size: 20px"
+                           href="{{route("listarEpsAvancada")}}">
+                           <span style="position: relative">EPS AVANÇADA
+                                <div class="wrapNotificacao">                         
+                                    <p class="notificacao font-weight-bold">!</p>
+                                </div>
+                            </span>
+                        </a>
                     </li>
                     @if($usuario->tipo!=3)
                         <li class="nav-item active">

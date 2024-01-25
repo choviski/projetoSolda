@@ -157,7 +157,14 @@ Route::post("/deletarEps", "EpsController@destroy")->name("deletarEps")->middlew
 Route::put("/editarQualificacaoSoldador/{id}", "SoldadorQualificacaoController@editar")->name("editarQualificacaoSoldador")->middleware(CheckSession::class);
 Route::post("/updateQualificacao", "SoldadorQualificacaoController@atualizar")->name("updateQualificacao")->middleware(CheckSession::class);
 
+# --- Anúncios --- #
+
 Route::get("/cadastrarAd", "AnuncioController@cadastrarAd")->name("cadastrarAd")->middleware(CheckSession::class, CheckAdm::class);
 Route::get("/listarAds", "AnuncioController@listarAds")->name("listarAds")->middleware(CheckSession::class, CheckAdm::class);
 Route::post("/salvarAd", "AnuncioController@storeAds")->name("salvarAd")->middleware(CheckSession::class, CheckAdm::class);
 Route::delete("/deletarAd/{id}", "AnuncioController@deletarAd")->name("deletarAd")->middleware(CheckSession::class, CheckAdm::class);
+
+# --- EPS avançada --- #
+
+Route::get("/listarEpsAvancada","EpsAvancadaController@listarEpsAvancada")->name("listarEpsAvancada")->middleware(CheckSession::class);
+Route::get("/cadastrarEpsAvancada","EpsAvancadaController@cadastrarEpsAvancada")->name("cadastrarEpsAvancada")->middleware(CheckSession::class);

@@ -15,6 +15,7 @@ class EpsAvancada extends Model
 
     protected $fillable = [
         'nome',
+        'notas',
         'data',
         'informacao_tecnica_id',
         'id_empresa'
