@@ -209,6 +209,18 @@
                         <a class="nav-link font-weight-light" id="nav_eps" style="font-size: 20px"
                            href="{{route("listarEps")}}">EPS</a>
                     </li>
+
+                    <li class="nav-item active position-relative">
+                        <a class="nav-link font-weight-light" id="nav_eps_avancada" style="font-size: 20px"
+                           href="{{route("listarEpsAvancada")}}">
+                           <span style="position: relative">EPS AVANÇADA
+                                <div class="wrapNotificacao">                         
+                                    <p class="notificacao font-weight-bold">!</p>
+                                </div>
+                            </span>
+                        </a>
+                    </li>
+
                     <li class="nav-item active">
                         <a class="nav-link font-weight-light " id="nav_requalificacao"
                            style="font-size: 20px;position: relative" href="{{route("requalificacoes")}}">
