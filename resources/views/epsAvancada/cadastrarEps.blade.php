@@ -64,11 +64,9 @@
     .sub-form{
         display: none;
     }
-
     #form-1{
         display: block;
-    }
-  
+    }  
 </style>
 
 <div class="col-12 bg-white text-center shadow-sm rounded-bottom">
@@ -89,7 +87,7 @@
             </div>
             <div class="checkpoint tecnico" id="check-form-3" onclick="mostraForm(3)">
                 <i class="fas fa-id-card fa-2x"></i>
-                <span class="legenda">Técnico</span>
+                <span class="legenda">Técnica</span>
             </div>
             <div class="checkpoint notas" id="check-form-4" onclick="mostraForm(4)">
                 <i class="far fa-clipboard fa-2x"></i>
@@ -130,10 +128,13 @@
                     <h4 class="text-center">Processos <i class="ml-2 fas fa-burn"></i></h4>
                     <hr class="mt-0">
                     
-                    <button class="btn btn-primary btn-block font-weight-light">
+                    <button id="adicionar-processos" class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#processoModal">
                         <i class="fa fa-plus"></i>
                         <span>Adicionar Processo</span>
-                    </button>
+                    </button>            
+
+                    <div id="lista-processos">
+                    </div>
                    
                     <button class="btn btn-outline-primary mt-3 col-12" onclick="mostraForm('3')">
                         Continuar
@@ -144,13 +145,75 @@
                 </div>
              </form>
         </div>
+        <!-- Modal para processos -->
+        <div class="modal fade" id="processoModal" tabindex="-2" role="dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Processo</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">                  
+                    <div name="sub-form-processo">            
+                        <form  class="col-12 p-0 mb-2" id="form-processo"  enctype="multipart/form-data">
+                            @csrf                           
+                            <div class="form-row">
+                                <input type="hidden" id="id" name="id">
+                                <div class="form-col col-6">
+                                    <label for="nome" class="mb-0 mt-1">Nome:</label>
+                                    <input type="text" class="form-control" id="nome_processo" placeholder="Nome do processo" name="nome">                     
+                                </div>
+                                <div class="form-col col-6">
+                                    <label for="tipo_processo" class="mb-0 mt-1" >Tipo:</label>
+                                    <input type="text" class="form-control" id="tipo_processo" placeholder="Tipo do processo" name="tipo_processo">                     
+                                </div>
+                            </div>                               
+                        </form>
+                    </div>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formJuntaModal">
+                        <span>Junta</span>
+                    </button>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formMaterialBaseModal">
+                        <span>Material Base</span>
+                    </button>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formMetalAdicaoModal">
+                        <span>Metal de Adição</span>
+                    </button>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formPreAquecimentoModal">
+                        <span>Pré Aquecimento</span>
+                    </button>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formPosAquecimentoModal">
+                        <span>Pós Aquecimento</span>
+                    </button>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formGasModal">
+                        <span>Gás</span>
+                    </button>
+                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formEletricaModal">
+                        <span>Características Elétricas</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onclick="adicionaProcesso()" data-dismiss="modal">Cadastrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          @include('epsAvancada.modalJunta')
+          @include('epsAvancada.modalMaterialBase')
+          @include('epsAvancada.modalMetalAdicao')
+          @include('epsAvancada.modalPreAquecimento')
+          @include('epsAvancada.modalPosAquecimento')
+          @include('epsAvancada.modalGas')
+          @include('epsAvancada.modalEletrica')
+          <!-- Fim da modal de processos -->
 
-        
         <div id="form-3" name="form-tecnico" class="sub-form">            
             <form  class="col-md-12 col-sm-10 mt-2" action="#" method="get" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group bg-light p-2 rounded">
-                    <h4 class="text-center">Técnico <i class="ml-2 fas fa-id-card"></i></h4>
+                    <h4 class="text-center">Técnica <i class="ml-2 fas fa-id-card"></i></h4>
                     <hr class="mt-0">                    
                     <label for="goivagem" class="mb-0 mt-1">Goivagem:</label>
                     <input type="text" class="form-control mb-1" id="goivagem" placeholder="Goivagem" name="goivagem">                   
@@ -209,9 +272,7 @@
                     </button>
                 </div>
             </form>
-        </div>
-
-       
+        </div>       
 
         <div id="form-4" name="form-notas" class="sub-form">            
             <form  class="col-md-12 col-sm-10 mt-2" action="#" method="get" enctype="multipart/form-data">
@@ -245,7 +306,6 @@
         $('#form-3').css('display', 'none');
         $('#form-4').css('display', 'none');
         $('#form-'+nForm).css('display', 'block');
-        console.log('form-'+nForm);
         barraProgresso(nForm);
     };
 
@@ -259,6 +319,21 @@
         progresso=(100/3)*(nForm-1);
         $("#barra-progresso-atual").css('width',progresso+'%')
     }
+
+    $("#adicionar-processos").click(function(event){
+        event.preventDefault();
+    });
+
+    function adicionaProcesso() {
+            var novoBotao = $("<a class='btn btn-primary btn-block font-weight-light mt-2 mb-0' data-toggle='modal' data-target='#processoModal'> Nome processo </a>");
+            event.preventDefault();
+            novoBotao.val(0);
+            novoBotao.attr('name','processos['+0+'][id_processo]');
+            console.log("chamou");
+            document.getElementById("form-processo").reset();
+            $("#lista-processos").append(novoBotao);
+            event.preventDefault();
+        }
 </script>
 
 @endsection
