@@ -168,3 +168,9 @@ Route::delete("/deletarAd/{id}", "AnuncioController@deletarAd")->name("deletarAd
 
 Route::get("/listarEpsAvancada","EpsAvancadaController@listarEpsAvancada")->name("listarEpsAvancada")->middleware(CheckSession::class);
 Route::get("/cadastrarEpsAvancada","EpsAvancadaController@cadastrarEpsAvancada")->name("cadastrarEpsAvancada")->middleware(CheckSession::class);
+
+# --- EPS Processo --- #
+Route::get("/cadastraEPSProcesso","EpsProcessoController@cadastraOuEditaProcesso")->name("cadastraOuEditaProcesso")->middleware(CheckSession::class);
+Route::get("/cadastraEPSJunta","EpsProcessoController@cadastraOuEditaJunta")->name("cadastraOuEditaJunta")->middleware(CheckSession::class);
+Route::get("/cadastraEPSPreAquecimento","EpsProcessoController@cadastraOuEditaPreAquecimento")->name("cadastraOuEditaPreAquecimento")->middleware(CheckSession::class);
+Route::get("/cadastraEPSPosAquecimento","EpsProcessoController@cadastraOuEditaPosAquecimento")->name("cadastraOuEditaPosAquecimento")->middleware(CheckSession::class);

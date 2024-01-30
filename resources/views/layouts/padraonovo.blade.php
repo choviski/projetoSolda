@@ -285,7 +285,7 @@
                            href="{{route("listarEpsAvancada")}}">
                            <span style="position: relative">EPS AVANÇADA
                                 <div class="wrapNotificacao">                         
-                                    <p class="notificacao font-weight-bold">!</p>
+                                    <p class="notificacao font-weight-bold pt-1" style="font-size: 7px"><i class="fa fa-star" aria-hidden="true"></i></p>
                                 </div>
                             </span>
                         </a>

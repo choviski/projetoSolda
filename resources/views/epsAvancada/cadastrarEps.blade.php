@@ -1,7 +1,10 @@
 @extends('../../layouts/padraonovo')
 
 @section('content')
-
+<script
+src="https://code.jquery.com/jquery-3.5.1.min.js"
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
 <style>
     .barra-progresso{
         background-color: white;
@@ -145,69 +148,8 @@
                 </div>
              </form>
         </div>
-        <!-- Modal para processos -->
-        <div class="modal fade" id="processoModal" tabindex="-2" role="dialog">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Processo</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">                  
-                    <div name="sub-form-processo">            
-                        <form  class="col-12 p-0 mb-2" id="form-processo"  enctype="multipart/form-data">
-                            @csrf                           
-                            <div class="form-row">
-                                <input type="hidden" id="id" name="id">
-                                <div class="form-col col-6">
-                                    <label for="nome" class="mb-0 mt-1">Nome:</label>
-                                    <input type="text" class="form-control" id="nome_processo" placeholder="Nome do processo" name="nome">                     
-                                </div>
-                                <div class="form-col col-6">
-                                    <label for="tipo_processo" class="mb-0 mt-1" >Tipo:</label>
-                                    <input type="text" class="form-control" id="tipo_processo" placeholder="Tipo do processo" name="tipo_processo">                     
-                                </div>
-                            </div>                               
-                        </form>
-                    </div>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formJuntaModal">
-                        <span>Junta</span>
-                    </button>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formMaterialBaseModal">
-                        <span>Material Base</span>
-                    </button>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formMetalAdicaoModal">
-                        <span>Metal de Adição</span>
-                    </button>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formPreAquecimentoModal">
-                        <span>Pré Aquecimento</span>
-                    </button>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formPosAquecimentoModal">
-                        <span>Pós Aquecimento</span>
-                    </button>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formGasModal">
-                        <span>Gás</span>
-                    </button>
-                    <button class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#formEletricaModal">
-                        <span>Características Elétricas</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" onclick="adicionaProcesso()" data-dismiss="modal">Cadastrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          @include('epsAvancada.modalJunta')
-          @include('epsAvancada.modalMaterialBase')
-          @include('epsAvancada.modalMetalAdicao')
-          @include('epsAvancada.modalPreAquecimento')
-          @include('epsAvancada.modalPosAquecimento')
-          @include('epsAvancada.modalGas')
-          @include('epsAvancada.modalEletrica')
-          <!-- Fim da modal de processos -->
+        
+        @include('epsAvancada.processo.modalProcesso')
 
         <div id="form-3" name="form-tecnico" class="sub-form">            
             <form  class="col-md-12 col-sm-10 mt-2" action="#" method="get" enctype="multipart/form-data">
@@ -323,17 +265,8 @@
     $("#adicionar-processos").click(function(event){
         event.preventDefault();
     });
-
-    function adicionaProcesso() {
-            var novoBotao = $("<a class='btn btn-primary btn-block font-weight-light mt-2 mb-0' data-toggle='modal' data-target='#processoModal'> Nome processo </a>");
-            event.preventDefault();
-            novoBotao.val(0);
-            novoBotao.attr('name','processos['+0+'][id_processo]');
-            console.log("chamou");
-            document.getElementById("form-processo").reset();
-            $("#lista-processos").append(novoBotao);
-            event.preventDefault();
-        }
+  
+   
 </script>
 
 @endsection
