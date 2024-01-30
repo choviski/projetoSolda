@@ -34,6 +34,7 @@
                 @include('epsAvancada.processo.formPreAquecimento')
                 @include('epsAvancada.processo.formPosAquecimento')
                 @include('epsAvancada.processo.formCaracteristicasEletricas')
+                @include('epsAvancada.processo.formGas')
                
             </div>
         </div>
@@ -48,6 +49,7 @@
         $('#sub-form-pre-aquecimento').css('display', 'none');  
         $('#sub-form-pos-aquecimento').css('display', 'none');  
         $('#sub-form-caracteristicas-eletricas').css('display', 'none');  
+        $('#sub-form-gas').css('display', 'none');  
         $('#sub-form-'+aba).css('display', 'block');  
     }
 
@@ -62,7 +64,7 @@
             success: function(data) {
                 $("#id_processo_"+qtdProcessos).val(data["id"]);
                 $('input[name="id_processo"]').val(data["id"]);
-                mostraAba("caracteristicas-eletricas");
+                mostraAba("gas");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

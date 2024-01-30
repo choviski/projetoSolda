@@ -7,6 +7,7 @@ use App\EpsProcesso;
 use App\PreAquecimento;
 use App\PosAquecimento;
 use App\CaracteristicaEletrica;
+use App\Gas;
 use App\Junta;
 
 class EPSProcessoController extends Controller
@@ -71,6 +72,19 @@ class EPSProcessoController extends Controller
             $caracteristicas_eletricas->update($request->all());
         }
         return response()->json(['id' => $caracteristicas_eletricas->id]);
+    }
+
+    public function cadastraOuEditaGas(Request $request){
+        if(is_null($request->id_gas)){ // Cria
+            $gas = Gas::create($request->all());
+            $processo = EpsProcesso::find($request->id_processo);
+            $processo->eps_gas_id = $gas->id;
+            $processo->save();
+        }else{ // Edita
+            $gas = Gas::find($request->id_gas);
+            $gas->update($request->all());
+        }
+        return response()->json(['id' => $gas->id]);
     }
     
 }
