@@ -174,3 +174,4 @@ Route::get("/cadastraEPSProcesso","EpsProcessoController@cadastraOuEditaProcesso
 Route::get("/cadastraEPSJunta","EpsProcessoController@cadastraOuEditaJunta")->name("cadastraOuEditaJunta")->middleware(CheckSession::class);
 Route::get("/cadastraEPSPreAquecimento","EpsProcessoController@cadastraOuEditaPreAquecimento")->name("cadastraOuEditaPreAquecimento")->middleware(CheckSession::class);
 Route::get("/cadastraEPSPosAquecimento","EpsProcessoController@cadastraOuEditaPosAquecimento")->name("cadastraOuEditaPosAquecimento")->middleware(CheckSession::class);
+Route::get("/cadastraEPSCaracteristicasEletricas","EpsProcessoController@cadastraOuEditaCaracteristicasEletricas")->name("cadastraOuEditaCaracteristicasEletricas")->middleware(CheckSession::class);

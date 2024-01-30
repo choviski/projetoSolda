@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\EpsProcesso;
 use App\PreAquecimento;
 use App\PosAquecimento;
+use App\CaracteristicaEletrica;
 use App\Junta;
 
 class EPSProcessoController extends Controller
@@ -58,4 +59,18 @@ class EPSProcessoController extends Controller
         }
         return response()->json(['id' => $pos_aquecimento->id]);
     }
+
+    public function cadastraOuEditaCaracteristicasEletricas(Request $request){
+        if(is_null($request->id_caracteristicas_eletricas)){ // Cria
+            $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
+            $processo = EpsProcesso::find($request->id_processo);
+            $processo->eps_caracteristicas_eletrica_id = $caracteristicas_eletricas->id;
+            $processo->save();
+        }else{ // Edita
+            $caracteristicas_eletricas = CaracteristicaEletrica::find($request->id_caracteristicas_eletricas);
+            $caracteristicas_eletricas->update($request->all());
+        }
+        return response()->json(['id' => $caracteristicas_eletricas->id]);
+    }
+    
 }

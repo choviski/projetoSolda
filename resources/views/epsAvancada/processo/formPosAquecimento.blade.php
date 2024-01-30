@@ -1,6 +1,6 @@
 <!-- Formulario de Pós-Aquecimento-->
 <div name="sub-form-pos-aquecimento" id="sub-form-pos-aquecimento" style="display: none;">
-    <h6 class="text-left">Pré-Aquecimento</i></h6>
+    <h6 class="text-left">Pós-Aquecimento</i></h6>
     <hr class="mt-0">             
     <form  class="col-12 p-0 mb-2" id="form-pos-aquecimento"  enctype="multipart/form-data">
         @csrf
