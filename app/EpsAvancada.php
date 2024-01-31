@@ -31,6 +31,7 @@ class EpsAvancada extends Model
         return $this->belongsToMany(
             EpsProcesso::class,
             'eps_avancadas_processos',
+            'eps_avancada_id',
             'eps_processo_id'
         );
         

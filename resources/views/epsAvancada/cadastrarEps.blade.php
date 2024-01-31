@@ -183,7 +183,7 @@ crossorigin="anonymous"></script>
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="diametro_bocal" class="mb-0 mt-1">Diâmetro do bocal:</label>
-                            <input type="text" class="form-control mb-1" id="diametro_bocal" placeholder="Diâmetro do bocal:" name="diametro_bocal">                     
+                            <input type="number" step="0.01" class="form-control mb-1" id="diametro_bocal" placeholder="Diâmetro do bocal:" name="diametro_bocal">                     
                         </div>
                         <div class="form-col col-6">
                             <label for="unidade_medida_bocal" class="mb-0 mt-1" >Unidade de medida do bocal:</label>
