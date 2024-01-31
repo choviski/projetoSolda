@@ -13,20 +13,23 @@ class CreateEpsProcessosTable extends Migration
      */
     public function up()
     {
-        Schema::create('eps_processos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->string('tipo');
+        if (!Schema::hasTable('eps_processos')) {
+            Schema::create('eps_processos', function (Blueprint $table) {
+                $table->id();
+                $table->string('nome');
+                $table->string('tipo');
 
-            $table->foreignId('eps_gas_id')->constrained()->references('id')->on('eps_gases')->nullable();
-            $table->foreignId('eps_junta_id')->constrained()->nullable();
-            $table->foreignId('eps_caracteristicas_eletrica_id')->constrained()->nullable();
-            $table->foreignId('eps_pre_aquecimento_id')->constrained()->nullable();
-            $table->foreignId('eps_pos_aquecimento_id')->constrained()->nullable();
+                $table->foreignId('eps_gas_id')->constrained()->references('id')->on('eps_gases')->nullable();
+                $table->foreignId('eps_junta_id')->constrained()->nullable();
+                $table->foreignId('eps_posicao_soldagem_id')->constrained()->references('id')->on('eps_posicao_soldagem')->nullable();
+                $table->foreignId('eps_caracteristicas_eletrica_id')->constrained()->nullable();
+                $table->foreignId('eps_pre_aquecimento_id')->constrained()->nullable();
+                $table->foreignId('eps_pos_aquecimento_id')->constrained()->nullable();
 
-            $table->softDeletes();
-            $table->timestamps();
-        });
+                $table->softDeletes();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

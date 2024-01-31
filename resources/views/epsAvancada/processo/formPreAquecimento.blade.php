@@ -17,7 +17,7 @@
             </div>
         </div>
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaPreAquecimento()">Continuar</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('junta')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('posicao-soldagem')">Voltar</a>                                                      
     </form>
 </div>
 

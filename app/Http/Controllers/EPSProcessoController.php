@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\EpsProcesso;
 use App\PreAquecimento;
 use App\PosAquecimento;
+use App\PosicaoSoldagem;
 use App\CaracteristicaEletrica;
 use App\Gas;
 use App\Junta;
@@ -33,6 +34,21 @@ class EPSProcessoController extends Controller
             $junta->update($request->all());
         }
         return response()->json(['id' => $junta->id]);
+    }
+
+    public function cadastraOuEditaPosicaoSoldagem(Request $request){
+        if(is_null($request->id_posicao_soldagem)){ // Cria
+            $posicao_soldagem = PosicaoSoldagem::create($request->all());
+            $processo = EpsProcesso::find($request->id_processo);
+            $processo->eps_posicao_soldagem_id = $posicao_soldagem->id;
+            $processo->save();
+        }else{ // Edita
+            $posicao_soldagem = PosicaoSoldagem::find($request->id_posicao_soldagem);
+            $posicao_soldagem->update($request->all());
+        }
+        return response()->json([
+            'id' => $posicao_soldagem->id
+        ]);
     }
 
     public function cadastraOuEditaPreAquecimento(Request $request){

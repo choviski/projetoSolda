@@ -35,6 +35,7 @@
                 @include('epsAvancada.processo.formPosAquecimento')
                 @include('epsAvancada.processo.formCaracteristicasEletricas')
                 @include('epsAvancada.processo.formGas')
+                @include('epsAvancada.processo.formPosicaoSoldagem')
                
             </div>
         </div>
@@ -50,6 +51,7 @@
         $('#sub-form-pos-aquecimento').css('display', 'none');  
         $('#sub-form-gas').css('display', 'none');  
         $('#sub-form-caracteristicas-eletricas').css('display', 'none');  
+        $('#sub-form-posicao-soldagem').css('display', 'none');  
         $('#sub-form-'+aba).css('display', 'block');  
     }
 

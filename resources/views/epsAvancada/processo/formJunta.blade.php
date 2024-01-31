@@ -95,7 +95,7 @@
             dataType: "json", 
             success: function(data) {
                 $('input[name="id_junta"]').val(data["id"]);
-                mostraAba("pre-aquecimento");
+                mostraAba("posicao-soldagem");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

@@ -20,4 +20,5 @@ public/instrucoes
 .env
 public/imagem-anuncio
 vendor/
+vendor\
 public/imagem-qualificacao
