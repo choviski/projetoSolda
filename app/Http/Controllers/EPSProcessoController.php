@@ -61,19 +61,6 @@ class EPSProcessoController extends Controller
         return response()->json(['id' => $pos_aquecimento->id]);
     }
 
-    public function cadastraOuEditaCaracteristicasEletricas(Request $request){
-        if(is_null($request->id_caracteristicas_eletricas)){ // Cria
-            $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
-            $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_caracteristicas_eletrica_id = $caracteristicas_eletricas->id;
-            $processo->save();
-        }else{ // Edita
-            $caracteristicas_eletricas = CaracteristicaEletrica::find($request->id_caracteristicas_eletricas);
-            $caracteristicas_eletricas->update($request->all());
-        }
-        return response()->json(['id' => $caracteristicas_eletricas->id]);
-    }
-
     public function cadastraOuEditaGas(Request $request){
         if(is_null($request->id_gas)){ // Cria
             $gas = Gas::create($request->all());
@@ -85,6 +72,23 @@ class EPSProcessoController extends Controller
             $gas->update($request->all());
         }
         return response()->json(['id' => $gas->id]);
+    }
+
+    public function cadastraOuEditaCaracteristicasEletricas(Request $request){
+        if(is_null($request->id_caracteristicas_eletricas)){ // Cria
+            $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
+            $processo = EpsProcesso::find($request->id_processo);
+            $processo->eps_caracteristicas_eletrica_id = $caracteristicas_eletricas->id;
+            $processo->save();
+        }else{ // Edita
+            $caracteristicas_eletricas = CaracteristicaEletrica::find($request->id_caracteristicas_eletricas);
+            $caracteristicas_eletricas->update($request->all());
+        }
+        return response()->json([
+            'id' => $caracteristicas_eletricas->id,
+            'processo_id' => $caracteristicas_eletricas->processo->id,
+            'processo_nome' => $caracteristicas_eletricas->processo->nome
+        ]);
     }
     
 }

@@ -22,4 +22,9 @@ class EPSAvancadaController extends Controller
         return view("epsAvancada/cadastrarEps")->with(["usuario"=>$usuario]);
     }
 
+    public function armazenarEpsAvancada(Request $request){
+  
+        dd($request->input('processo_ids'));
+    }
+
 }

@@ -31,7 +31,6 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
-                console.log("Pre Aquecimento Cadastrada:", data["id"]);
                 $('input[name="id_pre_aquecimento"]').val(data["id"]);                
                 mostraAba("pos-aquecimento");
             },

@@ -41,7 +41,8 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
-                $('input[name="id_pos_aquecimento"]').val(data["id"]);
+                $('input[name="id_pos_aquecimento"]').val(data["id"]);                
+                mostraAba("gas")
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

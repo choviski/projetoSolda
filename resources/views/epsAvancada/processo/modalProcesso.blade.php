@@ -48,8 +48,8 @@
         $('#sub-form-junta').css('display', 'none');  
         $('#sub-form-pre-aquecimento').css('display', 'none');  
         $('#sub-form-pos-aquecimento').css('display', 'none');  
-        $('#sub-form-caracteristicas-eletricas').css('display', 'none');  
         $('#sub-form-gas').css('display', 'none');  
+        $('#sub-form-caracteristicas-eletricas').css('display', 'none');  
         $('#sub-form-'+aba).css('display', 'block');  
     }
 
@@ -64,7 +64,7 @@
             success: function(data) {
                 $("#id_processo_"+qtdProcessos).val(data["id"]);
                 $('input[name="id_processo"]').val(data["id"]);
-                mostraAba("gas");
+                mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

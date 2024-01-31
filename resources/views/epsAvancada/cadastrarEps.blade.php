@@ -102,7 +102,7 @@ crossorigin="anonymous"></script>
         </div>
 
         <div id="form-1" class="sub-form" name="form-eps">            
-            <form  class="col-md-12 col-sm-10 mt-2"  enctype="multipart/form-data">
+            <form  class="col-md-12 col-sm-10 mt-2"  enctype="multipart/form-data" id="form-eps">
                 @csrf
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">EPS <i class="ml-2 fas fa-file-invoice"></i></h4>
@@ -121,12 +121,10 @@ crossorigin="anonymous"></script>
                         Continuar
                     </button>
                 </div>
-             </form>
-        </div>
+            </div>
 
-        <div id="form-2" name="form-processos" class="sub-form">            
-            <form  class="col-md-12 col-sm-10 mt-2" action="#" method="get" enctype="multipart/form-data">
-                @csrf
+            <div id="form-2" name="form-processos" class="sub-form">           
+               
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Processos <i class="ml-2 fas fa-burn"></i></h4>
                     <hr class="mt-0">
@@ -136,7 +134,10 @@ crossorigin="anonymous"></script>
                         <span>Adicionar Processo</span>
                     </button>            
 
-                    <div id="lista-processos">
+                    <div id="lista_processos">
+                        <!-- Quando concluir o cadastro de um processo adicionar um cara do tipo abaixo aqui nessa div com o value = id do processo-->
+                        <!-- <input type="hidden" name="processo_id[]" value={id_processo}> -->
+                        <!-- será usado no cadastro do eps_avancada_processo (tabela n:n) -->                        
                     </div>
                    
                     <button class="btn btn-outline-primary mt-3 col-12" onclick="mostraForm('3')">
@@ -146,14 +147,9 @@ crossorigin="anonymous"></script>
                         Voltar
                     </button>
                 </div>
-             </form>
-        </div>
-        
-        @include('epsAvancada.processo.modalProcesso')
-
-        <div id="form-3" name="form-tecnico" class="sub-form">            
-            <form  class="col-md-12 col-sm-10 mt-2" action="#" method="get" enctype="multipart/form-data">
-                @csrf
+            </div>
+            <div id="form-3" name="form-tecnico" class="sub-form">            
+               
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Técnica <i class="ml-2 fas fa-id-card"></i></h4>
                     <hr class="mt-0">                    
@@ -213,25 +209,26 @@ crossorigin="anonymous"></script>
                         Voltar
                     </button>
                 </div>
-            </form>
-        </div>       
+           
+            </div>       
 
-        <div id="form-4" name="form-notas" class="sub-form">            
-            <form  class="col-md-12 col-sm-10 mt-2" action="#" method="get" enctype="multipart/form-data">
-                @csrf
+            <div id="form-4" name="form-notas" class="sub-form">            
+               
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Notas <i class="ml-2 fas fa-clipboard "></i></h4>
                     <hr class="mt-0">
                     <label for="#">Notas:</label>
                     <br>
                     <textarea name="notas" id="notas" class="col-12" style="resize: none;"></textarea>
-                    <button class="btn btn-outline-primary mt-3 col-12">Terminar cadastro</button>
+                    <button class="btn btn-outline-primary mt-3 col-12" onclick="testeCadastro()">Terminar cadastro</button>
                     <button class="btn btn-outline-danger mt-1 col-12" onclick="mostraForm('3')">
                         Voltar
                     </button>
                 </div>
-             </form>
-        </div>   
+            </div>   
+        </form>
+        
+        @include('epsAvancada.processo.modalProcesso')
 
         <div class="col-md-12 col-sm-10">
             <a href="{{route("paginaInicial")}}" class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Retornar à página principal</a>
@@ -265,6 +262,34 @@ crossorigin="anonymous"></script>
     $("#adicionar-processos").click(function(event){
         event.preventDefault();
     });
+
+    function testeCadastro(){
+        event.preventDefault();
+        var formData = $("#form-eps").serialize();
+        var processoIds = [];
+        $('input[name="processo_id[]"]').each(function() {
+            processoIds.push($(this).val());
+        });
+
+        // Combine os dados do campo processo_id[] com a serialização do formulário
+        formData += '&processo_ids=' + processoIds.join(',');
+
+        console.log(formData)
+
+        var linkAjax = '{{route("armazenarEpsAvancada")}}';
+        $.ajax({
+            url: linkAjax, // URL para onde você quer enviar a requisição
+            type: "GET",
+            data: formData,
+            dataType: "json", 
+            success: function(data) {
+                console.log("ebaaa");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                //console.error("Erro na requisição:", textStatus, errorThrown);
+            }
+        });
+    }
   
    
 </script>

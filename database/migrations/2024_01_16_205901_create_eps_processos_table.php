@@ -18,11 +18,11 @@ class CreateEpsProcessosTable extends Migration
             $table->string('nome');
             $table->string('tipo');
 
-            $table->foreignId('eps_gas_id')->constrained()->references('id')->on('eps_gases');
-            $table->foreignId('eps_junta_id')->constrained();
-            $table->foreignId('eps_caracteristicas_eletrica_id')->constrained();
-            $table->foreignId('eps_pre_aquecimento_id')->constrained();
-            $table->foreignId('eps_pos_aquecimento_id')->constrained();
+            $table->foreignId('eps_gas_id')->constrained()->references('id')->on('eps_gases')->nullable();
+            $table->foreignId('eps_junta_id')->constrained()->nullable();
+            $table->foreignId('eps_caracteristicas_eletrica_id')->constrained()->nullable();
+            $table->foreignId('eps_pre_aquecimento_id')->constrained()->nullable();
+            $table->foreignId('eps_pos_aquecimento_id')->constrained()->nullable();
 
             $table->softDeletes();
             $table->timestamps();

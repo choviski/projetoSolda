@@ -58,7 +58,7 @@
             </div>
             <div class="form-col col-6">
                 <label for="material_cobre_junta" class="mb-0 mt-1">Material de cobre na junta:</label>
-                <input type="text" class="form-control" id="material_cobre_junta" placeholder="Material de cobre na junta" name="material_cobre_junta">                     
+                <input type="text" class="form-control" disabled id="material_cobre_junta" placeholder="Material de cobre na junta" name="material_cobre_junta">                     
             </div>                       
         </div>
         <div class="form-row">
@@ -77,6 +77,14 @@
 </div>
 
 <script>
+    $('input[name="possui_cobre_junta"]').change(function(){
+        if ($(this).val() == 1) {
+            $('#material_cobre_junta').prop('disabled', false);
+        } else {            
+            $('#material_cobre_junta').prop('disabled', true);
+        }
+    });
+
     function adicionaJunta(){
         var formData = $("#form-junta").serialize();
         var linkAjax = '{{route("cadastraOuEditaJunta")}}';

@@ -15,9 +15,9 @@ class CreateEpsGasesTable extends Migration
             $table->float('composicao');
             $table->float('vazao');
             $table->boolean('possui_purga');
-            $table->string('purga');
-            $table->float('composicao_purga');
-            $table->float('vazao_purga');
+            $table->string('purga')->nullable();
+            $table->float('composicao_purga')->nullable();
+            $table->float('vazao_purga')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -52,19 +52,45 @@
         <div class="form-row">
             <div class="form-col col-6">
                 <label for="diametro_eletrodo_tig" class="mb-0 mt-1">Diâmetro do Eletredo TIG (caso seja TIG):</label>
-                <input type="number" step="0.01" class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo TIG" name="diametro_eletrodo_tig">                     
+                <input type="number" step="0.01" disabled class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo TIG" name="diametro_eletrodo_tig">                     
             </div>
             <div class="form-col col-6">
                 <label for="classificacao_consumivel_tig" class="mb-0 mt-1">Classificação do Consumível TIG (caso seja TIG):</label>
-                <input type="text" class="form-control" id="classificacao_consumivel_tig" placeholder="Classificação do Consumível TIG" name="classificacao_consumivel_tig">                     
+                <input type="text" class="form-control" disabled id="classificacao_consumivel_tig" placeholder="Classificação do Consumível TIG" name="classificacao_consumivel_tig">                     
             </div>
         </div>         
-        <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Continuar</a>                                   
+        <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
         <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('pos-aquecimento')">Voltar</a>                                                      
     </form>
 </div>
 
 <script>
+    $('input[name="tig"]').change(function(){
+        if ($(this).val() == 1) {
+            $('#diametro_eletrodo_tig').prop('disabled', false);
+            $('#classificacao_consumivel_tig').prop('disabled', false);
+        } else {            
+            $('#diametro_eletrodo_tig').prop('disabled', true);
+            $('#classificacao_consumivel_tig').prop('disabled', true);
+        }
+    });
+
+    function finalizaCadastroProcesso(processoId,processoNome){
+        var divElement = $('<div></div>').addClass('mt-2');
+        var inputElement = $('<input>').attr({
+            type: 'hidden',
+            name: 'processo_id[]',
+            value: processoId
+        });
+        var spanElement = $('<span>'+processoNome+'</span>').addClass('btn btn-block btn-secondary disabled');
+
+        divElement.append(inputElement, spanElement);
+
+        $('#lista_processos').append(divElement);
+
+        // Resetar todos os formularios envolvidos no cadastro de Processo.
+    }
+
     function adicionaCaracteristicasEletricas(){
         var formData = $("#form-caracteristicas-eletricas").serialize();
         var linkAjax = '{{route("cadastraOuEditaCaracteristicasEletricas")}}';
@@ -74,8 +100,9 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
-                $('input[name="id_caracteristicas_eletricas"]').val(data["id"]);                
-                //mostraAba("pos-aquecimento");
+                $('input[name="id_caracteristicas_eletricas"]').val(data["id"]);
+                finalizaCadastroProcesso(data["processo_id"],data["processo_nome"]);
+                $("#processoModal .close").click()
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);
