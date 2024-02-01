@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EpsProcesso;
+use App\MaterialBase;
+use App\MetalAdicao;
 use App\PreAquecimento;
 use App\PosAquecimento;
 use App\PosicaoSoldagem;
@@ -104,6 +106,35 @@ class EPSProcessoController extends Controller
             'id' => $caracteristicas_eletricas->id,
             'processo_id' => $caracteristicas_eletricas->processo->id,
             'processo_nome' => $caracteristicas_eletricas->processo->nome
+        ]);
+    }
+
+    public function cadastraOuEditaMaterialBase(Request $request){
+        
+        $request->merge(['eps_processo_id' => $request->id_processo]);
+        if(is_null($request->id_material_base)){ // Cria
+            $materialBase = MaterialBase::create($request->all());
+        }else{ // Edita
+            $materialBase = MaterialBase::find($request->id_material_base);
+            $materialBase->update($request->all());
+        }
+        return response()->json([
+            'material_id' => $materialBase->id,
+            'material_nome' => $materialBase->p_numero,
+        ]);
+    }
+
+    public function cadastraOuEditaMetalAdicao(Request $request){        
+        $request->merge(['eps_processo_id' => $request->id_processo]);
+        if(is_null($request->id_metal_base)){ // Cria
+            $metalAdicao = MetalAdicao::create($request->all());
+        }else{ // Edita
+            $metalAdicao = MetalAdicao::find($request->id_material_base);
+            $metalAdicao->update($request->all());
+        }
+        return response()->json([
+            'metal_adicao_id' => $metalAdicao->id,
+            'metal_adicao_nome' => $metalAdicao->f_numero,
         ]);
     }
     

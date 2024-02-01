@@ -24,13 +24,13 @@
             <div class="form-col col-6">     
                 <label for="possui_purga" class="mb-0 mt-1">Possui Purga?</label>
                 <div class="form-check">
-                    <input class="form-check-input" value="1" type="radio" name="possui_purga" id="possui_purga_sim">
+                    <input class="form-check-input" value="1" type="radio" name="possui_purga" id="possui_purga_sim" checked>
                     <label class="form-check-label" for="possui_purga_sim">
                         Sim
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" value="0" type="radio" name="possui_purga" id="possui_purga_nao" checked>
+                    <input class="form-check-input" value="0" type="radio" name="possui_purga" id="possui_purga_nao" >
                     <label class="form-check-label" for="possui_purga_nao">
                         Não
                     </label>
@@ -38,18 +38,18 @@
              </div>      
             <div class="form-col col-6">
                 <label for="purga" class="mb-0 mt-1" >Purga:</label>
-                <input type="text" disabled class="form-control" id="purga" placeholder="Purga" name="purga">                     
+                <input type="text"  class="form-control" id="purga" placeholder="Purga" name="purga">                     
             </div>
         </div>  
         
         <div class="form-row">                      
             <div class="form-col col-6">
                 <label for="composicao_purga" class="mb-0 mt-1" >Composição da Purga:</label>
-                <input type="number" disabled step="0.01" class="form-control" id="composicao_purga" placeholder="Composição da Purga" name="composicao_purga">                     
+                <input type="number"  step="0.01" class="form-control" id="composicao_purga" placeholder="Composição da Purga" name="composicao_purga">                     
             </div>
             <div class="form-col col-6">
                 <label for="vazao_purga" class="mb-0 mt-1" >Vazão da Purga:</label>
-                <input type="number" disabled step="0.01" class="form-control" id="vazao_purga" placeholder="Vazão da purga" name="vazao_purga">                     
+                <input type="number"  step="0.01" class="form-control" id="vazao_purga" placeholder="Vazão da purga" name="vazao_purga">                     
             </div>
         </div>           
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaGas()">Continuar</a>                                   

@@ -36,7 +36,7 @@
         var formData = $("#form-pos-aquecimento").serialize();
         var linkAjax = '{{route("cadastraOuEditaPosAquecimento")}}';
         $.ajax({
-            url: linkAjax, // URL para onde você quer enviar a requisição
+            url: linkAjax,
             type: "GET",
             data: formData,
             dataType: "json", 

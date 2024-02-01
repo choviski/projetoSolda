@@ -31,6 +31,8 @@
                 </div>
 
                 @include('epsAvancada.processo.formJunta')
+                @include('epsAvancada.processo.formMetalBase')
+                @include('epsAvancada.processo.formMetalAdicao')
                 @include('epsAvancada.processo.formPreAquecimento')
                 @include('epsAvancada.processo.formPosAquecimento')
                 @include('epsAvancada.processo.formCaracteristicasEletricas')
@@ -47,6 +49,8 @@
     function mostraAba(aba){
         $('#sub-form-processo').css('display', 'none');
         $('#sub-form-junta').css('display', 'none');  
+        $('#sub-form-metal-base').css('display', 'none');  
+        $('#sub-form-metal-adicao').css('display', 'none');  
         $('#sub-form-pre-aquecimento').css('display', 'none');  
         $('#sub-form-pos-aquecimento').css('display', 'none');  
         $('#sub-form-gas').css('display', 'none');  

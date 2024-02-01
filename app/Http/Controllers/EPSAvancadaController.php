@@ -43,7 +43,8 @@ class EPSAvancadaController extends Controller
                 $eps->processos()->attach($processoId);
             }
         }
-        dd($eps);      
+        dd($eps);   
+        // remover esse camarada ai (dd) e dar um feedback pro usuario lá no front   
     }
 
 }

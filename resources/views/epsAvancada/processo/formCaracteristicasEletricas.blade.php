@@ -38,13 +38,13 @@
         </div>
         <label for="tig" class="mb-0 mt-1">Tig?</label>
         <div class="form-check">
-            <input class="form-check-input" value="1" type="radio" name="tig" id="tig_sim">
+            <input class="form-check-input" value="1" type="radio" name="tig" id="tig_sim" checked>
             <label class="form-check-label" for="tig_sim">
                 Sim
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" value="0" type="radio" name="tig" id="tig_nao" checked>
+            <input class="form-check-input" value="0" type="radio" name="tig" id="tig_nao" >
             <label class="form-check-label" for="tig_nao">
                 Não
             </label>
@@ -52,11 +52,11 @@
         <div class="form-row">
             <div class="form-col col-6">
                 <label for="diametro_eletrodo_tig" class="mb-0 mt-1">Diâmetro do Eletredo TIG (caso seja TIG):</label>
-                <input type="number" step="0.01" disabled class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo TIG" name="diametro_eletrodo_tig">                     
+                <input type="number" step="0.01"  class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo TIG" name="diametro_eletrodo_tig">                     
             </div>
             <div class="form-col col-6">
                 <label for="classificacao_consumivel_tig" class="mb-0 mt-1">Classificação do Consumível TIG (caso seja TIG):</label>
-                <input type="text" class="form-control" disabled id="classificacao_consumivel_tig" placeholder="Classificação do Consumível TIG" name="classificacao_consumivel_tig">                     
+                <input type="text" class="form-control"  id="classificacao_consumivel_tig" placeholder="Classificação do Consumível TIG" name="classificacao_consumivel_tig">                     
             </div>
         </div>         
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
@@ -88,7 +88,29 @@
 
         $('#lista_processos').append(divElement);
 
-        // Resetar todos os formularios envolvidos no cadastro de Processo.
+    }
+
+    function resetaFormularios(){
+        $('#form-processo')[0].reset();        
+        $('#form-processo input[type="hidden"]').val('');
+        $('#form-junta')[0].reset();
+        $('#form-junta input[type="hidden"]').val('');
+        $('#form-metal-base')[0].reset();
+        $('#form-metal-base input[type="hidden"]').val('');
+        $('#form-metal-adicao')[0].reset();
+        $('#form-metal-adicao input[type="hidden"]').val('');
+        $('#form-posicao-soldagem')[0].reset();
+        $('#form-posicao-soldagem input[type="hidden"]').val('');
+        $('#form-pre-aquecimento')[0].reset();
+        $('#form-pre-aquecimento input[type="hidden"]').val('');
+        $('#form-pos-aquecimento')[0].reset();
+        $('#form-pos-aquecimento input[type="hidden"]').val('');
+        $('#form-gas')[0].reset();
+        $('#form-gas input[type="hidden"]').val('');
+        $('#form-caracteristicas-eletricas')[0].reset()
+        $('#form-caracteristicas-eletricas input[type="hidden"]').val('');;
+        $('#lista-metal-base').empty();
+        $('#lista-metal-adicao').empty();
     }
 
     function adicionaCaracteristicasEletricas(){
@@ -102,7 +124,9 @@
             success: function(data) {
                 $('input[name="id_caracteristicas_eletricas"]').val(data["id"]);
                 finalizaCadastroProcesso(data["processo_id"],data["processo_nome"]);
+                resetaFormularios();
                 $("#processoModal .close").click()
+                mostraAba("processo");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

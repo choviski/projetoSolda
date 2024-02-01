@@ -44,13 +44,13 @@
             <div class="form-col col-6">
                 <label for="possui_cobre_junta" class="mb-0 mt-1">Necessidade de cobre na junta?</label>
                 <div class="form-check">
-                    <input class="form-check-input" value="1" type="radio" name="possui_cobre_junta" id="possui_cobre_junta_sim">
+                    <input class="form-check-input" value="1" type="radio" name="possui_cobre_junta" id="possui_cobre_junta_sim" checked>
                     <label class="form-check-label" for="possui_cobre_junta_sim">
                         Sim
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" value="0" type="radio" name="possui_cobre_junta" id="possui_cobre_junta_nao" checked>
+                    <input class="form-check-input" value="0" type="radio" name="possui_cobre_junta" id="possui_cobre_junta_nao" >
                     <label class="form-check-label" for="possui_cobre_junta_nao">
                         Não
                     </label>
@@ -58,7 +58,7 @@
             </div>
             <div class="form-col col-6">
                 <label for="material_cobre_junta" class="mb-0 mt-1">Material de cobre na junta:</label>
-                <input type="text" class="form-control" disabled id="material_cobre_junta" placeholder="Material de cobre na junta" name="material_cobre_junta">                     
+                <input type="text" class="form-control"  id="material_cobre_junta" placeholder="Material de cobre na junta" name="material_cobre_junta">                     
             </div>                       
         </div>
         <div class="form-row">
@@ -89,13 +89,13 @@
         var formData = $("#form-junta").serialize();
         var linkAjax = '{{route("cadastraOuEditaJunta")}}';
         $.ajax({
-            url: linkAjax, // URL para onde você quer enviar a requisição
+            url: linkAjax,
             type: "GET",
             data: formData,
             dataType: "json", 
             success: function(data) {
                 $('input[name="id_junta"]').val(data["id"]);
-                mostraAba("posicao-soldagem");
+                mostraAba("metal-base");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

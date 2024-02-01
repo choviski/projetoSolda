@@ -220,7 +220,7 @@ crossorigin="anonymous"></script>
                     <label for="#">Notas:</label>
                     <br>
                     <textarea name="notas" id="notas" class="col-12" style="resize: none;"></textarea>
-                    <button class="btn btn-outline-primary mt-3 col-12" onclick="testeCadastro()">Terminar cadastro</button>
+                    <button class="btn btn-outline-primary mt-3 col-12" onclick="terminarCadastro()">Terminar cadastro</button>
                     <button class="btn btn-outline-danger mt-1 col-12" onclick="mostraForm('3')">
                         Voltar
                     </button>
@@ -263,7 +263,7 @@ crossorigin="anonymous"></script>
         event.preventDefault();
     });
 
-    function testeCadastro(){
+    function terminarCadastro(){
         event.preventDefault();
         var formData = $("#form-eps").serialize();
         var processoIds = [];
@@ -271,19 +271,21 @@ crossorigin="anonymous"></script>
             processoIds.push($(this).val());
         });
 
-        // Combine os dados do campo processo_id[] com a serialização do formulário
+        // Combina os dados do campo processo_id[] com a serialização do formulário
         formData += '&processo_ids=' + processoIds.join(',');
 
         console.log(formData)
 
         var linkAjax = '{{route("armazenarEpsAvancada")}}';
         $.ajax({
-            url: linkAjax, // URL para onde você quer enviar a requisição
+            url: linkAjax, 
             type: "GET",
             data: formData,
             dataType: "json", 
             success: function(data) {
                 console.log("ebaaa");
+                // Feedback para o usuário dizendo que a EPS desse foi cadastrada
+                // Redireciona pra listagem de EPS e um abraço pro gaitero
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);

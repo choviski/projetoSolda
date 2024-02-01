@@ -35,7 +35,7 @@
             </div>
         </div>
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaPosicaoSoldagem()">Continuar</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('junta')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('metal-adicao')">Voltar</a>                                                      
     </form>
 </div>
 
@@ -44,7 +44,7 @@
         var formData = $("#form-posicao-soldagem").serialize();
         var linkAjax = '{{route("cadastraOuEditaPosicaoSoldagem")}}';
         $.ajax({
-            url: linkAjax, // URL para onde você quer enviar a requisição
+            url: linkAjax,
             type: "GET",
             data: formData,
             dataType: "json", 

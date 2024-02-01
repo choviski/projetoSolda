@@ -13,7 +13,7 @@
             </div>
             <div class="form-col col-6">
                 <label for="temperatura_interpasse" class="mb-0 mt-1" >Temperatura do interpasse:</label>
-                <input type="text" class="form-control" id="temperatura_interpasse" placeholder="Grupo N" name="temperatura_interpasse">                     
+                <input type="text" class="form-control" id="temperatura_interpasse" placeholder="Temperatura do interpasse" name="temperatura_interpasse">                     
             </div>
         </div>
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaPreAquecimento()">Continuar</a>                                   
@@ -26,7 +26,7 @@
         var formData = $("#form-pre-aquecimento").serialize();
         var linkAjax = '{{route("cadastraOuEditaPreAquecimento")}}';
         $.ajax({
-            url: linkAjax, // URL para onde você quer enviar a requisição
+            url: linkAjax, 
             type: "GET",
             data: formData,
             dataType: "json", 
