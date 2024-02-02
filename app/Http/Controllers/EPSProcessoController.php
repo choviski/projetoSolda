@@ -126,16 +126,26 @@ class EPSProcessoController extends Controller
 
     public function cadastraOuEditaMetalAdicao(Request $request){        
         $request->merge(['eps_processo_id' => $request->id_processo]);
-        if(is_null($request->id_metal_base)){ // Cria
+        if(is_null($request->id_material_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());
         }else{ // Edita
-            $metalAdicao = MetalAdicao::find($request->id_material_base);
+            $metalAdicao = MetalAdicao::find($request->id_material_adicao);
             $metalAdicao->update($request->all());
         }
         return response()->json([
             'metal_adicao_id' => $metalAdicao->id,
             'metal_adicao_nome' => $metalAdicao->f_numero,
         ]);
+    }
+
+    public function getMetalAdicao($id){
+        $metal = MetalAdicao::find($id);
+        return response()->json($metal);
+    }
+
+    public function deleteMetalAdicao($id){
+        MetalAdicao::destroy($id);
+        return response()->json(['message'=>'ok']);
     }
     
 }

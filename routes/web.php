@@ -180,3 +180,5 @@ Route::get("/cadastraEPSPosAquecimento","EpsProcessoController@cadastraOuEditaPo
 Route::get("/cadastraEPSCaracteristicasEletricas","EpsProcessoController@cadastraOuEditaCaracteristicasEletricas")->name("cadastraOuEditaCaracteristicasEletricas")->middleware(CheckSession::class);
 Route::get("/cadastraEPSGas","EpsProcessoController@cadastraOuEditaGas")->name("cadastraOuEditaGas")->middleware(CheckSession::class);
 Route::get("/cadastraEPSPosicaoSoldagem","EpsProcessoController@cadastraOuEditaPosicaoSoldagem")->name("cadastraOuEditaPosicaoSoldagem")->middleware(CheckSession::class);
+Route::get("/getEPSMetalAdicao/{id}","EpsProcessoController@getMetalAdicao")->name("getMetalAdicao")->middleware(CheckSession::class);
+Route::delete("/deleteEPSMetalAdicao/{id}","EpsProcessoController@deleteMetalAdicao")->name("deleteMetalAdicao")->middleware(CheckSession::class);

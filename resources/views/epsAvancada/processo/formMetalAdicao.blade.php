@@ -117,7 +117,7 @@
                     </select>  
                 </div>                       
             </div>  
-            <a class="btn btn-block btn-primary mt-2" onclick="adicionaMetalAdicao()">Adicionar Metal de Adição</a>                                   
+            <a class="btn btn-block btn-primary mt-2" id="botao-adicionar-metal" onclick="adicionaMetalAdicao()">Adicionar Metal de Adição</a>                                   
             <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraListagemMetalAdicao()">Voltar</a>                                                      
         </form>
     </div>
@@ -134,7 +134,8 @@
 
     function mostraFormularioMetalAdicao(){
         $('#div-form-metal-adicao').css('display', 'block');
-        $('#div-add-metal-adicao').css('display', 'none');  
+        $('#div-add-metal-adicao').css('display', 'none');         
+        $('#botao-adicionar-metal').text('Adicionar Metal de Adição');  
     }
 
     function mostraListagemMetalAdicao(){
@@ -143,25 +144,30 @@
     }
 
     function criarElementoMetalAdicao(nomeMetal, id) {
-        var divExterior = $('<div>').addClass('mt-2 p-0 col-12 d-flex justify-content-between');
-        var spanNomeMetal = $('<span>')
-            .addClass('btn btn-secondary disabled')
-            .attr('style', 'cursor: pointer;')
-            .text(nomeMetal);
-        var divInterno = $('<div>');
-        var spanEditar = $('<span>')
-            .addClass('btn btn-outline-primary mr-1')
-            .attr('style', 'cursor: pointer;')
-            .attr('onclick', 'editaMetalAdicao(' + id + ')')
-            .html('<i class="fas fa-edit"></i>');
-        var spanRemover = $('<span>')
-            .addClass('btn btn-outline-danger')
-            .attr('style', 'cursor: pointer;')
-            .attr('onclick', 'removeMetalAdicao(' + id + ')')
-            .html('<i class="fas fa-trash"></i>');
-        divInterno.append(spanEditar, spanRemover);
-        divExterior.append(spanNomeMetal, divInterno);
-        $('#lista-metal-adicao').append(divExterior);
+        if ($('#div-metal-adicao-'+id).length > 0) { // Editando
+            $('#span-metal-adicao-'+id).text(nomeMetal);    
+        }else{ // Criando
+            var divExterior = $('<div>').addClass('mt-2 p-0 col-12 d-flex justify-content-between').attr('id','div-metal-adicao-'+id);
+            var spanNomeMetal = $('<span>')
+                .addClass('btn btn-secondary disabled')
+                .attr('style', 'cursor: pointer;')
+                .attr('id', 'span-metal-adicao-'+id)
+                .text(nomeMetal);
+            var divInterno = $('<div>');
+            var spanEditar = $('<span>')
+                .addClass('btn btn-outline-primary mr-1')
+                .attr('style', 'cursor: pointer;')
+                .attr('onclick', 'editaMetalAdicao(' + id + ')')
+                .html('<i class="fas fa-edit"></i>');
+            var spanRemover = $('<span>')
+                .addClass('btn btn-outline-danger')
+                .attr('style', 'cursor: pointer;')
+                .attr('onclick', 'removeMetalAdicao(' + id + ')')
+                .html('<i class="fas fa-trash"></i>');
+            divInterno.append(spanEditar, spanRemover);
+            divExterior.append(spanNomeMetal, divInterno);
+            $('#lista-metal-adicao').append(divExterior);
+        }
     }
 
     function adicionaMetalAdicao(){
@@ -173,11 +179,12 @@
             data: formData,
             dataType: "json", 
             success: function(data) { 
-                criarElementoMetalAdicao(data["metal_adicao_id"],data["metal_adicao_id"]); 
+                criarElementoMetalAdicao(data["metal_adicao_nome"],data["metal_adicao_id"]); 
                 var id_processo = $('[name="id_processo"]').val(); 
                 $('#form-metal-adicao')[0].reset();
+                $('[name="id_material_adicao"]').val('');
                 $('[name="id_processo"]').val(id_processo);
-                mostraListagemMetalAdicao();
+                mostraListagemMetalAdicao();                
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 //console.error("Erro na requisição:", textStatus, errorThrown);
@@ -186,10 +193,45 @@
     };   
 
     function editaMetalAdicao(id){
-        console.log("Edita Metal de adição: "+id);
+        var linkAjax = '{{route("getMetalAdicao",":id")}}';
+        linkAjax = linkAjax.replace(':id',id);
+        $.ajax({
+            url:linkAjax,
+            type:'get',
+        })
+            .done(function(data){
+                $('#form-metal-adicao input').each(function() {
+                    var nomeCampo = $(this).attr('name');
+                    if (data.hasOwnProperty(nomeCampo)) {
+                        $(this).val(data[nomeCampo]);
+                    }
+                });
+                $('[name="id_material_adicao"]').val(id);
+                mostraFormularioMetalAdicao();
+                $('#botao-adicionar-metal').text('Salvar Metal de Adição');
+            })            
+            .fail(function(jqHXR,ajaxOptions,thrownError){
+                //alert("Erro ao baixar certificado.")
+            })    
     }
 
     function removeMetalAdicao(id){
-        console.log("Remove Metal de adição: "+id);
+        if(confirm("Tem certeza que deseja excluir este metal?")){
+            var linkAjax = '{{route("deleteMetalAdicao",":id")}}';
+            linkAjax = linkAjax.replace(':id',id);
+            $.ajax({
+                url:linkAjax,
+                type:'DELETE',                
+                headers:{
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                },
+            })
+                .done(function(data){
+                    $('#div-metal-adicao-'+id).remove();
+                })            
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                    //alert("Erro ao baixar certificado.")
+                })    
+        }
     }
 </script>
