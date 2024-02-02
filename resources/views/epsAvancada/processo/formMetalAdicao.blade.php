@@ -19,7 +19,7 @@
         <form  class="col-12 p-0 mb-2" id="form-metal-adicao" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id_processo">
-            <input type="hidden" name="id_material_adicao">                        
+            <input type="hidden" name="id_metal_adicao">                        
             <div class="form-row">
                 <div class="form-col col-6">
                     <label for="f_numero" class="mb-0 mt-1">F número:</label>
@@ -182,7 +182,7 @@
                 criarElementoMetalAdicao(data["metal_adicao_nome"],data["metal_adicao_id"]); 
                 var id_processo = $('[name="id_processo"]').val(); 
                 $('#form-metal-adicao')[0].reset();
-                $('[name="id_material_adicao"]').val('');
+                $('[name="id_metal_adicao"]').val('');
                 $('[name="id_processo"]').val(id_processo);
                 mostraListagemMetalAdicao();                
             },
@@ -206,7 +206,7 @@
                         $(this).val(data[nomeCampo]);
                     }
                 });
-                $('[name="id_material_adicao"]').val(id);
+                $('[name="id_metal_adicao"]').val(id);
                 mostraFormularioMetalAdicao();
                 $('#botao-adicionar-metal').text('Salvar Metal de Adição');
             })            
@@ -216,7 +216,7 @@
     }
 
     function removeMetalAdicao(id){
-        if(confirm("Tem certeza que deseja excluir este metal?")){
+        if(confirm("Tem certeza que deseja excluir este metal de adição?")){
             var linkAjax = '{{route("deleteMetalAdicao",":id")}}';
             linkAjax = linkAjax.replace(':id',id);
             $.ajax({
@@ -228,6 +228,7 @@
             })
                 .done(function(data){
                     $('#div-metal-adicao-'+id).remove();
+                    $('[name="id_metal_adicao"]').val('');
                 })            
                 .fail(function(jqHXR,ajaxOptions,thrownError){
                     //alert("Erro ao baixar certificado.")

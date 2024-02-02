@@ -71,7 +71,7 @@
                     <input type="number" step="0.01" class="form-control" id="diametro_tubo" placeholder="Diâmetro do tubo" name="diametro_tubo">                     
                 </div>                       
             </div>   
-            <a class="btn btn-block btn-primary mt-2" onclick="adicionaMetalBase()">Adicionar Metal Base</a>                                   
+            <a class="btn btn-block btn-primary mt-2" id="botao-adicionar-material-base" onclick="adicionaMetalBase()">Adicionar Metal Base</a>                                   
             <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraListagemMetalBase()">Voltar</a>                                                      
         </form>
     </div>
@@ -88,7 +88,8 @@
 
     function mostraFormularioMetalBase(){
         $('#div-form-metal-base').css('display', 'block');
-        $('#div-add-metal-base').css('display', 'none');  
+        $('#div-add-metal-base').css('display', 'none');
+        $('#botao-adicionar-material-base').text('Adicionar Metal Base');    
     }
 
     function mostraListagemMetalBase(){
@@ -97,25 +98,30 @@
     }
 
     function criarElementoMetalBase(nomeMetal, id) {
-        var divExterior = $('<div>').addClass('mt-2 p-0 col-12 d-flex justify-content-between');
-        var spanNomeMetal = $('<span>')
-            .addClass('btn btn-secondary disabled')
-            .attr('style', 'cursor: pointer;')
-            .text(nomeMetal);
-        var divInterno = $('<div>');
-        var spanEditar = $('<span>')
-            .addClass('btn btn-outline-primary mr-1')
-            .attr('style', 'cursor: pointer;')
-            .attr('onclick', 'editaMetalBase(' + id + ')')
-            .html('<i class="fas fa-edit"></i>');
-        var spanRemover = $('<span>')
-            .addClass('btn btn-outline-danger')
-            .attr('style', 'cursor: pointer;')
-            .attr('onclick', 'removeMetalBase(' + id + ')')
-            .html('<i class="fas fa-trash"></i>');
-        divInterno.append(spanEditar, spanRemover);
-        divExterior.append(spanNomeMetal, divInterno);
-        $('#lista-metal-base').append(divExterior);
+        if ($('#div-material-base-'+id).length > 0) { // Editando
+            $('#span-material-base-'+id).text(nomeMetal); 
+        }else{//Criando
+            var divExterior = $('<div>').addClass('mt-2 p-0 col-12 d-flex justify-content-between').attr('id','div-material-base-'+id);;
+            var spanNomeMetal = $('<span>')
+                .addClass('btn btn-secondary disabled')
+                .attr('style', 'cursor: pointer;')
+                .attr('id', 'span-material-base-'+id)
+                .text(nomeMetal);
+            var divInterno = $('<div>');
+            var spanEditar = $('<span>')
+                .addClass('btn btn-outline-primary mr-1')
+                .attr('style', 'cursor: pointer;')
+                .attr('onclick', 'editaMetalBase(' + id + ')')
+                .html('<i class="fas fa-edit"></i>');
+            var spanRemover = $('<span>')
+                .addClass('btn btn-outline-danger')
+                .attr('style', 'cursor: pointer;')
+                .attr('onclick', 'removeMetalBase(' + id + ')')
+                .html('<i class="fas fa-trash"></i>');
+            divInterno.append(spanEditar, spanRemover);
+            divExterior.append(spanNomeMetal, divInterno);
+            $('#lista-metal-base').append(divExterior);
+        }
     }
 
     function adicionaMetalBase(){
@@ -130,6 +136,7 @@
                 criarElementoMetalBase(data["material_nome"],data["material_id"]); 
                 var id_processo = $('[name="id_processo"]').val(); 
                 $('#form-metal-base')[0].reset();
+                $('[name="id_material_base"]').val('');
                 $('[name="id_processo"]').val(id_processo);
                 mostraListagemMetalBase();
             },
@@ -137,13 +144,48 @@
                 //console.error("Erro na requisição:", textStatus, errorThrown);
             }
         });
-    };   
-
+    };       
     function editaMetalBase(id){
-        console.log("Edita Metal Base: "+id);
+        var linkAjax = '{{route("getMaterialBase",":id")}}';
+        linkAjax = linkAjax.replace(':id',id);
+        $.ajax({
+            url:linkAjax,
+            type:'get',
+        })
+            .done(function(data){
+                $('#form-metal-base input').each(function() {
+                    var nomeCampo = $(this).attr('name');
+                    if (data.hasOwnProperty(nomeCampo)) {
+                        $(this).val(data[nomeCampo]);
+                    }
+                });
+                $('[name="id_material_base"]').val(id);
+                mostraFormularioMetalBase();
+                $('#botao-adicionar-material-base').text('Salvar Metal de Base');
+            })  
+            .fail(function(jqHXR,ajaxOptions,thrownError){
+                //alert("Erro ao baixar certificado.")
+            })  
     }
 
     function removeMetalBase(id){
-        console.log("Remove Metal Base: "+id);
+        if(confirm("Tem certeza que deseja excluir este metal de base?")){
+            var linkAjax = '{{route("deleteMaterialBase",":id")}}';
+            linkAjax = linkAjax.replace(':id',id);
+            $.ajax({
+                url:linkAjax,
+                type:'DELETE',                
+                headers:{
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                },
+            })
+                .done(function(data){
+                    $('#div-material-base-'+id).remove();
+                    $('[name="id_material_base"]').val('');
+                })            
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                    //alert("Erro ao baixar certificado.")
+                })    
+        }
     }
 </script>

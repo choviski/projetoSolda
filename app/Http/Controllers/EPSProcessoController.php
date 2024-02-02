@@ -124,12 +124,22 @@ class EPSProcessoController extends Controller
         ]);
     }
 
+    public function getMaterialBase($id){
+        $materialBase = MaterialBase::find($id);
+        return response()->json($materialBase);
+    }
+
+    public function deleteMaterialBase($id){
+        MaterialBase::destroy($id);
+        return response()->json(['message'=>'ok']);
+    }
+
     public function cadastraOuEditaMetalAdicao(Request $request){        
         $request->merge(['eps_processo_id' => $request->id_processo]);
-        if(is_null($request->id_material_adicao)){ // Cria
+        if(is_null($request->id_metal_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());
         }else{ // Edita
-            $metalAdicao = MetalAdicao::find($request->id_material_adicao);
+            $metalAdicao = MetalAdicao::find($request->id_metal_adicao);
             $metalAdicao->update($request->all());
         }
         return response()->json([
