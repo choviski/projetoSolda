@@ -27,13 +27,23 @@ class EPSAvancadaController extends Controller
         
         $usuario = session()->get("Usuario");
         $tecnica = Tecnico::create($request->all());
-        $eps = EpsAvancada::create([
-            'nome'=>$request->nome,
-            'data'=>$request->data,
-            'notas'=>$request->notas,
-            'informacao_tecnica_id' => $tecnica->id,
-            'id_empresa' => $usuario->empresa->id,
-        ]);
+
+        if($usuario->tipo==1){
+            $eps = EpsAvancada::create([
+                'nome'=>$request->nome,
+                'data'=>$request->data,
+                'notas'=>$request->notas,
+                'informacao_tecnica_id' => $tecnica->id
+            ]);
+        }else{
+            $eps = EpsAvancada::create([
+                'nome'=>$request->nome,
+                'data'=>$request->data,
+                'notas'=>$request->notas,
+                'informacao_tecnica_id' => $tecnica->id,
+                'id_empresa' => $usuario->empresa->id,
+            ]);
+        }       
 
         $processos = $request->input('processo_ids'); 
         $arrayProcessos = explode(",",$processos);
@@ -42,9 +52,8 @@ class EPSAvancadaController extends Controller
             foreach ($arrayProcessos as $processoId) {
                 $eps->processos()->attach($processoId);
             }
-        }
-        dd($eps);   
-        // remover esse camarada ai (dd) e dar um feedback pro usuario lá no front   
+        } 
+        return response()->json(['message'=>'Eps Cadastrada com Sucesso']);
     }
 
 }
