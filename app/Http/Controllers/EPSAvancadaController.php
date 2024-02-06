@@ -56,4 +56,10 @@ class EPSAvancadaController extends Controller
         return response()->json(['message'=>'Eps Cadastrada com Sucesso']);
     }
 
+    public function deleteEpsAvancada($id){
+        EpsAvancada::destroy($id);
+        return response()->json(['message'=>'ok']);
+    }
+    
+
 }

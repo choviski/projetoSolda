@@ -22,10 +22,18 @@
 <div class="container-fluid d-flex justify-content-center flex-column col-md-7 col-sm-10 p-0 rounded-bottom ">
     <!-- Listagem de Eps Avançadas  -->
     @foreach($epsAvancadas as $eps)
-        <div class="bg-light rounded mt-3 p-2">
+        <div class="bg-light rounded mt-3 p-2" id="div-eps-{{$eps->id}}">
             <div class="col-12 d-flex justify-content-between">
                 <span class="btn btn-secondary disabled" disabled >Nome: {{$eps->nome}}</span>
-                <span class="btn btn-secondary" style="cursor: pointer" >Gerar Documento</span>
+                <div>
+                    <span class="btn btn-secondary" style="cursor: pointer" >
+                        Gerar Documento
+                        <i class="pl-2 fas fa-file-alt"></i>
+                    </span>
+                    <span class="btn btn-outline-danger" style="cursor: pointer" onclick="removeEps({{$eps->id}})" >
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>            
             </div>            
             <hr class="m-1">
             <div class="col-12 d-flex flex-column">
@@ -43,8 +51,28 @@
     <div class="mt-2" style="display">
         {{$epsAvancadas->links()}}
     </div>
-
 </div>
+
+<script>
+    function removeEps(id){
+        if(confirm("Tem certeza que deseja excluir esta EPS?")){
+            var linkAjax = '{{route("deleteEpsAvancada",":id")}}';
+            linkAjax = linkAjax.replace(':id',id);
+            $.ajax({
+                url:linkAjax,
+                type:'DELETE',                
+                headers:{
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                },
+            })
+                .done(function(data){
+                    $('#div-eps-'+id).remove();
+                })            
+                .fail(function(jqHXR,ajaxOptions,thrownError){
+                })    
+        }
+    }
+</script>
 
 
 

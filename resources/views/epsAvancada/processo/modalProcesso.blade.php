@@ -1,6 +1,6 @@
 <!-- Modal para processos -->
-<div class="modal fade" id="processoModal" tabindex="-2" role="dialog">
-    <div class="modal-dialog modal-fullscreen modal-dialog-centered" role="document">
+<div class="modal fade" id="processoModal" tabindex="-2"  role="dialog">
+    <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Processo</h5>

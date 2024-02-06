@@ -102,7 +102,7 @@ crossorigin="anonymous"></script>
         </div>
 
         <div id="form-1" class="sub-form" name="form-eps">            
-            <form  class="col-md-12 col-sm-10 mt-2"  enctype="multipart/form-data" id="form-eps">
+            <form  class="col-md-12 col-sm-12 mt-2"  enctype="multipart/form-data" id="form-eps">
                 @csrf
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">EPS <i class="ml-2 fas fa-file-invoice"></i></h4>
@@ -230,7 +230,7 @@ crossorigin="anonymous"></script>
         
         @include('epsAvancada.processo.modalProcesso')
 
-        <div class="col-md-12 col-sm-10">
+        <div class="col-md-12 col-sm-12">
             <a href="{{route("paginaInicial")}}" class="btn btn-outline-light mt-1 mb-2 col-12 text-dark "><i class="fas fa-arrow-left"></i> Retornar à página principal</a>
         </div>           
     </div>
@@ -283,7 +283,8 @@ crossorigin="anonymous"></script>
             data: formData,
             dataType: "json", 
             success: function(data) {
-                console.log("ebaaa");
+                alert("EPS cadastrada com sucesso!");
+                window.location.href = '{{route("listarEpsAvancada")}}';
                 // Feedback para o usuário dizendo que a EPS desse foi cadastrada
                 // Redireciona pra listagem de EPS e um abraço pro gaitero
             },
