@@ -170,6 +170,7 @@ Route::get("/listarEpsAvancada","EpsAvancadaController@listarEpsAvancada")->name
 Route::get("/cadastrarEpsAvancada","EpsAvancadaController@cadastrarEpsAvancada")->name("cadastrarEpsAvancada")->middleware(CheckSession::class);
 Route::get("/armazenarEpsAvancada","EpsAvancadaController@armazenarEpsAvancada")->name("armazenarEpsAvancada")->middleware(CheckSession::class);
 Route::delete("/deleteEpsAvancada/{id}","EpsAvancadaController@deleteEpsAvancada")->name("deleteEpsAvancada")->middleware(CheckSession::class);
+Route::post("/geraEPS","EpsAvancadaController@geraEps")->name("geraEps")->middleware(CheckSession::class);
 
 # --- EPS Processo --- #
 Route::get("/cadastraEPSProcesso","EpsProcessoController@cadastraOuEditaProcesso")->name("cadastraOuEditaProcesso")->middleware(CheckSession::class);

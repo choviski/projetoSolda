@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use Dompdf\Dompdf;
+use PDF;
+use Dompdf\Options;
 use App\EPSAvancada;
 use Illuminate\Http\Request;
 use App\Tecnico;
@@ -59,6 +63,21 @@ class EPSAvancadaController extends Controller
     public function deleteEpsAvancada($id){
         EpsAvancada::destroy($id);
         return response()->json(['message'=>'ok']);
+    }
+
+    public function geraEPS(){
+        $pdf = new Dompdf();
+        $view = view('pdf.eps.eps')->render();
+        $pdf->loadHtml($view);
+        $pdf->setPaper('A4','portrait');
+        $pdf->render();
+        header('Content-type: application/pdf');
+        
+        echo $pdf->output();    
+        exit;                   
+        //$pdf->stream();       
+
+        
     }
     
 

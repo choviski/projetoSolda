@@ -26,10 +26,14 @@
             <div class="col-12 d-flex justify-content-between">
                 <span class="btn btn-secondary disabled" disabled >Nome: {{$eps->nome}}</span>
                 <div>
-                    <span class="btn btn-secondary" style="cursor: pointer" >
-                        Gerar Documento
-                        <i class="pl-2 fas fa-file-alt"></i>
-                    </span>
+                    <form method="post" class="d-inline" action="{{('geraEPS')}}">
+                        @csrf
+                        <input type="hidden" value="{{$eps->id}}">                    
+                        <button class="btn btn-secondary" style="cursor: pointer" >
+                            Gerar Documento
+                            <i class="pl-2 fas fa-file-alt"></i>
+                        </button>
+                    </form>
                     <span class="btn btn-outline-danger" style="cursor: pointer" onclick="removeEps({{$eps->id}})" >
                         <i class="fas fa-times"></i>
                     </span>
