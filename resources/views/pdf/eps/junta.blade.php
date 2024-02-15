@@ -27,7 +27,7 @@
     <tbody>
       <tr>
         <td  rowspan="4">  <!--Imagem junta -->
-            <img src="{{asset("imagens/placeholder_imagem.jpg")}}" style="width: 180px; max-height:100px">
+            <img src="{{$imagem_junta}}" style="width: 180px; max-height:100px">
         </td>
         <th style="text-align: left">T = x,y a X,Y</th>
         <td>COBRE JUNTA:</td>

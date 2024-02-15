@@ -15,8 +15,6 @@
     <!-- Por exemplo: ≤ α -->
     <!-- Esses campos estão marcados com um comentario -> (!) -->
 
-    <!-- * As imagens (junta e logo da empresa) não carregam de jeito nenhum -->
-
     <!-- * Existem campos aqui no documento que eu acredito que não existem nos formulários de cadastro -->
     <!-- Esses campos estão marcados com um comentario -> (?) -->
     <body>

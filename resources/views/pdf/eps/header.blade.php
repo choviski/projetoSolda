@@ -27,7 +27,7 @@
             <tr>  
                 <td scope="row" colspan="2">              
                     <div id="wrap-img-empresa">
-                        <img src="{{asset("imagens/placeholder_imagem.jpg")}}" style="max-height: 90px;">
+                        <img src="{{$imagem_emrpesa}}" style="max-height: 90px;">
                     </div>
                 </td>
                 <td>                
