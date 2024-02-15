@@ -66,8 +66,29 @@ class EPSAvancadaController extends Controller
     }
 
     public function geraEPS(){
+        $usuario = session()->get("Usuario");
+
+        // Infelizmente é um inferno colocar as imagens que no PDF
+        // É preciso converter elas pra base64 e fazer toda essa maracutaia pra funcionar
+        // Imagem da Empresa.
+        $path = public_path().$usuario->empresa->foto;
+        $type = pathinfo($path,PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $empresa_image = 'data:image/'. $type. ';base64,' . base64_encode($data);
+
+        // Imagem da Junta. (Por enquanto usa a imgem de place holder)
+        $path = public_path().'/imagens/placeholder_imagem.jpg';
+        $type = pathinfo($path,PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
+
         $pdf = new Dompdf();
-        $view = view('pdf.eps.eps')->render();
+
+        $view = view('pdf.eps.eps',[
+            'imagem_emrpesa'=>$empresa_image,
+            'imagem_junta'=>$imagem_junta
+            ])->render();
+
         $pdf->loadHtml($view);
         $pdf->setPaper('A4','portrait');
         $pdf->render();
