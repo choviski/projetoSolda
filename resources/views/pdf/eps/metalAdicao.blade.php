@@ -24,7 +24,7 @@
     </thead>
     <tbody>
       <tr>
-        <td style="text-align: left">ESPECIFICAÇÃO N° (S.F.A):</td> <!-- (?) -->
+        <td style="text-align: left">* ESPECIFICAÇÃO N° (S.F.A):</td> <!-- (?) -->
         <th style="text-align: left">5.9</th>
         <td style="text-align: left">CLASSIFICAÇÃO AWS:</td>
         <th style="text-align: left"> ER 2592</th>
@@ -38,7 +38,7 @@
       <tr>
         <td>A N°.:</td>
         <th>NÃO ATRIBUÍDO</th>
-        <td>METAL DE ENCHIMENTO:</td> <!-- (?) -->
+        <td>* METAL DE ENCHIMENTO:</td> <!-- (?) -->
         <th>COM</th> 
       </tr>
       <tr>
@@ -61,8 +61,8 @@
       </tr>
       <tr>
         <td>MARCA COMERCIAL:</td>
-        <th>SANDRINHO BARRAS DE FERRO</th>
-        <td>OUTROS:</td> <!-- (?) -->
+        <th>LOREM IPSUM</th>
+        <td>* OUTROS:</td> <!-- (?) -->
         <th>N/A</th> 
       </tr>
     </tbody>

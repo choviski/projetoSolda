@@ -40,17 +40,17 @@
         </td>
       </tr>
       <tr>
-        <td>CORRENT PULSADA: <!-- (?) -->
+        <td>* CORRENT PULSADA: <!-- (?) -->
             <b>SEM</b>
         </td>
-        <td>OUTROS <!-- (?) -->
+        <td>* OUTROS <!-- (?) -->
             <b>N/A</b>
         </td>
       </tr>
       <tr>
         <td colspan="2">
             TIPO E DIÂMETRO DO ELETRODO DE TUNGSTÊNIO:
-            <b> uma paulada de palavras difíceis</b>
+            <b> teste teste teste</b>
         </td>
       </tr>
     </tbody>
@@ -67,7 +67,7 @@
         <td colspan="2" class="borda" >CORRENTE</td>
         <td rowspan="2" class="borda" >TENSÃO (V)</td>
         <td rowspan="2" class="borda" >VELOCIDADE (cm/min)</td>
-        <td rowspan="2" class="borda" >ENERGIA MÁX.</td> <!-- (?) -->
+        <td rowspan="2" class="borda" >* ENERGIA MÁX.</td> <!-- (?) -->
       </tr>
       <tr class="text-small" >
         <td class="borda" >CLASSE</th>

@@ -30,15 +30,15 @@
         <td>CORDÕES RETILÍNEOS OU TRANÇADOS:
             <b>RETILÍNEOS/TRANÇADOS</b>
         </td>
-        <td>OSCILAÇÃO: <!-- (?) -->
+        <td>* OSCILAÇÃO: <!-- (?) -->
             <b>N/A</b>
         </td>
       </tr>
       <tr>
-        <td>PASSES SIMPLES OU MÚLTIPLOS (POR LADO): <!-- (?) -->
+        <td>* PASSES SIMPLES OU MÚLTIPLOS (POR LADO): <!-- (?) -->
             <b>MÚLTIPLOS/SIMPLES</b>
         </td>
-        <td>SOLDAGEM EM CÂMARA FECHADA: <!-- (?) -->
+        <td>* SOLDAGEM EM CÂMARA FECHADA: <!-- (?) -->
             <b>NÃO</b>
         </td>
       </tr>
@@ -51,7 +51,7 @@
         </td>
       </tr>
       <tr>
-        <td>PROCESSO TÉRMICO DE PREPARAÇÃO: <!-- (?) -->
+        <td>* PROCESSO TÉRMICO DE PREPARAÇÃO: <!-- (?) -->
             <b>COM OU SEM</b>
         </td>
         <td>DIÂMETRO BOCAL DE GAS:
@@ -59,10 +59,10 @@
         </td>
       </tr>
       <tr>
-        <td>INSPEÇÃO FINAL: <!-- (?) -->
+        <td>* INSPEÇÃO FINAL: <!-- (?) -->
             <b>CONFORME REQUISITOS DO CLIENTE</b>
         </td>
-        <td>OUTROS: <!-- (?) -->
+        <td>* OUTROS: <!-- (?) -->
             <b>N/A</b>
         </td>
       </tr>

@@ -21,7 +21,7 @@
       <tr>
         <th colspan="2" style="text-align: left;"><b>JUNTAS (AB-WYZ)</b></th>
         <td>TIPO DE JUNTA:</td>
-        <td style="text-align: left;"><b>TIPO_DE_JUNTA</b></td> <!-- (?) -->
+        <td style="text-align: left;font-size:10px"><b>CONFORME DESENHOS DE FABRICAÇÃO</b></td> <!-- (?) -->
       </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@
       <tr>
         <th style="text-align: left" >R = x a X</th>
         <td>MATERIAL COBRE JUNTA (TIPO):</td>
-        <th style="text-align: left;">NAO SEI OQ/NAO SEI OQ LÁ</th>
+        <th style="text-align: left;">LOREM IPSUM</th>
       </tr>
       <tr>
         <th style="text-align: left">f = x,y ± X,Y</th>

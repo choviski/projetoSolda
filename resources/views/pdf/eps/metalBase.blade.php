@@ -22,12 +22,12 @@
       <tr>
         <td colspan="3" style="text-align: left">PN°.: <b> 10H</b></td>
         <td colspan="3" style="text-align: left">GURPO N°.: <b> 1</b></td>
-        <td colspan="3" style="text-align: left">COM PN°.: <b> 10H</b></td> <!-- (?) -->
-        <td colspan="3" style="text-align: left">COM GRUPO N°.: <b> 1</b></td> <!-- (?) -->
+        <td colspan="3" style="text-align: left">* COM PN°.: <b> 10H</b></td> <!-- (?) -->
+        <td colspan="3" style="text-align: left">* COM GRUPO N°.: <b> 1</b></td> <!-- (?) -->
       </tr>
       <tr>
-        <td colspan="6">ESPECIFICAÇÃO TIPO E GRAU: <b>NSEI OQ 01254 N SEI OQLA</b> </td>
-        <td colspan="6">COM ESPEC. TIPO E GRAU: <b>NSEI OQ 01254 N SEI OQLA</b> </td> <!-- (?) -->
+        <td colspan="6">ESPECIFICAÇÃO TIPO E GRAU: <b>LOREM IPSUM</b> </td>
+        <td colspan="6">* COM ESPEC. TIPO E GRAU: <b>LOREM IPSUM</b> </td> <!-- (?) -->
       </tr>
       <tr>
         <th colspan="12" class="titulo">FAIXA DE ESPERSSURA</th>
