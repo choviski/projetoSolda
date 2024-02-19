@@ -7,6 +7,9 @@
         *{
             font-family: sans-serif;
         }
+        .page_break{
+            page-break-before: always;
+        }
         </style>
     </head>
     <!-- Problemas encontrados -->
@@ -26,9 +29,10 @@
         @include('pdf.eps.posicoesEPreAquecimento')
         @include('pdf.eps.posAquecimentoEGas')
         @include('pdf.eps.caracteristicasEletricas')
-        @include('pdf.eps.tecnica')
-        <!-- Outra pg -->
+        
+        <div class="page_break"></div><!-- Outra pg/Div com classe responsavel por quebrar pa -->
         @include('pdf.eps.header')
+        @include('pdf.eps.tecnica')
         @include('pdf.eps.notas')
         @include('pdf.eps.revisao')
         

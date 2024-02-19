@@ -50,7 +50,7 @@
       <tr>
         <td colspan="2">
             TIPO E DIÂMETRO DO ELETRODO DE TUNGSTÊNIO:
-            <b> teste teste teste</b>
+            <b> LOREM IPSUM</b>
         </td>
       </tr>
     </tbody>

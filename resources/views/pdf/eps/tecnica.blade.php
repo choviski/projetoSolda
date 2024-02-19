@@ -20,7 +20,7 @@
     <tbody>
       <tr>
         <td>MÉTODO DE GOIVAGEM:
-            <b>ESMERILHAMENTO, se aplicável :p</b>
+            <b>LOREM IPSUM</b>
         </td>
         <td>MARTELAMENTO:
             <b>SEM</b>
