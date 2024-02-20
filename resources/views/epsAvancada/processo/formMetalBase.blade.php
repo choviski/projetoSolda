@@ -54,13 +54,13 @@
                 <div class="form-col col-12">     
                     <label for="tubo_ou_chapa" class="mb-0 mt-1">Tubo ou Chapa?</label>
                     <div class="form-check">
-                        <input class="form-check-input" value="Tubo" type="radio" name="tubo_ou_chapa" id="tubo" checked>
+                        <input class="form-check-input" value="Tubo" type="radio" name="tubo_ou_chapa" id="Tubo" checked>
                         <label class="form-check-label" for="tubo">
                             Tubo
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" value="Chapa" type="radio" name="tubo_ou_chapa" id="chapa" >
+                        <input class="form-check-input" value="Chapa" type="radio" name="tubo_ou_chapa" id="Chapa" >
                         <label class="form-check-label" for="chapa">
                             Chapa
                         </label>
@@ -94,7 +94,7 @@
         if ($(this).val() == "Tubo") {
             $('#metal-base-tubo').css('display','flex');
             $('#metal-base-chapa').css('display','none');
-        } else {           
+        } else if ($(this).val() == "Chapa") {           
             $('#metal-base-tubo').css('display','none');
             $('#metal-base-chapa').css('display','flex');
         }
@@ -170,7 +170,11 @@
                 $('#form-metal-base input').each(function() {
                     var nomeCampo = $(this).attr('name');
                     if (data.hasOwnProperty(nomeCampo)) {
-                        $(this).val(data[nomeCampo]);
+                        if (!$(this).is(':radio')) {
+                            $(this).val(data[nomeCampo]);
+                        }else{
+                            $('#'+(data[nomeCampo])).prop('checked', true);
+                        }
                     }
                 });
                 $('[name="id_material_base"]').val(id);

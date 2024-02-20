@@ -44,14 +44,14 @@
                 <div class="form-col col-6">
                     <label for="possui_metal_suplementar" class="mb-0 mt-1">Metal de adição suplementar?</label>
                     <div class="form-check">
-                        <input class="form-check-input" value="1" type="radio" name="possui_metal_suplementar" id="possui_metal_suplementar_sim" checked>
-                        <label class="form-check-label" for="possui_metal_suplementar_sim">
+                        <input class="form-check-input" value="1" type="radio" name="possui_metal_suplementar" id="possui_metal_suplementar-1" checked>
+                        <label class="form-check-label" for="possui_metal_suplementar">
                             Sim
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" value="0" type="radio" name="possui_metal_suplementar" id="possui_metal_suplementar_nao" >
-                        <label class="form-check-label" for="possui_metal_suplementar_nao">
+                        <input class="form-check-input" value="0" type="radio" name="possui_metal_suplementar" id="possui_metal_suplementar-0" >
+                        <label class="form-check-label" for="possui_metal_suplementar">
                             Não
                         </label>
                     </div>
@@ -229,7 +229,12 @@
                 $('#form-metal-adicao input').each(function() {
                     var nomeCampo = $(this).attr('name');
                     if (data.hasOwnProperty(nomeCampo)) {
-                        $(this).val(data[nomeCampo]);
+                        if (!$(this).is(':radio')) {
+                            $(this).val(data[nomeCampo]);
+                        }else{
+                            $('#possui_metal_suplementar-'+(data[nomeCampo])).prop('checked', true);
+                            $('#possui_metal_suplementar-'+(data[nomeCampo])).trigger('change');
+                        }
                     }
                 });
                 $('[name="id_metal_adicao"]').val(id);
