@@ -26,6 +26,16 @@
                                 <input type="text" class="form-control" id="tipo" placeholder="Manual, Automático ou Semiautomático" name="tipo">                     
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-col col-12">
+                                <label for="qual_processo" class="mb-0 mt-1" >Qual processo:</label>
+                                <select class="form-select" name="qual_processo" id="qual_processo" >
+                                    <option selected value="TIG">TIG</option>
+                                   <!-- <option value="MIG/MAG">MIG/MAG</option>
+                                    <option value="Eletrodo revestido">Eletrodo revestido</option>-->
+                                </select>
+                            </div>
+                        </div>
                         <a id="cria-processo" class="btn btn-block btn-primary mt-2" onclick="adicionaProcesso()">Continuar</a>                               
                     </form>
                 </div>
@@ -73,7 +83,7 @@
                 mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                alert('ERRO: Verifique se os campos estão preenchidos corretamente');
             }
         });
     };

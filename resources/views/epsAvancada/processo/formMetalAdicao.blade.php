@@ -69,45 +69,47 @@
             </div>
             <div class="form-row">                 
                 <div class="form-col col-12">
-                    <label for="classificacao_aws" class="mb-0 mt-1">Classificação AWS:</label>
+                    <label for="classificacao_aws" class="mb-0 mt-1">Classificação AWS/S.F.A:</label>
                     <select class="form-select" aria-label="Default select example" id="classificacao_aws" name="classificacao_aws">
-                        <option selected disabled>Escolha a classificação AWS</option>
-                        <option value="A5.1">AWS A5.1</option>
-                        <option value="A5.2">AWS A5.2</option>
-                        <option value="A5.3">AWS A5.3</option>
-                        <option value="A5.4">AWS A5.4</option>
-                        <option value="A5.5">AWS A5.5</option>
-                        <option value="A5.6">AWS A5.6</option>
-                        <option value="A5.7">AWS A5.7</option>
-                        <option value="A5.8">AWS A5.8</option>
-                        <option value="A5.9">AWS A5.9</option>
-                        <option value="A5.10">AWS A5.10</option>
-                        <option value="A5.11">AWS A5.11</option>
-                        <option value="A5.12">AWS A5.12</option>
-                        <option value="A5.13">AWS A5.13</option>
-                        <option value="A5.14">AWS A5.14</option>
-                        <option value="A5.15">AWS A5.15</option>
-                        <option value="A5.16">AWS A5.16</option>
-                        <option value="A5.17">AWS A5.17</option>
-                        <option value="A5.18">AWS A5.18</option>
-                        <option value="A5.20">AWS A5.20</option>
-                        <option value="A5.21">AWS A5.21</option>
-                        <option value="A5.22">AWS A5.22</option>
-                        <option value="A5.23">AWS A5.23</option>
-                        <option value="A5.24">AWS A5.24</option>
-                        <option value="A5.25">AWS A5.25</option>
-                        <option value="A5.26">AWS A5.26</option>
-                        <option value="A5.28">AWS A5.28</option>
-                        <option value="A5.29">AWS A5.29</option>
-                        <option value="A5.31">AWS A5.31</option>
-                        <option value="A5.32">AWS A5.32</option>
+                        <option selected disabled>Escolha a classificação AWS/S.F.A</option>
+                        <option value="A5.1">A5.1</option>
+                        <option value="A5.2">A5.2</option>
+                        <option value="A5.3">A5.3</option>
+                        <option value="A5.4">A5.4</option>
+                        <option value="A5.5">A5.5</option>
+                        <option value="A5.6">A5.6</option>
+                        <option value="A5.7">A5.7</option>
+                        <option value="A5.8">A5.8</option>
+                        <option value="A5.9">A5.9</option>
+                        <option value="A5.10">A5.10</option>
+                        <option value="A5.11">A5.11</option>
+                        <option value="A5.12">A5.12</option>
+                        <option value="A5.13">A5.13</option>
+                        <option value="A5.14">A5.14</option>
+                        <option value="A5.15">A5.15</option>
+                        <option value="A5.16">A5.16</option>
+                        <option value="A5.17">A5.17</option>
+                        <option value="A5.18">A5.18</option>
+                        <option value="A5.19">A5.19</option>
+                        <option value="A5.20">A5.20</option>
+                        <option value="A5.21">A5.21</option>
+                        <option value="A5.22">A5.22</option>
+                        <option value="A5.23">A5.23</option>
+                        <option value="A5.24">A5.24</option>
+                        <option value="A5.25">A5.25</option>
+                        <option value="A5.26">A5.26</option>
+                        <option value="A5.27">A5.27</option>
+                        <option value="A5.28">A5.28</option>
+                        <option value="A5.29">A5.29</option>
+                        <option value="A5.31">A5.31</option>
+                        <option value="A5.32">A5.32</option>
                     </select>  
                 </div>                       
             </div>
             <div class="form-row">                 
-                <div class="form-col col-12">
+                <div class="form-col col-6">
                     <label for="forma_consumivel" class="mb-0 mt-1">Forma do Consumível:</label>
-                    <select class="form-select" aria-label="Default select example" id="forma_consumivel" name="forma_consumivel">
+                    <select class="form-select" id="forma_consumivel" name="forma_consumivel">
                         <option selected disabled>Escolha a forma do consumível</option>
                         <option value="eletrodos">Eletrodos revestidos</option>
                         <option value="varetas">Varetas</option>
@@ -115,8 +117,32 @@
                         <option value="arames_tubulares">Arames tubulares</option>
                         <option value="arames_fitas">Arames fitas</option>
                     </select>  
-                </div>                       
-            </div>  
+                </div> 
+                <div class="form-col col-6">
+                    <label for="marca_consumivel" class="mb-0 mt-1">Marca do consumivel</label>
+                    <input type="text" class="form-control" id="marca_consumivel" placeholder="Marca do consumivel" name="marca_consumivel">                     
+                </div>                      
+            </div>
+            <div class="form-row">                 
+                <div class="form-col col-6">
+                    <label for="suporte" class="mb-0 mt-1">Suporte:</label>
+                    <select class="form-select" id="suporte" name="suporte">
+                        <option selected disabled>Escolha o tipo de suporte</option>
+                        <option value="com">Com</option>
+                        <option value="sem">Sem</option>
+                        <option value="N/A">N/A</option>
+                    </select>  
+                </div>
+                <div class="form-col col-6">
+                    <label for="material_suporte" class="mb-0 mt-1">Material do Suporte:</label>
+                    <select class="form-select" id="material_suporte" name="material_suporte">
+                        <option value="N/A" selected>N/A</option>
+                        <option value="mesmo">Mesmo do material</option>
+                        <option value="cobre">Cobre</option>
+                        <option value="ceramica">Cerâmica</option>
+                    </select>  
+                </div>                          
+            </div>    
             <a class="btn btn-block btn-primary mt-2" id="botao-adicionar-metal" onclick="adicionaMetalAdicao()">Adicionar Metal de Adição</a>                                   
             <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraListagemMetalAdicao()">Voltar</a>                                                      
         </form>

@@ -15,7 +15,7 @@
 <table class="table-revisao">
     <thead>
       <tr>
-        <th colspan="3" class="titulo">DE ACORDO COM ASME IX - ED. 2021</th>
+        <th colspan="3" class="titulo">DE ACORDO COM norma da eps</th>
       </tr>
     </thead>
     <tbody>

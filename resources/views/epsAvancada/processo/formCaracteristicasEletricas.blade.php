@@ -9,11 +9,27 @@
         <div class="form-row">
             <div class="form-col col-6">
                 <label for="tipo_corrente" class="mb-0 mt-1">Tipo de Corrente:</label>
-                <input type="text" class="form-control" id="tipo_corrente" placeholder="Tipo de Corrente" name="tipo_corrente">                     
+                <select class="form-select" id="tipo_corrente" name="tipo_corrente">
+                    <option selected disabled>Escolha o tipo de corrente</option>
+                    <option value="continua">Continua</option>
+                    <option value="alternada">Alternada</option>
+                </select> 
             </div>
             <div class="form-col col-6">
                 <label for="polaridade" class="mb-0 mt-1" >Polaridade:</label>
                 <input type="number" step="0.01" class="form-control" id="polaridade" placeholder="Polaridade" name="polaridade">                     
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-col col-12">
+                <label for="modo_transferencia" class="mb-0 mt-1">Modo de transferência:</label>
+                <select class="form-select" id="modo_transferencia" name="modo_transferência" disabled>
+                    <option selected disabled>Escolha a forma de transferência</option>
+                    <option value="curto_circuito">Curto-circuito</option>
+                    <option value="spray">Spray</option>
+                    <option value="globular">Globular</option>
+                    <option value="pulsada">Pulsada</option>
+                </select> 
             </div>
         </div>
         <div class="form-row">
@@ -65,6 +81,16 @@
 </div>
 
 <script>
+    $('#tipo_corrente').change(function(){
+        if ($(this).val() == "continua") {   
+            $('#modo_transferencia').prop('disabled', false);
+        } else {           
+            $('#modo_transferencia').prop('disabled', true);
+        }
+    });
+
+
+
     $('input[name="tig"]').change(function(){
         if ($(this).val() == 1) {
             $('#diametro_eletrodo_tig').prop('disabled', false);

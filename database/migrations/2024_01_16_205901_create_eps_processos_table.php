@@ -19,12 +19,12 @@ class CreateEpsProcessosTable extends Migration
                 $table->string('nome');
                 $table->string('tipo');
                 $table->string('qual_processo');
-                $table->foreignId('eps_gas_id')->constrained()->references('id')->on('eps_gases')->nullable();
-                $table->foreignId('eps_junta_id')->constrained()->nullable();
-                $table->foreignId('eps_posicao_soldagem_id')->constrained()->references('id')->on('eps_posicao_soldagem')->nullable();
-                $table->foreignId('eps_caracteristicas_eletrica_id')->constrained()->nullable();
-                $table->foreignId('eps_pre_aquecimento_id')->constrained()->nullable();
-                $table->foreignId('eps_pos_aquecimento_id')->constrained()->nullable();
+                $table->foreignId('eps_gas_id')->nullable()->constrained()->references('id')->on('eps_gases');
+                $table->foreignId('eps_junta_id')->nullable()->constrained();
+                $table->foreignId('eps_posicao_soldagem_id')->nullable()->constrained()->references('id')->on('eps_posicao_soldagem');
+                $table->foreignId('eps_caracteristicas_eletrica_id')->nullable()->constrained();
+                $table->foreignId('eps_pre_aquecimento_id')->nullable()->constrained();
+                $table->foreignId('eps_pos_aquecimento_id')->nullable()->constrained();
 
                 $table->softDeletes();
                 $table->timestamps();

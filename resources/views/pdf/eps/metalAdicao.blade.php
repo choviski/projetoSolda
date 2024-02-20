@@ -24,22 +24,22 @@
     </thead>
     <tbody>
       <tr>
-        <td style="text-align: left">* ESPECIFICAÇÃO N° (S.F.A):</td> <!-- (?) -->
+        <td style="text-align: left">ESPECIFICAÇÃO N° (S.F.A)/AWS:</td>
         <th style="text-align: left">5.9</th>
-        <td style="text-align: left">CLASSIFICAÇÃO AWS:</td>
-        <th style="text-align: left"> ER 2592</th>
+        <td style="text-align: left">SUPORTE:</td>
+        <th style="text-align: left">COM</th>
       </tr>
       <tr>
         <td>F N°.:</td>
         <th>6</th>
-        <td>FORMA DO CONSUMÍVEL:</td>
-        <th>VARETA SÓLIDA</th> <!-- LÁ ELEKkkkkj -->
+        <td>MATERIAL DO SUPORTE:</td> 
+        <th>CERÂMICA</th>         
       </tr>
       <tr>
         <td>A N°.:</td>
         <th>NÃO ATRIBUÍDO</th>
-        <td>* METAL DE ENCHIMENTO:</td> <!-- (?) -->
-        <th>COM</th> 
+        <td>FORMA DO CONSUMÍVEL:</td>
+        <th>VARETA SÓLIDA</th> <!-- LÁ ELEKkkkkj -->
       </tr>
       <tr>
         <td>BITOLA METAIS ADIÇÃO (mm):</td>  <!-- (diametro_consumivel ?) -->
@@ -60,10 +60,8 @@
         <th>SEM FLUXO</th> 
       </tr>
       <tr>
-        <td>MARCA COMERCIAL:</td>
-        <th>LOREM IPSUM</th>
-        <td>* OUTROS:</td> <!-- (?) -->
-        <th>N/A</th> 
+        <td colspan="1">MARCA COMERCIAL:</td>
+        <th colspan="3">LOREM IPSUM</th>
       </tr>
     </tbody>
     </table>

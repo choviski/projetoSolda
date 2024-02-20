@@ -51,25 +51,37 @@
                 </div>                       
             </div> 
             <div class="form-row">
-                <div class="form-col col-6">     
-                    <label for="tubo" class="mb-0 mt-1">Tubo?</label>
+                <div class="form-col col-12">     
+                    <label for="tubo_ou_chapa" class="mb-0 mt-1">Tubo ou Chapa?</label>
                     <div class="form-check">
-                        <input class="form-check-input" value="1" type="radio" name="tubo" id="tubo_sim" checked>
-                        <label class="form-check-label" for="tubo_sim">
-                            Sim
+                        <input class="form-check-input" value="Tubo" type="radio" name="tubo_ou_chapa" id="tubo" checked>
+                        <label class="form-check-label" for="tubo">
+                            Tubo
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" value="0" type="radio" name="tubo" id="tubo_nao" >
-                        <label class="form-check-label" for="tubo_nao">
-                            Não
+                        <input class="form-check-input" value="Chapa" type="radio" name="tubo_ou_chapa" id="chapa" >
+                        <label class="form-check-label" for="chapa">
+                            Chapa
                         </label>
                     </div>
-                </div>     
-                <div class="form-col col-6">
-                    <label for="diametro_tubo" class="mb-0 mt-1">Diâmetro do tubo:</label>
-                    <input type="number" step="0.01" class="form-control" id="diametro_tubo" placeholder="Diâmetro do tubo" name="diametro_tubo">                     
                 </div>                       
+            </div>
+            <div class="form-row" id="metal-base-tubo" style="display:flex">                    
+                <div class="form-col col-6">
+                    <label for="diametro_interno_tubo" class="mb-0 mt-1">Diâmetro Interno do tubo:</label>
+                    <input type="number" step="0.01" class="form-control" id="diametro_interno_tubo" placeholder="Diâmetro Interno do tubo" name="diametro_interno_tubo">                     
+                </div> 
+                <div class="form-col col-6">
+                    <label for="diametro_externo_tubo" class="mb-0 mt-1">Diâmetro Externo do tubo:</label>
+                    <input type="number" step="0.01" class="form-control" id="diametro_externo_tubo" placeholder="Diâmetro Externo do tubo" name="diametro_externo_tubo">                     
+                </div> 
+            </div>
+            <div class="form-row" id="metal-base-chapa" style="display: none">     
+                <div class="form-col col-12">
+                    <label for="espessura" class="mb-0 mt-1">Espessura da chapa:</label>
+                    <input type="number" step="0.01" class="form-control" id="espessura" placeholder="Espessura da chapa" name="espessura">                     
+                </div> 
             </div>   
             <a class="btn btn-block btn-primary mt-2" id="botao-adicionar-material-base" onclick="adicionaMetalBase()">Adicionar Metal Base</a>                                   
             <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraListagemMetalBase()">Voltar</a>                                                      
@@ -78,11 +90,13 @@
 </div>
 
 <script>
-    $('input[name="tubo"]').change(function(){
-        if ($(this).val() == 1) {
-            $('#diametro_tubo').prop('disabled', false);
-        } else {            
-            $('#diametro_tubo').prop('disabled', true);
+    $('input[name="tubo_ou_chapa"]').change(function(){
+        if ($(this).val() == "Tubo") {
+            $('#metal-base-tubo').css('display','flex');
+            $('#metal-base-chapa').css('display','none');
+        } else {           
+            $('#metal-base-tubo').css('display','none');
+            $('#metal-base-chapa').css('display','flex');
         }
     });
 

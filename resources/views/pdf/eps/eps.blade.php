@@ -18,8 +18,9 @@
     <!-- Por exemplo: ≤ α -->
     <!-- Esses campos estão marcados com um comentario -> (!) -->
 
-    <!-- * Existem campos aqui no documento que eu acredito que não existem nos formulários de cadastro -->
-    <!-- Esses campos estão marcados com um comentario -> (?) -->
+    <!-- Ainda existem alguns campos meio "esquisitos" no PDF, se achar algum marca ele com * -->
+    <!-- que depois a gente ve o que faz com eles -->
+   
     <body>
         @include('pdf.eps.header')
         @include('pdf.eps.processos')
@@ -29,8 +30,9 @@
         @include('pdf.eps.posicoesEPreAquecimento')
         @include('pdf.eps.posAquecimentoEGas')
         @include('pdf.eps.caracteristicasEletricas')
-        
-        <div class="page_break"></div><!-- Outra pg/Div com classe responsavel por quebrar pa -->
+
+        <div class="page_break"></div><!-- Outra pg. Div com classe responsavel por quebrar pa -->
+
         @include('pdf.eps.header')
         @include('pdf.eps.tecnica')
         @include('pdf.eps.notas')

@@ -29,8 +29,7 @@
                     <option selected disabled>Escolha a direção de soldagem</option>
                     <option value="ascendente">Ascedente</option> 
                     <option value="descendente">Descendente</option> 
-                    <option value="empurrando">Empurrando</option> 
-                    <option value="puxando">Puxando</option> 
+                    <option value="n/a">N/A</option> 
                 </select>                     
             </div>
         </div>

@@ -27,28 +27,25 @@
 <table class="table-eletrica">
     <thead>
       <tr>
-        <th colspan="2">CARACTERÍSTICAS ELÉTRICAS (AB-XYZ) </th>
+        <th colspan="4">CARACTERÍSTICAS ELÉTRICAS (AB-XYZ) </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>TIPO DE CORRENTE: 
+        <td colspan="2">TIPO DE CORRENTE: 
             <b> CONTÍNUA (C) </b>
         </td>      
-        <td style="text-align: left">POLARIDADE: 
+        <td colspan="2" style="text-align: left">POLARIDADE: 
             <b>DIRETA</b>
         </td>
       </tr>
       <tr>
-        <td>* CORRENT PULSADA: <!-- (?) -->
-            <b>SEM</b>
-        </td>
-        <td>* OUTROS <!-- (?) -->
+        <td colspan="4">MODO DE TRANSFERÊNCIA:
             <b>N/A</b>
         </td>
       </tr>
       <tr>
-        <td colspan="2">
+        <td colspan="4">
             TIPO E DIÂMETRO DO ELETRODO DE TUNGSTÊNIO:
             <b> LOREM IPSUM</b>
         </td>
@@ -67,7 +64,6 @@
         <td colspan="2" class="borda" >CORRENTE</td>
         <td rowspan="2" class="borda" >TENSÃO (V)</td>
         <td rowspan="2" class="borda" >VELOCIDADE (cm/min)</td>
-        <td rowspan="2" class="borda" >* ENERGIA MÁX.</td> <!-- (?) -->
       </tr>
       <tr class="text-small" >
         <td class="borda" >CLASSE</th>
@@ -86,7 +82,6 @@
         <th class="borda" >80 - 150</th>
         <th class="borda" >10,0 - 13,7</th>
         <th class="borda" >>= 10,6</th>
-        <th class="borda" >1,165</th>
       </tr>
     </tbody>
 </table>

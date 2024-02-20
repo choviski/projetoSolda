@@ -36,6 +36,8 @@ class EPSAvancadaController extends Controller
             $eps = EpsAvancada::create([
                 'nome'=>$request->nome,
                 'data'=>$request->data,
+                'norma'=>$request->norma,
+                'rqp'=>$request->rqp,
                 'notas'=>$request->notas,
                 'informacao_tecnica_id' => $tecnica->id
             ]);
@@ -44,6 +46,8 @@ class EPSAvancadaController extends Controller
                 'nome'=>$request->nome,
                 'data'=>$request->data,
                 'notas'=>$request->notas,
+                'norma'=>$request->norma,
+                'rqp'=>$request->rqp,
                 'informacao_tecnica_id' => $tecnica->id,
                 'id_empresa' => $usuario->empresa->id,
             ]);

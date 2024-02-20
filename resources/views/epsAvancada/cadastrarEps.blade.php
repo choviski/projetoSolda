@@ -117,6 +117,16 @@ crossorigin="anonymous"></script>
                             <input type="date" class="form-control" id="data" placeholder="Data da EPS" name="data">                     
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-col col-6">
+                            <label for="norma" class="mb-0 mt-1">Norma:</label>
+                            <input type="text" class="form-control" id="norma" placeholder="Norma da EPS" name="norma">                     
+                        </div>
+                        <div class="form-col col-6">
+                            <label for="rqp" class="mb-0 mt-1">RQP:</label>
+                            <input type="text" class="form-control" id="rqp" placeholder="RQP" name="rqp">                     
+                        </div>
+                    </div>
                     <button class="btn btn-outline-primary mt-3 col-12" onclick="mostraForm(2)">
                         Continuar
                     </button>
@@ -134,10 +144,7 @@ crossorigin="anonymous"></script>
                         <span>Adicionar Processo</span>
                     </button>            
 
-                    <div id="lista_processos">
-                        <!-- Quando concluir o cadastro de um processo adicionar um cara do tipo abaixo aqui nessa div com o value = id do processo-->
-                        <!-- <input type="hidden" name="processo_id[]" value={id_processo}> -->
-                        <!-- será usado no cadastro do eps_avancada_processo (tabela n:n) -->                        
+                    <div id="lista_processos">                      
                     </div>
                    
                     <button class="btn btn-outline-primary mt-3 col-12" onclick="mostraForm('3')">
@@ -188,6 +195,38 @@ crossorigin="anonymous"></script>
                         <div class="form-col col-6">
                             <label for="unidade_medida_bocal" class="mb-0 mt-1" >Unidade de medida do bocal:</label>
                             <input type="text" class="form-control mb-1" id="unidade_medida_bocal" placeholder="Unidade de medida do bocal" name="unidade_medida_bocal">                     
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col col-6">
+                            <label for="oscilacao" class="mb-0 mt-1">Oscilação:</label>
+                            <select class="form-select" id="oscilacao" name="oscilacao">
+                                <option selected disabled>Escolha a forma de oscilação</option>
+                                <option value="retilinea">Retilinea</option>
+                                <option value="oscilante">Oscilante</option>
+                            </select> 
+                        </div>
+                        <div class="form-col col-6">
+                            <label for="passes_simples_multiplos" class="mb-0 mt-1">Passes simples ou múltiplos:</label>
+                            <select class="form-select" id="passes_simples_multiplos" name="passes_simples_multiplos">
+                                <option value="simples" selected>Simples</option>
+                                <option value="multplos">Múltiplos</option>
+                            </select> 
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col col-6">
+                            <label for="processo_termico" class="mb-0 mt-1">Processo térmico de preparação:</label>
+                            <select class="form-select" id="processo_termico" name="processo_termico">
+                                <option value="sim" selected>Sim</option>
+                                <option value="nao">Não</option>
+                            </select> 
+                        </div>
+                        <div class="form-col col-6">
+                            <label for="inspecao_final" class="mb-0 mt-1">Inspeção final:</label>
+                            <input type="text" class="form-control mb-1" id="inspecao_final" placeholder="Inspeção final" name="inspecao_final">                     
                         </div>
                     </div>
 

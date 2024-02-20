@@ -24,7 +24,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>POSIÇÃO (CHANFRO): </td>
+      <td>POSIÇÃO: </td>
       <th class="divisao-tabelas">TODAS</th>
       <td>TEMP. PRÉ-AQUEC. MÍNIMO:</td>
       <th>15°C</th>
@@ -34,12 +34,6 @@
       <th class="divisao-tabelas">ASCENDENTE</th>
       <td>TEMP. DE INTERPASSE MÁXIMO:</td>
       <th>150°C</th>
-    </tr>
-    <tr>
-      <td>POSIÇÃO (ÂNGULO): </td>
-      <th class="divisao-tabelas">* TODAS</th> <!-- (?) -->
-      <td>* MANUT. PRÉ-AQUECIMENTO (°C):</td> <!-- (?) -->
-      <th>NENHUM</th>
     </tr>
   </tbody>
   </table>

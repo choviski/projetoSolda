@@ -39,7 +39,7 @@
                             WELDING PROCEDURE SPECIFICATION - WPS
                         </p>
                         <p style="font-size:14px;margin-bottom:10px">
-                            * ASME IX - Ed. 2021 <!-- (?) -->
+                            ASME IX - Ed. 2021 <!-- (Norma) -->
                         </p>
                     </div>
                 </td>
@@ -56,8 +56,8 @@
                     </span>
                 </td>
                 <td> 
-                    <span>* ACOMPANHA RQP Nº: <!-- (?) -->
-                        <b> UW/XYZ </b>  
+                    <span>ACOMPANHA RQP Nº:
+                        <b> UW/XYZ </b>   <!-- (eps->rqp) -->
                     </span>              
                 </td>
                 <td> 

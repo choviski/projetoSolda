@@ -22,7 +22,7 @@ class CreateEpsMateriaisTable extends Migration
             $table->string('metal_base')->nullable();
             $table->float('chanfro')->nullable();
             $table->string('unidade_medida_chanfro')->nullable();
-            $table->boolean('tubo_ou_chapa')->nullable();
+            $table->string('tubo_ou_chapa')->nullable();
             $table->boolean('espessura')->nullable();
             $table->float('diametro_interno_tubo')->nullable();
             $table->float('diametro_externo_tubo')->nullable();
