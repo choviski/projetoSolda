@@ -25,6 +25,9 @@ class CreateEpsMetaisTable extends Migration
             $table->string('marca_material')->nullable();
             $table->string('classificacao_aws')->nullable();
             $table->string('forma_consumivel')->nullable();
+            $table->string('marca_consumivel')->nullable();
+            $table->string('suporte')->nullable();
+            $table->string('material_suporte')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

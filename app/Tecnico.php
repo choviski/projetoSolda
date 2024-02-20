@@ -23,6 +23,10 @@ class Tecnico extends Model
         'unidade_medida_bocal',
         'limpeza',
         'tipo_passe',
+        'oscilacao',
+        'passes_simples_multiplos',
+        'processo_termico',
+        'inspecao_final',
     ];
 
     public function eps(): HasOne

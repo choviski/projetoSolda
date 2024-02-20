@@ -17,6 +17,7 @@ class EpsProcesso extends Model
     protected $fillable = [
         'nome',
         'tipo',
+        'qual_processo',
         'eps_gas_id',
         'eps_junta_id',
         'eps_caracteristicas_eletrica_id',

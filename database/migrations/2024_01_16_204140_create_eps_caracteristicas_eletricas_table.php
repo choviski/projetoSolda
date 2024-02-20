@@ -16,6 +16,7 @@ class CreateEpsCaracteristicasEletricasTable extends Migration
         Schema::create('eps_caracteristicas_eletricas', function (Blueprint $table) {
             $table->id();
             $table->string('tipo_corrente')->nullable();
+            $table->string('modo_transferencia')->nullable();
             $table->float('polaridade')->nullable();
             $table->float('amperes')->nullable();
             $table->float('volts')->nullable();

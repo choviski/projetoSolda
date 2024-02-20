@@ -26,6 +26,10 @@ class CreateTecnicosTable extends Migration
                 $table->string('unidade_medida_bocal')->nullable();
                 $table->string('limpeza')->nullable();
                 $table->string('tipo_passe')->nullable();
+                $table->string('passes_simples_multiplos')->nullable();
+                $table->string('oscilacao')->nullable();
+                $table->string('processo_termico')->nullable();
+                $table->string('inspecao_final')->nullable();
 
                 $table->timestamps();
                 $table->softDeletes();

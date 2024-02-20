@@ -19,8 +19,10 @@ class MaterialBase extends Model
         'metal_base',
         'chanfro',
         'unidade_medida_chanfro',
-        'tubo',
-        'diametro_tubo',
+        'tubo_ou_chapa',
+        'espessura',
+        'diametro_interno_tubo',
+        'diametro_externo_tubo',
         'angulo',
     ];
 

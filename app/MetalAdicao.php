@@ -22,6 +22,9 @@ class MetalAdicao extends Model
         'marca_material',
         'classificacao_aws',
         'forma_consumivel',
+        'marca_consumivel',
+        'suporte',
+        'material_suporte',
     ];
 
     public function processos(): BelongsTo

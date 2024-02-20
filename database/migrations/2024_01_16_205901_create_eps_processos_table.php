@@ -18,7 +18,7 @@ class CreateEpsProcessosTable extends Migration
                 $table->id();
                 $table->string('nome');
                 $table->string('tipo');
-
+                $table->string('qual_processo');
                 $table->foreignId('eps_gas_id')->constrained()->references('id')->on('eps_gases')->nullable();
                 $table->foreignId('eps_junta_id')->constrained()->nullable();
                 $table->foreignId('eps_posicao_soldagem_id')->constrained()->references('id')->on('eps_posicao_soldagem')->nullable();
