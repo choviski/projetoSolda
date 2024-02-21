@@ -309,11 +309,8 @@ crossorigin="anonymous"></script>
         $('input[name="processo_id[]"]').each(function() {
             processoIds.push($(this).val());
         });
-
         // Combina os dados do campo processo_id[] com a serialização do formulário
         formData += '&processo_ids=' + processoIds.join(',');
-
-        console.log(formData)
 
         var linkAjax = '{{route("armazenarEpsAvancada")}}';
         $.ajax({
@@ -328,7 +325,7 @@ crossorigin="anonymous"></script>
                 // Redireciona pra listagem de EPS e um abraço pro gaitero
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                alert("ERRO! Verifique se todos os campos estão preenchidos corretamente");
             }
         });
     }

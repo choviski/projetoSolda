@@ -52,7 +52,7 @@
                 mostraAba("pre-aquecimento");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                alert("Erro! Verifique se todos os campos estão preenchidos corretamente");
             }
         });
     };   
