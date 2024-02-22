@@ -18,7 +18,7 @@
         </div>
         <div class="form-row">
             <div class="form-col col-6">
-                <label for="tempo_permanencia" class="mb-0 mt-1">Tempo de Permanencia (em minutos):</label>
+                <label for="tempo_permanencia" class="mb-0 mt-1">Tempo de Permanencia (min.):</label>
                 <input type="number" step="0.01" class="form-control" id="tempo_permanencia" placeholder="Tempo de Permanencia" name="tempo_permanencia">                     
             </div>
             <div class="form-col col-6">

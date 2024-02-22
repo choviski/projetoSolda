@@ -28,7 +28,7 @@
                 <div>
                     <form method="post" class="d-inline" action="{{('geraEPS')}}">
                         @csrf
-                        <input type="hidden" value="{{$eps->id}}">                    
+                        <input type="hidden" name="id_eps" value="{{$eps->id}}">                    
                         <button class="btn btn-secondary" style="cursor: pointer" >
                             Gerar Documento
                             <i class="pl-2 fas fa-file-alt"></i>

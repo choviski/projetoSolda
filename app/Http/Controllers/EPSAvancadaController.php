@@ -69,7 +69,8 @@ class EPSAvancadaController extends Controller
         return response()->json(['message'=>'ok']);
     }
 
-    public function geraEPS(){
+    public function geraEPS(Request $request){
+        $eps = EpsAvancada::find($request->id_eps);
         $usuario = session()->get("Usuario");
 
         // Infelizmente é um inferno colocar as imagens que no PDF
@@ -80,8 +81,12 @@ class EPSAvancadaController extends Controller
         $data = file_get_contents($path);
         $empresa_image = 'data:image/'. $type. ';base64,' . base64_encode($data);
 
-        // Imagem da Junta. (Por enquanto usa a imgem de place holder)
-        $path = public_path().'/imagens/placeholder_imagem.jpg';
+        // Imagem da Junta.
+        // Confesso que estou um cadinho confuso. Se uma EPS pode ter mais que um processo.
+        // E cada processo tem uma junta. Como que fica? Qual imagem a gente coloca?
+        // Na verdade eu nem sei como seria o layout de uma pdf de EPS com mais de um processo.
+        // Mais uma dúvida que precisamos tirar com eles..
+        $path = public_path().$eps->processos[0]->junta->imagem;
         $type = pathinfo($path,PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);

@@ -7,8 +7,18 @@
         <input type="hidden" name="id_processo">
         <input type="hidden" name="id_junta">
         <label for="imagem" class="mb-0 mt-1" >Imagem da junta:</label>
+        <div  class="d-flex justify-content-center mb-1">
+            <img src="{{asset('juntas/junta-chanfro-em-j.jpg')}}" id="junta-img">
+        </div>
         <select class="form-select" aria-label="Default select example" id="imagem" name="imagem">
-            <option selected disabled>Escolha a imagem da junta</option>
+            <option selected value="/juntas/junta-chanfro-em-j.jpg">Chanfro em J</option>
+            <option value="/juntas/junta-chanfro-em-k.jpg">Chanfro em K</option>
+            <option value="/juntas/junta-chanfro-em-u.jpg">Chanfro em U</option>
+            <option value="/juntas/junta-chanfro-em-v.jpg">Chanfro em V</option>
+            <option value="/juntas/junta-chanfro-em-x.jpg">Chanfro em X</option>
+            <option value="/juntas/junta-chanfro-em-meio-v.jpg">Chanfro em meio V</option>
+            <option value="/juntas/junta-chanfro-em-duplo-j.jpg">Chanfro em duplo J</option>
+            <option value="/juntas/junta-chanfro-em-duplo-u.jpg">Chanfro em duplo U</option>
         </select>                       
         <div class="form-row">
             <div class="form-col col-6">
@@ -77,6 +87,13 @@
 </div>
 
 <script>
+
+    
+    $("#imagem").change(function(){
+        var selectedImage = $(this).val();
+        $("#junta-img").attr("src", selectedImage);
+    });
+
     $('input[name="possui_cobre_junta"]').change(function(){
         if ($(this).val() == 1) {
             $('#material_cobre_junta').prop('disabled', false);
