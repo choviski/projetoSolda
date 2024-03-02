@@ -36,11 +36,11 @@ class EpsAvancada extends Model
             'eps_avancada_id',
             'eps_processo_id'
         );
-        
+
     }
     public function empresa(){
         return $this->belongsTo(
-            "App\Empresa",
+            Empresa::class,
             'id_empresa',
             'id'
         );

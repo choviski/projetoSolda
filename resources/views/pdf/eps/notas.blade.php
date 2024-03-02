@@ -17,16 +17,7 @@
     </thead>
     <tbody>
       <tr>
-        <td>Notas.</td>
-      </tr>
-      <tr>
-        <td>Notas.</td>
-      </tr>
-      <tr>
-        <td>Notas.</td>
-      </tr>
-      <tr>
-        <td>Notas.</td>
+        <td>{{$eps->notas}}</td>
       </tr>
     </tbody>
 </table>

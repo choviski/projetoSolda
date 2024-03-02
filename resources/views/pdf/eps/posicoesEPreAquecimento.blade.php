@@ -11,7 +11,7 @@
         padding-left: 5px;
     }
     .divisao-tabelas{
-      border-right: 1px solid black; 
+      border-right: 1px solid black;
     }
 </style>
 
@@ -25,15 +25,15 @@
   <tbody>
     <tr>
       <td>POSIÇÃO: </td>
-      <th class="divisao-tabelas">TODAS</th>
+      <th class="divisao-tabelas">{{$processo->posicaoSoldagem->posicao_soldagem}}</th>
       <td>TEMP. PRÉ-AQUEC. MÍNIMO:</td>
-      <th>15°C</th>
+      <th>{{$processo->preAquecimento->temperatura}} ºC</th>
     </tr>
     <tr>
       <td>PROGRESSÃO SOLDAGEM: </td>
-      <th class="divisao-tabelas">ASCENDENTE</th>
+      <th class="divisao-tabelas">{{$processo->posicaoSoldagem->direcao_soldagem}}</th>
       <td>TEMP. DE INTERPASSE MÁXIMO:</td>
-      <th>150°C</th>
+      <th>{{$processo->preAquecimento->temperatura_interpasse}}°C</th>
     </tr>
   </tbody>
   </table>

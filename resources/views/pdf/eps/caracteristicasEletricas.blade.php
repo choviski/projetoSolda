@@ -1,4 +1,4 @@
-<style>    
+<style>
     .table-eletrica{
         width:  100%;
         font-size: 12px;
@@ -15,8 +15,8 @@
     }
     .table-resumo{
         width: 100%;
-        text-align: center;  
-        border-collapse: collapse;     
+        text-align: center;
+        border-collapse: collapse;
         font-size: 12px;
         border: 1px solid black
     }
@@ -32,22 +32,22 @@
     </thead>
     <tbody>
       <tr>
-        <td colspan="2">TIPO DE CORRENTE: 
-            <b> CONTÍNUA (C) </b>
-        </td>      
-        <td colspan="2" style="text-align: left">POLARIDADE: 
-            <b>DIRETA</b>
+        <td colspan="2">TIPO DE CORRENTE:
+            <b>{{$processo->caracteristicasEletricas->tipo_corrente}}</b>
+        </td>
+        <td colspan="2" style="text-align: left">POLARIDADE:
+            <b>{{$processo->caracteristicasEletricas->polaridade}}</b>
         </td>
       </tr>
       <tr>
         <td colspan="4">MODO DE TRANSFERÊNCIA:
-            <b>N/A</b>
+            <b>{{$processo->caracteristicasEletricas->modo_transferencia}}</b>
         </td>
       </tr>
       <tr>
         <td colspan="4">
             TIPO E DIÂMETRO DO ELETRODO DE TUNGSTÊNIO:
-            <b> LOREM IPSUM</b>
+            <b> {{$processo->caracteristicasEletricas->classificacao_consumivel_tig}} - {{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</b>
         </td>
       </tr>
     </tbody>
@@ -74,14 +74,14 @@
     </thead>
     <tbody >
       <tr>
-        <th class="borda" >TODAS</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->camada}}</th>
         <th class="borda" >TIG</th>
-        <th class="borda" >ER 2594</th>
-        <th class="borda" >2,0 / 2,4 / 3,2</th>
-        <th class="borda" >CC-</th>
-        <th class="borda" >80 - 150</th>
-        <th class="borda" >10,0 - 13,7</th>
-        <th class="borda" >>= 10,6</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}}{{$processo->caracteristicasEletricas->polaridade}}</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->amperes}}</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->volts}}</th>
+        <th class="borda" >>= {{$processo->caracteristicasEletricas->velocidade}}</th>
       </tr>
     </tbody>
 </table>

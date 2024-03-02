@@ -20,49 +20,49 @@
     <tbody>
       <tr>
         <td>MÉTODO DE GOIVAGEM:
-            <b>LOREM IPSUM</b>
+            <b>{{$eps->informacaoTecnica->goivagem}}</b>
         </td>
         <td>MARTELAMENTO:
-            <b>SEM</b>
+            <b>{{$eps->informacaoTecnica->martelamento}}</b>
         </td>
       </tr>
       <tr>
         <td>CORDÕES RETILÍNEOS OU TRANÇADOS:
-            <b>RETILÍNEOS/TRANÇADOS</b>
+            <b>{{$eps->informacaoTecnica->cordoes}}</b>
         </td>
         <td>OSCILAÇÃO:
-            <b>N/A</b>
+            <b>{{$eps->informacaoTecnica->oscilacao}}</b>
         </td>
-      </tr>      
+      </tr>
       <tr>
-        <td>ELETRODO SIMLPES OU MÚLTIPLOS: 
-            <b>SIMPLES</b>
+        <td>ELETRODO SIMLPES OU MÚLTIPLOS:
+            <b>{{$eps->informacaoTecnica->eletrodo}}</b>
         </td>
         <td>ESPAÇAMENTO ENTRE ELETRODOS:
-            <b>N/A</b>
+            <b>{{$eps->informacaoTecnica->espacamento_eletrodo}}{{$eps->informacaoTecnica->unidade_medida_espacamento}}</b>
         </td>
       </tr>
       <tr>
         <td>PROCESSO TÉRMICO DE PREPARAÇÃO:
-            <b>COM OU SEM</b>
+            <b>{{$eps->informacaoTecnica->processo_termico}}</b>
         </td>
         <td>DIÂMETRO BOCAL DE GAS:
-            <b>>6,0 mm</b>
+            <b>>{{$eps->informacaoTecnica->diametro_bocal}}{{$eps->informacaoTecnica->unidade_medida_bocal}}</b>
         </td>
       </tr>
       <tr>
         <td colspan="2">PASSES SIMPLES OU MÚLTIPLOS:
-            <b>MÚLTIPLOS/SIMPLES</b>
+            <b>{{$eps->informacaoTecnica->tipo_passe}}</b>
         </td>
       </tr>
       <tr>
         <td colspan="2">INSPEÇÃO FINAL:
-            <b>CONFORME REQUISITOS DO CLIENTE</b>
+            <b>{{$eps->informacaoTecnica->inspecao_final}}</b>
         </td>
       </tr>
       <tr>
         <td colspan="2">LIMPEZA INICIAL E INTERPASSES:
-            <b>ESCOVAMENTO E/OU ESMERILHAMENTO</b>
+            <b>{{$eps->informacaoTecnica->limpeza}}</b>
         </td>
       </tr>
     </tbody>

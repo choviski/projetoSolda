@@ -14,8 +14,8 @@
 <table class="table-processos">
     <thead>
       <tr>
-        <td colspan="2">PROCESSO (S): <b>NOME DO PROCESSO</b></td>
-        <td>TIPO (S): <b>TIPO DO PROCESSO</b></td>
+        <td colspan="2">PROCESSO: <b>{{$processo->nome}}</b></td>
+        <td>TIPO: <b>{{$processo->tipo}}</b></td>
       </tr>
     </thead>
 </table>

@@ -21,7 +21,7 @@ class CreateEpsAvancadasTable extends Migration
             $table->string('rqp');
             $table->string('norma');
             $table->foreignId('informacao_tecnica_id')->constrained()->references('id')->on('eps_informacoes_tecnicas');
-            $table->foreignId('id_empresa')->constrained()->references('id')->on('empresas')->nullable();
+            $table->foreignId('id_empresa')->nullable()->constrained()->references('id')->on('empresas');
             $table->timestamps();
             $table->softDeletes();
         });

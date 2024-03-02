@@ -29,27 +29,27 @@
         <td  rowspan="4">  <!--Imagem junta -->
             <img src="{{$imagem_junta}}" style="width: 180px; max-height:100px">
         </td>
-        <th style="text-align: left">T = x,y a X,Y</th>
+        <th style="text-align: left">T = {{$processo->junta->cota_t}} {{$processo->junta->unidade_medida_cotas}}</th>
         <td>COBRE JUNTA:</td>
         <td style="text-align: left;">
-            <a>Sim </a> <span class="check-box"> </span> 
-            <a>Não </a> <span class="check-box"> </span> 
+            <a>Sim </a> <span class="check-box">{{$processo->junta->cobre_junta ? 'X' : ''}} </span>
+            <a>Não </a> <span class="check-box"> {{$processo->junta->cobre_junta ? '' : 'X'}}</span>
         </td>
       </tr>
       <tr>
-        <th style="text-align: left" >R = x a X</th>
+        <th style="text-align: left" >R = {{$processo->junta->cota_r}} {{$processo->junta->unidade_medida_cotas}}</th>
         <td>MATERIAL COBRE JUNTA (TIPO):</td>
-        <th style="text-align: left;">LOREM IPSUM</th>
+        <th style="text-align: left;"> {{$processo->junta->material_cobre_junta}}</th>
       </tr>
       <tr>
-        <th style="text-align: left">f = x,y ± X,Y</th>
+        <th style="text-align: left">f = {{$processo->junta->cota_f}} {{$processo->junta->unidade_medida_cotas}}</th>
         <td>ABERTURA DE RAIZ:</td>
-        <td style="text-align: left;">0 a X,Y mm</td>
+        <td style="text-align: left;">{{$processo->junta->abertura_raiz}} mm</td>
       </tr>
       <tr>
-        <th style="text-align: left">alpha = 60º ± 15º</th> <!-- (!) -->
+        <th style="text-align: left">alpha = {{$processo->junta->angulo_primario}}°</th> <!-- (!) -->
         <td>RETENTORES:</td>
-        <th style="text-align: left;">SEM</th>
+        <th style="text-align: left;">{{$processo->junta->retentores}}</th>
       </tr>
     </tbody>
     </table>

@@ -12,11 +12,13 @@ use App\PosicaoSoldagem;
 use App\CaracteristicaEletrica;
 use App\Gas;
 use App\Junta;
+use Illuminate\Support\Facades\Log;
 
-class EPSProcessoController extends Controller
+class EpsProcessoController extends Controller
 {
     public function cadastraOuEditaProcesso(Request $request){
-        if(is_null($request->id_processo)){ // Cria            
+        Log::debug($request->id_processo);
+        if(is_null($request->id_processo)){ // Cria
             $processo = EpsProcesso::create($request->all());
         }else{ // Edita
             $processo = EpsProcesso::find($request->id_processo);
@@ -110,7 +112,7 @@ class EPSProcessoController extends Controller
     }
 
     public function cadastraOuEditaMaterialBase(Request $request){
-        
+
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_material_base)){ // Cria
             $materialBase = MaterialBase::create($request->all());
@@ -134,7 +136,7 @@ class EPSProcessoController extends Controller
         return response()->json(['message'=>'ok']);
     }
 
-    public function cadastraOuEditaMetalAdicao(Request $request){        
+    public function cadastraOuEditaMetalAdicao(Request $request){
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_metal_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());
@@ -157,5 +159,5 @@ class EPSProcessoController extends Controller
         MetalAdicao::destroy($id);
         return response()->json(['message'=>'ok']);
     }
-    
+
 }

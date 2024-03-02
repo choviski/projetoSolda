@@ -15,7 +15,7 @@
 <table class="table-revisao">
     <thead>
       <tr>
-        <th colspan="3" class="titulo">DE ACORDO COM norma da eps</th>
+        <th colspan="3" class="titulo">DE ACORDO COM {{$eps->norma}}</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
       <tr>
         <td class="borda centralizado">0</td>
         <td class="borda centralizado">Elaboração Inicial</td>
-        <td class="borda centralizado">WPS - 25/05/2023</td>
+        <td class="borda centralizado">WPS - {{$eps->data}}</td>
       </tr>
       <tr>
         <th colspan="3" class="titulo borda" style="padding-bottom: 60px" >Aprovado por:</th>

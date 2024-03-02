@@ -22,6 +22,7 @@ class EpsProcesso extends Model
         'eps_junta_id',
         'eps_caracteristicas_eletrica_id',
         'eps_pre_aquecimento_id',
+        'eps_posicao_soldagem_id',
         'eps_pos_aquecimento_id',
     ];
 
@@ -38,6 +39,11 @@ class EpsProcesso extends Model
     public function caracteristicasEletricas(): BelongsTo
     {
         return $this->belongsTo(CaracteristicaEletrica::class, 'eps_caracteristicas_eletrica_id');
+    }
+
+    public function posicaoSoldagem(): BelongsTo
+    {
+        return $this->belongsTo(PosicaoSoldagem::class, 'eps_posicao_soldagem_id');
     }
 
     public function preAquecimento(): BelongsTo

@@ -1,4 +1,4 @@
-<style>    
+<style>
     .table-pos-aquecimento-gas{
         width:  100%;
         font-size: 12px;
@@ -21,7 +21,7 @@
     <tbody>
         <tr>
           <td colspan="2">FAIXA DE TEMPERATURA:</td>
-          <th colspan="2" class="divisao-tabelas">SEM TTPS</th>
+          <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->faixa_temperatura}}</th>
           <td></td>
           <th>GÁS(ES)</th>
           <th>COMPOSIÇÃO</th>
@@ -29,23 +29,23 @@
         </tr>
         <tr>
           <td colspan="2">TAXA DE AQUECIMENTO:</td>
-          <th colspan="2" class="divisao-tabelas">N/A</th>
+          <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->taxa_aquecimento}}</th>
           <th>PROTEÇÃO</th>
-          <th>SG-A</th>
-          <th>AGRÔNIO P/SOLDA</th>
-          <th>10 A 18 t/min</th>
+          <th>{{$processo->gas->gas_protecao}}</th>
+          <th>{{$processo->gas->composicao}}</th>
+          <th>{{$processo->gas->vazao}} t/min</th>
         </tr>
         <tr>
-            <td colspan="2">TAXA DE PERMANÊNCIA:</td>
-            <th colspan="2" class="divisao-tabelas">N/A</th>
+            <td colspan="2">TEMPO DE PERMANÊNCIA:</td>
+            <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->tempo_permanencia}}</th>
             <th>PURGA</th>
-            <th>SG-A</th>
-            <th>AGRÔNIO P/SOLDA</th>
-            <th>8 A 16 t/min</th>
+            <th>{{$processo->gas->purga}}</th>
+            <th>{{$processo->gas->composicao_purga}}</th>
+            <th>{{$processo->gas->vazao_purga}} t/min</th>
         </tr>
         <tr>
             <td colspan="2">TAXA DE RESFRIAMENTO:</td>
-            <th colspan="2" class="divisao-tabelas">N/A</th>
+            <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->taxa_resfriamento}}</th>
             <th>ARRASTE</th>
             <th>N/A</th>
             <th>N/A</th>

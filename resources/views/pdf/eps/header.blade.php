@@ -13,7 +13,7 @@
         font-size:12px;
         border: 1px black solid;
     }
-    .table-eps-info{        
+    .table-eps-info{
         border-collapse: collapse;
     }
     .table-eps-info td{
@@ -24,13 +24,13 @@
 <div id="header">
     <table style="width:100%">
         <tbody>
-            <tr>  
-                <td scope="row" colspan="2">              
+            <tr>
+                <td scope="row" colspan="2">
                     <div id="wrap-img-empresa">
                         <img src="{{$imagem_emrpesa}}" style="max-height: 90px;">
                     </div>
                 </td>
-                <td>                
+                <td>
                     <div id="wrap-eps-info">
                         <p style="font-weight: bold;margin-top:10px">
                             ESPECIFICAÇÃO DE PROCEDIMENTO DE SOLDAGEM - EPS
@@ -39,7 +39,7 @@
                             WELDING PROCEDURE SPECIFICATION - WPS
                         </p>
                         <p style="font-size:14px;margin-bottom:10px">
-                            ASME IX - Ed. 2021 <!-- (Norma) -->
+                            {{$eps->norma}}
                         </p>
                     </div>
                 </td>
@@ -49,31 +49,31 @@
 
     <table style="width:100%" class="table-eps-info">
         <tbody class="eps-info">
-            <tr>  
-                <td>              
+            <tr>
+                <td>
                     <span style="padding: 5px;">EPS:
-                        <b> XYZ </b>
+                        <b> {{$eps->nome}} </b>
                     </span>
                 </td>
-                <td> 
+                <td>
                     <span>ACOMPANHA RQP Nº:
-                        <b> UW/XYZ </b>   <!-- (eps->rqp) -->
-                    </span>              
+                        <b> {{$eps->rqp}} </b>   <!-- (eps->rqp) -->
+                    </span>
                 </td>
-                <td> 
+                <td>
                     <span>DATA:
-                        <b> DD/MM/AAAA </b>
-                    </span>              
+                        <b> {{$eps->data}} </b>
+                    </span>
                 </td>
-                <td> 
+                <td>
                     <span>* REVISÃO: <!-- (?) -->
-                        <b> [X] </b>  
-                    </span>              
+                        <b>  </b>
+                    </span>
                 </td>
-                <td> 
+                <td>
                     <span>FOLHA:
-                        <b>0/N</b>
-                    </span>              
+                        <b>1/2</b>
+                    </span>
                 </td>
             </tr>
         </tbody>
