@@ -26,8 +26,9 @@
 
         @if(count($processo->materiaisBases)>1)
             <td colspan="3" style="text-align: left">* COM PN°.: <b>{{$processo->materiaisBases[1]->p_numero}}</b></td>
-            <td colspan="3" style="text-align: left">* COM GRUPO N°.: <b> {{$processo->materiaisBases[1]->grupo_n}}</b>
-            </td>
+            <td colspan="3" style="text-align: left">* COM GRUPO N°.: <b> {{$processo->materiaisBases[1]->grupo_n}}</b></td>
+        @else
+            <td colspan="6"></td>
         @endif
     </tr>
     <tr>
@@ -35,7 +36,10 @@
         <!-- Esse campo abaixo é para o segundo metal base, caso ele exista  -->
         <!-- Se não existir esse campo não deve ser mostrado  -->
         @if(count($processo->materiaisBases)>1)
-            <td colspan="6">* COM ESPEC. TIPO E GRAU: <b>{{$processo->materiaisBases[1]->tipo_grau}}</b></td>
+            <td colspan="6">COM ESPEC. TIPO E GRAU: <b>{{$processo->materiaisBases[1]->tipo_grau}}</b></td>
+        @else
+            <td colspan="6"> </td>
+        
         @endif
     </tr>
     <tr>
@@ -59,7 +63,7 @@
     @else
         <tr>
             <td colspan="4">ESPESSUDA DA CHAPA</td>
-            <td colspan="4">ESPESSURA: {{$processo->materiaisBases[0]->espessura}}mm</td>
+            <td colspan="4">ESPESSURA: <b>{{$processo->materiaisBases[0]->espessura}}mm</b></td>
             <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td>
         </tr>
     @endif

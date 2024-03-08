@@ -77,7 +77,7 @@ class EpsAvancadaController extends Controller
         $eps = EpsAvancada::find($request->id_eps);
         $usuario = session()->get("Usuario");
 
-        // Infelizmente é um inferno colocar as imagens que no PDF
+        // Infelizmente é um inferno colocar as imagens no PDF
         // É preciso converter elas pra base64 e fazer toda essa maracutaia pra funcionar
         // Imagem da Empresa.
 

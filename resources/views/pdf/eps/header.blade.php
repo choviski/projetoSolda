@@ -66,13 +66,13 @@
                     </span>
                 </td>
                 <td>
-                    <span>* REVISÃO: <!-- (?) -->
-                        <b>  </b>
+                    <span>REVISÃO: <!-- (?) -->
+                        <b> 1  </b>
                     </span>
                 </td>
                 <td>
                     <span>FOLHA:
-                        <b>1/2</b>
+                        <b>{{$pg}}/2</b>
                     </span>
                 </td>
             </tr>

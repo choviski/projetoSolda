@@ -39,11 +39,13 @@
             <b>{{$processo->caracteristicasEletricas->polaridade}}</b>
         </td>
       </tr>
+      @if($processo->caracteristicasEletricas->modo_transferencia)
       <tr>
         <td colspan="4">MODO DE TRANSFERÊNCIA:
             <b>{{$processo->caracteristicasEletricas->modo_transferencia}}</b>
         </td>
       </tr>
+      @endif
       <tr>
         <td colspan="4">
             TIPO E DIÂMETRO DO ELETRODO DE TUNGSTÊNIO:

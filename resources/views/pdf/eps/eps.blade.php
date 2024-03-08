@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome EPS</title>
+    <title>{{$eps->nome}}</title>
     <style>
         * {
             font-family: sans-serif;
@@ -25,7 +25,7 @@
 <!-- da "sessão" no pdf, tipo: JUNTAS (AB-WYZ), não sei oq iri ali-->
 
 <body>
-@include('pdf.eps.header')
+@include('pdf.eps.header',['pg'=>1])
 
 @foreach($eps->processos as $processo)
     @include('pdf.eps.processos')
@@ -42,7 +42,7 @@
 @endforeach
 <div class="page_break"></div><!-- Outra pg. Div com classe responsavel por quebrar pa -->
 
-@include('pdf.eps.header')
+@include('pdf.eps.header',['pg'=>2])
 @include('pdf.eps.tecnica')
 @include('pdf.eps.notas')
 @include('pdf.eps.revisao')
