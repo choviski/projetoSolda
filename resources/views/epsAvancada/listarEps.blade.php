@@ -26,7 +26,7 @@
             <div class="col-12 d-flex justify-content-between">
                 <span class="btn btn-secondary disabled" disabled >Nome: {{$eps->nome}}</span>
                 <div>
-                    <form method="post" class="d-inline" action="{{('geraEPS')}}">
+                    <form method="post" class="d-inline" action="{{('geraEPS')}}" target="_blank" rel="noopener noreferrer">
                         @csrf
                         <input type="hidden" name="id_eps" value="{{$eps->id}}">                    
                         <button class="btn btn-secondary" style="cursor: pointer" >

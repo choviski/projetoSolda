@@ -36,18 +36,26 @@
             <a>Não </a> <span class="check-box"> {{$processo->junta->cobre_junta ? '' : 'X'}}</span>
         </td>
       </tr>
+
       <tr>
         <th style="text-align: left" >R = {{$processo->junta->cota_r}} {{$processo->junta->unidade_medida_cotas}}</th>
-        <td>MATERIAL COBRE JUNTA (TIPO):</td>
-        <th style="text-align: left;"> {{$processo->junta->material_cobre_junta}}</th>
+        @if ($processo->junta->material_cobre_junta)                  
+          <td>MATERIAL COBRE JUNTA (TIPO):</td>
+          <th style="text-align: left;"> {{$processo->junta->material_cobre_junta}}</th>        
+        @else
+          <td></td>
+          <th></th>
+        @endif
+
       </tr>
+     
       <tr>
-        <th style="text-align: left">f = {{$processo->junta->cota_f}} {{$processo->junta->unidade_medida_cotas}}</th>
+        <th style="text-align: left">F = {{$processo->junta->cota_f}} {{$processo->junta->unidade_medida_cotas}}</th>
         <td>ABERTURA DE RAIZ:</td>
         <td style="text-align: left;">{{$processo->junta->abertura_raiz}} mm</td>
       </tr>
       <tr>
-        <th style="text-align: left">alpha = {{$processo->junta->angulo_primario}}°</th> <!-- (!) -->
+        <th style="text-align: left">alfa = {{$processo->junta->angulo_primario}}°</th> <!-- (!) -->
         <td>RETENTORES:</td>
         <th style="text-align: left;">{{$processo->junta->retentores}}</th>
       </tr>
