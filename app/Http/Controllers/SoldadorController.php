@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Eps;
+use App\EpsAvancada;
 use App\Norma;
 use App\NormaQualificacao;
 use App\Processo;
@@ -165,13 +166,17 @@ class SoldadorController extends Controller
         $processos=Processo::all();
         $soldadorEmpresa=Soldador::find($request->soldador);
         $eps=Eps::where("id_empresa","=",$soldadorEmpresa->empresa->id)->get();
+        $epsAvancadas=EpsAvancada::where("id_empresa","=",$soldadorEmpresa->empresa->id)->get();
         $soldador=$request->soldador;
-        return view("selecionarQualificacoes")->with(["soldador"=>$soldador,"usuario"=>$usuario,"processos"=>$processos,"epss"=>$eps]);
+        return view("selecionarQualificacoes")->with(
+            ["soldador"=>$soldador,"usuario"=>$usuario,"processos"=>$processos,"epss"=>$eps,"epsAvancadas"=>$epsAvancadas]
+        );
     }
 
     public function adicionarQualificacao(Request $request){
         $usuario = session()->get("Usuario");
 
+        
         //cadastrando norma
         $norma=new Norma();
         $norma->nome=$request->nome_norma;
@@ -179,8 +184,18 @@ class SoldadorController extends Controller
         $norma->validade=$request->validade;
         $norma->save();
         //cadastrando qualificacao
-        $qualificacao = new Qualificacao();
-        $qualificacao->id_processo=$request->id_processo;
+        $qualificacao = new Qualificacao();        
+        // Muita atenção aqui! Por enquanto, só tem como cadastrar eps Avançada 
+        // com processo TIG, então vai ficar hard-coded. Posteriormente precisamos
+        // dar um jeito de vincular o $epsAvancada->$processos[0]->qual_tipo com o $processos->nome  
+        if($request->tipo_eps=='avancada'){
+            $qualificacao->tipo_eps='App\EpsAvancada';
+            $idProcessoTIG = Processo::select('id')->where('descricao', 'TIG')->first();
+            $qualificacao->id_processo=$idProcessoTIG->id;
+        }else{
+            $qualificacao->tipo_eps='App\Eps';
+            $qualificacao->id_processo=$request->id_processo;
+        }    
         $qualificacao->id_eps=$request->id_eps;
         $qualificacao->descricao=$request->descricao;
         $qualificacao->save();

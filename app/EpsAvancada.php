@@ -45,4 +45,5 @@ class EpsAvancada extends Model
             'id'
         );
     }
+
 }

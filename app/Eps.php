@@ -13,9 +13,9 @@ class Eps extends Model
     public function arquivo(){
         return $this->hasOne('App\Arquivo', 'id_eps','id');
     }
-    public function qualificacao(){
-        return $this->hasOne('App\Qualificacao', 'id_eps','id');
-    }
+    // public function qualificacao(){
+    //     return $this->hasOne('App\Qualificacao', 'id_eps','id');
+    // }
     public function empresa(){
         return $this->belongsTo("App\Empresa",'id_empresa','id');
     }

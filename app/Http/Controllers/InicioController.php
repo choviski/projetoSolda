@@ -97,7 +97,9 @@ class InicioController extends Controller
     public function requalificacoes(Request $request){
         $usuario = session()->get("Usuario");
         $requalificacaoes = SoldadorQualificacao::where('status','=','em-processo')->select()->orderBy('created_at','desc')->get();
-        return view("requalificacoes")->with(["usuario"=>$usuario,"requalificacaos"=>$requalificacaoes]);
+        return view("requalificacoes")->with(
+            ["usuario"=>$usuario,"requalificacaos"=>$requalificacaoes]
+        );
     }
 
     public function listarEmpresas(Request $request){
