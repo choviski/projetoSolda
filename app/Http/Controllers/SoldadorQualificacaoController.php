@@ -115,7 +115,7 @@ class SoldadorQualificacaoController extends Controller
         $norma->save();
         $usuario=session()->get("Usuario");
         $empresas = Empresa::orderBy('razao_social')->paginate(10);
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
+        return redirect()->Route('paginaInicial')->with(["usuario"=>$usuario,"empresas"=>$empresas,"termo"=>$termo]);
 
     }
 }
