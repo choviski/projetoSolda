@@ -71,7 +71,7 @@ class SoldadorQualificacaoController extends Controller
         #SoldadorQualificacao::destroy($request->id);
         $empresas = Empresa::orderBy("razao_social")->paginate(10);
         $usuario=session()->get("Usuario");
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"termo"=>$termo,"soldador"=>$empresas]);
+        return view("listarEmpresas")->with(["usuario"=>$usuario,"termo"=>$termo,"empresas"=>$empresas]);
 
     }
     public function editar($id)
