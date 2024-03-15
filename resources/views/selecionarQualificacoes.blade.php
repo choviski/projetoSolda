@@ -69,12 +69,12 @@
                                 <option id="op1" value="" selected disabled>Selecione o EPS</option>
 
                                 @foreach($epss as $eps)
-                                    <option value="{{$eps->id}}" name="id_eps" tipo_eps="normal">
+                                    <option value="{{$eps->id}}" name="id_eps" tipo_eps="Normal">
                                         {{$eps->nome}} (EPS Normal)
                                     </option>
                                 @endforeach
                                 @foreach($epsAvancadas as $epsAvancada)
-                                    <option value="{{$epsAvancada->id}}" name="id_eps" tipo_eps="avancada"
+                                    <option value="{{$epsAvancada->id}}" name="id_eps" tipo_eps="Avançada"
                                             norma_eps="{{$epsAvancada->norma}}" processo_eps="{{$epsAvancada->processos[0]->qual_processo}}">
                                         {{$epsAvancada->nome}} (EPS Avançada)
                                     </option>
@@ -166,7 +166,7 @@
             var tipoEps = $(this).find('option:selected').attr('tipo_eps');
             console.log('Tipo EPS selecionado:', tipoEps);
             $('#tipo_eps').val(tipoEps);
-            if(tipoEps=='avancada'){
+            if(tipoEps=='Avançada'){
                 var normaEps = $(this).find('option:selected').attr('norma_eps');
                 var processoEps = $(this).find('option:selected').attr('processo_eps');
                 $('#nome_norma').val(normaEps);

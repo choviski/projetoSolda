@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Empresa;
 use App\Eps;
+use App\EpsAvancada;
 use App\Norma;
 use App\NormaQualificacao;
 use App\Processo;
@@ -76,15 +77,29 @@ class SoldadorQualificacaoController extends Controller
     }
     public function editar($id)
     {
+        $usuario=session()->get("Usuario");
         $processos=Processo::all();
         $soldadorQualificacao=SoldadorQualificacao::find($id);
         $qualificacao=Qualificacao::find($soldadorQualificacao->id_qualificacao);
         $soldador=Soldador::find($soldadorQualificacao->id_soldador);
         $eps=Eps::where("id_empresa","=",$soldador->empresa->id)->get();
+        $epsAvancadas=EpsAvancada::where("id_empresa","=",$soldador->empresa->id)->get();
         $normaQualificacao=NormaQualificacao::where("id_qualificacao","=",$qualificacao->id)->orderBy("created_at","desc")->first();
         $norma=Norma::find($normaQualificacao->norma_id);
-        $usuario=session()->get("Usuario");
-        return view("editarQualificacao")->with(["processos"=>$processos,"soldadorQualificacao"=>$soldadorQualificacao,"epss"=>$eps,"norma"=>$norma,"usuario"=>$usuario]);
+        if(get_class($qualificacao->eps)=="App\Eps"){
+            $tipoEps="Normal";
+        }else{
+            $tipoEps="Avançada";
+        }
+        return view("editarQualificacao")->with(
+            ["processos"=>$processos,
+            "soldadorQualificacao"=>$soldadorQualificacao,
+            "epss"=>$eps,
+            "norma"=>$norma,
+            "usuario"=>$usuario,
+            "epsAvancadas"=>$epsAvancadas,
+            "tipoEps"=>$tipoEps]
+        );
 
     }
     public function atualizar(Request $request){
@@ -107,6 +122,17 @@ class SoldadorQualificacaoController extends Controller
         $qualificacao->id_processo=$request->id_processo;
         $qualificacao->id_eps=$request->id_eps;
         $qualificacao->descricao=$request->descricao;
+        // Muita atenção aqui! Por enquanto, só tem como cadastrar eps Avançada 
+        // com processo TIG, então vai ficar hard-coded. Posteriormente precisamos
+        // dar um jeito de vincular o $epsAvancada->$processos[0]->qual_tipo com o $processos->nome  
+        if($request->tipo_eps=='Avançada'){
+            $qualificacao->tipo_eps='App\EpsAvancada';
+            $idProcessoTIG = Processo::select('id')->where('descricao', 'TIG')->first();
+            $qualificacao->id_processo=$idProcessoTIG->id;
+        }else{
+            $qualificacao->tipo_eps='App\Eps';
+            $qualificacao->id_processo=$request->id_processo;
+        }
         $qualificacao->save();
         $norma=Norma::find($qualificacao->norma->norma->id);
         $norma->nome=$request->nome_norma;

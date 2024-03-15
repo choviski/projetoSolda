@@ -188,7 +188,7 @@ class SoldadorController extends Controller
         // Muita atenção aqui! Por enquanto, só tem como cadastrar eps Avançada 
         // com processo TIG, então vai ficar hard-coded. Posteriormente precisamos
         // dar um jeito de vincular o $epsAvancada->$processos[0]->qual_tipo com o $processos->nome  
-        if($request->tipo_eps=='avancada'){
+        if($request->tipo_eps=='Avançada'){
             $qualificacao->tipo_eps='App\EpsAvancada';
             $idProcessoTIG = Processo::select('id')->where('descricao', 'TIG')->first();
             $qualificacao->id_processo=$idProcessoTIG->id;

@@ -70,7 +70,6 @@ class QualificacaoController extends Controller
             $posicao=$soldadorQualificacao->qualificacao->eps->processos[0]->posicaoSoldagem->posicao_soldagem;
         }
 
- 
         return view ("cadastrarNovaQualificacao")->with(
             ["soldadorQualificacao"=>$soldadorQualificacao,
             "usuario"=>$usuario,
