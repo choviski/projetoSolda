@@ -5,7 +5,9 @@
     <form  class="col-12 p-0 mb-2" id="form-posicao-soldagem"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
-        <input type="hidden" name="id_posicao_soldagem">                        
+        <input type="hidden" name="id_posicao_soldagem">  
+        <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
+        <input type="text" class="form-control" id="artigo" placeholder="Artigo da Posição de soldagem" name="artigo">                        
         <div class="form-row">
             <div class="form-col col-6">
                 <label for="posicao_soldagem" class="mb-0 mt-1">Posição de soldagem:</label>

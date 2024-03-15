@@ -14,6 +14,7 @@ class Junta extends Model
 
     protected $fillable = [
         'imagem',
+        'artigo',
         'unidade_medida_cotas',
         'cota_t',
         'cota_r',

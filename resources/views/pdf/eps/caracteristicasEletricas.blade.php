@@ -27,7 +27,9 @@
 <table class="table-eletrica">
     <thead>
       <tr>
-        <th colspan="4">CARACTERÍSTICAS ELÉTRICAS (AB-XYZ) </th>
+        <th colspan="4">
+          CARACTERÍSTICAS ELÉTRICAS {{($processo->caracteristicasEletricas->artigo) ? '('.$processo->caracteristicasEletricas->artigo.')':''}} 
+        </th>
       </tr>
     </thead>
     <tbody>

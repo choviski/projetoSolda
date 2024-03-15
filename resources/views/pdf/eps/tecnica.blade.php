@@ -14,7 +14,9 @@
 <table class="table-tecnica">
     <thead>
       <tr>
-        <th colspan="2">TÉCNICA (AB-XYZ)</th>
+        <th colspan="2">
+          TÉCNICA {{($eps->informacaoTecnica->artigo) ? '('.$eps->informacaoTecnica->artigo.')':''}}    
+        </th>
       </tr>
     </thead>
     <tbody>

@@ -15,6 +15,7 @@ class CaracteristicaEletrica extends Model
     protected $fillable = [
         'tipo_corrente',
         'modo_transferencia',
+        'artigo',
         'polaridade',
         'amperes',
         'volts',

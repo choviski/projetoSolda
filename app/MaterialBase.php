@@ -13,6 +13,7 @@ class MaterialBase extends Model
     protected $table = 'eps_materiais';
     protected $fillable = [
         'eps_processo_id',
+        'artigo',
         'p_numero',
         'grupo_n',
         'tipo_grau',

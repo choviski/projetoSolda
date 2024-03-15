@@ -18,6 +18,8 @@
     <div id="div-form-metal-base" style="display:none">
         <form  class="col-12 p-0 mb-2" id="form-metal-base" enctype="multipart/form-data">
             @csrf
+            <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
+            <input type="text" class="form-control" id="artigo" placeholder="Artigo do Metal de Base" name="artigo">  
             <input type="hidden" name="id_processo">
             <input type="hidden" name="id_material_base">                        
             <div class="form-row">

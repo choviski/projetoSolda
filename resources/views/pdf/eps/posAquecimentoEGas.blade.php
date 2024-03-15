@@ -14,8 +14,12 @@
 <table class="table-pos-aquecimento-gas">
     <thead>
       <tr>
-        <th colspan="4" class="divisao-tabelas titulo" >TRAT. APÓS SOLDAGEM (AB-XYZ)</th>
-        <th colspan="4" class="titulo">GÁS (AB-XYZ)</th>
+        <th colspan="4" class="divisao-tabelas titulo" >
+          TRAT. APÓS SOLDAGEM {{($processo->posAquecimento->artigo) ? '('.$processo->posAquecimento->artigo.')':''}}
+        </th>
+        <th colspan="4" class="titulo">
+          GÁS {{($processo->gas->artigo) ? '('.$processo->gas->artigo.')':''}}
+        </th>
       </tr>
     </thead>
     <tbody>

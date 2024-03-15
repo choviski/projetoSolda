@@ -15,7 +15,7 @@ class CreateEpsAvancadasTable extends Migration
     {
         Schema::create('eps_avancadas', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('nome')->nullable();
             $table->string('notas');
             $table->date('data');
             $table->string('rqp');

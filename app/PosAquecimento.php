@@ -13,6 +13,7 @@ class PosAquecimento extends Model
     protected $table = 'eps_pos_aquecimentos';
     protected $fillable = [
         'faixa_temperatura',
+        'artigo',
         'taxa_aquecimento',
         'tempo_permanencia',
         'taxa_resfriamento',

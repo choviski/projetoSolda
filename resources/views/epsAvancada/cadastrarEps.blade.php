@@ -159,13 +159,24 @@ crossorigin="anonymous"></script>
                
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Técnica <i class="ml-2 fas fa-id-card"></i></h4>
-                    <hr class="mt-0">                    
-                    <label for="goivagem" class="mb-0 mt-1">Goivagem:</label>
-                    <input type="text" class="form-control mb-1" id="goivagem" placeholder="Goivagem" name="goivagem">                   
-            
-                    <label for="martelamento" class="mb-0 mt-1">Martelamento:</label>
-                    <input type="text" class="form-control mb-1" id="martelamento" placeholder="Martelamento" name="martelamento">                     
+                    <hr class="mt-0">  
                     
+                    <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
+                    <input type="text" class="form-control" id="artigo" placeholder="Artigo da Ficha Técnica" name="artigo">    
+             
+
+                    <div class="form-row">
+                        <div class="form-col col-6">
+                            <label for="goivagem" class="mb-0 mt-1">Goivagem:</label>
+                            <input type="text" class="form-control mb-1" id="goivagem" placeholder="Goivagem" name="goivagem">                   
+                        </div>
+                        <div class="form-col col-6"> 
+                            <label for="martelamento" class="mb-0 mt-1">Martelamento:</label>
+                            <input type="text" class="form-control mb-1" id="martelamento" placeholder="Martelamento" name="martelamento">                    
+                        </div>
+                    </div>
+                  
+                  
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="cordoes" class="mb-0 mt-1">Cordões:</label>

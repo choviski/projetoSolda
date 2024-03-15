@@ -19,7 +19,9 @@
 <table class="table-metal-adicao">
     <thead>
       <tr>
-        <th colspan="4" class="titulo">METAIS DE ADIÇÃO (AB-XYZ)</th>
+        <th colspan="4" class="titulo">METAIS DE ADIÇÃO 
+          {{($metal->artigo) ? '('.$metal->artigo.')':''}}
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -54,10 +56,8 @@
         <th>sem</th>
       </tr>
       <tr>
-        <td>METAL ADIÇÃO SUPLEMENTAR:</td>
-        <th>{{$metal->metal_suplementar ?: 'N/A'}}</th>
-        <td>CLASSE DO FLUXO AWS:</td>
-        <th>SEM FLUXO</th>
+        <td colspan="1">METAL ADIÇÃO SUPLEMENTAR:</td>
+        <th colspan="3">{{$metal->metal_suplementar ?: 'N/A'}}</th>
       </tr>
       <tr>
         <td colspan="1">MARCA COMERCIAL:</td>

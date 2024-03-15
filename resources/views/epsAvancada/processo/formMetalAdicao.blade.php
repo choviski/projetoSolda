@@ -19,7 +19,9 @@
         <form  class="col-12 p-0 mb-2" id="form-metal-adicao" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id_processo">
-            <input type="hidden" name="id_metal_adicao">                        
+            <input type="hidden" name="id_metal_adicao"> 
+            <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
+            <input type="text" class="form-control" id="artigo" placeholder="Artigo do Metal de Adição" name="artigo">                         
             <div class="form-row">
                 <div class="form-col col-6">
                     <label for="f_numero" class="mb-0 mt-1">F número:</label>

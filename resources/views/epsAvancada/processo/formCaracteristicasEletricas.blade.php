@@ -5,7 +5,10 @@
     <form  class="col-12 p-0 mb-2" id="form-caracteristicas-eletricas"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
-        <input type="hidden" name="id_caracteristicas_eletricas">                        
+        <input type="hidden" name="id_caracteristicas_eletricas"> 
+        <input type="hidden" name="tig" value="1"> 
+        <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
+        <input type="text" class="form-control" id="artigo" placeholder="Artigo das Características Elétricas" name="artigo">                           
         <div class="form-row">
             <div class="form-col col-6">
                 <label for="tipo_corrente" class="mb-0 mt-1">Tipo de Corrente:</label>
@@ -51,27 +54,14 @@
                 <label for="camada" class="mb-0 mt-1">Camada:</label>
                 <input type="text" class="form-control" id="camada" placeholder="Camada" name="camada">                     
             </div>
-        </div>
-        <label for="tig" class="mb-0 mt-1">Tig?</label>
-        <div class="form-check">
-            <input class="form-check-input" value="1" type="radio" name="tig" id="tig_sim" checked>
-            <label class="form-check-label" for="tig_sim">
-                Sim
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" value="0" type="radio" name="tig" id="tig_nao" >
-            <label class="form-check-label" for="tig_nao">
-                Não
-            </label>
-        </div>      
+        </div>     
         <div class="form-row">
             <div class="form-col col-6">
-                <label for="diametro_eletrodo_tig" class="mb-0 mt-1">Diâmetro do Eletredo TIG (caso seja TIG):</label>
+                <label for="diametro_eletrodo_tig" class="mb-0 mt-1">Diâmetro do Eletredo TIG:</label>
                 <input type="number" step="0.01"  class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo TIG" name="diametro_eletrodo_tig">                     
             </div>
             <div class="form-col col-6">
-                <label for="classificacao_consumivel_tig" class="mb-0 mt-1">Classificação do Consumível TIG (caso seja TIG):</label>
+                <label for="classificacao_consumivel_tig" class="mb-0 mt-1">Classificação do Consumível TIG:</label>
                 <input type="text" class="form-control"  id="classificacao_consumivel_tig" placeholder="Classificação do Consumível TIG" name="classificacao_consumivel_tig">                     
             </div>
         </div>         
@@ -89,17 +79,6 @@
         }
     });
 
-
-
-    $('input[name="tig"]').change(function(){
-        if ($(this).val() == 1) {
-            $('#diametro_eletrodo_tig').prop('disabled', false);
-            $('#classificacao_consumivel_tig').prop('disabled', false);
-        } else {            
-            $('#diametro_eletrodo_tig').prop('disabled', true);
-            $('#classificacao_consumivel_tig').prop('disabled', true);
-        }
-    });
 
     function finalizaCadastroProcesso(processoId,processoNome){
         var divElement = $('<div></div>').addClass('mt-2');

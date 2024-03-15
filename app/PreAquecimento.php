@@ -13,6 +13,7 @@ class PreAquecimento extends Model
     protected $table = 'eps_pre_aquecimentos';
     protected $fillable = [
         'temperatura',
+        'artigo',
         'temperatura_interpasse',
     ];
 

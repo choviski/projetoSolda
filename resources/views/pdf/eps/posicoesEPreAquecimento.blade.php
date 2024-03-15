@@ -18,8 +18,12 @@
 <table class="table-posicoes-pre-aquecimento">
   <thead>
     <tr>
-      <th colspan="2" class="divisao-tabelas titulo">POSIÇÕES (AB-XYZ)</th>
-      <th colspan="2" class="titulo">PRÉ-AQUECIMENTO (AB-XYZ)</th>
+      <th colspan="2" class="divisao-tabelas titulo">
+        POSIÇÕES {{($processo->posicaoSoldagem->artigo) ? '('.$processo->posicaoSoldagem->artigo.')':''}}
+      </th>
+      <th colspan="2" class="titulo">
+        PRÉ-AQUECIMENTO {{($processo->preAquecimento->artigo) ? '('.$processo->preAquecimento->artigo.')':''}}
+      </th>
     </tr>
   </thead>
   <tbody>

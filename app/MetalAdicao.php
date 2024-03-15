@@ -14,6 +14,7 @@ class MetalAdicao extends Model
     protected $fillable = [
         'eps_processo_id',
         'f_numero',
+        'artigo',
         'a_numero',
         'diametro_consumivel',
         'metal_depositado',

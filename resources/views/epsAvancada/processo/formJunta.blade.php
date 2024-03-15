@@ -6,6 +6,8 @@
         @csrf  
         <input type="hidden" name="id_processo">
         <input type="hidden" name="id_junta">
+        <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
+                <input type="text" class="form-control" id="artigo" placeholder="Artigo da junta" name="artigo">  
         <label for="imagem" class="mb-0 mt-1" >Imagem da junta:</label>
         <div  class="d-flex justify-content-center mb-1">
             <img src="{{asset('juntas/junta-chanfro-em-j.jpg')}}" id="junta-img">

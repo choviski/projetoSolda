@@ -14,6 +14,7 @@ class Gas extends Model
 
     protected $fillable = [
         'gas_protecao',
+        'artigo',
         'composicao',
         'vazao',
         'possui_purga',

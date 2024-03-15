@@ -13,6 +13,7 @@ class PosicaoSoldagem extends Model
     protected $table = 'eps_posicao_soldagem';
     protected $fillable = [
         'posicao_soldagem',
+        'artigo',
         'direcao_soldagem',
     ];
 

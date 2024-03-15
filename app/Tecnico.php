@@ -14,6 +14,7 @@ class Tecnico extends Model
     protected $table = 'eps_informacoes_tecnicas';
     protected $fillable = [
         'goivagem',
+        'artigo',
         'martelamento',
         'cordoes',
         'eletrodo',

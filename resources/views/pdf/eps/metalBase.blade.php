@@ -16,7 +16,9 @@
 <table class="table-metal-base">
     <thead>
     <tr>
-        <th colspan="12" class="titulo">METAIS DE BASE (ABC-YZ)</th>
+        <th colspan="12" class="titulo">
+            METAIS DE BASE {{($processo->materiaisBases[0]->artigo) ? '('.$processo->materiaisBases[0]->artigo.')':''}}
+        </th>
     </tr>
     </thead>
     <tbody>

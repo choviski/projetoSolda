@@ -19,7 +19,9 @@
 <table class="table-junta">
     <thead>
       <tr>
-        <th colspan="2" style="text-align: left;"><b>JUNTAS (AB-WYZ)</b></th>
+        <th colspan="2" style="text-align: left;">
+          <b>JUNTAS {{($processo->junta->artigo) ? '('.$processo->junta->artigo.')':''}}</b>
+        </th>
         <td>TIPO DE JUNTA:</td>
         <td style="text-align: left;font-size:10px"><b>CONFORME DESENHOS DE FABRICAÇÃO</b></td> <!-- (?) -->
       </tr>
