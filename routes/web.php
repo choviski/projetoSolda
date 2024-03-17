@@ -157,7 +157,32 @@ Route::post("/deletarEps", "EpsController@destroy")->name("deletarEps")->middlew
 Route::put("/editarQualificacaoSoldador/{id}", "SoldadorQualificacaoController@editar")->name("editarQualificacaoSoldador")->middleware(CheckSession::class);
 Route::post("/updateQualificacao", "SoldadorQualificacaoController@atualizar")->name("updateQualificacao")->middleware(CheckSession::class);
 
+# --- Anúncios --- #
+
 Route::get("/cadastrarAd", "AnuncioController@cadastrarAd")->name("cadastrarAd")->middleware(CheckSession::class, CheckAdm::class);
 Route::get("/listarAds", "AnuncioController@listarAds")->name("listarAds")->middleware(CheckSession::class, CheckAdm::class);
 Route::post("/salvarAd", "AnuncioController@storeAds")->name("salvarAd")->middleware(CheckSession::class, CheckAdm::class);
 Route::delete("/deletarAd/{id}", "AnuncioController@deletarAd")->name("deletarAd")->middleware(CheckSession::class, CheckAdm::class);
+
+# --- EPS avançada --- #
+
+Route::get("/listarEpsAvancada","EpsAvancadaController@listarEpsAvancada")->name("listarEpsAvancada")->middleware(CheckSession::class);
+Route::get("/cadastrarEpsAvancada","EpsAvancadaController@cadastrarEpsAvancada")->name("cadastrarEpsAvancada")->middleware(CheckSession::class);
+Route::get("/armazenarEpsAvancada","EpsAvancadaController@armazenarEpsAvancada")->name("armazenarEpsAvancada")->middleware(CheckSession::class);
+Route::delete("/deleteEpsAvancada/{id}","EpsAvancadaController@deleteEpsAvancada")->name("deleteEpsAvancada")->middleware(CheckSession::class);
+Route::post("/geraEPS","EpsAvancadaController@geraEps")->name("geraEps")->middleware(CheckSession::class);
+
+# --- EPS Processo --- #
+Route::get("/cadastraEPSProcesso","EpsProcessoController@cadastraOuEditaProcesso")->name("cadastraOuEditaProcesso")->middleware(CheckSession::class);
+Route::get("/cadastraEPSJunta","EpsProcessoController@cadastraOuEditaJunta")->name("cadastraOuEditaJunta")->middleware(CheckSession::class);
+Route::get("/cadastraEPSMaterialBase","EpsProcessoController@cadastraOuEditaMaterialBase")->name("cadastraOuEditaMaterialBase")->middleware(CheckSession::class);
+Route::get("/cadastraEPSMetalAdicao","EpsProcessoController@cadastraOuEditaMetalAdicao")->name("cadastraOuEditaMetalAdicao")->middleware(CheckSession::class);
+Route::get("/cadastraEPSPreAquecimento","EpsProcessoController@cadastraOuEditaPreAquecimento")->name("cadastraOuEditaPreAquecimento")->middleware(CheckSession::class);
+Route::get("/cadastraEPSPosAquecimento","EpsProcessoController@cadastraOuEditaPosAquecimento")->name("cadastraOuEditaPosAquecimento")->middleware(CheckSession::class);
+Route::get("/cadastraEPSCaracteristicasEletricas","EpsProcessoController@cadastraOuEditaCaracteristicasEletricas")->name("cadastraOuEditaCaracteristicasEletricas")->middleware(CheckSession::class);
+Route::get("/cadastraEPSGas","EpsProcessoController@cadastraOuEditaGas")->name("cadastraOuEditaGas")->middleware(CheckSession::class);
+Route::get("/cadastraEPSPosicaoSoldagem","EpsProcessoController@cadastraOuEditaPosicaoSoldagem")->name("cadastraOuEditaPosicaoSoldagem")->middleware(CheckSession::class);
+Route::get("/getEPSMetalAdicao/{id}","EpsProcessoController@getMetalAdicao")->name("getMetalAdicao")->middleware(CheckSession::class);
+Route::delete("/deleteEPSMetalAdicao/{id}","EpsProcessoController@deleteMetalAdicao")->name("deleteMetalAdicao")->middleware(CheckSession::class);
+Route::get("/getEPSMaterialBase/{id}","EpsProcessoController@getMaterialBase")->name("getMaterialBase")->middleware(CheckSession::class);
+Route::delete("/deleteEPSMaterialBase/{id}","EpsProcessoController@deleteMaterialBase")->name("deleteMaterialBase")->middleware(CheckSession::class);

@@ -73,11 +73,11 @@
                 <input type="hidden" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="nome_certificado"  value="{{$soldadorQualificacao->nome_certificado}}" required>
                 <input type="hidden" class="form-control" id="nome_certificado" placeholder="Insira o nome da certificado" name="caminho_certificado"  value="{{$soldadorQualificacao->caminho_certificado}}" required>
 
-                <label  for="nome_certificado">Posição de soldagem:</label>
-                <input type="text" class="form-control" id="nome_certificado" placeholder="Insira a posição de soldagem" name="posicao" required>
+                <label  for="posicao">Posição de soldagem:</label>
+                <input type="text" class="form-control" id="posicao" placeholder="Insira a posição de soldagem" name="posicao" required value="{{$posicao}}">
 
-                <label  for="nome_certificado">Eletrodo:</label>
-                <input type="text" class="form-control" id="nome_certificado" placeholder="Insira o eletrodo ultilizado na soldagem" name="eletrodo" required>
+                <label  for="eletrodo">Eletrodo:</label>
+                <input type="text" class="form-control" id="eletrodo" placeholder="Insira o eletrodo ultilizado na soldagem" name="eletrodo" required value="{{$eletrodo}}">
 
 
                 <label for="foto" id="labelFotos" class="mt-2 col-12 p-0">Insira a(s) foto(s) corpo de prova:</label>

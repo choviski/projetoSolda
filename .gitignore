@@ -1,6 +1,7 @@
 public/arquivos/arquivoEPS-id44.pdf
 public/arquivos/arquivoEPS-id46.pdf
 public/arquivos/arquivoEPS-id47.pdf
+public/arquivos
 public/certificados/certificado-id131.PNG
 public/certificados/certificado-id132.pdf
 public/certificados/certificado-id133.txt
@@ -10,8 +11,14 @@ public/certificados/certificado-id136.jpg
 public/certificados/certificado-id137.jpg
 public/certificados/certificado-id138.jpeg
 public/certificados/certificado-id139.jpeg
+public/certificados
 public/imagem-soldador/soldador-id78.PNG
+public/imagem-soldador
 public/instrucoes/instrucao-id131.PNG
 public/instrucoes/instrucao-id132.pdf
+public/instrucoes
 .env
-.env
+public/imagem-anuncio
+vendor/
+vendor\
+public/imagem-qualificacao

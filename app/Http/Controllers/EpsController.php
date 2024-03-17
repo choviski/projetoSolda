@@ -42,4 +42,5 @@ class EpsController extends Controller
         $empresas = Empresa::orderBy('razao_social')->get();
         return redirect()->route('listarEps');
     }
+    
 }

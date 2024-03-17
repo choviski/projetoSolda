@@ -61,9 +61,21 @@ class QualificacaoController extends Controller
         return redirect("/qualificacao");
     }
     public function requalificar(Request $request){
-        $soldadorQualificacao=SoldadorQualificacao::where("id","=",$request->soldadorQualificacao)->get();
+        $soldadorQualificacao=SoldadorQualificacao::where("id","=",$request->soldadorQualificacao)->first();
         $usuario = session()->get("Usuario");
-        return view ("cadastrarNovaQualificacao")->with(["soldadorQualificacao"=>$soldadorQualificacao[0],"usuario"=>$usuario]);
+        $eletrodo='';
+        $posicao='';
+        if($soldadorQualificacao->qualificacao->eps instanceof \App\EpsAvancada){
+            $eletrodo=$soldadorQualificacao->qualificacao->eps->informacaoTecnica->eletrodo;
+            $posicao=$soldadorQualificacao->qualificacao->eps->processos[0]->posicaoSoldagem->posicao_soldagem;
+        }
+
+        return view ("cadastrarNovaQualificacao")->with(
+            ["soldadorQualificacao"=>$soldadorQualificacao,
+            "usuario"=>$usuario,
+            "eletrodo"=>$eletrodo,
+            "posicao"=>$posicao]
+        );
     }
     public function editar($id,Request $request){
         SoldadorQualificacao::destroy($id);
