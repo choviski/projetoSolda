@@ -159,7 +159,14 @@ class SoldadorController extends Controller
         $usuario = session()->get("Usuario");
         $processos=Processo::all();
         $eps=Eps::where("id_empresa","=",$soldador->empresa->id)->get();
-        return view("selecionarQualificacoes")->with(["soldador"=>$soldador->id,"usuario"=>$usuario,"processos"=>$processos,"epss"=>$eps]);
+        $epsAvancadas=EpsAvancada::where("id_empresa","=",$soldador->empresa->id)->get();
+        return view("selecionarQualificacoes")->with(
+            ["soldador"=>$soldador->id,
+            "usuario"=>$usuario,
+            "processos"=>$processos,
+            "epss"=>$eps,
+            "epsAvancadas"=>$epsAvancadas
+        ]);
     }
     public function novaQualificacao(Request $request){
         $usuario = session()->get("Usuario");
@@ -258,7 +265,6 @@ class SoldadorController extends Controller
                 $qualificacao->save();
             }
         }
-
 
 
         if($request->rota){
