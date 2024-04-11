@@ -234,7 +234,7 @@ class SoldadorController extends Controller
             $soldador_qualificacao->status="qualificado";
         }
         $soldador_qualificacao->save();
-
+        
         $certificado = $request->file('caminho_certificado');
         $extensao=$certificado->getClientOriginalExtension();
         chmod($certificado->path(),0755);
@@ -250,7 +250,14 @@ class SoldadorController extends Controller
         $processos=Processo::all();
         $soldador=Soldador::where('id',$request->soldador)->first();
         $epss=Eps::where("id_empresa","=",$soldador->id_empresa)->get();       
-        return view("selecionarQualificacoes")->with(["soldador"=>"$request->soldador","usuario"=>$usuario,"processos"=>$processos,"epss"=>$epss]);
+        $epsAvancadas=EpsAvancada::where("id_empresa","=",$soldador->id_empresa)->get();       
+        return view("selecionarQualificacoes")->with(
+            ["soldador"=>"$request->soldador",
+            "usuario"=>$usuario,
+            "processos"=>$processos,
+            "epss"=>$epss,
+            "epsAvancadas"=>$epsAvancadas]
+        );
     }
 
     public function perfilSoldador(Request $request){
