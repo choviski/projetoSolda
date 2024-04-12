@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class email3 extends Mailable
+class Email3 extends Mailable
 {
     use Queueable, SerializesModels;
     private $qualificacao;
