@@ -13,14 +13,101 @@ use App\Tecnico;
 
 class EpsAvancadaController extends Controller
 {
+    // Campos que podem ser usados como filtro (pra impedir alguma sacanagem aí)    
+    // Seguem o seguinte padrão de nome caso sejam campos de algum relacionamento: 
+    // nomeRelacao1-nomeRelacao2-...-nomeRelacaoN-nomeValor.
+    private $camposPermitidos = [
+        "processos-gas-gas_protecao",
+        "processos-metaisAdicao-classificacao_aws",
+        "processos-metaisAdicao-forma_consumivel",
+        "processos-materiaisBases-tipo_grau",
+        "processos-junta-cota_t",
+        "processos-junta-imagem",
+        "norma",
+        "processos-qual_processo"
+    ];
+
+    private $exibicaoNomeCampos = [
+        "gas_protecao"=>'Gás de proteção',
+        "classificacao_aws"=>'Classificação AWS/S.F.A.',
+        "forma_consumivel"=>'Forma do consumível',
+        "cota_t"=> "Cota T (Junta)",
+        "tipo_grau"=>"Especificação tipo/grau",
+        "imagem"=>"Tipo de Chanfro (Junta)",
+        "norma"=>"Norma",
+        "qual_processo"=>"Tipo do processo"
+    ];
+    
+
     public function listarEpsAvancada(Request $request){
         $usuario = session()->get("Usuario");
-        if($usuario->tipo==1){ // se é a infosolda pega todas as EPS
-            $epsAvancadas = EpsAvancada::paginate(10);
-        }else{ // se n for pega somente as da própria empresa
-            $epsAvancadas = EpsAvancada::where("id_empresa",$usuario->empresa->id)->with('processos')->paginate(10);
+        
+        $query = EpsAvancada::query();
+
+        // Se o usuário for do tipo 1 (Infosolda), pega todas as EPS
+        if ($usuario->tipo == 1) {
+            $query->with('processos');
+        } else {
+            // Se não for, pega somente as da própria empresa
+            $query->where("id_empresa", $usuario->empresa->id)->with('processos');
         }
-        return view("epsAvancada/listarEps")->with(["usuario"=>$usuario,"epsAvancadas"=>$epsAvancadas]);
+
+        // Obtém todos os parâmetros da requisição
+        $filtros = $request->all();
+        
+        // Vetor utilzado para mostrar no front quais os valores filtrados
+        $camposFiltrados = [];
+
+        foreach ($filtros as $campo => $valor) {
+            // Verifica se o valor não está vazio e se o campo está presente no array de campos permitidos
+            if ($valor !== null && $valor !== '' && in_array($campo, $this->camposPermitidos)) {
+                // Se o campo contém "_" indicando uma relação aninhada
+                
+                if (strpos($campo, '-') !== false) {
+                    
+                    // Divide o as relações usando "-"
+                    $partes = explode('-', $campo);
+        
+                    // Remove o último elemento do array (que é o nome do campo)
+                    $nomeCampo = array_pop($partes);
+
+                    if($nomeCampo=="imagem"){
+                        // Pegando o tipo de chanfro sem o caminho da imagem
+                        $chanfro = preg_replace('/\/juntas\/junta-|\.jpg/', '', $valor);
+                        $chanfro = str_replace('-', ' ', $chanfro);
+                        $camposFiltrados[$campo] = [
+                            $this->exibicaoNomeCampos[$nomeCampo],
+                            $chanfro,
+                            $valor];
+                    }else{
+                        $camposFiltrados[$campo] = [
+                            $this->exibicaoNomeCampos[$nomeCampo],
+                            $valor];
+                    }
+                    
+        
+                    // Inicializa a query com a relação principal
+                    $query->whereHas($partes[0], function ($query) use ($partes, $nomeCampo, $valor) {
+                        // Adiciona as condições para cada relação aninhada
+                        for ($i = 1; $i < count($partes); $i++) {
+                            $query->whereHas($partes[$i], function ($query) use ($partes, $valor,$nomeCampo, $i) {
+                                if ($i === count($partes) - 1) {
+                                    // Se for a última relação aninhada, adiciona a condição no campo desejado
+                                    $query->where($nomeCampo, $valor);
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    // Se não for uma relação aninhada, adiciona uma condição normal
+                    $query->where($campo, $valor);
+                    $camposFiltrados[$campo] = [$campo,$valor];
+                }
+            }
+        }
+        
+        $resultados = $query->paginate(10);
+        return view("epsAvancada/listarEps")->with(["usuario"=>$usuario,"epsAvancadas"=>$resultados,"filtros"=>$camposFiltrados]);
     }
 
     public function cadastrarEpsAvancada(Request $request){
