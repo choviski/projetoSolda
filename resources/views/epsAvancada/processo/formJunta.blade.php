@@ -13,14 +13,14 @@
             <img src="{{asset('juntas/junta-chanfro-em-j.jpg')}}" id="junta-img">
         </div>
         <select class="form-select" aria-label="Default select example" id="imagem" name="imagem">
-            <option selected value="/juntas/junta-chanfro-em-j.jpg">Chanfro em J</option>
-            <option value="/juntas/junta-chanfro-em-k.jpg">Chanfro em K</option>
-            <option value="/juntas/junta-chanfro-em-u.jpg">Chanfro em U</option>
-            <option value="/juntas/junta-chanfro-em-v.jpg">Chanfro em V</option>
-            <option value="/juntas/junta-chanfro-em-x.jpg">Chanfro em X</option>
-            <option value="/juntas/junta-chanfro-em-meio-v.jpg">Chanfro em meio V</option>
-            <option value="/juntas/junta-chanfro-em-duplo-j.jpg">Chanfro em duplo J</option>
-            <option value="/juntas/junta-chanfro-em-duplo-u.jpg">Chanfro em duplo U</option>
+            <option selected value="{{asset('juntas/junta-chanfro-em-j.jpg')}}">Chanfro em J</option>
+            <option value="{{asset('juntas/junta-chanfro-em-k.jpg')}}">Chanfro em K</option>
+            <option value="{{asset('juntas/junta-chanfro-em-u.jpg') }}">Chanfro em U</option>
+            <option value="{{asset('juntas/junta-chanfro-em-v.jpg')}}">Chanfro em V</option>
+            <option value="{{asset('juntas/junta-chanfro-em-x.jpg')}}"">Chanfro em X</option>
+            <option value="{{asset('juntas/junta-chanfro-em-meio-v.jpg')}}"">Chanfro em meio V</option>
+            <option value="{{asset('juntas/junta-chanfro-em-duplo-j.jpg')}}"">Chanfro em duplo J</option>
+            <option value="{{asset('/juntas/junta-chanfro-em-duplo-u.jpg')}}"">Chanfro em duplo U</option>
         </select>                       
         <div class="form-row">
             <div class="form-col col-6">
