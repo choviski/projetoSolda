@@ -3,6 +3,26 @@
 
 @section('content')
     <style>
+        input[type="file"]{
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+        .btnCertificado{
+            background-color: #59acff;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: lighter;
+            width: auto;
+            display: block;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        .btnCertificado:hover{
+            background-color: #0275d8;
+        }
         #nav_perfil{
             text-decoration: underline;
             font-weight: bold;
@@ -18,7 +38,7 @@
     </div>
     <div class="row col-12 d-flex justify-content-center">
 
-        <form class="col-9 p-0 mt-3"action="{{route("updateQualificacao")}}" method="post">
+        <form class="col-9 p-0 mt-3"action="{{route("updateQualificacao")}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group bg-light p-2 rounded">
                 <div class="bg-light p-2 rounded mt-2 ">
@@ -94,6 +114,16 @@
                         <option value="36">36 meses</option>
                     </select>
 
+                  
+                    <label  for="nome_certificado" class="mb-0 mt-1">Nome do certificado:</label>                   
+                    <input type="text" class="form-control mt-1" id="nome_certificado" value="{{$soldadorQualificacao->nome_certificado}}">
+
+                    <label for="certificado" id="" class="mt-2 col-12 p-0">Escolha o novo certificado:</label>
+                    <label for="certificado" id="btnCertificado" class="btnCertificado">Escolha o novo certificado</label>
+                    <input type="file" class="btn btnCertificado" name="certificado" id="certificado" value="{{$soldadorQualificacao->caminho_certificado}}">
+
+                    <a class="btn btnCertificado mt-1" href="{{asset($soldadorQualificacao->caminho_certificado)}}" download> Download do certificado atual da qualificação</a>
+                      
 
                 </div>
                 <input type="submit" class="btn btn-outline-primary mt-3 col-12" value="Salvar">
@@ -130,6 +160,18 @@
             $('#id_processo').prop('disabled', false);
         }
 });
+
+$("#certificado").on("change", function(){
+            nDocumentos = document.getElementById('certificado').files.length;
+            if(nDocumentos>0){
+                document.getElementById('btnCertificado').innerHTML='Novo certificado selecionado!';
+                document.getElementById('btnCertificado').style.backgroundColor='#0275d8';
+
+            }else{
+                document.getElementById('btnCertificado').innerHTML='Escolha o novo certificado';
+                document.getElementById('btnCertificado').style.backgroundColor='#59acff';
+            }
+        })
 </script>
 
 @endsection()

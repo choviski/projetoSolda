@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use MongoDB\Driver\Session;
 use DateTime;
+use File;
 
 class SoldadorQualificacaoController extends Controller
 {
@@ -69,10 +70,10 @@ class SoldadorQualificacaoController extends Controller
     public function destroy(Request $request)
     {
         $termo = $request->filtro;
-        #SoldadorQualificacao::destroy($request->id);
+        SoldadorQualificacao::destroy($request->id);
         $empresas = Empresa::orderBy("razao_social")->paginate(10);
         $usuario=session()->get("Usuario");
-        return view("listarEmpresas")->with(["usuario"=>$usuario,"termo"=>$termo,"empresas"=>$empresas]);
+        return redirect()->Route("paginaInicial")->with(["usuario"=>$usuario,"termo"=>$termo,"empresas"=>$empresas]);
 
     }
     public function editar($id)
@@ -117,6 +118,21 @@ class SoldadorQualificacaoController extends Controller
         }else{
             $soldadorQualificacao->status="qualificado";
         }
+
+        if($request->file('certificado')){
+
+            $certificadoAntigo = public_path() . $soldadorQualificacao->caminho_certificado;
+            if (File::exists($certificadoAntigo)) {
+                File::delete($certificadoAntigo);
+            }
+
+            $certificado = $request->file('certificado');            
+            $extensao=$certificado->getClientOriginalExtension();
+            chmod($certificado->path(),0755);
+            File::move($certificado, public_path().'/certificados/certificado-id'.$soldadorQualificacao->id.'.'.$extensao);
+            $soldadorQualificacao->caminho_certificado='/certificados/certificado-id'.$soldadorQualificacao->id.'.'.$extensao;
+        }
+
         $soldadorQualificacao->save();
         $qualificacao=Qualificacao::find($soldadorQualificacao->qualificacao->id);
         $qualificacao->id_processo=$request->id_processo;

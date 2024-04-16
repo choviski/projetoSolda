@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\EnvioEmailJob;
-use App\Mail\email;
-use App\Mail\email2;
-use App\Mail\email3;
+use App\Mail\Email;
+use App\Mail\Email2;
+use App\Mail\Email3;
 use App\Mail\Email4;
 use App\Mail\Email5;
 use App\Mail\Email6;

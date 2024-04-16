@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class email2 extends Mailable
+class Email2 extends Mailable
 {
     use Queueable, SerializesModels;
     private $usuario;
