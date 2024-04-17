@@ -185,7 +185,7 @@ class EpsAvancadaController extends Controller
         // E cada processo tem uma junta. Como que fica? Qual imagem a gente coloca?
         // Na verdade eu nem sei como seria o layout de uma pdf de EPS com mais de um processo.
         // Mais uma dúvida que precisamos tirar com eles..
-        $path = public_path().$eps->processos[0]->junta->imagem;
+        $path = $eps->processos[0]->junta->imagem;
         $type = pathinfo($path,PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
