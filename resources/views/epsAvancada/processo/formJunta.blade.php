@@ -6,6 +6,7 @@
         @csrf  
         <input type="hidden" name="id_processo">
         <input type="hidden" name="id_junta">
+        <input type="hidden" id="asset" value="{{asset('')}}">
         <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
                 <input type="text" class="form-control" id="artigo" placeholder="Artigo da junta" name="artigo">  
         <label for="imagem" class="mb-0 mt-1" >Imagem da junta:</label>
@@ -13,14 +14,14 @@
             <img src="{{asset('juntas/junta-chanfro-em-j.jpg')}}" id="junta-img">
         </div>
         <select class="form-select" aria-label="Default select example" id="imagem" name="imagem">
-            <option selected value="{{asset('juntas/junta-chanfro-em-j.jpg')}}">Chanfro em J</option>
-            <option value="{{asset('juntas/junta-chanfro-em-k.jpg')}}">Chanfro em K</option>
-            <option value="{{asset('juntas/junta-chanfro-em-u.jpg') }}">Chanfro em U</option>
-            <option value="{{asset('juntas/junta-chanfro-em-v.jpg')}}">Chanfro em V</option>
-            <option value="{{asset('juntas/junta-chanfro-em-x.jpg')}}"">Chanfro em X</option>
-            <option value="{{asset('juntas/junta-chanfro-em-meio-v.jpg')}}"">Chanfro em meio V</option>
-            <option value="{{asset('juntas/junta-chanfro-em-duplo-j.jpg')}}"">Chanfro em duplo J</option>
-            <option value="{{asset('/juntas/junta-chanfro-em-duplo-u.jpg')}}"">Chanfro em duplo U</option>
+            <option selected value="/juntas/junta-chanfro-em-j.jpg">Chanfro em J</option>
+            <option value="/juntas/junta-chanfro-em-k.jpg">Chanfro em K</option>
+            <option value="/juntas/junta-chanfro-em-u.jpg">Chanfro em U</option>
+            <option value="/juntas/junta-chanfro-em-v.jpg">Chanfro em V</option>
+            <option value="/juntas/junta-chanfro-em-x.jpg">Chanfro em X</option>
+            <option value="/juntas/junta-chanfro-em-meio-v.jpg">Chanfro em meio V</option>
+            <option value="/juntas/junta-chanfro-em-duplo-j.jpg">Chanfro em duplo J</option>
+            <option value="/juntas/junta-chanfro-em-duplo-u.jpg">Chanfro em duplo U</option>
         </select>                       
         <div class="form-row">
             <div class="form-col col-6">
@@ -93,7 +94,8 @@
     
     $("#imagem").change(function(){
         var selectedImage = $(this).val();
-        $("#junta-img").attr("src", selectedImage);
+        var caminho = $('#asset').val();
+        $("#junta-img").attr("src", caminho+selectedImage );
     });
 
     $('input[name="possui_cobre_junta"]').change(function(){

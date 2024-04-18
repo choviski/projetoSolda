@@ -107,6 +107,23 @@ crossorigin="anonymous"></script>
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">EPS <i class="ml-2 fas fa-file-invoice"></i></h4>
                     <hr class="mt-0">
+
+                    <div class="form-row">
+                    @if($usuario->tipo==1)
+                        <div class="form-col col-12">
+                            <label for="id_empresa" class="mb-0 mt-1">Empresa:</label>
+                            <select class="form-select" id="id_empresa" name="id_empresa">
+                                <option value="" selected>Infosolda (Administrativo)</option>
+                                @foreach ($empresas as $empresa)
+                                    <option value={{$empresa->id}}">{{$empresa->nome_fantasia}} </option>
+                                @endforeach
+                            </select>                     
+                        </div>
+                    @else
+                        <input type="hidden" value="{{$usuario->empresa->id}}" name="id_empresa">
+                    @endif
+                    </div>
+
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="nome" class="mb-0 mt-1">Nome:</label>
