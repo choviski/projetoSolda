@@ -10,22 +10,42 @@
         <input type="text" class="form-control" id="artigo" placeholder="Artigo do Pós Aquecimento" name="artigo">                    
         <div class="form-row">
             <div class="form-col col-6">
-                <label for="faixa_temperatura" class="mb-0 mt-1">Faixa de Temperatura (ºC):</label>
-                <input type="number" step="0.01" class="form-control" id="faixa_temperatura" placeholder="Faixa de Temperatura" name="faixa_temperatura">                     
+                <label for="faixa_temperatura" class="mb-0 mt-1">Faixa de Temperatura: <small class="text-muted">(em ºC)</small></label>
+                <div class="input-group">    
+                    <input type="text" class="form-control" id="faixa_temperatura" placeholder="Faixa de Temperatura" name="faixa_temperatura">                     
+                    <div class="input-group-append">
+                        <div class="input-group-text">ºC</div>
+                    </div>     
+                </div>
             </div>
             <div class="form-col col-6">
-                <label for="taxa_aquecimento" class="mb-0 mt-1" >Taxa de Aquecimento (ºC):</label>
-                <input type="number" step="0.01" class="form-control" id="taxa_aquecimento" placeholder="Taxa de Aquecimento" name="taxa_aquecimento">                     
+                <label for="taxa_aquecimento" class="mb-0 mt-1" >Taxa de Aquecimento: <small class="text-muted">(em ºC/h)</small></label>
+                <div class="input-group">
+                    <input type="number" step="0.01" class="form-control" id="taxa_aquecimento" placeholder="Taxa de Aquecimento" name="taxa_aquecimento">                     
+                    <div class="input-group-append">
+                        <div class="input-group-text">ºC/h</div>
+                    </div> 
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-col col-6">
-                <label for="tempo_permanencia" class="mb-0 mt-1">Tempo de Permanencia (min.):</label>
-                <input type="number" step="0.01" class="form-control" id="tempo_permanencia" placeholder="Tempo de Permanencia" name="tempo_permanencia">                     
+                <label for="tempo_permanencia" class="mb-0 mt-1">Tempo de Permanencia: <small class="text-muted">(em min)</small></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="tempo_permanencia" placeholder="Tempo de Permanencia" name="tempo_permanencia">                     
+                    <div class="input-group-append">
+                        <div class="input-group-text">min</div>
+                    </div> 
+                </div>
             </div>
             <div class="form-col col-6">
-                <label for="taxa_resfriamento" class="mb-0 mt-1" >Taxa de Resfriamento (ºC):</label>
-                <input type="number" step="0.01" class="form-control" id="taxa_resfriamento" placeholder="Taxa de Resfriamento" name="taxa_resfriamento">                     
+                <label for="taxa_resfriamento" class="mb-0 mt-1" >Taxa de Resfriamento: <small class="text-muted">(em ºC/h)</small></label>
+                <div class="input-group">
+                    <input type="number" step="0.01" class="form-control" id="taxa_resfriamento" placeholder="Taxa de Resfriamento" name="taxa_resfriamento">                     
+                    <div class="input-group-append">
+                        <div class="input-group-text">ºC/h</div>
+                    </div>     
+                </div>
             </div>
         </div>    
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaPosAquecimento()">Continuar</a>                                   
