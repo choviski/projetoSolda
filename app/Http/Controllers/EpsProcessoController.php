@@ -107,7 +107,7 @@ class EpsProcessoController extends Controller
         return response()->json([
             'id' => $caracteristicas_eletricas->id,
             'processo_id' => $caracteristicas_eletricas->processo->id,
-            'processo_nome' => $caracteristicas_eletricas->processo->nome
+            'processo_nome' => $caracteristicas_eletricas->processo->qual_processo
         ]);
     }
 

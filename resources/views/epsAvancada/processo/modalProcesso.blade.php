@@ -17,13 +17,13 @@
                         @csrf                           
                         <div class="form-row">
                             <input type="hidden" id="id_processo" name="id_processo">
-                            <div class="form-col col-6">
-                                <label for="nome" class="mb-0 mt-1">Nome:</label>
-                                <input type="text" class="form-control" id="nome" placeholder="Processo utilizado" name="nome">                     
-                            </div>
-                            <div class="form-col col-6">
+                            <div class="form-col col-12">
                                 <label for="tipo" class="mb-0 mt-1" >Tipo:</label>
-                                <input type="text" class="form-control" id="tipo" placeholder="Manual, Automático ou Semiautomático" name="tipo">                     
+                                <select class="form-select" name="tipo" id="tipo" >
+                                    <option selected value="Manual">Manual</option>
+                                    <option value="Automático">Automático</option>
+                                    <option value="Semiautomático">Semiautomático</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-row">
