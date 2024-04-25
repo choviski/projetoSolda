@@ -17,7 +17,7 @@
     <thead>
     <tr>
         <th colspan="12" class="titulo">
-            METAIS DE BASE {{($processo->materiaisBases[0]->artigo) ? '('.$processo->materiaisBases[0]->artigo.')':''}}
+            METAIS DE BASE {{($processo->materiaisBases[0]->artigo) ? '('.strtoupper($processo->materiaisBases[0]->artigo).')':''}}
         </th>
     </tr>
     </thead>
@@ -49,24 +49,29 @@
     </tr>
     <tr>
         <td colspan="4">METAL BASE</td>
-        <td colspan="4">CHANFRO:
-            <b>{{$processo->materiaisBases[0]->chanfro}} {{$processo->materiaisBases[0]->unidade_medida_chanfro}}</b>
-        </td>
-        <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td>
+        <td colspan="4"></td>
+        {{-- <td colspan="4">ESPESSURA:
+            <b>{{$processo->junta->cota_t}} mm</b>
+        </td> --}}
+        {{-- <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td> --}}
+        <td colspan="4"></td>
     </tr>
     @if($processo->materiaisBases[0]->tubo_ou_chapa == 'Tubo')
         <tr>
             <td colspan="4">FAIXA DE DIÂMETRO TUBOS</td>
-            <td colspan="4">CHANFRO: <b>{{$processo->materiaisBases[0]->diametro_interno_tubo}}
+            <td colspan="4">ESPESSURA: <b>{{$processo->materiaisBases[0]->diametro_interno_tubo}}
                     a {{$processo->materiaisBases[0]->diametro_externo_tubo}}
-                    ,{{$processo->materiaisBases[0]->unidade_medida_chanfro}} </b></td>
-            <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td>
+                    mm </b></td>
+            {{-- <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td> --}}
+        
+            <td colspan="4"></td>
         </tr>
     @else
         <tr>
-            <td colspan="4">ESPESSUDA DA CHAPA</td>
-            <td colspan="4">ESPESSURA: <b>{{$processo->materiaisBases[0]->espessura}}mm</b></td>
-            <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td>
+            <td colspan="4">ESPESSURA DA CHAPA</td>
+            <td colspan="4">ESPESSURA: <b>{{$processo->junta->cota_t}} mm</b></td>
+            {{-- <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td> --}}
+            <td colspan="4"></td>
         </tr>
     @endif
     <!-- Ignorar por enquanto.
