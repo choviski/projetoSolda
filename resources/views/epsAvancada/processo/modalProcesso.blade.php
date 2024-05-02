@@ -80,7 +80,8 @@
             success: function(data) {
                 $("#id_processo_"+qtdProcessos).val(data["id"]);
                 $('input[name="id_processo"]').val(data["id"]);
-                mostraAba("junta");
+                //mostraAba("junta");
+                mostraAba("gas");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('ERRO! Verifique se os campos estão preenchidos corretamente');

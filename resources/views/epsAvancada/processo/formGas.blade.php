@@ -15,13 +15,20 @@
             </div>
             <div class="form-col col-6">
                 <label for="composicao" class="mb-0 mt-1" >Composição:</label>
-                <input type="number" step="0.01" class="form-control" id="composicao" placeholder="Composição" name="composicao">                     
+                <input type="text"  class="form-control" id="composicao" placeholder="Composição" name="composicao">                     
             </div>
-        </div> 
-
-        <label for="vazao" class="mb-0 mt-1">Vazão:</label>
-        <input type="text" class="form-control" id="vazao" placeholder="Vazão" name="vazao">                     
-     
+        </div>
+        
+        <div class="form-row">
+            <label for="vazao" class="mb-0 mt-1">Vazão: <small class="text-muted">(em L/min)</small></label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="vazao" placeholder="Vazão" name="vazao">                     
+                <div class="input-group-append">
+                    <div class="input-group-text">L/min</div>
+                </div>     
+            </div>
+        </div>
+        
         <div class="form-row">
             <div class="form-col col-6">     
                 <label for="possui_purga" class="mb-0 mt-1">Possui Purga?</label>
@@ -47,11 +54,16 @@
         <div class="form-row">                      
             <div class="form-col col-6">
                 <label for="composicao_purga" class="mb-0 mt-1" >Composição da Purga:</label>
-                <input type="number"  step="0.01" class="form-control" id="composicao_purga" placeholder="Composição da Purga" name="composicao_purga">                     
+                <input type="text"   class="form-control" id="composicao_purga" placeholder="Composição da Purga" name="composicao_purga">                     
             </div>
             <div class="form-col col-6">
-                <label for="vazao_purga" class="mb-0 mt-1" >Vazão da Purga:</label>
-                <input type="number"  step="0.01" class="form-control" id="vazao_purga" placeholder="Vazão da purga" name="vazao_purga">                     
+                <label for="vazao_purga" class="mb-0 mt-1" >Vazão da Purga: <small class="text-muted">(em L/min)</small></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="vazao_purga" placeholder="Vazão da purga" name="vazao_purga">                     
+                    <div class="input-group-append">
+                        <div class="input-group-text">L/min</div>
+                    </div>  
+                </div>
             </div>
         </div>           
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaGas()">Continuar</a>                                   
