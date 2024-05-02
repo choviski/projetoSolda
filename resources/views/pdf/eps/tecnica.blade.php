@@ -41,7 +41,7 @@
             <b>{{$eps->informacaoTecnica->eletrodo}}</b>
         </td>
         <td>ESPAÇAMENTO ENTRE ELETRODOS:
-            <b>{{$eps->informacaoTecnica->espacamento_eletrodo}}{{$eps->informacaoTecnica->unidade_medida_espacamento}}</b>
+            <b>{{$eps->informacaoTecnica->espacamento_eletrodo}} mm</b>
         </td>
       </tr>
       <tr>
@@ -49,12 +49,12 @@
             <b>{{$eps->informacaoTecnica->processo_termico}}</b>
         </td>
         <td>DIÂMETRO BOCAL DE GAS:
-            <b>>{{$eps->informacaoTecnica->diametro_bocal}}{{$eps->informacaoTecnica->unidade_medida_bocal}}</b>
+            <b>>{{$eps->informacaoTecnica->diametro_bocal}} mm</b>
         </td>
       </tr>
       <tr>
         <td colspan="2">PASSES SIMPLES OU MÚLTIPLOS:
-            <b>{{$eps->informacaoTecnica->tipo_passe}}</b>
+            <b>{{$eps->informacaoTecnica->passes_simples_multiplos}}</b>
         </td>
       </tr>
       <tr>
