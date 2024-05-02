@@ -58,23 +58,23 @@
                 <label>Camada <small class="text-muted">(todas)</small></label>
                 <hr class="m-0">
                 <div class="form-col p-0 col-12">
-                    <label for="camada_raiz_amperes_li" class="mb-0 mt-1">Amperes:</label>
+                    <label for="camada_todas_amperes_li" class="mb-0 mt-1">Amperes:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_raiz_amperes_li" placeholder="A" name="camada_raiz_amperes_li">                     
+                        <input type="text" class="form-control" id="camada_todas_amperes_li" placeholder="A" name="camada_todas_amperes_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div>  
-                        <input type="text" class="form-control" id="camada_raiz_amperes_ls" placeholder="A" name="camada_raiz_amperes_ls">                     
+                        <input type="text" class="form-control" id="camada_todas_amperes_ls" placeholder="A" name="camada_todas_amperes_ls">                     
                     </div>
                 </div>
                 <div class="form-col  p-0 col-12">
-                    <label for="volts" class="mb-0 mt-1" >Volts:</label>
+                    <label for="camada_todas_volts_li" class="mb-0 mt-1" >Volts:</label>
                     <div class="input-group">
-                        <input type="text"  class="form-control" id="camada_raiz_volts_li" placeholder="V" name="camada_raiz_volts_li">                     
+                        <input type="text"  class="form-control" id="camada_todas_volts_li" placeholder="V" name="camada_todas_volts_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div> 
-                        <input type="text"  class="form-control" id="camada_raiz_volts_ls" placeholder="V" name="camada_raiz_volts_ls">                     
+                        <input type="text"  class="form-control" id="camada_todas_volts_ls" placeholder="V" name="camada_todas_volts_ls">                     
                     </div>
                 </div>
             </div>

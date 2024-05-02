@@ -37,7 +37,7 @@
           <th>PROTEÇÃO</th>
           <th>{{$processo->gas->gas_protecao}}</th>
           <th>{{$processo->gas->composicao}}</th>
-          <th>{{$processo->gas->vazao}} t/min</th>
+          <th>{{$processo->gas->vazao}} L/min</th>
         </tr>
         <tr>
             <td colspan="2">TEMPO DE PERMANÊNCIA:</td>
@@ -45,7 +45,7 @@
             <th>PURGA</th>
             <th>{{$processo->gas->purga}}</th>
             <th>{{$processo->gas->composicao_purga}}</th>
-            <th>{{$processo->gas->vazao_purga}} t/min</th>
+            <th>{{$processo->gas->vazao_purga}} L/min</th>
         </tr>
         <tr>
             <td colspan="2">TAXA DE RESFRIAMENTO:</td>

@@ -86,16 +86,16 @@
         <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
         <th class="borda" >
-          {{$processo->caracteristicasEletricas->camada_raiz_amperes_li}} a {{$processo->caracteristicasEletricas->camada_raiz_amperes_ls}}
+          {{$processo->caracteristicasEletricas->camada_todas_amperes_li}} a {{$processo->caracteristicasEletricas->camada_todas_amperes_ls}}
         </th>
         <th class="borda">
-          {{$processo->caracteristicasEletricas->camada_raiz_volts_li}} a {{$processo->caracteristicasEletricas->camada_raiz_volts_ls}}
+          {{$processo->caracteristicasEletricas->camada_todas_volts_li}} a {{$processo->caracteristicasEletricas->camada_todas_volts_ls}}
         </th>
         <th class="borda" >>= {{$processo->caracteristicasEletricas->velocidade}}</th>
         <th class="borda" >
           {{
-            number_format(((($processo->caracteristicasEletricas->camada_raiz_amperes_li + $processo->caracteristicasEletricas->camada_raiz_amperes_ls)/2)*
-            (($processo->caracteristicasEletricas->camada_raiz_volts_li + $processo->caracteristicasEletricas->camada_raiz_volts_ls)/2))/
+            number_format(((($processo->caracteristicasEletricas->camada_todas_amperes_li + $processo->caracteristicasEletricas->camada_todas_amperes_ls)/2)*
+            (($processo->caracteristicasEletricas->camada_todas_volts_li + $processo->caracteristicasEletricas->camada_todas_volts_ls)/2))/
             $processo->caracteristicasEletricas->velocidade,2, ',', '')
           }}
         </th>
