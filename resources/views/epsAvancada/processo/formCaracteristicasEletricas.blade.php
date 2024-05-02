@@ -20,49 +20,154 @@
             </div>
             <div class="form-col col-6">
                 <label for="polaridade" class="mb-0 mt-1" >Polaridade:</label>
-                <input type="number" step="0.01" class="form-control" id="polaridade" placeholder="Polaridade" name="polaridade">                     
+                <select type="number" step="0.01" class="form-select" id="polaridade" placeholder="Polaridade" name="polaridade">
+                    <option value="Direta">Direta</option>
+                    <option value="Inversa">Inversa</option>
+                </select>                     
             </div>
         </div>
         <div class="form-row">
-            <div class="form-col col-12">
+            <div class="form-col col-6">
                 <label for="modo_transferencia" class="mb-0 mt-1">Modo de transferência:</label>
                 <select class="form-select" id="modo_transferencia" name="modo_transferência" disabled>
-                    <option selected disabled>Escolha a forma de transferência</option>
+                    <option selected disabled>Escolha o modo de transferência</option>
                     <option value="curto_circuito">Curto-circuito</option>
                     <option value="spray">Spray</option>
                     <option value="globular">Globular</option>
                     <option value="pulsada">Pulsada</option>
                 </select> 
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-col col-6">
-                <label for="amperes" class="mb-0 mt-1">Amperes:</label>
-                <input type="number" step="0.01" class="form-control" id="amperes" placeholder="Amperes" name="amperes">                     
-            </div>
-            <div class="form-col col-6">
-                <label for="volts" class="mb-0 mt-1" >Volts:</label>
-                <input type="number" step="0.01" class="form-control" id="volts" placeholder="Volts" name="volts">                     
-            </div>
-        </div>
-        <div class="form-row">
+            </div>            
             <div class="form-col col-6">
                 <label for="velocidade" class="mb-0 mt-1">Velocidade:</label>
                 <input type="number" step="0.01" class="form-control" id="velocidade" placeholder="Velocidade" name="velocidade">                     
             </div>
-            <div class="form-col col-6">
+        </div>
+        
+        <div class="form-row">
+            <div class="form-col col-12">
                 <label for="camada" class="mb-0 mt-1">Camada:</label>
-                <input type="text" class="form-control" id="camada" placeholder="Camada" name="camada">                     
+                <select type="text" class="form-select" id="camada" placeholder="Camada" name="camada"> 
+                    <option value="simples" selected>Simples</option>
+                    <option value="detalhada">Detalhada</option>
+                </select>                    
             </div>
-        </div>     
+        </div> 
+
+        <div class="form-row mt-1 m-0" id="camada-simples">
+            <div class="col-12 border rounded p-2 m-0 mt-1">
+                <label>Camada <small class="text-muted">(todas)</small></label>
+                <hr class="m-0">
+                <div class="form-col p-0 col-12">
+                    <label for="camada_raiz_amperes_li" class="mb-0 mt-1">Amperes:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="camada_raiz_amperes_li" placeholder="A" name="camada_raiz_amperes_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div>  
+                        <input type="text" class="form-control" id="camada_raiz_amperes_ls" placeholder="A" name="camada_raiz_amperes_ls">                     
+                    </div>
+                </div>
+                <div class="form-col  p-0 col-12">
+                    <label for="volts" class="mb-0 mt-1" >Volts:</label>
+                    <div class="input-group">
+                        <input type="text"  class="form-control" id="camada_raiz_volts_li" placeholder="V" name="camada_raiz_volts_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div> 
+                        <input type="text"  class="form-control" id="camada_raiz_volts_ls" placeholder="V" name="camada_raiz_volts_ls">                     
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <div class="form-row  mt-1 m-0" id="camada-detalhada" style="display: none">
+            <div class="col-4 border rounded p-2 m-0 mt-1">
+                <label><small class="text-muted">Camada raiz</small></label>                
+                <hr class="m-0">
+                <div class="form-col p-0 col-12">
+                    <label for="camada_raiz_amperes_li" class="mb-0 mt-1">Amperes:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="camada_raiz_amperes_li" placeholder="A" name="camada_raiz_amperes_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div>  
+                        <input type="text" class="form-control" id="camada_raiz_amperes_ls" placeholder="A" name="camada_raiz_amperes_ls">                     
+                    </div>
+                </div>
+                <div class="form-col  p-0 col-12">
+                    <label for="camada_raiz_volts_li" class="mb-0 mt-1" >Volts:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="camada_raiz_volts_li" placeholder="V" name="camada_raiz_volts_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div> 
+                        <input type="text" class="form-control" id="camada_raiz_volts_ls" placeholder="V" name="camada_raiz_volts_ls">                     
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 border rounded p-2 m-0 mt-1">
+                <label><small class="text-muted">Camada acabamento</small></label>
+                <hr class="m-0">
+                <div class="form-col p-0 col-12">
+                    <label for="camada_acabamento_amperes_li" class="mb-0 mt-1">Amperes:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="camada_acabamento_amperes_li" placeholder="A" name="camada_acabamento_amperes_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div>  
+                        <input type="text" class="form-control" id="camada_acabamento_amperes_ls" placeholder="A" name="camada_acabamento_amperes_ls">                     
+                    </div>
+                </div>
+                <div class="form-col  p-0 col-12">
+                    <label for="camada_acabamento_volts_li" class="mb-0 mt-1" >Volts:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="camada_acabamento_volts_li" placeholder="V" name="camada_acabamento_volts_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div> 
+                        <input type="text" class="form-control" id="camada_acabamento_volts_ls" placeholder="V" name="camada_acabamento_volts_ls">                     
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 border rounded p-2 m-0 mt-1">
+                <label><small class="text-muted">Camada enchimento</small></label>
+                <hr class="m-0">
+                <div class="form-col p-0 col-12">
+                    <label for="camada_enchimento_amperes_li" class="mb-0 mt-1">Amperes:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="camada_enchimento_amperes_li" placeholder="A" name="camada_enchimento_amperes_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div>  
+                        <input type="text"class="form-control" id="camada_enchimento_amperes_ls" placeholder="A" name="camada_enchimento_amperes_ls">                     
+                    </div>
+                </div>
+                <div class="form-col  p-0 col-12">
+                    <label for="camada_enchimento_volts_li" class="mb-0 mt-1" >Volts:</label>
+                    <div class="input-group">
+                        <input type="text"  class="form-control" id="camada_enchimento_volts_li" placeholder="V" name="camada_enchimento_volts_li">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">a</div>
+                        </div> 
+                        <input type="text" class="form-control" id="camada_enchimento_volts_ls" placeholder="V" name="camada_enchimento_volts_ls">                     
+                    </div>
+                </div>
+            </div>
+        </div>  
+
         <div class="form-row">
             <div class="form-col col-6">
-                <label for="diametro_eletrodo_tig" class="mb-0 mt-1">Diâmetro do Eletredo TIG:</label>
-                <input type="number" step="0.01"  class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo TIG" name="diametro_eletrodo_tig">                     
+                <label for="diametro_eletrodo_tig" class="mb-0 mt-1">Diâmetro do eletredo tungstênio: <small class="text-muted">(em mm)</small></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="diametro_eletrodo_tig" placeholder="Diâmetro do Eletredo tungstênio" name="diametro_eletrodo_tig">                     
+                    <div class="input-group-append">
+                        <div class="input-group-text">mm</div>
+                    </div> 
+                </div>
             </div>
             <div class="form-col col-6">
-                <label for="classificacao_consumivel_tig" class="mb-0 mt-1">Classificação do Consumível TIG:</label>
-                <input type="text" class="form-control"  id="classificacao_consumivel_tig" placeholder="Classificação do Consumível TIG" name="classificacao_consumivel_tig">                     
+                <label for="classificacao_consumivel_tig" class="mb-0 mt-1">Composição do consumível de tungstênio:</label>
+                <input type="text" class="form-control"  id="classificacao_consumivel_tig" placeholder="Composição do consumível de tungstênio" name="classificacao_consumivel_tig">                     
             </div>
         </div>         
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
@@ -76,6 +181,16 @@
             $('#modo_transferencia').prop('disabled', false);
         } else {           
             $('#modo_transferencia').prop('disabled', true);
+        }
+    });
+
+    $('#camada').change(function(){
+        if ($(this).val() == "simples") {   
+            $('#camada-simples').css('display', 'block');
+            $('#camada-detalhada').css('display', 'none');
+        } else {          
+            $('#camada-detalhada').css('display', 'flex');
+            $('#camada-simples').css('display', 'none');
         }
     });
 

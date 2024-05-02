@@ -68,6 +68,7 @@
         <td colspan="2" class="borda" >CORRENTE</td>
         <td rowspan="2" class="borda" >TENSÃO (V)</td>
         <td rowspan="2" class="borda" >VELOCIDADE (cm/min)</td>
+        <td rowspan="2" class="borda" >Energia</td>
       </tr>
       <tr class="text-small" >
         <td class="borda" >CLASSE</th>
@@ -77,15 +78,92 @@
       </tr>
     </thead>
     <tbody >
+    @if($processo->caracteristicasEletricas->camada=="simples")    
       <tr>
-        <th class="borda" >{{$processo->caracteristicasEletricas->camada}}</th>
+        <th class="borda" >Todas</th>
         <th class="borda" >TIG</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
-        <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}}{{$processo->caracteristicasEletricas->polaridade}}</th>
-        <th class="borda" >{{$processo->caracteristicasEletricas->amperes}}</th>
-        <th class="borda" >{{$processo->caracteristicasEletricas->volts}}</th>
+        <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
+        <th class="borda" >
+          {{$processo->caracteristicasEletricas->camada_raiz_amperes_li}} a {{$processo->caracteristicasEletricas->camada_raiz_amperes_ls}}
+        </th>
+        <th class="borda">
+          {{$processo->caracteristicasEletricas->camada_raiz_volts_li}} a {{$processo->caracteristicasEletricas->camada_raiz_volts_ls}}
+        </th>
         <th class="borda" >>= {{$processo->caracteristicasEletricas->velocidade}}</th>
-      </tr>
+        <th class="borda" >
+          {{
+            number_format(((($processo->caracteristicasEletricas->camada_raiz_amperes_li + $processo->caracteristicasEletricas->camada_raiz_amperes_ls)/2)*
+            (($processo->caracteristicasEletricas->camada_raiz_volts_li + $processo->caracteristicasEletricas->camada_raiz_volts_ls)/2))/
+            $processo->caracteristicasEletricas->velocidade,2, ',', '')
+          }}
+        </th>
+      </tr>      
+    @else
+    <tr>
+      <th class="borda" >Raiz</th>
+      <th class="borda" >TIG</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
+      <th class="borda" >
+        {{$processo->caracteristicasEletricas->camada_raiz_amperes_li}} a {{$processo->caracteristicasEletricas->camada_raiz_amperes_ls}}
+      </th>
+      <th class="borda">
+        {{$processo->caracteristicasEletricas->camada_raiz_volts_li}} a {{$processo->caracteristicasEletricas->camada_raiz_volts_ls}}
+      </th>
+      <th class="borda" >>= {{$processo->caracteristicasEletricas->velocidade}}</th>
+      <th class="borda" >
+        {{
+          number_format(((($processo->caracteristicasEletricas->camada_raiz_amperes_li + $processo->caracteristicasEletricas->camada_raiz_amperes_ls)/2)*
+          (($processo->caracteristicasEletricas->camada_raiz_volts_li + $processo->caracteristicasEletricas->camada_raiz_volts_ls)/2))/
+          $processo->caracteristicasEletricas->velocidade,2, ',', '')
+        }}
+      </th>
+    </tr>
+    <tr>
+      <th class="borda" >Acabamento</th>
+      <th class="borda" >TIG</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
+      <th class="borda" >
+        {{$processo->caracteristicasEletricas->camada_acabamento_amperes_li}} a {{$processo->caracteristicasEletricas->camada_acabamento_amperes_ls}}
+      </th>
+      <th class="borda">
+        {{$processo->caracteristicasEletricas->camada_acabamento_volts_li}} a {{$processo->caracteristicasEletricas->camada_acabamento_volts_ls}}
+      </th>
+      <th class="borda" >>= {{$processo->caracteristicasEletricas->velocidade}}</th>
+      <th class="borda" >
+        {{
+          number_format(((($processo->caracteristicasEletricas->camada_acabamento_amperes_li + $processo->caracteristicasEletricas->camada_acabamento_amperes_ls)/2)*
+          (($processo->caracteristicasEletricas->camada_acabamento_volts_li + $processo->caracteristicasEletricas->camada_acabamento_volts_ls)/2))/
+          $processo->caracteristicasEletricas->velocidade,2, ',', '')
+        }}
+      </th>
+    </tr> 
+    <tr>
+      <th class="borda" >Enchimento</th>
+      <th class="borda" >TIG</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
+      <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
+      <th class="borda" >
+        {{$processo->caracteristicasEletricas->camada_enchimento_amperes_li}} a {{$processo->caracteristicasEletricas->camada_enchimento_amperes_ls}}
+      </th>
+      <th class="borda">
+        {{$processo->caracteristicasEletricas->camada_enchimento_volts_li}} a {{$processo->caracteristicasEletricas->camada_enchimento_volts_ls}}
+      </th>
+      <th class="borda" >>= {{$processo->caracteristicasEletricas->velocidade}}</th>
+      <th class="borda" >
+        {{
+          number_format(((($processo->caracteristicasEletricas->camada_enchimento_amperes_li + $processo->caracteristicasEletricas->camada_enchimento_amperes_ls)/2)*
+          (($processo->caracteristicasEletricas->camada_enchimento_volts_li + $processo->caracteristicasEletricas->camada_enchimento_volts_ls)/2))/
+          $processo->caracteristicasEletricas->velocidade,2, ',', '')
+        }}
+      </th>
+    </tr>      
+    @endif
     </tbody>
 </table>
