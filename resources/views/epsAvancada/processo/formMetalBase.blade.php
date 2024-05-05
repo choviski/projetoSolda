@@ -35,23 +35,13 @@
             <div class="form-row">
                 <div class="form-col col-6">
                     <label for="tipo_grau" class="mb-0 mt-1" >Tipo Grau:</label>
-                    <input type="number" step="0.01" class="form-control" id="tipo_grau" placeholder="Tipo Grau" name="tipo_grau">                     
+                    <input type="text"  class="form-control" id="tipo_grau" placeholder="Tipo Grau" name="tipo_grau">                     
                 </div>
                 <div class="form-col col-6">
                     <label for="metal_base" class="mb-0 mt-1">Metal Base:</label>
-                    <input type="number" step="0.01" class="form-control" id="metal_base" placeholder="Metal Base F" name="metal_base">                     
+                    <input type="text" class="form-control" id="metal_base" placeholder="Metal Base" name="metal_base">                     
                 </div>                       
             </div>
-            <div class="form-row">
-                <div class="form-col col-6">
-                    <label for="chanfro" class="mb-0 mt-1">Chanfro:</label>
-                    <input type="number" step="0.01" class="form-control" id="chanfro" placeholder="Chanfro" name="chanfro">                     
-                </div>
-                <div class="form-col col-6">
-                    <label for="unidade_medida_chanfro" class="mb-0 mt-1">Unidade de Medida do Chanfro:</label>
-                    <input type="text" class="form-control" id="unidade_medida_chanfro" placeholder="Unidade de Medida do Chanfro" name="unidade_medida_chanfro">                     
-                </div>                       
-            </div> 
             <div class="form-row">
                 <div class="form-col col-12">     
                     <label for="tubo_ou_chapa" class="mb-0 mt-1">Tubo ou Chapa?</label>
@@ -70,21 +60,25 @@
                 </div>                       
             </div>
             <div class="form-row" id="metal-base-tubo" style="display:flex">                    
-                <div class="form-col col-6">
-                    <label for="diametro_interno_tubo" class="mb-0 mt-1">Diâmetro Interno do tubo:</label>
-                    <input type="number" step="0.01" class="form-control" id="diametro_interno_tubo" placeholder="Diâmetro Interno do tubo" name="diametro_interno_tubo">                     
+                <div class="form-col col-12">  
+                    <label for="diametro_interno_tubo" class="mb-0 mt-1">Diâmetro Interno do tubo: <small class="text-muted">(em mm)</small></label>
+                    <div class="input-group">
+                        <input type="number" step="0.01" class="form-control" id="diametro_interno_tubo" placeholder="Diâmetro Interno do tubo" name="diametro_interno_tubo">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">mm</div>
+                        </div>                     
+                    </div>   
                 </div> 
-                <div class="form-col col-6">
-                    <label for="diametro_externo_tubo" class="mb-0 mt-1">Diâmetro Externo do tubo:</label>
-                    <input type="number" step="0.01" class="form-control" id="diametro_externo_tubo" placeholder="Diâmetro Externo do tubo" name="diametro_externo_tubo">                     
+                <div class="form-col col-12">
+                    <label for="diametro_externo_tubo" class="mb-0 mt-1">Diâmetro Externo do tubo: <small class="text-muted">(em mm)</small></label>
+                    <div class="input-group">
+                        <input type="number" step="0.01" class="form-control" id="diametro_externo_tubo" placeholder="Diâmetro Externo do tubo" name="diametro_externo_tubo">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">mm</div>
+                        </div> 
+                    </div> 
                 </div> 
             </div>
-            <div class="form-row" id="metal-base-chapa" style="display: none">     
-                <div class="form-col col-12">
-                    <label for="espessura" class="mb-0 mt-1">Espessura da chapa:</label>
-                    <input type="number" step="0.01" class="form-control" id="espessura" placeholder="Espessura da chapa" name="espessura">                     
-                </div> 
-            </div>   
             <a class="btn btn-block btn-primary mt-2" id="botao-adicionar-material-base" onclick="adicionaMetalBase()">Adicionar Metal Base</a>                                   
             <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraListagemMetalBase()">Voltar</a>                                                      
         </form>
@@ -95,10 +89,8 @@
     $('input[name="tubo_ou_chapa"]').change(function(){
         if ($(this).val() == "Tubo") {
             $('#metal-base-tubo').css('display','flex');
-            $('#metal-base-chapa').css('display','none');
         } else if ($(this).val() == "Chapa") {           
             $('#metal-base-tubo').css('display','none');
-            $('#metal-base-chapa').css('display','flex');
         }
     });
 

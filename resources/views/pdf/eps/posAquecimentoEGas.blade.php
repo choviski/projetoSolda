@@ -15,17 +15,17 @@
     <thead>
       <tr>
         <th colspan="4" class="divisao-tabelas titulo" >
-          TRAT. APÓS SOLDAGEM {{($processo->posAquecimento->artigo) ? '('.$processo->posAquecimento->artigo.')':''}}
+          TRAT. APÓS SOLDAGEM {{($processo->posAquecimento->artigo) ? '('.strtoupper($processo->posAquecimento->artigo).')':''}}
         </th>
         <th colspan="4" class="titulo">
-          GÁS {{($processo->gas->artigo) ? '('.$processo->gas->artigo.')':''}}
+          GÁS {{($processo->gas->artigo) ? '('.strtoupper($processo->gas->artigo).')':''}}
         </th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td colspan="2">FAIXA DE TEMPERATURA:</td>
-          <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->faixa_temperatura}}</th>
+          <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->faixa_temperatura}} ºC</th>
           <td></td>
           <th>GÁS(ES)</th>
           <th>COMPOSIÇÃO</th>
@@ -33,23 +33,23 @@
         </tr>
         <tr>
           <td colspan="2">TAXA DE AQUECIMENTO:</td>
-          <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->taxa_aquecimento}}</th>
+          <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->taxa_aquecimento}} ºC/h</th>
           <th>PROTEÇÃO</th>
           <th>{{$processo->gas->gas_protecao}}</th>
           <th>{{$processo->gas->composicao}}</th>
-          <th>{{$processo->gas->vazao}} t/min</th>
+          <th>{{$processo->gas->vazao}} L/min</th>
         </tr>
         <tr>
             <td colspan="2">TEMPO DE PERMANÊNCIA:</td>
-            <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->tempo_permanencia}}</th>
+            <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->tempo_permanencia}} min</th>
             <th>PURGA</th>
             <th>{{$processo->gas->purga}}</th>
             <th>{{$processo->gas->composicao_purga}}</th>
-            <th>{{$processo->gas->vazao_purga}} t/min</th>
+            <th>{{$processo->gas->vazao_purga}} L/min</th>
         </tr>
         <tr>
             <td colspan="2">TAXA DE RESFRIAMENTO:</td>
-            <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->taxa_resfriamento}}</th>
+            <th colspan="2" class="divisao-tabelas">{{$processo->posAquecimento->taxa_resfriamento}} ºC/h</th>
             <th>ARRASTE</th>
             <th>N/A</th>
             <th>N/A</th>

@@ -15,7 +15,6 @@ class EpsProcesso extends Model
     protected $table = 'eps_processos';
 
     protected $fillable = [
-        'nome',
         'tipo',
         'qual_processo',
         'eps_gas_id',

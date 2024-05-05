@@ -15,7 +15,9 @@ class Junta extends Model
     protected $fillable = [
         'imagem',
         'artigo',
-        'unidade_medida_cotas',
+        'necessidade_remocao_retentor',
+        'necessidade_remocao_cobre_junta',
+        'qtd_angulos',
         'cota_t',
         'cota_r',
         'cota_f',

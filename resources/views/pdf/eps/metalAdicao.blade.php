@@ -20,7 +20,7 @@
     <thead>
       <tr>
         <th colspan="4" class="titulo">METAIS DE ADIÇÃO 
-          {{($metal->artigo) ? '('.$metal->artigo.')':''}}
+          {{($metal->artigo) ? '('.strtoupper($metal->artigo).')':''}}
         </th>
       </tr>
     </thead>
@@ -44,16 +44,18 @@
         <th>{{$metal->forma_consumivel}}</th> <!-- LÁ ELEKkkkkj -->
       </tr>
       <tr>
-        <td>BITOLA METAIS ADIÇÃO (mm):</td>  <!-- (diametro_consumivel ?) -->
-        <th>ø {{$metal->diametro_consumivel}}</th>
+        <td>BITOLA METAIS ADIÇÃO:</td>  <!-- (diametro_consumivel ?) -->
+        <th>ø {{$metal->diametro_consumivel}} mm</th>
         <td>INSERTO CONSUMÍVEL:</td>
         <th>sem</th>
       </tr>
       <tr> <!-- (? - Existe metal_depositado no banco mas n tem chanfro e nem angulo.) -->
-        <td>METAL DEPOSITADO <span style="font-size: 10px">(CHANFRO)</span>:</td>
-        <th> {{'<= '.$metal->metal_depositado}} mm </th>
-        <td>METAL DEPOSITADO  <span style="font-size: 10px">(ÂNGULO)</span>:</td>
-        <th>sem</th>
+        <td>METAL DEPOSITADO: </td>
+        <th> {{$metal->metal_depositado}} mm </th>
+        <td></td>
+        <td></td>
+        {{-- <td>METAL DEPOSITADO  <span style="font-size: 10px">(ÂNGULO)</span>:</td>
+        <th>sem</th> --}}
       </tr>
       <tr>
         <td colspan="1">METAL ADIÇÃO SUPLEMENTAR:</td>

@@ -33,13 +33,23 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-col col-6">
-                    <label for="diametro_consumivel" class="mb-0 mt-1" >Diâmetro do Consumível:</label>
-                    <input type="number" step="0.01" class="form-control" id="diametro_consumivel" placeholder="Diãmetro do Consumível" name="diametro_consumivel">                     
+                <div class="form-col col-12">
+                    <label for="diametro_consumivel" class="mb-0 mt-1" >Diâmetro do Consumível: <small class="text-muted">(em mm)</small></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="diametro_consumivel" placeholder="Diâmetro do Consumível" name="diametro_consumivel">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">mm</div>
+                        </div>  
+                    </div>
                 </div>
-                <div class="form-col col-6">
-                    <label for="material_depositado" class="mb-0 mt-1">Metal Depositado:</label>
-                    <input type="number" step="0.01" class="form-control" id="material_depositado" placeholder="Metal depositado" name="metal_depositado">                     
+                <div class="form-col col-12">
+                    <label for="material_depositado" class="mb-0 mt-1">Metal Depositado: <small class="text-muted">(em mm)</small></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="material_depositado" placeholder="Metal depositado" name="metal_depositado">                     
+                        <div class="input-group-append">
+                            <div class="input-group-text">mm</div>
+                        </div>  
+                    </div>  
                 </div>                       
             </div>
             <div class="form-row">
@@ -63,12 +73,6 @@
                     <input type="text" class="form-control" id="metal_suplementar" placeholder="Metal Suplementar" name="metal_suplementar">                     
                 </div>                       
             </div> 
-            <div class="form-row">
-                <div class="form-col col-12">
-                    <label for="marca_material" class="mb-0 mt-1">Marca do material</label>
-                    <input type="text" class="form-control" id="marca_material" placeholder="Marca do material" name="marca_material">                     
-                </div>
-            </div>
             <div class="form-row">                 
                 <div class="form-col col-12">
                     <label for="classificacao_aws" class="mb-0 mt-1">Classificação AWS/S.F.A:</label>
@@ -109,7 +113,7 @@
                 </div>                       
             </div>
             <div class="form-row">                 
-                <div class="form-col col-6">
+                <div class="form-col col-12">
                     <label for="forma_consumivel" class="mb-0 mt-1">Forma do Consumível:</label>
                     <select class="form-select" id="forma_consumivel" name="forma_consumivel">
                         <option selected disabled>Escolha a forma do consumível</option>
@@ -119,11 +123,7 @@
                         <option value="arames_tubulares">Arames tubulares</option>
                         <option value="arames_fitas">Arames fitas</option>
                     </select>  
-                </div> 
-                <div class="form-col col-6">
-                    <label for="marca_consumivel" class="mb-0 mt-1">Marca do consumivel</label>
-                    <input type="text" class="form-control" id="marca_consumivel" placeholder="Marca do consumivel" name="marca_consumivel">                     
-                </div>                      
+                </div>                     
             </div>
             <div class="form-row">                 
                 <div class="form-col col-6">
@@ -144,7 +144,13 @@
                         <option value="ceramica">Cerâmica</option>
                     </select>  
                 </div>                          
-            </div>    
+            </div> 
+            <div class="form-row">
+                <div class="form-col col-12">
+                    <label for="marca_material" class="mb-0 mt-1">Marca comercial</label>
+                    <input type="text" class="form-control" id="marca_material" placeholder="Marca comercial" name="marca_material">                     
+                </div>
+            </div>  
             <a class="btn btn-block btn-primary mt-2" id="botao-adicionar-metal" onclick="adicionaMetalAdicao()">Adicionar Metal de Adição</a>                                   
             <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraListagemMetalAdicao()">Voltar</a>                                                      
         </form>

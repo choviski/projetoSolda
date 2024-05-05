@@ -107,6 +107,23 @@ crossorigin="anonymous"></script>
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">EPS <i class="ml-2 fas fa-file-invoice"></i></h4>
                     <hr class="mt-0">
+
+                    <div class="form-row">
+                    @if($usuario->tipo==1)
+                        <div class="form-col col-12">
+                            <label for="id_empresa" class="mb-0 mt-1">Empresa:</label>
+                            <select class="form-select" id="id_empresa" name="id_empresa">
+                                <option value="" selected>Infosolda (Administrativo)</option>
+                                @foreach ($empresas as $empresa)
+                                    <option value={{$empresa->id}}">{{$empresa->nome_fantasia}} </option>
+                                @endforeach
+                            </select>                     
+                        </div>
+                    @else
+                        <input type="hidden" value="{{$usuario->empresa->id}}" name="id_empresa">
+                    @endif
+                    </div>
+
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="nome" class="mb-0 mt-1">Nome:</label>
@@ -172,7 +189,10 @@ crossorigin="anonymous"></script>
                         </div>
                         <div class="form-col col-6"> 
                             <label for="martelamento" class="mb-0 mt-1">Martelamento:</label>
-                            <input type="text" class="form-control mb-1" id="martelamento" placeholder="Martelamento" name="martelamento">                    
+                            <select type="text" class="form-select mb-1" id="martelamento" placeholder="Martelamento" name="martelamento">    
+                                <option value="Aplicável">Aplicável</option>
+                                <option value="N/A">N/A</option>
+                            </select>                
                         </div>
                     </div>
                   
@@ -180,32 +200,39 @@ crossorigin="anonymous"></script>
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="cordoes" class="mb-0 mt-1">Cordões:</label>
-                            <input type="text" class="form-control mb-1" id="cordoes" placeholder="Cordões" name="cordoes">                   
+                            <select type="text" class="form-select mb-1" id="cordoes" placeholder="Cordões" name="cordoes">   
+                                <option value="Retilineo">Retilineo</option>
+                                <option value="Oscilante">Oscilante</option>
+                            </select>                 
                         </div>
                         <div class="form-col col-6">   
                             <label for="eletrodo" class="mb-0 mt-1">Eletrodo:</label>
-                            <input type="text" class="form-control mb-1" id="eletrodo" placeholder="Eletrodo" name="eletrodo">   
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-col col-6">
-                            <label for="espacamento_eletrodo" class="mb-0 mt-1">Espaçamento entre eletrodos:</label>
-                            <input type="text" class="form-control mb-1" id="espacamento_eletrodo" placeholder="Espaçamento entre eletrodos:" name="espacamento_eletrodo">                     
-                        </div>
-                        <div class="form-col col-6">
-                            <label for="unidade_medida_espacamento" class="mb-0 mt-1" >Unidade de medida do espaçamento:</label>
-                            <input type="text" class="form-control mb-1" id="unidade_medida_espacamento" placeholder="Unidade de medida do espaçamento" name="unidade_medida_espacamento">                     
+                            <select type="text" class="form-select mb-1" id="eletrodo" placeholder="Eletrodo" name="eletrodo">
+                                <option value="Simples">Simples</option>
+                                <option value="Múltiplo">Múltiplo</option>
+                            </select>  
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col col-6">
-                            <label for="diametro_bocal" class="mb-0 mt-1">Diâmetro do bocal:</label>
-                            <input type="number" step="0.01" class="form-control mb-1" id="diametro_bocal" placeholder="Diâmetro do bocal:" name="diametro_bocal">                     
+                            <label for="diametro_bocal" class="mb-0 mt-1">Diâmetro do bocal: <small class="text-muted">(em mm)</small></label>
+                            <div class="input-group  mb-1">
+                                <input type="text" class="form-control" id="diametro_bocal" placeholder="Diâmetro do bocal" name="diametro_bocal">                     
+                                <div class="input-group-append">
+                                    <div class="input-group-text">mm</div>
+                                </div> 
+                            </div>
                         </div>
+                        
                         <div class="form-col col-6">
-                            <label for="unidade_medida_bocal" class="mb-0 mt-1" >Unidade de medida do bocal:</label>
-                            <input type="text" class="form-control mb-1" id="unidade_medida_bocal" placeholder="Unidade de medida do bocal" name="unidade_medida_bocal">                     
+                            <label for="espacamento_eletrodo" class="mb-0 mt-1">Espaçamento entre eletrodos: <small class="text-muted">(em mm)</small></label>
+                            <div class="input-group  mb-1">
+                                <input type="text" class="form-control" id="espacamento_eletrodo" placeholder="Espaçamento entre eletrodos" name="espacamento_eletrodo">                     
+                                <div class="input-group-append">
+                                    <div class="input-group-text">mm</div>
+                                </div> 
+                            </div>
                         </div>
                     </div>
 
@@ -213,16 +240,15 @@ crossorigin="anonymous"></script>
                         <div class="form-col col-6">
                             <label for="oscilacao" class="mb-0 mt-1">Oscilação:</label>
                             <select class="form-select" id="oscilacao" name="oscilacao">
-                                <option selected disabled>Escolha a forma de oscilação</option>
-                                <option value="retilinea">Retilinea</option>
-                                <option value="oscilante">Oscilante</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
                             </select> 
                         </div>
                         <div class="form-col col-6">
                             <label for="passes_simples_multiplos" class="mb-0 mt-1">Passes simples ou múltiplos:</label>
                             <select class="form-select" id="passes_simples_multiplos" name="passes_simples_multiplos">
-                                <option value="simples" selected>Simples</option>
-                                <option value="multplos">Múltiplos</option>
+                                <option value="Simples" selected>Simples</option>
+                                <option value="Múltiplos">Múltiplos</option>
                             </select> 
                         </div>
                     </div>
@@ -242,13 +268,9 @@ crossorigin="anonymous"></script>
                     </div>
 
                     <div class="form-row">
-                        <div class="form-col col-6">
+                        <div class="form-col col-12">
                             <label for="limpeza" class="mb-0 mt-1">Limpeza:</label>
                             <input type="text" class="form-control mb-1" id="limpeza" placeholder="Limpeza" name="limpeza">                   
-                        </div>
-                        <div class="form-col col-6">
-                            <label for="tipo_passe" class="mb-0 mt-1">Tipo de passe:</label>
-                            <input type="text" class="form-control mb-1" id="tipo_passe" placeholder="Tipo de passe" name="tipo_passe">   
                         </div>
                     </div>
                   

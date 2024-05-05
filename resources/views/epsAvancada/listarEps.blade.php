@@ -223,7 +223,7 @@
                 <span class="d-block">Processos</span>
                 @foreach($eps->processos as $processo)                
                     <span> - 
-                        <span class="badge badge-secondary w-fit">{{$processo->nome}}</span>
+                        <span class="badge badge-secondary w-fit">{{$processo->qual_processo}}</span>
                     </span>
                 @endforeach
             </div>

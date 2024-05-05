@@ -10,6 +10,7 @@ use Dompdf\Options;
 use App\EpsAvancada;
 use Illuminate\Http\Request;
 use App\Tecnico;
+use App\Empresa;
 
 class EpsAvancadaController extends Controller
 {
@@ -112,7 +113,8 @@ class EpsAvancadaController extends Controller
 
     public function cadastrarEpsAvancada(Request $request){
         $usuario = session()->get("Usuario");
-        return view("epsAvancada/cadastrarEps")->with(["usuario"=>$usuario]);
+        $empresas = Empresa::all();
+        return view("epsAvancada/cadastrarEps")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
     }
 
     public function armazenarEpsAvancada(Request $request){
@@ -121,28 +123,15 @@ class EpsAvancadaController extends Controller
         $tecnica = Tecnico::create($request->all());
 
         Log::info(print_r($usuario,true));
-
-        if($usuario->tipo==1){
-            $eps = EpsAvancada::create([
-                'nome'=>$request->nome,
-                'data'=>$request->data,
-                'norma'=>$request->norma,
-                'rqp'=>$request->rqp,
-                'notas'=>$request->notas,
-                'informacao_tecnica_id' => $tecnica->id,
-                'id_empresa' => null,
-            ]);
-        }else{
-            $eps = EpsAvancada::create([
-                'nome'=>$request->nome,
-                'data'=>$request->data,
-                'notas'=>$request->notas,
-                'norma'=>$request->norma,
-                'rqp'=>$request->rqp,
-                'informacao_tecnica_id' => $tecnica->id,
-                'id_empresa' => $usuario->empresa->id,
-            ]);
-        }
+        $eps = EpsAvancada::create([
+                    'nome'=>$request->nome,
+                    'data'=>$request->data,
+                    'norma'=>$request->norma,
+                    'rqp'=>$request->rqp,
+                    'notas'=>$request->notas,
+                    'informacao_tecnica_id' => $tecnica->id,
+                    'id_empresa' => $request->id_empresa,
+                ]);
 
         $processos = $request->input('processo_ids');
         $arrayProcessos = explode(",",$processos);
@@ -168,8 +157,8 @@ class EpsAvancadaController extends Controller
         // É preciso converter elas pra base64 e fazer toda essa maracutaia pra funcionar
         // Imagem da Empresa.
 
-        if($usuario->id_empresa) {
-            $path = public_path() . $usuario->empresa->foto;
+        if($eps->id_empresa) {
+            $path = public_path() . $eps->empresa->foto;
             $type = pathinfo($path, PATHINFO_EXTENSION);
             $data = file_get_contents($path);
             $empresa_image = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -179,17 +168,18 @@ class EpsAvancadaController extends Controller
             $data = file_get_contents($path);
             $empresa_image = 'data:image/' . $type . ';base64,' . base64_encode($data);
         }
-
         // Imagem da Junta.
         // Confesso que estou um cadinho confuso. Se uma EPS pode ter mais que um processo.
         // E cada processo tem uma junta. Como que fica? Qual imagem a gente coloca?
         // Na verdade eu nem sei como seria o layout de uma pdf de EPS com mais de um processo.
         // Mais uma dúvida que precisamos tirar com eles..
-        $path = public_path().$eps->processos[0]->junta->imagem;
+        $path = public_path() . "/" . $eps->processos[0]->junta->imagem;
+        //$path = public_path()  . $eps->processos[0]->junta->imagem;
         $type = pathinfo($path,PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
-
+        
+        
         $pdf = new Dompdf();
 
         $view = view('pdf.eps.eps',[
