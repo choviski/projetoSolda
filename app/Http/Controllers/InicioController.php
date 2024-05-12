@@ -12,6 +12,7 @@ use App\Qualificacao;
 use App\NormaQualificacao;
 use App\Processo;
 use App\Eps;
+use App\EpsAvancada;
 use App\Arquivo;
 use App\SoldadorQualificacao;
 use App\Usuario;
@@ -282,8 +283,11 @@ class InicioController extends Controller
         $soldador = $request->soldador;
         $empresa = $request->idEmpresa;
         $epss=Eps::where("id_empresa","=",$empresa)->where('criado','=',1)->get();
+        $epsAvancadas=EpsAvancada::where("id_empresa","=",$empresa)->get();
         $processos=Processo::all();
-        return view("requisitarQualificacao")->with(["usuario"=>$usuario,"soldador"=>$soldador,"empresa"=>$empresa,"epss"=>$epss,"processos"=>$processos]);
+        return view("requisitarQualificacao")->with(
+            ["usuario"=>$usuario,"soldador"=>$soldador,"empresa"=>$empresa,"epss"=>$epss,"processos"=>$processos,"epsAvancadas"=>$epsAvancadas]
+        );
     }
 
     public function salvandoRequisicao(Request $request){
@@ -373,7 +377,6 @@ class InicioController extends Controller
 
     public function salvandoRequisicaoQualificacao(Request $request){
         $usuario = session()->get("Usuario");
-
         //cadastrando norma
         $norma=new Norma();
         $norma->nome=$request->nome_norma;
@@ -382,6 +385,11 @@ class InicioController extends Controller
         $norma->save();
         //cadastrando qualificacao
         $qualificacao = new Qualificacao();
+        if($request->tipo_eps=='Avançada'){
+            $qualificacao->tipo_eps='App\EpsAvancada';
+        }else{
+            $qualificacao->tipo_eps='App\Eps';
+        }    
         $qualificacao->id_processo=$request->id_processo;
         $qualificacao->id_eps=$request->id_eps;
         $qualificacao->descricao=$request->descricao;
