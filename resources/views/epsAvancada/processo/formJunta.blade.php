@@ -99,22 +99,13 @@
             </div>                       
         </div>
         <div class="form-row">
-            <div class="form-col col-6">
+            <div class="form-col col-12">
                 <label for="retentores" class="mb-0 mt-1">Retentores:</label>
                 <select class="form-select" id="retentores" placeholder="Retentores" name="retentores">
                     <option value="0" selected>Não</option>
                     <option value="1">Sim</option>
                 </select>                     
-            </div>
-            <div class="form-col col-6">
-                <label for="abertura_raiz" class="mb-0 mt-1">Abertura da raiz: <small class="text-muted">(em mm)</small></label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="abertura_raiz" placeholder="Abertura da raiz" name="abertura_raiz">                     
-                    <div class="input-group-append">
-                        <div class="input-group-text">mm</div>
-                    </div>  
-                </div>  
-            </div>                       
+            </div>                      
         </div>
         <div class="form-row">
             

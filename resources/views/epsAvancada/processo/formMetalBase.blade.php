@@ -63,7 +63,7 @@
                 <div class="form-col col-12">  
                     <label for="diametro_interno_tubo" class="mb-0 mt-1">Diâmetro Interno do tubo: <small class="text-muted">(em mm)</small></label>
                     <div class="input-group">
-                        <input type="number" step="0.01" class="form-control" id="diametro_interno_tubo" placeholder="Diâmetro Interno do tubo" name="diametro_interno_tubo">                     
+                        <input type="text" class="form-control" id="diametro_interno_tubo" placeholder="Diâmetro Interno do tubo" name="diametro_interno_tubo">                     
                         <div class="input-group-append">
                             <div class="input-group-text">mm</div>
                         </div>                     
@@ -72,7 +72,7 @@
                 <div class="form-col col-12">
                     <label for="diametro_externo_tubo" class="mb-0 mt-1">Diâmetro Externo do tubo: <small class="text-muted">(em mm)</small></label>
                     <div class="input-group">
-                        <input type="number" step="0.01" class="form-control" id="diametro_externo_tubo" placeholder="Diâmetro Externo do tubo" name="diametro_externo_tubo">                     
+                        <input type="text" class="form-control" id="diametro_externo_tubo" placeholder="Diâmetro Externo do tubo" name="diametro_externo_tubo">                     
                         <div class="input-group-append">
                             <div class="input-group-text">mm</div>
                         </div> 

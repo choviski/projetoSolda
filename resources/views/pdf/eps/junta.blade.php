@@ -56,7 +56,7 @@
       <tr>
         <th style="text-align: left">1° alfa = {{$processo->junta->angulo_primario}}°</th>
         <td>ABERTURA DE RAIZ:</td>
-        <td style="text-align: left;">{{$processo->junta->abertura_raiz}} mm</td>
+        <td style="text-align: left;">{{$processo->junta->cota_r}} mm</td>
       </tr>
       <tr>
         <!-- (!) -->
