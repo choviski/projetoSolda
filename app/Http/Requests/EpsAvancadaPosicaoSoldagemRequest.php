@@ -39,8 +39,7 @@ class EpsAvancadaPosicaoSoldagemRequest extends FormRequest
             'direcao_soldagem.string' => "O campo 'Direção de Soldagem' deve conter texto.",
             'posicao_soldagem.required' => "O campo 'Posição de Soldagem' não pode ser nulo.",
             'posicao_soldagem.string' => "O campo 'Posição de Soldagem' deve conter texto.",
-            'id_processo.interger' => "É necessário ter um processo vinculado à posição de soldagem.",
-            'id_processo.required' => "É necessário ter um processo vinculado à posição de soldagem.",
+            'id_processo' => "É necessário ter um processo válido vinculado à posição de soldagem.",
         ];
     }
 
