@@ -50,37 +50,25 @@
     <tr>
         <td colspan="4">METAL BASE</td>
         <td colspan="4"></td>
-        {{-- <td colspan="4">ESPESSURA:
-            <b>{{$processo->junta->cota_t}} mm</b>
-        </td> --}}
-        {{-- <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td> --}}
         <td colspan="4"></td>
     </tr>
     @if($processo->materiaisBases[0]->tubo_ou_chapa == 'Tubo')
         <tr>
             <td colspan="4">FAIXA DE DIÂMETRO TUBOS</td>
-            <td colspan="4">ESPESSURA: <b>{{$processo->materiaisBases[0]->diametro_interno_tubo}}
-                    a {{$processo->materiaisBases[0]->diametro_externo_tubo}}
-                    mm </b></td>
-            {{-- <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td> --}}
+            <td colspan="4">
+                INTERNO: <b>{{$processo->materiaisBases[0]->diametro_interno_tubo}} mm</b>
+            </td>
         
-            <td colspan="4"></td>
+            <td colspan="4">
+                EXTERNO: <b>{{$processo->materiaisBases[0]->diametro_externo_tubo}} mm<b>                  
+            </td>
         </tr>
     @else
         <tr>
             <td colspan="4">ESPESSURA DA CHAPA</td>
             <td colspan="4">ESPESSURA: <b>{{$processo->junta->cota_t}} mm</b></td>
-            {{-- <td colspan="4">ÂNGULO: <b>{{$processo->materiaisBases[0]->angulo ?: 0}}º</b></td> --}}
             <td colspan="4"></td>
         </tr>
     @endif
-    <!-- Ignorar por enquanto.
-      <tr >
-        <td colspan="8" style="padding: 8px 5px;" >ESPESSURA MÁXIMA CADA PASSE <= 13,0 mm
-            <span class="check-box"> </span>  <a>Sim </a>
-            <span class="check-box"> </span>  <a>Não </a>
-        </td>
-      </tr>
-      -->
     </tbody>
 </table>

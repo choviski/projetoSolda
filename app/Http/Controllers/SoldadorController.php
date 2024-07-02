@@ -197,12 +197,10 @@ class SoldadorController extends Controller
         // dar um jeito de vincular o $epsAvancada->$processos[0]->qual_tipo com o $processos->nome  
         if($request->tipo_eps=='Avançada'){
             $qualificacao->tipo_eps='App\EpsAvancada';
-            $idProcessoTIG = Processo::select('id')->where('descricao', 'TIG')->first();
-            $qualificacao->id_processo=$idProcessoTIG->id;
         }else{
             $qualificacao->tipo_eps='App\Eps';
-            $qualificacao->id_processo=$request->id_processo;
         }    
+        $qualificacao->id_processo=$request->id_processo;
         $qualificacao->id_eps=$request->id_eps;
         $qualificacao->descricao=$request->descricao;
         $qualificacao->save();

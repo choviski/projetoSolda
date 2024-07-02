@@ -87,7 +87,7 @@
                         <div class="col">
                             <label for="id_processo" class="mb-0 mt-1">Processo:</label>
                             <select class="form-control" id="id_processo" name="id_processo" required>
-                                <option id="processo-default" value="" selected disabled>Selecione o processo</option>
+                                <option  value="" selected disabled>Selecione o processo</option>
 
                                 @foreach($processos as $processo)
                                     <option value="{{$processo->id}}" name="id_processo">{{$processo->nome}}</option>
@@ -164,25 +164,23 @@
 
         $('#id_eps').change(function(){
             var tipoEps = $(this).find('option:selected').attr('tipo_eps');
-            console.log('Tipo EPS selecionado:', tipoEps);
             $('#tipo_eps').val(tipoEps);
             if(tipoEps=='Avançada'){
                 var normaEps = $(this).find('option:selected').attr('norma_eps');
                 var processoEps = $(this).find('option:selected').attr('processo_eps');
                 $('#nome_norma').val(normaEps);
                 //Mudando o valor do primeiro option do select de eps e setando como selected
-                $('#id_processo option:eq(0)').val(processoEps);
-                $('#id_processo option:eq(0)').text(processoEps);
-                $('#id_processo option:eq(0)').removeAttr('disabled');
-                $('#id_processo option:eq(0)').prop('selected', true);
-                $('#id_processo').prop('disabled', true);
+                var optionProcessoDaEPS = $('option').filter(function() {
+                    return $(this).text() === processoEps;
+                });
+                
+                optionProcessoDaEPS.prop('selected', true);
             }else{
                 $('#nome_norma').val('');
                 $('#id_processo option:eq(0)').val('');
                 $('#id_processo option:eq(0)').text("Selecione o processo");
                 $('#id_processo option:eq(0)').prop('selected', true);
                 $('#id_processo option:eq(0)').prop('disabled', true);
-                $('#id_processo').prop('disabled', false);
             }
         });
     </script>

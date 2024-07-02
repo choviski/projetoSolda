@@ -122,7 +122,7 @@ class EpsProcessoController extends Controller
         }
         return response()->json([
             'material_id' => $materialBase->id,
-            'material_nome' => $materialBase->p_numero,
+            'material_nome' => $materialBase->metal_base,
         ]);
     }
 
