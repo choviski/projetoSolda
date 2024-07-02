@@ -14,6 +14,7 @@ use App\Gas;
 use App\Junta;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\EpsAvancadaPosicaoSoldagemRequest;
+use App\Http\Requests\EpsAvancadaJuntaRequest;
 
 class EpsProcessoController extends Controller
 {
@@ -28,7 +29,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $processo->id]);
     }
 
-    public function cadastraOuEditaJunta(Request $request){
+    public function cadastraOuEditaJunta(EpsAvancadaJuntaRequest $request){
+        $validatedData = $request->validated();
+        
         if(is_null($request->id_junta)){ // Cria
             $junta = Junta::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
