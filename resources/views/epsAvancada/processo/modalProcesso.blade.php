@@ -87,4 +87,23 @@
             }
         });
     };
+
+    function mostraErrosValidacao(idDivValidacao, erros) {   
+            $('#' + idDivValidacao).empty()  
+        
+            var $divErros = $('<div>', { class: 'alert alert-danger' });           
+            var $ul = $('<ul>', { class: 'mb-0' });            
+            
+            $.each(erros.errors, function (field, messages) {
+                $.each(messages, function (index, message) {
+                    var $li = $('<li>').text(message);
+                    $ul.append($li);
+                });
+            });
+            
+            $divErros.append($ul); 
+                     
+            $('#' + idDivValidacao).append($divErros);
+        }
+
 </script>
