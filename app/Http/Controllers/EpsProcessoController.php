@@ -15,11 +15,12 @@ use App\Junta;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\EpsAvancadaPosicaoSoldagemRequest;
 use App\Http\Requests\EpsAvancadaJuntaRequest;
+use App\Http\Requests\EpsAvancadaProcessoRequest;
 
 class EpsProcessoController extends Controller
 {
-    public function cadastraOuEditaProcesso(Request $request){
-        Log::debug($request->id_processo);
+    public function cadastraOuEditaProcesso(EpsAvancadaProcessoRequest $request){
+        $validatedData = $request->validated();
         if(is_null($request->id_processo)){ // Cria
             $processo = EpsProcesso::create($request->all());
         }else{ // Edita
