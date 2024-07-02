@@ -13,6 +13,7 @@ use App\CaracteristicaEletrica;
 use App\Gas;
 use App\Junta;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\EpsAvancadaPosicaoSoldagemRequest;
 
 class EpsProcessoController extends Controller
 {
@@ -40,11 +41,13 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $junta->id]);
     }
 
-    public function cadastraOuEditaPosicaoSoldagem(Request $request){
+    public function cadastraOuEditaPosicaoSoldagem(EpsAvancadaPosicaoSoldagemRequest $request){
+        $validatedData = $request->validated();
+
         if(is_null($request->id_posicao_soldagem)){ // Cria
             $posicao_soldagem = PosicaoSoldagem::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_posicao_soldagem_id = $posicao_soldagem->id;
+            $processo->eps_posicao_soldagem_id = $request->id;
             $processo->save();
         }else{ // Edita
             $posicao_soldagem = PosicaoSoldagem::find($request->id_posicao_soldagem);
@@ -82,14 +85,16 @@ class EpsProcessoController extends Controller
     }
 
     public function cadastraOuEditaGas(Request $request){
-        if(is_null($request->id_gas)){ // Cria
-            $gas = Gas::create($request->all());
-            $processo = EpsProcesso::find($request->id_processo);
+        $validatedData = $request->validated();
+
+        if(is_null($validatedData->id_gas)){ // Cria
+            $gas = Gas::create($validatedData->all());
+            $processo = EpsProcesso::find($validatedData->id_processo);
             $processo->eps_gas_id = $gas->id;
             $processo->save();
         }else{ // Edita
-            $gas = Gas::find($request->id_gas);
-            $gas->update($request->all());
+            $gas = Gas::find($validatedData->id_gas);
+            $gas->update($validatedData->all());
         }
         return response()->json(['id' => $gas->id]);
     }

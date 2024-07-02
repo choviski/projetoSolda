@@ -1,7 +1,10 @@
 <!-- Formulario de Posição de Soldagem-->
 <div name="sub-form-posicao-soldagem" id="sub-form-posicao-soldagem" style="display: none;">
     <h6 class="text-left">Posição de Soldagem</i></h6>
-    <hr class="mt-0">             
+    <hr class="mt-0">
+    <div id="wrapper-validation-posicao-soldagem" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>            
     <form  class="col-12 p-0 mb-2" id="form-posicao-soldagem"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
@@ -12,7 +15,7 @@
             <div class="form-col col-6">
                 <label for="posicao_soldagem" class="mb-0 mt-1">Posição de soldagem:</label>
                 <select class="form-select" aria-label="Default select example" id="posicao_soldagem" name="posicao_soldagem">
-                    <option selected disabled>Escolha a posição de soldagem</option>
+                    <option value="" selected disabled>Escolha a posição de soldagem</option>
                     <option value="1F">Plana - 1F</option>
                     <option value="1G">Plana - 1G</option>
                     <option value="2F">Horizontal - 2F</option>
@@ -28,7 +31,7 @@
             <div class="form-col col-6">
                 <label for="direcao_soldagem" class="mb-0 mt-1" >Direção de soldagem:</label>
                 <select  class="form-control" id="direcao_soldagem"  name="direcao_soldagem">
-                    <option selected disabled>Escolha a direção de soldagem</option>
+                    <option value="" selected disabled>Escolha a direção de soldagem</option>
                     <option value="ascendente">Ascedente</option> 
                     <option value="descendente">Descendente</option> 
                     <option value="n/a">N/A</option> 
@@ -50,11 +53,12 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $("#wrapper-validation-posicao-soldagem").empty();
                 $('input[name="id_posicao_soldagem"]').val(data["id"]);                
                 mostraAba("pre-aquecimento");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("Erro! Verifique se todos os campos estão preenchidos corretamente");
+                mostraErrosValidacao('wrapper-validation-posicao-soldagem',jqXHR.responseJSON)
             }
         });
     };   
