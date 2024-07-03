@@ -171,7 +171,7 @@
             </div>
         </div>         
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('pos-aquecimento')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('pos-gas')">Voltar</a>                                                      
     </form>
 </div>
 

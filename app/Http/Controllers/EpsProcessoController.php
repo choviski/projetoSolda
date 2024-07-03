@@ -19,6 +19,7 @@ use App\Http\Requests\EpsAvancadaProcessoRequest;
 use App\Http\Requests\EpsAvancadaMetalBaseRequest;
 use App\Http\Requests\EpsAvancadaPreAquecimentoRequest;
 use App\Http\Requests\EpsAvancadaPosAquecimentoRequest;
+use App\Http\Requests\EpsAvancadaGasRequest;
 
 class EpsProcessoController extends Controller
 {
@@ -95,7 +96,8 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $pos_aquecimento->id]);
     }
 
-    public function cadastraOuEditaGas(Request $request){
+    public function cadastraOuEditaGas(EpsAvancadaGasRequest $request){
+        $validatedData = $request->validated();
 
         if(is_null($request->id_gas)){ // Cria
             $gas = Gas::create($request->all());

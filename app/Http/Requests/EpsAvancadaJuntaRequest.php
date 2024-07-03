@@ -29,7 +29,6 @@ class EpsAvancadaJuntaRequest extends FormRequest
     {
         return [
             'imagem' => 'required|string',
-            'imagem' => 'required|string',
             'cota_t' => 'required|string',
             'cota_r' => 'required|string', 
             'cota_f' => 'required|string',
