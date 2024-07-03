@@ -1,7 +1,10 @@
 <!-- Formulario de Pré-Aquecimento-->
 <div name="sub-form-pre-aquecimento" id="sub-form-pre-aquecimento" style="display: none;">
     <h6 class="text-left">Pré-Aquecimento</i></h6>
-    <hr class="mt-0">             
+    <hr class="mt-0">    
+    <div id="wrapper-validation-pre-aquecimento" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>           
     <form  class="col-12 p-0 mb-2" id="form-pre-aquecimento"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
@@ -33,11 +36,12 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $('#wrapper-validation-pre-aquecimento').empty();
                 $('input[name="id_pre_aquecimento"]').val(data["id"]);                
                 mostraAba("pos-aquecimento");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('wrapper-validation-pre-aquecimento',jqXHR.responseJSON)
             }
         });
     };   
