@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Requests\EpsAvancadaPosicaoSoldagemRequest;
 use App\Http\Requests\EpsAvancadaJuntaRequest;
 use App\Http\Requests\EpsAvancadaProcessoRequest;
+use App\Http\Requests\EpsAvancadaMetalBaseRequest;
 
 class EpsProcessoController extends Controller
 {
@@ -89,16 +90,15 @@ class EpsProcessoController extends Controller
     }
 
     public function cadastraOuEditaGas(Request $request){
-        $validatedData = $request->validated();
 
-        if(is_null($validatedData->id_gas)){ // Cria
-            $gas = Gas::create($validatedData->all());
-            $processo = EpsProcesso::find($validatedData->id_processo);
+        if(is_null($request->id_gas)){ // Cria
+            $gas = Gas::create($request->all());
+            $processo = EpsProcesso::find($request->id_processo);
             $processo->eps_gas_id = $gas->id;
             $processo->save();
         }else{ // Edita
-            $gas = Gas::find($validatedData->id_gas);
-            $gas->update($validatedData->all());
+            $gas = Gas::find($request->id_gas);
+            $gas->update($request->all());
         }
         return response()->json(['id' => $gas->id]);
     }
@@ -120,7 +120,8 @@ class EpsProcessoController extends Controller
         ]);
     }
 
-    public function cadastraOuEditaMaterialBase(Request $request){
+    public function cadastraOuEditaMaterialBase(EpsAvancadaMetalBaseRequest $request){
+        $validatedData = $request->validated();
 
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_material_base)){ // Cria
