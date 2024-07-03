@@ -355,14 +355,7 @@ crossorigin="anonymous"></script>
                 // Redireciona pra listagem de EPS e um abraço pro gaitero
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('aii');
-                mostraErrosValidacao('.wrapper-validation-eps',{
-                    "errors": {
-                        "eps_with_null_inputs": [
-                            "Verifique se todos os campos foram preenchidos."
-                        ]
-                    }
-                })
+                mostraErrosValidacao('.wrapper-validation-eps',jqXHR.responseJSON);
             }
         });
     }
