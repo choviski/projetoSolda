@@ -101,7 +101,7 @@
                 mostraAba("caracteristicas-eletricas");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-gas',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-gas',jqXHR.responseJSON)
             }
         });
     };   

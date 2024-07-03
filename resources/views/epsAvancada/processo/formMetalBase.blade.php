@@ -152,7 +152,7 @@
                 mostraListagemMetalBase();
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-metal-base',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-metal-base',jqXHR.responseJSON)
             }
         });
     };       
@@ -189,7 +189,7 @@
             $("#wrapper-validation-metal-base").empty();
             mostraAba('metal-adicao');
         }else{
-            mostraErrosValidacao('wrapper-validation-metal-base',{
+            mostraErrosValidacao('#wrapper-validation-metal-base',{
                 "errors": {
                     "qtd_metais_base": [
                         "É necessário pelo menos um metal base."

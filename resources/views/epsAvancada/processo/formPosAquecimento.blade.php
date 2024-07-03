@@ -71,7 +71,7 @@
                 mostraAba("gas")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-pos-aquecimento',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-pos-aquecimento',jqXHR.responseJSON)
             }
         });
     };   

@@ -254,7 +254,7 @@
                 mostraAba("processo");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-caracteristicas-eletricas',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-caracteristicas-eletricas',jqXHR.responseJSON)
             }
         });
     };   

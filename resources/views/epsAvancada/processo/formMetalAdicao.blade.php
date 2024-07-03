@@ -224,7 +224,7 @@
                 mostraListagemMetalAdicao();                
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-metal-adicao',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-metal-adicao',jqXHR.responseJSON)
             }
         });
     };   
@@ -263,7 +263,7 @@
             $("#wrapper-validation-metal-adicao").empty();
             mostraAba('posicao-soldagem');
         }else{
-            mostraErrosValidacao('wrapper-validation-metal-adicao',{
+            mostraErrosValidacao('#wrapper-validation-metal-adicao',{
                 "errors": {
                     "qtd_metais_adicao": [
                         "É necessário pelo menos um metal de adicao."

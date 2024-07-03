@@ -58,7 +58,7 @@
                 mostraAba("pre-aquecimento");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-posicao-soldagem',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-posicao-soldagem',jqXHR.responseJSON)
             }
         });
     };   

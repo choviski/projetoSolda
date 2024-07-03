@@ -172,7 +172,7 @@
                 mostraAba("metal-base");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-junta',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-junta',jqXHR.responseJSON)
             }
         });
     };   

@@ -86,13 +86,13 @@
                 mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-processo',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-processo',jqXHR.responseJSON)
             }
         });
     };
 
-    function mostraErrosValidacao(idDivValidacao, erros) {   
-            $('#' + idDivValidacao).empty()  
+    function mostraErrosValidacao(div, erros) {   
+            $(div).empty()  
         
             var $divErros = $('<div>', { class: 'alert alert-danger' });           
             var $ul = $('<ul>', { class: 'mb-0' });            
@@ -106,7 +106,7 @@
             
             $divErros.append($ul); 
                      
-            $('#' + idDivValidacao).append($divErros);
+            $(div).append($divErros);
         }
 
 </script>

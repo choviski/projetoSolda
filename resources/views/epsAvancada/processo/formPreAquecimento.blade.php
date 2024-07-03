@@ -41,7 +41,7 @@
                 mostraAba("pos-aquecimento");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                mostraErrosValidacao('wrapper-validation-pre-aquecimento',jqXHR.responseJSON)
+                mostraErrosValidacao('#wrapper-validation-pre-aquecimento',jqXHR.responseJSON)
             }
         });
     };   
