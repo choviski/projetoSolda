@@ -21,11 +21,13 @@ use App\Http\Requests\EpsAvancadaPreAquecimentoRequest;
 use App\Http\Requests\EpsAvancadaPosAquecimentoRequest;
 use App\Http\Requests\EpsAvancadaGasRequest;
 use App\Http\Requests\EpsAvancadaCaracteristicasEletricasRequest;
+use App\Http\Requests\EpsAvancadaMetalAdicaoRequest;
 
 class EpsProcessoController extends Controller
 {
     public function cadastraOuEditaProcesso(EpsAvancadaProcessoRequest $request){
         $validatedData = $request->validated();
+
         if(is_null($request->id_processo)){ // Cria
             $processo = EpsProcesso::create($request->all());
         }else{ // Edita
@@ -157,7 +159,9 @@ class EpsProcessoController extends Controller
         return response()->json(['message'=>'ok']);
     }
 
-    public function cadastraOuEditaMetalAdicao(Request $request){
+    public function cadastraOuEditaMetalAdicao(EpsAvancadaMetalAdicaoRequest $request){
+        $validatedData = $request->validated();
+        
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_metal_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());

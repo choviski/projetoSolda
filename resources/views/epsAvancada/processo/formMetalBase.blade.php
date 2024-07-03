@@ -13,7 +13,7 @@
         <div id="lista-metal-base">
             <!-- "Card de listagem dos metais base." -->
         </div>
-        <a class="btn btn-block btn-primary mt-2" onclick="continuar()">Continuar</a>                                   
+        <a class="btn btn-block btn-primary mt-2" onclick="continuarMetalBase()">Continuar</a>                                   
         <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('junta')">Voltar</a>    
     </div>
 
@@ -183,7 +183,7 @@
             })  
     }
 
-    function continuar(){
+    function continuarMetalBase(){
         var temMetaisCadastrados = $('#lista-metal-base').children('div').length > 0 ? true : false;
         if (temMetaisCadastrados){
             $("#wrapper-validation-metal-base").empty();
