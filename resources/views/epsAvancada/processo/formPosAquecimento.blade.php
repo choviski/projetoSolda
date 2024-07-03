@@ -1,7 +1,10 @@
 <!-- Formulario de Pós-Aquecimento-->
 <div name="sub-form-pos-aquecimento" id="sub-form-pos-aquecimento" style="display: none;">
     <h6 class="text-left">Pós-Aquecimento</i></h6>
-    <hr class="mt-0">             
+    <hr class="mt-0">
+    <div id="wrapper-validation-pos-aquecimento" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>                  
     <form  class="col-12 p-0 mb-2" id="form-pos-aquecimento"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
@@ -63,11 +66,12 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $("#wrapper-validation-pos-aquecimento").empty();
                 $('input[name="id_pos_aquecimento"]').val(data["id"]);                
                 mostraAba("gas")
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('wrapper-validation-pos-aquecimento',jqXHR.responseJSON)
             }
         });
     };   

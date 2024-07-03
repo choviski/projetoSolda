@@ -18,6 +18,7 @@ use App\Http\Requests\EpsAvancadaJuntaRequest;
 use App\Http\Requests\EpsAvancadaProcessoRequest;
 use App\Http\Requests\EpsAvancadaMetalBaseRequest;
 use App\Http\Requests\EpsAvancadaPreAquecimentoRequest;
+use App\Http\Requests\EpsAvancadaPosAquecimentoRequest;
 
 class EpsProcessoController extends Controller
 {
@@ -79,7 +80,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $pre_aquecimento->id]);
     }
 
-    public function cadastraOuEditaPosAquecimento(Request $request){
+    public function cadastraOuEditaPosAquecimento(EpsAvancadaPosAquecimentoRequest $request){
+        $validatedData = $request->validated();
+        
         if(is_null($request->id_pos_aquecimento)){ // Cria
             $pos_aquecimento = PosAquecimento::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
