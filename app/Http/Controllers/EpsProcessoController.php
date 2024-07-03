@@ -20,6 +20,7 @@ use App\Http\Requests\EpsAvancadaMetalBaseRequest;
 use App\Http\Requests\EpsAvancadaPreAquecimentoRequest;
 use App\Http\Requests\EpsAvancadaPosAquecimentoRequest;
 use App\Http\Requests\EpsAvancadaGasRequest;
+use App\Http\Requests\EpsAvancadaCaracteristicasEletricasRequest;
 
 class EpsProcessoController extends Controller
 {
@@ -111,7 +112,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $gas->id]);
     }
 
-    public function cadastraOuEditaCaracteristicasEletricas(Request $request){
+    public function cadastraOuEditaCaracteristicasEletricas(EpsAvancadaCaracteristicasEletricasRequest $request){
+        $validatedData = $request->validated();
+        
         if(is_null($request->id_caracteristicas_eletricas)){ // Cria
             $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
