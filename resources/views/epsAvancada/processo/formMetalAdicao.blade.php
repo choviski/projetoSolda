@@ -2,7 +2,9 @@
 <div name="sub-form-metal-adicao" id="sub-form-metal-adicao" style="display: none;">
     <h6 class="text-left">Metais de Adição</i></h6>
     <hr class="mt-0">
-
+    <div id="wrapper-validation-metal-adicao" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>  
     <div id="div-add-metal-adicao" style="display:block">
         <a class="btn btn-block btn-outline-primary mt-2" onclick="mostraFormularioMetalAdicao()">
             <i class="fa fa-plus"></i>
@@ -11,7 +13,7 @@
         <div id="lista-metal-adicao">
             <!-- "Card de listagem dos metais adicao." -->
         </div>
-        <a class="btn btn-block btn-primary mt-2" onclick="mostraAba('posicao-soldagem')">Continuar</a>                                   
+        <a class="btn btn-block btn-primary mt-2" onclick="continuarMetalAdicao()">Continuar</a>                                   
         <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('metal-base')">Voltar</a>    
     </div>
 
@@ -213,6 +215,7 @@
             data: formData,
             dataType: "json", 
             success: function(data) { 
+                $("#wrapper-validation-metal-adicao").empty();
                 criarElementoMetalAdicao(data["metal_adicao_nome"],data["metal_adicao_id"]); 
                 var id_processo = $('[name="id_processo"]').val(); 
                 $('#form-metal-adicao')[0].reset();
@@ -221,7 +224,7 @@
                 mostraListagemMetalAdicao();                
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('#wrapper-validation-metal-adicao',jqXHR.responseJSON)
             }
         });
     };   
@@ -252,6 +255,22 @@
             .fail(function(jqHXR,ajaxOptions,thrownError){
                 //alert("Erro ao baixar certificado.")
             })    
+    }
+
+    function continuarMetalAdicao(){
+        var temMetaisCadastrados = $('#lista-metal-adicao').children('div').length > 0 ? true : false;
+        if (temMetaisCadastrados){
+            $("#wrapper-validation-metal-adicao").empty();
+            mostraAba('posicao-soldagem');
+        }else{
+            mostraErrosValidacao('#wrapper-validation-metal-adicao',{
+                "errors": {
+                    "qtd_metais_adicao": [
+                        "É necessário pelo menos um metal de adicao."
+                    ]
+                }
+            });        
+        }
     }
 
     function removeMetalAdicao(id){

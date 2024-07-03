@@ -107,7 +107,9 @@ crossorigin="anonymous"></script>
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">EPS <i class="ml-2 fas fa-file-invoice"></i></h4>
                     <hr class="mt-0">
-
+                    <div class="wrapper-validation-eps" class="col-12 p-0">
+                        <!-- Espaço para possíveis erros de validação  -->
+                    </div> 
                     <div class="form-row">
                     @if($usuario->tipo==1)
                         <div class="form-col col-12">
@@ -150,12 +152,13 @@ crossorigin="anonymous"></script>
                 </div>
             </div>
 
-            <div id="form-2" name="form-processos" class="sub-form">           
-               
+            <div id="form-2" name="form-processos" class="sub-form">        
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Processos <i class="ml-2 fas fa-burn"></i></h4>
                     <hr class="mt-0">
-                    
+                    <div class="wrapper-validation-eps" class="col-12 p-0">
+                        <!-- Espaço para possíveis erros de validação  -->
+                    </div> 
                     <button id="adicionar-processos" class="btn btn-primary btn-block font-weight-light" data-toggle="modal" data-target="#processoModal">
                         <i class="fa fa-plus"></i>
                         <span>Adicionar Processo</span>
@@ -172,16 +175,16 @@ crossorigin="anonymous"></script>
                     </button>
                 </div>
             </div>
-            <div id="form-3" name="form-tecnico" class="sub-form">            
-               
+
+            <div id="form-3" name="form-tecnico" class="sub-form">         
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Técnica <i class="ml-2 fas fa-id-card"></i></h4>
-                    <hr class="mt-0">  
-                    
+                    <hr class="mt-0"> 
+                    <div class="wrapper-validation-eps" class="col-12 p-0">
+                        <!-- Espaço para possíveis erros de validação  -->
+                    </div> 
                     <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
-                    <input type="text" class="form-control" id="artigo" placeholder="Artigo da Ficha Técnica" name="artigo">    
-             
-
+                    <input type="text" class="form-control" id="artigo" placeholder="Artigo da Ficha Técnica" name="artigo">
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="goivagem" class="mb-0 mt-1">Goivagem:</label>
@@ -194,9 +197,7 @@ crossorigin="anonymous"></script>
                                 <option value="N/A">N/A</option>
                             </select>                
                         </div>
-                    </div>
-                  
-                  
+                    </div>               
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="cordoes" class="mb-0 mt-1">Cordões:</label>
@@ -213,7 +214,6 @@ crossorigin="anonymous"></script>
                             </select>  
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="diametro_bocal" class="mb-0 mt-1">Diâmetro do bocal: <small class="text-muted">(em mm)</small></label>
@@ -223,8 +223,7 @@ crossorigin="anonymous"></script>
                                     <div class="input-group-text">mm</div>
                                 </div> 
                             </div>
-                        </div>
-                        
+                        </div>    
                         <div class="form-col col-6">
                             <label for="espacamento_eletrodo" class="mb-0 mt-1">Espaçamento entre eletrodos: <small class="text-muted">(em mm)</small></label>
                             <div class="input-group  mb-1">
@@ -235,7 +234,6 @@ crossorigin="anonymous"></script>
                             </div>
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="oscilacao" class="mb-0 mt-1">Oscilação:</label>
@@ -252,7 +250,6 @@ crossorigin="anonymous"></script>
                             </select> 
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-col col-6">
                             <label for="processo_termico" class="mb-0 mt-1">Processo térmico de preparação:</label>
@@ -266,29 +263,28 @@ crossorigin="anonymous"></script>
                             <input type="text" class="form-control mb-1" id="inspecao_final" placeholder="Inspeção final" name="inspecao_final">                     
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-col col-12">
                             <label for="limpeza" class="mb-0 mt-1">Limpeza:</label>
                             <input type="text" class="form-control mb-1" id="limpeza" placeholder="Limpeza" name="limpeza">                   
                         </div>
-                    </div>
-                  
+                    </div>                  
                     <button class="btn btn-outline-primary mt-3 col-12" onclick="mostraForm('4')">
                         Continuar
                     </button>
                     <button class="btn btn-outline-danger mt-1 col-12" onclick="mostraForm('2')">
                         Voltar
                     </button>
-                </div>
-           
+                </div>           
             </div>       
 
             <div id="form-4" name="form-notas" class="sub-form">            
-               
                 <div class="form-group bg-light p-2 rounded">
                     <h4 class="text-center">Notas <i class="ml-2 fas fa-clipboard "></i></h4>
                     <hr class="mt-0">
+                    <div class="wrapper-validation-eps" class="col-12 p-0">
+                        <!-- Espaço para possíveis erros de validação  -->
+                    </div>  
                     <label for="#">Notas:</label>
                     <br>
                     <textarea name="notas" id="notas" class="col-12" style="resize: none;"></textarea>
@@ -352,13 +348,14 @@ crossorigin="anonymous"></script>
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $(".wrapper-validation-eps").empty();
                 alert("EPS cadastrada com sucesso!");
                 window.location.href = '{{route("listarEpsAvancada")}}';
                 // Feedback para o usuário dizendo que a EPS desse foi cadastrada
                 // Redireciona pra listagem de EPS e um abraço pro gaitero
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert("ERRO! Verifique se todos os campos estão preenchidos corretamente");
+                mostraErrosValidacao('.wrapper-validation-eps',jqXHR.responseJSON);
             }
         });
     }

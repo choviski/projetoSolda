@@ -1,12 +1,15 @@
 <!-- Formulario de Junta -->
 <div name="sub-form-junta" id="sub-form-junta" style="display: none;">
     <h6 class="text-left">Junta</i></h6>
-    <hr class="mt-0">             
+    <hr class="mt-0">
+    <div id="wrapper-validation-junta" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>               
     <form  class="col-12 p-0 mb-2" id="form-junta" enctype="multipart/form-data">
         @csrf  
         <input type="hidden" name="id_processo">
         <input type="hidden" name="id_junta">
-        <input type="hidden" name="qtd_angulos" id="qtd_angulos" >
+        <input type="hidden" value="1" name="qtd_angulos" id="qtd_angulos" >
         <input type="hidden" id="asset" value="{{asset('')}}">
         <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
                 <input type="text" class="form-control" id="artigo" placeholder="Artigo da junta" name="artigo">  
@@ -107,8 +110,7 @@
                 </select>                     
             </div>                      
         </div>
-        <div class="form-row">
-            
+        <div class="form-row">            
             <div class="form-col col-6">
                 <label for="necessidade_remocao_cobre_junta" class="mb-0 mt-1">Precisa remoção cobre junta?</label>
                 <select class="form-select" id="necessidade_remocao_cobre_junta"  name="necessidade_remocao_cobre_junta">
@@ -165,11 +167,12 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $("#wrapper-validation-junta").empty();
                 $('input[name="id_junta"]').val(data["id"]);
                 mostraAba("metal-base");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('#wrapper-validation-junta',jqXHR.responseJSON)
             }
         });
     };   

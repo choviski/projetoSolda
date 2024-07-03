@@ -11,6 +11,7 @@ use App\EpsAvancada;
 use Illuminate\Http\Request;
 use App\Tecnico;
 use App\Empresa;
+use App\Http\Requests\EpsAvancadaRequest;
 
 class EpsAvancadaController extends Controller
 {
@@ -117,8 +118,9 @@ class EpsAvancadaController extends Controller
         return view("epsAvancada/cadastrarEps")->with(["usuario"=>$usuario,"empresas"=>$empresas]);
     }
 
-    public function armazenarEpsAvancada(Request $request){
-
+    public function armazenarEpsAvancada(EpsAvancadaRequest $request){
+        $validateDate = $request->validated();
+        
         $usuario = session()->get("Usuario");
         $tecnica = Tecnico::create($request->all());
 

@@ -13,11 +13,21 @@ use App\CaracteristicaEletrica;
 use App\Gas;
 use App\Junta;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\EpsAvancadaPosicaoSoldagemRequest;
+use App\Http\Requests\EpsAvancadaJuntaRequest;
+use App\Http\Requests\EpsAvancadaProcessoRequest;
+use App\Http\Requests\EpsAvancadaMetalBaseRequest;
+use App\Http\Requests\EpsAvancadaPreAquecimentoRequest;
+use App\Http\Requests\EpsAvancadaPosAquecimentoRequest;
+use App\Http\Requests\EpsAvancadaGasRequest;
+use App\Http\Requests\EpsAvancadaCaracteristicasEletricasRequest;
+use App\Http\Requests\EpsAvancadaMetalAdicaoRequest;
 
 class EpsProcessoController extends Controller
 {
-    public function cadastraOuEditaProcesso(Request $request){
-        Log::debug($request->id_processo);
+    public function cadastraOuEditaProcesso(EpsAvancadaProcessoRequest $request){
+        $validatedData = $request->validated();
+
         if(is_null($request->id_processo)){ // Cria
             $processo = EpsProcesso::create($request->all());
         }else{ // Edita
@@ -27,7 +37,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $processo->id]);
     }
 
-    public function cadastraOuEditaJunta(Request $request){
+    public function cadastraOuEditaJunta(EpsAvancadaJuntaRequest $request){
+        $validatedData = $request->validated();
+        
         if(is_null($request->id_junta)){ // Cria
             $junta = Junta::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -40,11 +52,13 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $junta->id]);
     }
 
-    public function cadastraOuEditaPosicaoSoldagem(Request $request){
+    public function cadastraOuEditaPosicaoSoldagem(EpsAvancadaPosicaoSoldagemRequest $request){
+        $validatedData = $request->validated();
+
         if(is_null($request->id_posicao_soldagem)){ // Cria
             $posicao_soldagem = PosicaoSoldagem::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_posicao_soldagem_id = $posicao_soldagem->id;
+            $processo->eps_posicao_soldagem_id = $request->id;
             $processo->save();
         }else{ // Edita
             $posicao_soldagem = PosicaoSoldagem::find($request->id_posicao_soldagem);
@@ -55,7 +69,9 @@ class EpsProcessoController extends Controller
         ]);
     }
 
-    public function cadastraOuEditaPreAquecimento(Request $request){
+    public function cadastraOuEditaPreAquecimento(EpsAvancadaPreAquecimentoRequest $request){
+        $validatedData = $request->validated();
+
         if(is_null($request->id_pre_aquecimento)){ // Cria
             $pre_aquecimento = PreAquecimento::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -68,7 +84,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $pre_aquecimento->id]);
     }
 
-    public function cadastraOuEditaPosAquecimento(Request $request){
+    public function cadastraOuEditaPosAquecimento(EpsAvancadaPosAquecimentoRequest $request){
+        $validatedData = $request->validated();
+        
         if(is_null($request->id_pos_aquecimento)){ // Cria
             $pos_aquecimento = PosAquecimento::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -81,7 +99,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $pos_aquecimento->id]);
     }
 
-    public function cadastraOuEditaGas(Request $request){
+    public function cadastraOuEditaGas(EpsAvancadaGasRequest $request){
+        $validatedData = $request->validated();
+
         if(is_null($request->id_gas)){ // Cria
             $gas = Gas::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -94,7 +114,9 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $gas->id]);
     }
 
-    public function cadastraOuEditaCaracteristicasEletricas(Request $request){
+    public function cadastraOuEditaCaracteristicasEletricas(EpsAvancadaCaracteristicasEletricasRequest $request){
+        $validatedData = $request->validated();
+        
         if(is_null($request->id_caracteristicas_eletricas)){ // Cria
             $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -111,7 +133,8 @@ class EpsProcessoController extends Controller
         ]);
     }
 
-    public function cadastraOuEditaMaterialBase(Request $request){
+    public function cadastraOuEditaMaterialBase(EpsAvancadaMetalBaseRequest $request){
+        $validatedData = $request->validated();
 
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_material_base)){ // Cria
@@ -136,7 +159,9 @@ class EpsProcessoController extends Controller
         return response()->json(['message'=>'ok']);
     }
 
-    public function cadastraOuEditaMetalAdicao(Request $request){
+    public function cadastraOuEditaMetalAdicao(EpsAvancadaMetalAdicaoRequest $request){
+        $validatedData = $request->validated();
+        
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_metal_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());

@@ -9,10 +9,12 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <div name="sub-form-processo" id="sub-form-processo">
                     <h6 class="text-left">Informações do processo</i></h6>
-                    <hr class="mt-0">            
+                    <hr class="mt-0">
+                    <div id="wrapper-validation-processo" class="col-12 p-0">
+                        <!-- Espaço para possíveis erros de validação  -->
+                    </div>             
                     <form  class="col-12 p-0 mb-2" id="form-processo"enctype="multipart/form-data">
                         @csrf                           
                         <div class="form-row">
@@ -78,13 +80,33 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $("#wrapper-validation-processo").empty();
                 $("#id_processo_"+qtdProcessos).val(data["id"]);
                 $('input[name="id_processo"]').val(data["id"]);
                 mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert('ERRO! Verifique se os campos estão preenchidos corretamente');
+                mostraErrosValidacao('#wrapper-validation-processo',jqXHR.responseJSON)
             }
         });
     };
+
+    function mostraErrosValidacao(div, erros) {   
+            $(div).empty()  
+        
+            var $divErros = $('<div>', { class: 'alert alert-danger' });           
+            var $ul = $('<ul>', { class: 'mb-0' });            
+            
+            $.each(erros.errors, function (field, messages) {
+                $.each(messages, function (index, message) {
+                    var $li = $('<li>').text(message);
+                    $ul.append($li);
+                });
+            });
+            
+            $divErros.append($ul); 
+                     
+            $(div).append($divErros);
+        }
+
 </script>

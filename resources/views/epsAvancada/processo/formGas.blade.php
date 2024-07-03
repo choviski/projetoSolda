@@ -1,7 +1,10 @@
 <!-- Formulario de Gas-->
 <div name="sub-form-gas" id="sub-form-gas" style="display: none;">
     <h6 class="text-left">Gás</i></h6>
-    <hr class="mt-0">             
+    <hr class="mt-0">
+    <div id="wrapper-validation-gas" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>             
     <form  class="col-12 p-0 mb-2" id="form-gas"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
@@ -93,11 +96,12 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $('#wrapper-validation-gas').empty();
                 $('input[name="id_gas"]').val(data["id"]);                
                 mostraAba("caracteristicas-eletricas");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('#wrapper-validation-gas',jqXHR.responseJSON)
             }
         });
     };   

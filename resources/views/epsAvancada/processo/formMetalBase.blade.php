@@ -2,7 +2,9 @@
 <div name="sub-form-metal-base" id="sub-form-metal-base" style="display: none;">
     <h6 class="text-left">Metais de Base</i></h6>
     <hr class="mt-0">
-
+    <div id="wrapper-validation-metal-base" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>  
     <div id="div-add-metal-base" style="display:block">
         <a class="btn btn-block btn-outline-primary mt-2" onclick="mostraFormularioMetalBase()">
             <i class="fa fa-plus"></i>
@@ -11,7 +13,7 @@
         <div id="lista-metal-base">
             <!-- "Card de listagem dos metais base." -->
         </div>
-        <a class="btn btn-block btn-primary mt-2" onclick="mostraAba('metal-adicao')">Continuar</a>                                   
+        <a class="btn btn-block btn-primary mt-2" onclick="continuarMetalBase()">Continuar</a>                                   
         <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('junta')">Voltar</a>    
     </div>
 
@@ -141,6 +143,7 @@
             data: formData,
             dataType: "json", 
             success: function(data) { 
+                $("#wrapper-validation-metal-base").empty();
                 criarElementoMetalBase(data["material_nome"],data["material_id"]); 
                 var id_processo = $('[name="id_processo"]').val(); 
                 $('#form-metal-base')[0].reset();
@@ -149,7 +152,7 @@
                 mostraListagemMetalBase();
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('#wrapper-validation-metal-base',jqXHR.responseJSON)
             }
         });
     };       
@@ -178,6 +181,22 @@
             .fail(function(jqHXR,ajaxOptions,thrownError){
                 //alert("Erro ao baixar certificado.")
             })  
+    }
+
+    function continuarMetalBase(){
+        var temMetaisCadastrados = $('#lista-metal-base').children('div').length > 0 ? true : false;
+        if (temMetaisCadastrados){
+            $("#wrapper-validation-metal-base").empty();
+            mostraAba('metal-adicao');
+        }else{
+            mostraErrosValidacao('#wrapper-validation-metal-base',{
+                "errors": {
+                    "qtd_metais_base": [
+                        "É necessário pelo menos um metal base."
+                    ]
+                }
+            });        
+        }
     }
 
     function removeMetalBase(id){

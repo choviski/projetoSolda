@@ -1,7 +1,10 @@
 <!-- Formulario de Característicias Elétricas-->
 <div name="sub-form-caracteristicas-eletricas" id="sub-form-caracteristicas-eletricas" style="display: none;">
     <h6 class="text-left">Característicias Elétricas</i></h6>
-    <hr class="mt-0">             
+    <hr class="mt-0">
+    <div id="wrapper-validation-caracteristicas-eletricas" class="col-12 p-0">
+        <!-- Espaço para possíveis erros de validação  -->
+    </div>               
     <form  class="col-12 p-0 mb-2" id="form-caracteristicas-eletricas"  enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id_processo">
@@ -20,7 +23,7 @@
             </div>
             <div class="form-col col-6">
                 <label for="polaridade" class="mb-0 mt-1" >Polaridade:</label>
-                <select type="number" step="0.01" class="form-select" id="polaridade" placeholder="Polaridade" name="polaridade">
+                <select type="text" class="form-select" id="polaridade" placeholder="Polaridade" name="polaridade">
                     <option value="Direta">Direta</option>
                     <option value="Inversa">Inversa</option>
                 </select>                     
@@ -29,7 +32,7 @@
         <div class="form-row">
             <div class="form-col col-6">
                 <label for="modo_transferencia" class="mb-0 mt-1">Modo de transferência:</label>
-                <select class="form-select" id="modo_transferencia" name="modo_transferência" disabled>
+                <select class="form-select" id="modo_transferencia" name="modo_transferencia" disabled>
                     <option selected disabled>Escolha o modo de transferência</option>
                     <option value="curto_circuito">Curto-circuito</option>
                     <option value="spray">Spray</option>
@@ -171,7 +174,7 @@
             </div>
         </div>         
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('pos-aquecimento')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('gas')">Voltar</a>                                                      
     </form>
 </div>
 
@@ -215,6 +218,7 @@
         $('#form-processo input[type="hidden"]').val('');
         $('#form-junta')[0].reset();
         $('#form-junta input[type="hidden"]').val('');
+        $('#qtd_angulos').val("1");
         $('#form-metal-base')[0].reset();
         $('#form-metal-base input[type="hidden"]').val('');
         $('#form-metal-adicao')[0].reset();
@@ -242,6 +246,7 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
+                $("#wrapper-validation-caracteristicas-eletricas").empty();
                 $('input[name="id_caracteristicas_eletricas"]').val(data["id"]);
                 finalizaCadastroProcesso(data["processo_id"],data["processo_nome"]);
                 resetaFormularios();
@@ -249,7 +254,7 @@
                 mostraAba("processo");
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.error("Erro na requisição:", textStatus, errorThrown);
+                mostraErrosValidacao('#wrapper-validation-caracteristicas-eletricas',jqXHR.responseJSON)
             }
         });
     };   
