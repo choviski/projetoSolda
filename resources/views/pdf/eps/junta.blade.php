@@ -54,14 +54,18 @@
       </tr>
      
       <tr>
-        <th style="text-align: left">1° alfa = {{$processo->junta->angulo_primario}}°</th>
+        <th style="text-align: left">
+          1° <span style="font-family: DejaVu Sans, sans-serif;">α</span> = {{$processo->junta->angulo_primario}}°
+        </th>
         <td>ABERTURA DE RAIZ:</td>
         <td style="text-align: left;">{{$processo->junta->cota_r}} mm</td>
       </tr>
       <tr>
         <!-- (!) -->
         @if($processo->junta->qtd_angulos>1)
-          <th style="text-align: left">2° alfa = {{$processo->junta->angulo_secundario}}°</th>
+          <th style="text-align: left">
+            2° <span style="font-family: DejaVu Sans, sans-serif;">α</span> = {{$processo->junta->angulo_secundario}}°
+          </th>
         @else
           <th></th>
         @endif

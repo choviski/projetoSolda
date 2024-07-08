@@ -182,8 +182,8 @@ class EpsAvancadaController extends Controller
         $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
         
         $options = new Options();
-        $options->set('isRemoteEnabled', true);        
-        $options->set('isPhpEnabled', true);       
+        $options->set('isRemoteEnabled', true);     
+        $options->set('isPhpEnabled', true);  
         $pdf = new Dompdf($options);
 
         $view = view('pdf.eps.eps',[
