@@ -21,7 +21,7 @@
         border: 1px black solid;
     }
 </style>
-<div id="header">
+<header id="header">
     <table style="width:100%">
         <tbody>
             <tr>
@@ -72,10 +72,10 @@
                 </td>
                 <td>
                     <span>FOLHA:
-                        <b>{{$pg}}/2</b>
+                        <b style="color: rgba(255,255,255,0.0)">0/0</b>
                     </span>
                 </td>
             </tr>
         </tbody>
     </table>
-</div>
+</header>
