@@ -181,8 +181,10 @@ class EpsAvancadaController extends Controller
         $data = file_get_contents($path);
         $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
         
-        
-        $pdf = new Dompdf();
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);        
+        $options->set('isPhpEnabled', true);       
+        $pdf = new Dompdf($options);
 
         $view = view('pdf.eps.eps',[
             'imagem_emrpesa'=>$empresa_image,
