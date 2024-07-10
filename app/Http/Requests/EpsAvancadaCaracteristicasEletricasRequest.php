@@ -40,82 +40,82 @@ class EpsAvancadaCaracteristicasEletricasRequest extends FormRequest
             'camada_todas_amperes_li'=> [ //simples
                 'nullable',
                 'required_if:camada,"simples"',
-                'string'
+                'integer'
             ],
             'camada_todas_amperes_ls'=> [ //simples
                 'nullable',
                 'required_if:camada,"simples"',
-                'string'
+                'integer'
             ],
             'camada_todas_volts_li'=> [ //simples
                 'nullable',
                 'required_if:camada,"simples"',
-                'string'
+                'integer'
             ],
             'camada_todas_volts_ls'=> [ //simples
                 'nullable',
                 'required_if:camada,"simples"',
-                'string'
+                'integer'
             ],
             'camada_raiz_amperes_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_raiz_amperes_ls'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_raiz_volts_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_raiz_volts_ls'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],            
             'camada_acabamento_amperes_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_acabamento_amperes_ls'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_acabamento_volts_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_acabamento_volts_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_enchimento_amperes_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_enchimento_amperes_ls'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_enchimento_volts_li'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'camada_enchimento_volts_ls'=> [ //detalhada
                 'nullable',
                 'required_if:camada,"detalhada"',
-                'string'
+                'integer'
             ],
             'diametro_eletrodo_tig' => 'required|string',
             'classificacao_consumivel_tig' => 'required|string',
@@ -134,22 +134,38 @@ class EpsAvancadaCaracteristicasEletricasRequest extends FormRequest
             'velocidade.integer' => "O campo 'Velocidade' deve conter apenas números.",
             'camada.required' => "O campo 'Camada' não pode ser nulo.",
             'camada.string' => "O campo 'Camada' deve conter texto.",
-            'camada_todas_amperes_li.required_if' => "Preencha o limite inferior dos Amperes",
-            'camada_todas_amperes_ls.required_if' => "Preencha o limite superior dos Amperes",
-            'camada_todas_volts_li.required_if' => "Preencha o limite inferior dos Volts",
-            'camada_todas_volts_ls.required_if' => "Preencha o limite superior dos Volts",
-            'camada_raiz_amperes_li.required_if' => "Preencha o limite inferior dos Amperes (Raiz)",
-            'camada_raiz_amperes_ls.required_if' => "Preencha o limite superior dos Amperes (Raiz)",
-            'camada_raiz_volts_li.required_if' => "Preencha o limite inferior dos Volts (Raiz)",
-            'camada_raiz_volts_ls.required_if' => "Preencha o limite superior dos Volts (Raiz)",
-            'camada_acabamento_amperes_li.required_if' => "Preencha o limite inferior dos Amperes (Acabamento)",
-            'camada_acabamento_amperes_ls.required_if' => "Preencha o limite superior dos Amperes (Acabamento)",
-            'camada_acabamento_volts_li.required_if' => "Preencha o limite inferior dos Volts (Acabamento)",
-            'camada_acabamento_volts_ls.required_if' => "Preencha o limite superior dos Volts (Acabamento)",
-            'camada_enchimento_amperes_li.required_if' => "Preencha o limite inferior dos Amperes (Enchimento)",
-            'camada_enchimento_amperes_ls.required_if' => "Preencha o limite superior dos Amperes (Enchimento)",
-            'camada_enchimento_volts_li.required_if' => "Preencha o limite inferior dos Volts (Enchimento)",
-            'camada_enchimento_volts_ls.required_if' => "Preencha o limite superior dos Volts (Enchimento)",
+            'camada_todas_amperes_li.required_if' => "Preencha o limite inferior dos Amperes.",
+            'camada_todas_amperes_li.integer' => "O limite inferior dos Amperes precisa ser um número.",
+            'camada_todas_amperes_ls.required_if' => "Preencha o limite superior dos Amperes.",
+            'camada_todas_amperes_ls.integer' => "O limite superior dos Amperes precisa ser um número.",
+            'camada_todas_volts_li.required_if' => "Preencha o limite inferior dos Volts.",
+            'camada_todas_volts_li.integer' => "O limite inferior dos Volts precisa ser um número.",
+            'camada_todas_volts_ls.required_if' => "Preencha o limite superior dos Volts.",
+            'camada_todas_volts_ls.integer' => "O limite superior dos Volts precisa ser um número.",
+            'camada_raiz_amperes_li.required_if' => "Preencha o limite inferior dos Amperes (Raiz).",
+            'camada_raiz_amperes_li.integer' => "O limite inferior dos Amperes (Raiz precisa ser um número.",
+            'camada_raiz_amperes_ls.required_if' => "Preencha o limite superior dos Amperes (Raiz).",
+            'camada_raiz_amperes_ls.integer' => "O limite superior dos Amperes (Raiz) precisa ser um número.",
+            'camada_raiz_volts_li.required_if' => "Preencha o limite inferior dos Volts (Raiz).",
+            'camada_raiz_volts_li.integer' => "O limite inferior dos Volts (Raiz) precisa ser um número.",
+            'camada_raiz_volts_ls.required_if' => "Preencha o limite superior dos Volts (Raiz).",
+            'camada_raiz_volts_ls.integer' => "O limite superior dos Volts (Raiz) precisa ser um número.",
+            'camada_acabamento_amperes_li.required_if' => "Preencha o limite inferior dos Amperes (Acabamento).",
+            'camada_acabamento_amperes_li.integer' => "O limite inferior dos Amperes (Acabamento) precisa ser um número.",
+            'camada_acabamento_amperes_ls.required_if' => "Preencha o limite superior dos Amperes (Acabamento).",
+            'camada_acabamento_amperes_ls.integer' => "O limite superior dos Amperes (Acabamento) precisa ser um número.",
+            'camada_acabamento_volts_li.required_if' => "Preencha o limite inferior dos Volts (Acabamento).",
+            'camada_acabamento_volts_li.integer' => "O limite inferior dos Volts (Acabamento) precisa ser um número.",
+            'camada_acabamento_volts_ls.required_if' => "Preencha o limite superior dos Volts (Acabamento).",
+            'camada_acabamento_volts_ls.integer' => "O limite superior dos Volts (Acabamento) precisa ser um número.",
+            'camada_enchimento_amperes_li.required_if' => "Preencha o limite inferior dos Amperes (Enchimento).",
+            'camada_enchimento_amperes_li.integer' => "O limite inferior dos Amperes (Enchimento) precisa ser um nú.mero",
+            'camada_enchimento_amperes_ls.required_if' => "Preencha o limite superior dos Amperes (Enchimento).",
+            'camada_enchimento_amperes_ls.integer' => "O limite superior dos Amperes (Enchimento) precisa ser um nú.mero",
+            'camada_enchimento_volts_li.required_if' => "Preencha o limite inferior dos Volts (Enchimento).",
+            'camada_enchimento_volts_li.integer' => "O limite inferior dos Volts (Enchimento) precisa ser um número.",
+            'camada_enchimento_volts_ls.required_if' => "Preencha o limite superior dos Volts (Enchimento).",
+            'camada_enchimento_volts_ls.integer' => "O limite superior dos Volts (Enchimento) precisa ser um número.",
             'diametro_eletrodo_tig.required' => "O campo 'Diâmetro do eletredo tungstênio' não pode ser nulo.",
             'diametro_eletrodo_tig.string' => "O campo 'Diâmetro do eletredo tungstênio' deve conter texto.",
             'classificacao_consumivel_tig.required' => "O campo 'Composição do consumível de tungstênio' não pode ser nulo.",
