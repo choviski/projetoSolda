@@ -223,6 +223,7 @@
         $('#form-metal-base input[type="hidden"]').val('');
         $('#form-metal-adicao')[0].reset();
         $('#form-metal-adicao input[type="hidden"]').val('');
+        $('#forma_consumivel').removeClass('select-disabled');
         $('#form-posicao-soldagem')[0].reset();
         $('#form-posicao-soldagem input[type="hidden"]').val('');
         $('#form-pre-aquecimento')[0].reset();

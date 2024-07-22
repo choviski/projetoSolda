@@ -33,7 +33,8 @@
                                 <label for="qual_processo" class="mb-0 mt-1" >Qual processo:</label>
                                 <select class="form-select" name="qual_processo" id="qual_processo" >
                                     <option selected value="TIG">TIG</option>
-                                   <!-- <option value="MIG/MAG">MIG/MAG</option>
+                                    <option value="FCAW">FCAW</option>
+                                    <!-- <option value="MIG/MAG">MIG/MAG</option>
                                     <option value="Eletrodo revestido">Eletrodo revestido</option>-->
                                 </select>
                             </div>
@@ -74,6 +75,7 @@
     function adicionaProcesso(){
         var formData = $("#form-processo").serialize();
         var linkAjax = '{{route("cadastraOuEditaProcesso")}}';
+        var qualProcesso = $("#qual_processo").val();
         $.ajax({
             url: linkAjax,
             type: "GET",
@@ -83,6 +85,10 @@
                 $("#wrapper-validation-processo").empty();
                 $("#id_processo_"+qtdProcessos).val(data["id"]);
                 $('input[name="id_processo"]').val(data["id"]);
+                if(qualProcesso == "FCAW"){
+                    $('#arames_solidos').prop('selected', true);
+                    $('#forma_consumivel').addClass('select-disabled');
+                }
                 mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {
