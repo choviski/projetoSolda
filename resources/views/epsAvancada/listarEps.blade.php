@@ -3,6 +3,13 @@
 @section('content')
 
 <style>
+        #nav_eps_avancada {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        #nav_entidades {
+            text-decoration: none;
+        }
         .filteredBy{
             background: #5398ff;
             color:white;

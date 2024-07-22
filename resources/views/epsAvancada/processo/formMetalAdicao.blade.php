@@ -118,10 +118,10 @@
                 <div class="form-col col-12">
                     <label for="forma_consumivel" class="mb-0 mt-1">Forma do Consumível:</label>
                     <select class="form-select" id="forma_consumivel" name="forma_consumivel">
-                        <option selected disabled>Escolha a forma do consumível</option>
+                        <option disabled>Escolha a forma do consumível</option>
                         <option value="eletrodos">Eletrodos revestidos</option>
                         <option value="varetas">Varetas</option>
-                        <option value="arames_solidos">Arames sólidos</option>
+                        <option value="arames_solidos" id="arames_solidos">Arames sólidos</option>
                         <option value="arames_tubulares">Arames tubulares</option>
                         <option value="arames_fitas">Arames fitas</option>
                     </select>  
