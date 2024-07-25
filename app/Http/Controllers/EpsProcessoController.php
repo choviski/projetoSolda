@@ -52,6 +52,16 @@ class EpsProcessoController extends Controller
         return response()->json(['id' => $junta->id]);
     }
 
+    public function getJunta($id){
+        $junta = Junta::find($id);
+        return response()->json($junta);
+    }
+
+    public function deleteJunta($id){
+        Junta::destroy($id);
+        return response()->json(['message'=>'ok']);
+    }
+
     public function cadastraOuEditaPosicaoSoldagem(EpsAvancadaPosicaoSoldagemRequest $request){
         $validatedData = $request->validated();
 

@@ -197,7 +197,6 @@
         }
     });
 
-
     function finalizaCadastroProcesso(processoId,processoNome){
         var divElement = $('<div></div>').addClass('mt-2');
         var inputElement = $('<input>').attr({
@@ -210,7 +209,6 @@
         divElement.append(inputElement, spanElement);
 
         $('#lista_processos').append(divElement);
-
     }
 
     function resetaFormularios(){
@@ -232,10 +230,12 @@
         $('#form-pos-aquecimento input[type="hidden"]').val('');
         $('#form-gas')[0].reset();
         $('#form-gas input[type="hidden"]').val('');
-        $('#form-caracteristicas-eletricas')[0].reset()
-        $('#form-caracteristicas-eletricas input[type="hidden"]').val('');;
+        $('#form-caracteristicas-eletricas')[0].reset();
+        $('#form-caracteristicas-eletricas input[type="hidden"]').val('');
         $('#lista-metal-base').empty();
         $('#lista-metal-adicao').empty();
+        $('#lista-junta').empty();
+        $('#clonar-juntas').css('display', 'block');
     }
 
     function adicionaCaracteristicasEletricas(){

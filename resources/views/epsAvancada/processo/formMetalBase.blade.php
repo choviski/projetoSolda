@@ -18,7 +18,7 @@
     </div>
 
     <div id="div-form-metal-base" style="display:none">
-        <form  class="col-12 p-0 mb-2" id="form-metal-base" enctype="multipart/form-data">
+        <form class="col-12 p-0 mb-2" id="form-metal-base" enctype="multipart/form-data">
             @csrf
             <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
             <input type="text" class="form-control" id="artigo" placeholder="Artigo do Metal de Base" name="artigo">  
@@ -155,7 +155,8 @@
                 mostraErrosValidacao('#wrapper-validation-metal-base',jqXHR.responseJSON)
             }
         });
-    };       
+    }; 
+      
     function editaMetalBase(id){
         var linkAjax = '{{route("getMaterialBase",":id")}}';
         linkAjax = linkAjax.replace(':id',id);
