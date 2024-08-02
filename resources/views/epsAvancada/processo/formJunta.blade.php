@@ -27,6 +27,7 @@
             <input type="hidden" name="id_processo">
             <input type="hidden" name="id_junta">
             <input type="hidden" value="1" name="qtd_angulos" id="qtd_angulos" >
+            <input type="hidden" value="Chanfro em J" name="tipo_junta" id="tipo_junta" >
             <input type="hidden" id="asset" value="{{asset('')}}">
             <label for="artigo" class="mb-0 mt-0" >Artigo:</label>
                     <input type="text" class="form-control" id="artigo" placeholder="Artigo da junta" name="artigo">  
@@ -35,14 +36,14 @@
                 <img src="{{asset('juntas/junta-chanfro-em-j.jpg')}}" id="junta-img">
             </div>
             <select class="form-select" aria-label="Default select example" id="imagem" name="imagem">
-                <option selected value="juntas/junta-chanfro-em-j.jpg" qtd-angulos="1">Chanfro em J</option>
-                <option value="juntas/junta-chanfro-em-k.jpg" qtd-angulos="2">Chanfro em K</option>
-                <option value="juntas/junta-chanfro-em-u.jpg" qtd-angulos="1">Chanfro em U</option>
-                <option value="juntas/junta-chanfro-em-v.jpg" qtd-angulos="1">Chanfro em V</option>
-                <option value="juntas/junta-chanfro-em-x.jpg" qtd-angulos="2">Chanfro em X</option>
-                <option value="juntas/junta-chanfro-em-meio-v.jpg" qtd-angulos="1">Chanfro em meio V</option>
-                <option value="juntas/junta-chanfro-em-duplo-j.jpg" qtd-angulos="2">Chanfro em duplo J</option>
-                <option value="juntas/junta-chanfro-em-duplo-u.jpg" qtd-angulos="2">Chanfro em duplo U</option>
+                <option selected value="juntas/junta-chanfro-em-j.jpg" qtd-angulos="1" tipo="Chanfro em J">Chanfro em J</option>
+                <option value="juntas/junta-chanfro-em-k.jpg" qtd-angulos="2" tipo="Chanfro em K">Chanfro em K</option>
+                <option value="juntas/junta-chanfro-em-u.jpg" qtd-angulos="1" tipo="Chanfro em U">Chanfro em U</option>
+                <option value="juntas/junta-chanfro-em-v.jpg" qtd-angulos="1" tipo="Chanfro em V">Chanfro em V</option>
+                <option value="juntas/junta-chanfro-em-x.jpg" qtd-angulos="2" tipo="Chanfro em X">Chanfro em X</option>
+                <option value="juntas/junta-chanfro-em-meio-v.jpg" qtd-angulos="1" tipo="Chanfro em meio V">Chanfro em meio V</option>
+                <option value="juntas/junta-chanfro-em-duplo-j.jpg" qtd-angulos="2" tipo="Chanfro em duplo J">Chanfro em duplo J</option>
+                <option value="juntas/junta-chanfro-em-duplo-u.jpg" qtd-angulos="2" tipo="Chanfro em duplo U">Chanfro em duplo U</option>
             </select>                       
             <div class="form-row">
                 <div class="form-col col-4">
@@ -155,6 +156,8 @@
         var caminho = $('#asset').val();
         var qtdAnguloSelecionado =$(this).find('option:selected').attr('qtd-angulos');
         $('#qtd_angulos').val(qtdAnguloSelecionado);
+        var tipoJunta =$(this).find('option:selected').attr('tipo');
+        $('#tipo_junta').val(tipoJunta);
         if (qtdAnguloSelecionado == "1") {
             $('#angulo-2').css('display', 'none');
         } else if (qtdAnguloSelecionado == "2") {
@@ -208,10 +211,9 @@
             data: formData,
             dataType: "json", 
             success: function(data) {
-                var tipoJunta = $('#imagem option:selected').text();
                 var id_processo = $('[name="id_processo"]').val();
                 $("#wrapper-validation-junta").empty();
-                criarElementoJunta(tipoJunta,data["id"]);
+                criarElementoJunta(data["tipo_junta"],data["id"]);
                 $('#form-junta')[0].reset();
                 $('[name="id_junta"]').val('');
                 $('[name="id_processo"]').val(id_processo);

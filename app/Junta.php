@@ -14,6 +14,7 @@ class Junta extends Model
 
     protected $fillable = [
         'imagem',
+        'tipo_junta',
         'artigo',
         'necessidade_remocao_retentor',
         'necessidade_remocao_cobre_junta',

@@ -49,7 +49,10 @@ class EpsProcessoController extends Controller
             $junta = Junta::find($request->id_junta);
             $junta->update($request->all());
         }
-        return response()->json(['id' => $junta->id]);
+        return response()->json([
+            'id' => $junta->id,
+            'tipo_junta' => $junta->tipo_junta,
+        ]);
     }
 
     public function getJunta($id){
