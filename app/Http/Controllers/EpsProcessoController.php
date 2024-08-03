@@ -39,11 +39,11 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaJunta(EpsAvancadaJuntaRequest $request){
         $validatedData = $request->validated();
-        
+
         if(is_null($request->id_junta)){ // Cria
             $junta = Junta::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_junta_id = $junta->id;
+            $processo->juntas()->sync($request->junta_id);
             $processo->save();
         }else{ // Edita
             $junta = Junta::find($request->id_junta);
@@ -99,7 +99,7 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaPosAquecimento(EpsAvancadaPosAquecimentoRequest $request){
         $validatedData = $request->validated();
-        
+
         if(is_null($request->id_pos_aquecimento)){ // Cria
             $pos_aquecimento = PosAquecimento::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -129,7 +129,7 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaCaracteristicasEletricas(EpsAvancadaCaracteristicasEletricasRequest $request){
         $validatedData = $request->validated();
-        
+
         if(is_null($request->id_caracteristicas_eletricas)){ // Cria
             $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -174,7 +174,7 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaMetalAdicao(EpsAvancadaMetalAdicaoRequest $request){
         $validatedData = $request->validated();
-        
+
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_metal_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());
