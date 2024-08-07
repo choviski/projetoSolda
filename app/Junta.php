@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,8 +31,8 @@ class Junta extends Model
         'abertura_raiz',
     ];
 
-    public function processo(): HasOne
+    public function juntas(): BelongsToMany
     {
-        return $this->hasOne(EpsProcesso::class, 'eps_jnuta_id');
+        return $this->belongsToMany(EpsProcesso::class, 'processo_juntas', 'junta_id', 'processo_id');
     }
 }
