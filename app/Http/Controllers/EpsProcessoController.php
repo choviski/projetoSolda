@@ -71,7 +71,7 @@ class EpsProcessoController extends Controller
         if(is_null($request->id_posicao_soldagem)){ // Cria
             $posicao_soldagem = PosicaoSoldagem::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_posicao_soldagem_id = $request->id;
+            $processo->eps_posicao_soldagem_id = $posicao_soldagem->id;
             $processo->save();
         }else{ // Edita
             $posicao_soldagem = PosicaoSoldagem::find($request->id_posicao_soldagem);
