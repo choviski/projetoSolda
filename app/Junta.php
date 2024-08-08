@@ -35,4 +35,13 @@ class Junta extends Model
     {
         return $this->belongsToMany(EpsProcesso::class, 'processo_juntas', 'junta_id', 'processo_id');
     }
+
+    public function getJuntaImagePath(): String{
+        //$path = public_path()  . $eps->processos[0]->junta->imagem;
+        $path = public_path() . "/" . $this->imagem;
+        $type = pathinfo($path,PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
+        return $imagem_junta;   
+    }
 }
