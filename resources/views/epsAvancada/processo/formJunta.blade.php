@@ -306,7 +306,42 @@
     function clonarJuntas(){
         if(confirm('Tem certeza que deseja clonar as juntas do processo anterior para este processo?')){
             console.log("Clonar juntas!");
-            // Setar o display como none se for clonado mesmo
+            var idProcessoOrignal = $('input[name="processo_id[]"]').first().val();
+            var idProcessoAtual = $('[name="id_processo"]').val();
+            console.log(idProcessoOrignal,idProcessoAtual);
+            var linkAjax = '{{route("clonaJunta")}}';
+            $.ajax({
+                url: linkAjax,
+                type: "GET",
+                data: 
+                {
+                    processo_original: idProcessoOrignal,
+                    processo_atual: idProcessoAtual
+                },
+                dataType: "json", 
+                success: function(data) {
+                    for(var id in data["juntas_clonadas"]){
+                        var tipo_junta=data["juntas_clonadas"][id];
+                        criarCloneJunta(tipo_junta,id);
+                    }
+                    console.log("Clonado com sucesso paceiro");
+                    $('#clonar-juntas').css('display', 'none');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Erro ao clonar juntas, por favor cadastre manualmente.');
+                }
+            });
         }
+    }
+
+    function criarCloneJunta(tipoJunta, id) {
+        var divExterior = $('<div>').addClass('mt-2 p-0 col-12 d-flex justify-content-between').attr('id','div-junta-'+id);;
+        var spanJunta = $('<span>')
+            .addClass('btn btn-secondary disabled')
+            .attr('style', 'cursor: pointer;')
+            .attr('id', 'span-junta-'+id)
+            .text(tipoJunta);
+        divExterior.append(spanJunta);
+        $('#lista-junta').append(divExterior);           
     }
 </script>

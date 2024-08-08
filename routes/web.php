@@ -177,6 +177,7 @@ Route::get("/cadastraEPSProcesso","EpsProcessoController@cadastraOuEditaProcesso
 Route::get("/cadastraEPSJunta","EpsProcessoController@cadastraOuEditaJunta")->name("cadastraOuEditaJunta")->middleware(CheckSession::class);
 Route::get("/getEPSJunta/{id}","EpsProcessoController@getJunta")->name("getJunta")->middleware(CheckSession::class);
 Route::delete("/deleteEPSJunta/{id}","EpsProcessoController@deleteJunta")->name("deleteJunta")->middleware(CheckSession::class);
+Route::get("/clonaEPSJunta","EpsProcessoController@clonaJunta")->name("clonaJunta")->middleware(CheckSession::class);
 Route::get("/cadastraEPSMaterialBase","EpsProcessoController@cadastraOuEditaMaterialBase")->name("cadastraOuEditaMaterialBase")->middleware(CheckSession::class);
 Route::get("/cadastraEPSMetalAdicao","EpsProcessoController@cadastraOuEditaMetalAdicao")->name("cadastraOuEditaMetalAdicao")->middleware(CheckSession::class);
 Route::get("/cadastraEPSPreAquecimento","EpsProcessoController@cadastraOuEditaPreAquecimento")->name("cadastraOuEditaPreAquecimento")->middleware(CheckSession::class);

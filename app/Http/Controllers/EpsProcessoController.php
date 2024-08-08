@@ -43,7 +43,7 @@ class EpsProcessoController extends Controller
         if(is_null($request->id_junta)){ // Cria
             $junta = Junta::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->juntas()->sync($request->junta_id);
+            $processo->juntas()->attach($junta->id);
             $processo->save();
         }else{ // Edita
             $junta = Junta::find($request->id_junta);
@@ -63,6 +63,17 @@ class EpsProcessoController extends Controller
     public function deleteJunta($id){
         Junta::destroy($id);
         return response()->json(['message'=>'ok']);
+    }
+
+    public function clonaJunta(Request $request){
+        $ProcessoOriginal = EpsProcesso::find($request->processo_original);
+        $ProcessoAtual = EpsProcesso::find($request->processo_atual);
+        $juntasClonadas=[];
+        foreach ($ProcessoOriginal->juntas as $junta){            
+            $ProcessoAtual->juntas()->attach($junta->id);
+            $juntasClonadas[$junta->id]= $junta->tipo_junta;
+        }
+        return response()->json(['message'=>'ok','juntas_clonadas'=>$juntasClonadas]);
     }
 
     public function cadastraOuEditaPosicaoSoldagem(EpsAvancadaPosicaoSoldagemRequest $request){
