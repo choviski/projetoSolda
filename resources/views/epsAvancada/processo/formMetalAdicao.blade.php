@@ -14,7 +14,7 @@
             <!-- "Card de listagem dos metais adicao." -->
         </div>
         <a class="btn btn-block btn-primary mt-2" onclick="continuarMetalAdicao()">Continuar</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('metal-base')">Voltar</a>    
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="voltarMetalAdicao()">Voltar</a>    
     </div>
 
     <div id="div-form-metal-adicao" style="display:none">
@@ -291,6 +291,15 @@
                 .fail(function(jqHXR,ajaxOptions,thrownError){
                     //alert("Erro ao baixar certificado.")
                 })    
+        }
+    }
+
+    function voltarMetalAdicao(){
+        var temProcessoCadastrado = $('#lista_processos').children('div').length > 0 ? true : false;
+        if(temProcessoCadastrado){
+            mostraAba('junta');
+        }else{
+            mostraAba('metal-base');
         }
     }
 </script>

@@ -259,10 +259,15 @@
     }
 
     function continuarJunta(){
-        var temMetaisCadastrados = $('#lista-junta').children('div').length > 0 ? true : false;
-        if (temMetaisCadastrados){
+        var temJuntasCadastradas = $('#lista-junta').children('div').length > 0 ? true : false;
+        if (temJuntasCadastradas){
             $("#wrapper-validation-junta").empty();
-            mostraAba('metal-base');
+            var temProcessoCadastrado = $('#lista_processos').children('div').length > 0 ? true : false;
+            if(temProcessoCadastrado){
+                mostraAba('metal-adicao');
+            }else{
+                mostraAba('metal-base');
+            }
         }else{
             mostraErrosValidacao('#wrapper-validation-junta',{
                 "errors": {

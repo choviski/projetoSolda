@@ -70,7 +70,7 @@
             </div>
         </div>           
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaGas()">Continuar</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('pos-aquecimento')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="voltaGas()">Voltar</a>                                                      
     </form>
 </div>
 
@@ -104,5 +104,15 @@
                 mostraErrosValidacao('#wrapper-validation-gas',jqXHR.responseJSON)
             }
         });
-    };   
+    }
+    
+    function voltaGas(){
+        var temProcessoCadastrado = $('#lista_processos').children('div').length > 0 ? true : false;
+        if(temProcessoCadastrado){
+            mostraAba('posicao-soldagem');
+        }else{
+            mostraAba('pos-aquecimento');
+        } 
+    }
+    
 </script>
