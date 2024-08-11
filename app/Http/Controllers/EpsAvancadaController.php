@@ -23,8 +23,8 @@ class EpsAvancadaController extends Controller
         "processos-metaisAdicao-classificacao_aws",
         "processos-metaisAdicao-forma_consumivel",
         "processos-materiaisBases-tipo_grau",
-        "processos-junta-cota_t",
-        "processos-junta-imagem",
+        "processos-juntas-cota_t",
+        "processos-juntas-tipo_junta",
         "norma",
         "processos-qual_processo"
     ];
@@ -35,7 +35,7 @@ class EpsAvancadaController extends Controller
         "forma_consumivel"=>'Forma do consumível',
         "cota_t"=> "Cota T (Junta)",
         "tipo_grau"=>"Especificação tipo/grau",
-        "imagem"=>"Tipo de Chanfro (Junta)",
+        "tipo_junta"=>"Tipo de Chanfro (Junta)",
         "norma"=>"Norma",
         "qual_processo"=>"Tipo do processo"
     ];
@@ -69,36 +69,31 @@ class EpsAvancadaController extends Controller
                     
                     // Divide o as relações usando "-"
                     $partes = explode('-', $campo);
-        
+                    
                     // Remove o último elemento do array (que é o nome do campo)
                     $nomeCampo = array_pop($partes);
-
-                    if($nomeCampo=="imagem"){
-                        // Pegando o tipo de chanfro sem o caminho da imagem
-                        $chanfro = preg_replace('/\/juntas\/junta-|\.jpg/', '', $valor);
-                        $chanfro = str_replace('-', ' ', $chanfro);
-                        $camposFiltrados[$campo] = [
-                            $this->exibicaoNomeCampos[$nomeCampo],
-                            $chanfro,
-                            $valor];
-                    }else{
-                        $camposFiltrados[$campo] = [
-                            $this->exibicaoNomeCampos[$nomeCampo],
-                            $valor];
-                    }
+                   
+                    $camposFiltrados[$campo] = [
+                        $this->exibicaoNomeCampos[$nomeCampo],
+                        $valor
+                    ];
                     
-        
+                    
                     // Inicializa a query com a relação principal
                     $query->whereHas($partes[0], function ($query) use ($partes, $nomeCampo, $valor) {
-                        // Adiciona as condições para cada relação aninhada
-                        for ($i = 1; $i < count($partes); $i++) {
-                            $query->whereHas($partes[$i], function ($query) use ($partes, $valor,$nomeCampo, $i) {
-                                if ($i === count($partes) - 1) {
-                                    // Se for a última relação aninhada, adiciona a condição no campo desejado
-                                    $query->where($nomeCampo, $valor);
-                                }
-                            });
-                        }
+                        
+                        if(count($partes)>1){
+                            for ($i = 1; $i < count($partes); $i++) {
+                                $query->whereHas($partes[$i], function ($query) use ($partes, $valor,$nomeCampo, $i) {
+                                    if ($i === count($partes) - 1) {
+                                        // Se for a última relação aninhada, adiciona a condição no campo desejado
+                                        $query->where($nomeCampo, $valor);
+                                    }
+                                });
+                            }
+                        }else{
+                            $query->where($nomeCampo, $valor);
+                        }   
                     });
                 } else {
                     // Se não for uma relação aninhada, adiciona uma condição normal
@@ -107,7 +102,6 @@ class EpsAvancadaController extends Controller
                 }
             }
         }
-        
         $resultados = $query->paginate(10);
         return view("epsAvancada/listarEps")->with(["usuario"=>$usuario,"epsAvancadas"=>$resultados,"filtros"=>$camposFiltrados]);
     }
