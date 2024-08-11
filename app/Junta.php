@@ -31,7 +31,7 @@ class Junta extends Model
         'abertura_raiz',
     ];
 
-    public function juntas(): BelongsToMany
+    public function processos(): BelongsToMany
     {
         return $this->belongsToMany(EpsProcesso::class, 'processo_juntas', 'junta_id', 'processo_id');
     }

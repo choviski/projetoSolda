@@ -89,6 +89,10 @@
                     $('#arames_solidos').prop('selected', true);
                     $('#forma_consumivel').addClass('select-disabled');
                 }
+                if(qualProcesso != "TIG"){
+                    $('#diametro_eletrodo_tig').prop('disabled',true);
+                    $('#classificacao_consumivel_tig').prop('disabled',true);
+                }
                 mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {

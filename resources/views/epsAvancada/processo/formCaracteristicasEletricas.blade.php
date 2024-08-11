@@ -236,6 +236,8 @@
         $('#lista-metal-adicao').empty();
         $('#lista-junta').empty();
         $('#clonar-juntas').css('display', 'block');
+        $('#diametro_eletrodo_tig').prop('disabled',false);
+        $('#classificacao_consumivel_tig').prop('disabled',false);
     }
 
     function adicionaCaracteristicasEletricas(){

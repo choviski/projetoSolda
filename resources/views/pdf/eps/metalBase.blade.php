@@ -2,10 +2,10 @@
     .table-metal-base {
         width: 100%;
         font-size: 12px;
-        border: 1px solid black;
+        border: 1px solid black; !important
         border-collapse: collapse;
         font-weight: normal;
-    }
+    } 
 
     .table-metal-base tr td, th {
         text-align: left;
@@ -13,62 +13,73 @@
     }
 </style>
 
+
 <table class="table-metal-base">
     <thead>
     <tr>
-        <th colspan="12" class="titulo">
-            METAIS DE BASE {{($processo->materiaisBases[0]->artigo) ? '('.strtoupper($processo->materiaisBases[0]->artigo).')':''}}
-        </th>
+        <th colspan="{{$eps->processos->first()->materiaisBases->count() + 1}}" class="titulo"> METAIS DE BASE 
+            @foreach ($eps->processos->first()->materiaisBases as $metalBase)
+                {{($metalBase->artigo) ? '('.strtoupper($metalBase->artigo).') ':''}}
+            @endforeach
+        </th>        
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td colspan="3" style="text-align: left">PN°.: <b>{{$processo->materiaisBases[0]->p_numero}}</b></td>
-        <td colspan="3" style="text-align: left">GURPO N°.: <b>{{$processo->materiaisBases[0]->grupo_n}}</b></td>
+        <tr>
+            <td colspan="1"></td>
+            @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
+                <td colspan="1"> <b> Metal Base {{$index + 1}} </b> </td>           
+            @endforeach
+        </tr>
+        <tr>
+            <td colspan="1" style="text-align: left">PN°.: </td>
+            @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
+                <td colspan="1"> <b> {{$metalBase->p_numero}} </b> </td>           
+            @endforeach
+        </tr>
+        <tr>
+            <td colspan="1" style="text-align: left">GURPO N°.: </td>
+            @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
+                <td colspan="1"> <b> {{$metalBase->grupo_n}} </b> </td>           
+            @endforeach
+        </tr>
+        <tr>
+            <td colspan="1">ESPECIFICAÇÃO TIPO E GRAU:</td>
+            @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
+                <td colspan="1"> <b> {{$metalBase->tipo_grau}} </b> </td>           
+            @endforeach
+        </tr>
+        <tr>
+            <th colspan="{{$eps->processos->first()->materiaisBases->count() + 1}}" class="titulo">FAIXA DE ESPERSSURA</th>
+        </tr>
 
-        @if(count($processo->materiaisBases)>1)
-            <td colspan="3" style="text-align: left">* COM PN°.: <b>{{$processo->materiaisBases[1]->p_numero}}</b></td>
-            <td colspan="3" style="text-align: left">* COM GRUPO N°.: <b> {{$processo->materiaisBases[1]->grupo_n}}</b></td>
-        @else
-            <td colspan="6"></td>
+        @if($eps->processos->first()->materiaisBases->contains('tubo_ou_chapa', 'Tubo'))                        
+            <tr>
+                <td colspan="1">FAIXA DE DIÂMETRO INTERNO TUBO</td>
+                @foreach ($eps->processos->first()->materiaisBases as $materialBase)   
+                    <td colspan="1">
+                        <b>{{($materialBase->diametro_interno_tubo) ? ($materialBase->diametro_interno_tubo.' mm') : '-'}}</b>
+                    </td>
+                @endforeach
+            </tr>
+            <tr>
+                <td colspan="1">FAIXA DE DIÂMETRO EXTERNO TUBO</td>
+                @foreach ($eps->processos->first()->materiaisBases as $materialBase)   
+                    <td colspan="1">
+                        <b>{{($materialBase->diametro_externo_tubo) ? ($materialBase->diametro_externo_tubo.' mm') : '-'}}</b>
+                    </td>
+                @endforeach
+            </tr>
         @endif
-    </tr>
-    <tr>
-        <td colspan="6">ESPECIFICAÇÃO TIPO E GRAU: <b>{{$processo->materiaisBases[0]->tipo_grau}}</b></td>
-        <!-- Esse campo abaixo é para o segundo metal base, caso ele exista  -->
-        <!-- Se não existir esse campo não deve ser mostrado  -->
-        @if(count($processo->materiaisBases)>1)
-            <td colspan="6">COM ESPEC. TIPO E GRAU: <b>{{$processo->materiaisBases[1]->tipo_grau}}</b></td>
-        @else
-            <td colspan="6"> </td>
-        
+        @if($eps->processos->first()->materiaisBases->contains('tubo_ou_chapa', 'Chapa'))
+            <tr>
+                <td colspan="1">ESPESSURA DA CHAPA</td>
+                @foreach ($eps->processos->first()->materiaisBases as $materialBase)   
+                    <td colspan="1">
+                        <b>{{($materialBase->espessura) ? ($materialBase->espessura.' mm') : '-'}}</b>
+                    </td>
+                @endforeach
+            </tr>
         @endif
-    </tr>
-    <tr>
-        <th colspan="12" class="titulo">FAIXA DE ESPERSSURA</th>
-    </tr>
-    <tr>
-        <td colspan="4">METAL BASE</td>
-        <td colspan="4"></td>
-        <td colspan="4"></td>
-    </tr>
-    @if($processo->materiaisBases[0]->tubo_ou_chapa == 'Tubo')
-        <tr>
-            <td colspan="4">FAIXA DE DIÂMETRO TUBOS</td>
-            <td colspan="4">
-                INTERNO: <b>{{$processo->materiaisBases[0]->diametro_interno_tubo}} mm</b>
-            </td>
-        
-            <td colspan="4">
-                EXTERNO: <b>{{$processo->materiaisBases[0]->diametro_externo_tubo}} mm<b>                  
-            </td>
-        </tr>
-    @else
-        <tr>
-            <td colspan="4">ESPESSURA DA CHAPA</td>
-            <td colspan="4">ESPESSURA: <b>{{$processo->junta->cota_t}} mm</b></td>
-            <td colspan="4"></td>
-        </tr>
-    @endif
     </tbody>
 </table>
