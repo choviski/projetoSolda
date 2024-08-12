@@ -33,6 +33,7 @@
                                 <label for="qual_processo" class="mb-0 mt-1" >Qual processo:</label>
                                 <select class="form-select" name="qual_processo" id="qual_processo" >
                                     <option selected value="TIG">TIG</option>
+                                    <option value="GMAW">GMAW</option>
                                     <option value="FCAW">FCAW</option>
                                     <!-- <option value="MIG/MAG">MIG/MAG</option>
                                     <option value="Eletrodo revestido">Eletrodo revestido</option>-->

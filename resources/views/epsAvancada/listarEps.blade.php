@@ -67,6 +67,7 @@
                     @endif
                     <option value="" >Qualquer um</option>
                     <option value="TIG">TIG</option>
+                    <option value="GMAW">GMAW</option>
                     <option value="FCAW">FCAW</option>
                 </select> 
                 
