@@ -33,14 +33,14 @@
         <td colspan="1"></td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b>  {{$processo->qual_processo}} - Metal {{$index + 1}}  </b> </td>
+            <td colspan="1" class="borda-lateral"> <b>  {{$processo->qual_processo}} - Metal {{$index + 1}}  </b> </td>
           @endforeach
         @endforeach
       <tr>
         <td colspan="1" style="text-align: left">ESPECIFICAÇÃO N° (S.F.A)/AWS:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b>  {{$metal->classificacao_aws}}  </b></td>
+            <td colspan="1" class="borda-lateral"> <b>  {{$metal->classificacao_aws}}  </b></td>
           @endforeach
         @endforeach
       </tr>
@@ -48,7 +48,7 @@
         <td colspan="1">F N°.:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b>  {{$metal->f_numero}} </b></td> 
+            <td colspan="1" class="borda-lateral"> <b>  {{$metal->f_numero}} </b></td> 
           @endforeach
         @endforeach     
       </tr>
@@ -56,7 +56,7 @@
         <td>A N°.:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b>  {{$metal->a_numero}} </b></td> 
+            <td colspan="1" class="borda-lateral"> <b>  {{$metal->a_numero}} </b></td> 
           @endforeach
         @endforeach  
       </tr>
@@ -64,7 +64,7 @@
         <td>FORMA DO CONSUMÍVEL:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-          <td colspan="1"><b>  {{ucfirst(str_replace("_"," ",$metal->forma_consumivel))}} </b></td> 
+          <td colspan="1" class="borda-lateral"><b>  {{ucfirst(str_replace("_"," ",$metal->forma_consumivel))}} </b></td> 
           @endforeach
         @endforeach  
       </tr>
@@ -72,7 +72,7 @@
         <td>BITOLA METAIS ADIÇÃO:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"><b>  {{$metal->diametro_consumivel}} mm </b></td> 
+            <td colspan="1" class="borda-lateral"><b>  {{$metal->diametro_consumivel}} mm </b></td> 
           @endforeach
         @endforeach  
       </tr>
@@ -80,7 +80,7 @@
         <td>METAL DEPOSITADO: </td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b> {{$metal->metal_depositado}} mm </b></td> 
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->metal_depositado}} mm </b></td> 
           @endforeach
         @endforeach  
       </tr>
@@ -88,7 +88,7 @@
         <td colspan="1">METAL ADIÇÃO SUPLEMENTAR:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b> {{$metal->metal_suplementar ?: 'N/A'}} </b></td> 
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->metal_suplementar ?: 'N/A'}} </b></td> 
           @endforeach
         @endforeach  
       </tr>
@@ -96,7 +96,7 @@
         <td colspan="1">MARCA COMERCIAL:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b> {{$metal->marca_material ?: 'N/A'}} </b></td> 
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->marca_material ?: 'N/A'}} </b></td> 
           @endforeach
         @endforeach  
       </tr>      
@@ -104,7 +104,7 @@
         <td colspan="1" style="text-align: left">SUPORTE:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b> {{$metal->suporte}}  </b></td>
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->suporte}}  </b></td>
           @endforeach
         @endforeach 
       </tr>
@@ -112,7 +112,7 @@
         <td>MATERIAL DO SUPORTE:</td>
         @foreach ($eps->processos as $processo)
           @foreach ($processo->metaisAdicao as $index => $metal)
-            <td colspan="1"> <b> {{$metal->material_suporte}} </b></td> 
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->material_suporte}} </b></td> 
           @endforeach
         @endforeach 
       </tr>   

@@ -43,37 +43,37 @@
       <tr>
         <td colspan="1"></td>
         @foreach ($eps->juntasUnicas() as $index=>$junta)
-          <th>Junta {{$index+1}}</th>
+          <th class="borda-lateral">Junta {{$index+1}}</th>
         @endforeach
       </tr>
       <tr>
         <td colspan="1">TIPO DE JUNTA:</td>
         @foreach ($eps->juntasUnicas() as $junta)
-          <th>{{$junta->tipo_junta}}</th>
+          <th class="borda-lateral">{{$junta->tipo_junta}}</th>
         @endforeach
       </tr>
       <tr>
         <td colspan="1">COTA T</td>
         @foreach ($eps->juntasUnicas() as $junta)
-          <th>{{$junta->cota_t}} mm</th>
+          <th class="borda-lateral">{{$junta->cota_t}} mm</th>
         @endforeach
       </tr>
       <tr>
         <td colspan="1">COTA R</td>
         @foreach ($eps->juntasUnicas() as $junta)
-          <th>{{$junta->cota_r}} mm</th>
+          <th class="borda-lateral">{{$junta->cota_r}} mm</th>
         @endforeach
       </tr> 
       <tr>
         <td colspan="1">COTA F</td>
         @foreach ($eps->juntasUnicas() as $junta)
-          <th>{{$junta->cota_f}} mm</th>
+          <th class="borda-lateral">{{$junta->cota_f}} mm</th>
         @endforeach
       </tr> 
       <tr>
         <td>1° <span style="font-family: DejaVu Sans, sans-serif;">α</span></td>        
           @foreach ($eps->juntasUnicas() as $junta)
-            <th style="text-align: left">{{$junta->angulo_primario}} °</th>
+            <th class="borda-lateral" style="text-align: left">{{$junta->angulo_primario}} °</th>
           @endforeach
       </tr>
       
@@ -81,7 +81,7 @@
       <tr>
         <td>2° <span style="font-family: DejaVu Sans, sans-serif;">α</span></td>        
           @foreach ($eps->juntasUnicas() as $junta)
-            <th style="text-align: left">{{($junta->angulo_secundario) ? $junta->angulo_secundario : '-'}} °</th>
+            <th class="borda-lateral" style="text-align: left">{{($junta->angulo_secundario) ? $junta->angulo_secundario : '-'}} °</th>
           @endforeach
       </tr>
       @endif
@@ -89,21 +89,21 @@
       <tr>
         <td>ABERTURA DE RAIZ:</td>
         @foreach ($eps->juntasUnicas() as $junta)
-          <th>{{$junta->cota_r}} mm</th>
+          <th class="borda-lateral">{{$junta->cota_r}} mm</th>
         @endforeach
       </tr>
 
       <tr>       
         <td>COBRE JUNTA:</td>
         @foreach ($eps->juntasUnicas() as $junta)
-            <th style="text-align: left">{{($junta->possui_cobre_junta) ?'SIM' : 'NÃO'}}</th>
+            <th class="borda-lateral" style="text-align: left">{{($junta->possui_cobre_junta) ?'SIM' : 'NÃO'}}</th>
         @endforeach
       </tr>
 
       <tr>        
         <td>MATERIAL COBRE JUNTA (TIPO):</td>
         @foreach ($eps->juntasUnicas() as $junta)
-          <th style="text-align: left">{{($junta->possui_cobre_junta) ? $junta->material_cobre_junta : '-'}}</th>
+          <th class="borda-lateral" style="text-align: left">{{($junta->possui_cobre_junta) ? $junta->material_cobre_junta : '-'}}</th>
         @endforeach
       </tr>
      
@@ -111,14 +111,14 @@
       <tr>      
         <td colspan="1">RETENTORES:</td>
           @foreach ($eps->juntasUnicas() as $junta)
-            <th style="text-align: left">{{($junta->retentores) ? 'SIM' : 'NÃO'}}</th>
+            <th class="borda-lateral" style="text-align: left">{{($junta->retentores) ? 'SIM' : 'NÃO'}}</th>
           @endforeach        
       </tr>
 
       <tr>
         <td colspan="1" class="mt-5">NECESSIDADE REMOÇÃO COBRE JUNTA:
           @foreach ($eps->juntasUnicas() as $junta)
-            <th style="text-align: left">{{($junta->necessidade_remocao_cobre_junta) ? 'SIM' : 'NÃO'}}</th>
+            <th class="borda-lateral" style="text-align: left">{{($junta->necessidade_remocao_cobre_junta) ? 'SIM' : 'NÃO'}}</th>
           @endforeach   
         </td>
         
@@ -127,7 +127,7 @@
       <tr>
         <td colspan="1">NECESSIDADE REMOÇÃO RETENTORES:
           @foreach ($eps->juntasUnicas() as $junta)
-            <th style="text-align: left">{{($junta->necessidade_remocao_retentor) ? 'SIM' : 'NÃO'}}</th>
+            <th class="borda-lateral" style="text-align: left">{{($junta->necessidade_remocao_retentor) ? 'SIM' : 'NÃO'}}</th>
           @endforeach   
         </td>
       </tr>

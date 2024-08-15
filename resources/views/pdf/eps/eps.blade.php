@@ -35,6 +35,10 @@
             border-bottom: 1px solid rgba(0,0,0,0.3);
         }
 
+        .borda-lateral{
+            border-left: 1px solid rgba(0,0,0,0.3);
+        }
+
     </style>
 </head>
 

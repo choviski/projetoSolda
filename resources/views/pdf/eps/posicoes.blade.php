@@ -27,19 +27,19 @@
       <tr>
         <td></td>
         @foreach ($eps->processos as $processo )
-            <td>{{$processo->qual_processo}}</td>
+            <td class="borda-lateral">{{$processo->qual_processo}}</td>
         @endforeach
       </tr>
       <tr>
         <th colspan="1">POSIÇÃO: </th>
         @foreach ($eps->processos as $processo )
-          <td>{{ucfirst($processo->posicaoSoldagem->posicao_soldagem)}}</td>
+          <td class="borda-lateral">{{ucfirst($processo->posicaoSoldagem->posicao_soldagem)}}</td>
         @endforeach
       </tr>
       <tr>
         <th colspan="1">PROGRESSÃO SOLDAGEM: </th>
         @foreach ($eps->processos as $processo )
-          <td>{{ucfirst($processo->posicaoSoldagem->direcao_soldagem)}}</td>
+          <td class="borda-lateral">{{ucfirst($processo->posicaoSoldagem->direcao_soldagem)}}</td>
         @endforeach
       </tr>
     </tbody>

@@ -40,19 +40,19 @@
       <tr>
         <td colspan="1">TIPO DE CORRENTE:</td>
         @foreach ($eps->processos as $processo)
-          <td><b>{{ucfirst($processo->caracteristicasEletricas->tipo_corrente)}}</b></td>
+          <td class="borda-lateral"><b>{{ucfirst($processo->caracteristicasEletricas->tipo_corrente)}}</b></td>
         @endforeach 
       </tr>
       <tr>
         <td colspan="1">POLARIDADE:</td>
         @foreach ($eps->processos as $processo)
-          <td><b>{{$processo->caracteristicasEletricas->polaridade}}</b> </td>
+          <td class="borda-lateral"><b>{{$processo->caracteristicasEletricas->polaridade}}</b> </td>
         @endforeach 
       </tr>
       <tr>
           <td colspan="1">MODO DE TRANSFERÊNCIA:</td>
           @foreach ($eps->processos as $processo)
-            <td><b>{{$processo->caracteristicasEletricas->modo_transferencia ?: '-'}}</b> </td>
+            <td class="borda-lateral"><b>{{$processo->caracteristicasEletricas->modo_transferencia ?: '-'}}</b> </td>
           @endforeach 
       </tr>
       <tr>
@@ -61,7 +61,7 @@
             TIPO E DIÂMETRO DO ELETRODO DE TUNGSTÊNIO:           
         </td>
         @foreach ($eps->processos as $processo)
-            <td> <b>{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}} - {{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</b> </td>
+            <td class="borda-lateral"> <b>{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}} - {{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</b> </td>
         @endforeach 
       @endif
         
@@ -186,6 +186,6 @@
         </th>
       </tr>      
       @endif
-      @endforeach
+    @endforeach
     </tbody>
 </table>

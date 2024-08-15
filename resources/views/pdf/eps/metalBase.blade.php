@@ -28,25 +28,25 @@
         <tr>
             <td colspan="1"></td>
             @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
-                <td colspan="1"> <b> Metal Base {{$index + 1}} </b> </td>           
+                <td colspan="1" class="borda-lateral"> <b> Metal Base {{$index + 1}} </b> </td>           
             @endforeach
         </tr>
         <tr>
             <td colspan="1" style="text-align: left">PN°.: </td>
             @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
-                <td colspan="1"> <b> {{$metalBase->p_numero}} </b> </td>           
+                <td colspan="1" class="borda-lateral"> <b> {{$metalBase->p_numero}} </b> </td>           
             @endforeach
         </tr>
         <tr>
             <td colspan="1" style="text-align: left">GURPO N°.: </td>
             @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
-                <td colspan="1"> <b> {{$metalBase->grupo_n}} </b> </td>           
+                <td colspan="1" class="borda-lateral"> <b> {{$metalBase->grupo_n}} </b> </td>           
             @endforeach
         </tr>
         <tr>
             <td colspan="1">ESPECIFICAÇÃO TIPO E GRAU:</td>
             @foreach ($eps->processos->first()->materiaisBases as $index => $metalBase)
-                <td colspan="1"> <b> {{$metalBase->tipo_grau}} </b> </td>           
+                <td colspan="1" class="borda-lateral"> <b> {{$metalBase->tipo_grau}} </b> </td>           
             @endforeach
         </tr>
         <tr>
@@ -57,7 +57,7 @@
             <tr>
                 <td colspan="1">FAIXA DE DIÂMETRO INTERNO TUBO</td>
                 @foreach ($eps->processos->first()->materiaisBases as $materialBase)   
-                    <td colspan="1">
+                    <td colspan="1" class="borda-lateral">
                         <b>{{($materialBase->diametro_interno_tubo) ? ($materialBase->diametro_interno_tubo.' mm') : '-'}}</b>
                     </td>
                 @endforeach
@@ -65,7 +65,7 @@
             <tr>
                 <td colspan="1">FAIXA DE DIÂMETRO EXTERNO TUBO</td>
                 @foreach ($eps->processos->first()->materiaisBases as $materialBase)   
-                    <td colspan="1">
+                    <td colspan="1" class="borda-lateral">
                         <b>{{($materialBase->diametro_externo_tubo) ? ($materialBase->diametro_externo_tubo.' mm') : '-'}}</b>
                     </td>
                 @endforeach
@@ -75,7 +75,7 @@
             <tr>
                 <td colspan="1">ESPESSURA DA CHAPA</td>
                 @foreach ($eps->processos->first()->materiaisBases as $materialBase)   
-                    <td colspan="1">
+                    <td colspan="1" class="borda-lateral">
                         <b>{{($materialBase->espessura) ? ($materialBase->espessura.' mm') : '-'}}</b>
                     </td>
                 @endforeach
