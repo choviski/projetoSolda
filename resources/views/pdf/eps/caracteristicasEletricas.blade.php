@@ -113,12 +113,7 @@
           <th class="borda" style="text-align: center">
             <span style="font-family: DejaVu Sans, sans-serif;">≥</span> {{$processo->caracteristicasEletricas->velocidade}}
           </th>
-          <th class="borda" >
-            {{
-              number_format(((($processo->caracteristicasEletricas->camada_todas_amperes_li + $processo->caracteristicasEletricas->camada_todas_amperes_ls)/2)*
-              (($processo->caracteristicasEletricas->camada_todas_volts_li + $processo->caracteristicasEletricas->camada_todas_volts_ls)/2))/
-              $processo->caracteristicasEletricas->velocidade,2, ',', '')
-            }}
+          <th class="borda">{{$processo->caracteristicasEletricas->energiaCamadaTodas()}}
           </th>
         </tr>      
       @else
@@ -137,12 +132,7 @@
         <th class="borda" style="text-align: center"> 
           <span style="font-family: DejaVu Sans, sans-serif;">≥</span> 
           {{$processo->caracteristicasEletricas->velocidade}} {{$processo->caracteristicasEletricas->velocidade}}</th>
-        <th class="borda" >
-          {{
-            number_format(((($processo->caracteristicasEletricas->camada_raiz_amperes_li + $processo->caracteristicasEletricas->camada_raiz_amperes_ls)/2)*
-            (($processo->caracteristicasEletricas->camada_raiz_volts_li + $processo->caracteristicasEletricas->camada_raiz_volts_ls)/2))/
-            $processo->caracteristicasEletricas->velocidade,2, ',', '')
-          }}
+        <th class="borda" >{{$processo->caracteristicasEletricas->energiaCamadaRaiz()}}
         </th>
       </tr>
       <tr>
@@ -161,11 +151,7 @@
           <span style="font-family: DejaVu Sans, sans-serif;">≥</span> {{$processo->caracteristicasEletricas->velocidade}}
           {{$processo->caracteristicasEletricas->velocidade}}</th>
         <th class="borda" >
-          {{
-            number_format(((($processo->caracteristicasEletricas->camada_acabamento_amperes_li + $processo->caracteristicasEletricas->camada_acabamento_amperes_ls)/2)*
-            (($processo->caracteristicasEletricas->camada_acabamento_volts_li + $processo->caracteristicasEletricas->camada_acabamento_volts_ls)/2))/
-            $processo->caracteristicasEletricas->velocidade,2, ',', '')
-          }}
+          {{$processo->caracteristicasEletricas->energiaCamadaAcabamento()}}
         </th>
       </tr> 
       <tr>
@@ -184,11 +170,7 @@
           <span style="font-family: DejaVu Sans, sans-serif;">≥</span> 
           {{$processo->caracteristicasEletricas->velocidade}} {{$processo->caracteristicasEletricas->velocidade}}</th>
         <th class="borda" >
-          {{
-            number_format(((($processo->caracteristicasEletricas->camada_enchimento_amperes_li + $processo->caracteristicasEletricas->camada_enchimento_amperes_ls)/2)*
-            (($processo->caracteristicasEletricas->camada_enchimento_volts_li + $processo->caracteristicasEletricas->camada_enchimento_volts_ls)/2))/
-            $processo->caracteristicasEletricas->velocidade,2, ',', '')
-          }}
+          {{$processo->caracteristicasEletricas->energiaCamadaEnchimento()}}
         </th>
       </tr>      
       @endif
