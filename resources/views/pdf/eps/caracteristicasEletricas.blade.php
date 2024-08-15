@@ -38,6 +38,12 @@
     </thead>
     <tbody>
       <tr>
+        <td colspan="1"></td>
+        @foreach ($eps->processos as $processo)
+          <th colspan="1" class="borda-lateral">{{$processo->qual_processo}}</td>
+        @endforeach          
+      </tr>
+      <tr>
         <td colspan="1">TIPO DE CORRENTE:</td>
         @foreach ($eps->processos as $processo)
           <td class="borda-lateral"><b>{{ucfirst($processo->caracteristicasEletricas->tipo_corrente)}}</b></td>
@@ -141,7 +147,7 @@
       </tr>
       <tr>
         <th class="borda" >Acabamento</th>
-        <th class="borda" >TIG</th>
+        <th class="borda" >{{$processo->qual_processo}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
@@ -164,7 +170,7 @@
       </tr> 
       <tr>
         <th class="borda" >Enchimento</th>
-        <th class="borda" >TIG</th>
+        <th class="borda" >{{$processo->qual_processo}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->classificacao_consumivel_tig}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->diametro_eletrodo_tig}}</th>
         <th class="borda" >{{$processo->caracteristicasEletricas->tipo_corrente}} {{$processo->caracteristicasEletricas->polaridade}}</th>
