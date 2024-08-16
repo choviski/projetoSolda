@@ -1,3 +1,6 @@
+<!--  Alguns processos (FCAW e SMAW) podem não ter nenhum gás relacionado 
+      Então nesse caso aqui sempre é feita uma verificação antes
+      Pra saber se ele tem ou não! -->
 <style>
     .table-gas{
         width:  100%;
@@ -16,7 +19,9 @@
       <tr>
         <th colspan="{{$eps->processos->count() +1}}" class="titulo"> GÁS
           @foreach ($eps->processos as $processo)
-            {{($processo->gas->artigo) ? '('.strtoupper($processo->gas->artigo).') ':''}}
+            {{$processo->gas 
+              ? (($processo->gas->artigo) ? '('.strtoupper($processo->gas->artigo).') ':'') 
+              : ''}}
           @endforeach
         </td>
       </tr>
@@ -24,50 +29,90 @@
     <tbody>
         <tr>
           <td colspan="1"></td>
-          @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">Gás - {{$processo->qual_processo}}</td>
+          @foreach ($eps->processos as $processo)          
+            <th colspan="1" class="borda-lateral">
+              
+                Gás - {{$processo->qual_processo}}
+              
+            </td>
           @endforeach          
         </tr>
         <tr>
           <td colspan="1">GÁS(ES) <b>PROTEÇÃO</b> </td>
           @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">{{$processo->gas->gas_protecao}}</td>
+            <th colspan="1" class="borda-lateral">
+              @if ($processo->gas) 
+                {{$processo->gas->gas_protecao}}
+              @else
+                -
+              @endif
+            </th>
           @endforeach  
         </tr>
         <tr>
           <td colspan="1">COMPOSIÇÃO GÁS(ES) <b>PROTEÇÃO</b></td>
           @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">{{$processo->gas->composicao}}</td>
+            <th colspan="1" class="borda-lateral">
+              @if ($processo->gas) 
+                {{$processo->gas->composicao}}
+              @else
+                -
+              @endif
+            </th>
           @endforeach  
         </tr>
         <tr>
           <td colspan="1">VAZÃO GÁS(ES) <b>PROTEÇÃO</b></td>
           @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">{{$processo->gas->vazao}} L/min</td>
+            <th colspan="1" class="borda-lateral">
+              @if ($processo->gas) 
+                {{$processo->gas->vazao}} L/min
+              @else 
+                -
+              @endif
+            </th>
           @endforeach  
         </tr>
         <tr>
           <td colspan="1">GÁS(ES) <b>PRUGA</b></td>
           @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">{{$processo->gas->purga}}</td>
+            <th colspan="1" class="borda-lateral">
+              @if ($processo->gas) 
+                {{$processo->gas->purga}}
+              @else
+                -
+              @endif
+              </th>
           @endforeach  
         </tr>
         <tr>
           <td colspan="1">COMPOSIÇÃO GÁS(ES) <b>PRUGA</b></td>
           @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">{{$processo->gas->composicao_purga}}</td>
+            <th colspan="1" class="borda-lateral">
+              @if ($processo->gas) 
+                {{$processo->gas->composicao_purga}}
+              @else
+                -
+              @endif
+            </th>
           @endforeach  
         </tr>
         <tr>
           <td colspan="1">VAZÃO GÁS(ES) <b>PRUGA</b></td>
           @foreach ($eps->processos as $processo)
-            <th colspan="1" class="borda-lateral">{{$processo->gas->vazao_purga}} L/min</td>
+            <th colspan="1" class="borda-lateral">
+              @if ($processo->gas) 
+                {{$processo->gas->vazao_purga}} L/min              
+              @else
+                -
+              @endif
+              </th>
           @endforeach  
         </tr>
         <tr>
             <td colspan="1">ARRASTE</td>
             @foreach ($eps->processos as $processo)
-              <th colspan="1" class="borda-lateral">N/A </td>
+              <th colspan="1" class="borda-lateral">{{$processo->gas ? 'N/A' : '-'}}</td>
             @endforeach           
         </tr>
       </tbody>
