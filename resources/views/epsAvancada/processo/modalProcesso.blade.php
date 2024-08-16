@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Processo</h5>
+                <h5 class="modal-title" id="processo-title">Processo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -33,7 +33,7 @@
                                 <label for="qual_processo" class="mb-0 mt-1" >Qual processo:</label>
                                 <select class="form-select" name="qual_processo" id="qual_processo" >
                                     <option selected value="TIG">TIG</option>
-                                    <option value="GMAW">GMAW</option>
+                                    <option value="GMAW">GMAW (MIG/MAG)</option>
                                     <option value="FCAW">FCAW</option>
                                     <!-- <option value="MIG/MAG">MIG/MAG</option>
                                     <option value="Eletrodo revestido">Eletrodo revestido</option>-->
@@ -87,6 +87,7 @@
                 $("#id_processo_"+qtdProcessos).val(data["id"]);
                 $('input[name="id_processo"]').val(data["id"]);
                 if(qualProcesso == "FCAW"){
+                    $('#fcaw-sem-gas').css('display', 'block');
                     $('#arames_solidos').prop('selected', true);
                     $('#forma_consumivel').addClass('select-disabled');
                 }
@@ -94,6 +95,9 @@
                     $('#diametro_eletrodo_tig').prop('disabled',true);
                     $('#classificacao_consumivel_tig').prop('disabled',true);
                 }
+
+                $('#processo-title').text('Processo - '+qualProcesso);
+
                 mostraAba("junta");
             },
             error: function(jqXHR, textStatus, errorThrown) {
