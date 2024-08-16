@@ -236,6 +236,7 @@
         $('#lista-metal-adicao').empty();
         $('#lista-junta').empty();
         $('#clonar-juntas').css('display', 'block');
+        $('#fcaw-sem-gas').css('display', 'none');
         $('#diametro_eletrodo_tig').prop('disabled',false);
         $('#classificacao_consumivel_tig').prop('disabled',false);
         $('#processo-title').text('Processo');
