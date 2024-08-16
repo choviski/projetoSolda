@@ -35,6 +35,7 @@
                                     <option selected value="TIG">TIG</option>
                                     <option value="GMAW">GMAW (MIG/MAG)</option>
                                     <option value="FCAW">FCAW</option>
+                                    <option value="SMAW">SMAW</option>
                                     <!-- <option value="MIG/MAG">MIG/MAG</option>
                                     <option value="Eletrodo revestido">Eletrodo revestido</option>-->
                                 </select>

@@ -174,7 +174,7 @@
             </div>
         </div>         
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('gas')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="voltaCaracteristicasEletricas()">Voltar</a>                                                      
     </form>
 </div>
 
@@ -263,4 +263,14 @@
             }
         });
     };   
+
+    function voltaCaracteristicasEletricas(){
+        var qualProcesso = $("#qual_processo").val();
+        var temProcessoCadastrado = $('#lista_processos').children('div').length > 0 ? true : false;
+        if(qualProcesso=="SMAW"){
+            temProcessoCadastrado ? mostraAba('posicao-soldagem') : mostraAba('pos-aquecimento')
+        }else{
+            mostraAba("processo");
+        }
+    }
 </script>

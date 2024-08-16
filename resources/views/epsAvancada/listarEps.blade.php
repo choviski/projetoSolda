@@ -69,6 +69,7 @@
                     <option value="TIG">TIG</option>
                     <option value="GMAW">GMAW (MIG/MAG)</option>
                     <option value="FCAW">FCAW</option>
+                    <option value="SMAW">SMAW</option>
                 </select> 
                 
                 <label for="norma" class="form-label mb-1 mt-1">Norma da EPS: </label>                   
