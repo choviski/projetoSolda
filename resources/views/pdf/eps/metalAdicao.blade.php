@@ -2,8 +2,8 @@
     .table-metal-adicao{
         width:  100%;
         font-size: 12px;
-        border: 1px solid black;
-        border-collapse: collapse;
+        border: 1px solid black; !important
+        border-collapse: collapse; !important
         font-weight: normal;
     }
     .table-metal-adicao tr td,th{
@@ -19,51 +19,102 @@
 <table class="table-metal-adicao">
     <thead>
       <tr>
-        <th colspan="4" class="titulo">METAIS DE ADIÇÃO 
-          {{($metal->artigo) ? '('.strtoupper($metal->artigo).')':''}}
+        <th colspan="{{$eps->quatidadeMetaisAdicao()+1}}" class="titulo">METAIS DE ADIÇÃO 
+          @foreach ($eps->processos as $processo)
+            @foreach ($processo->metaisAdicao as $index => $metal)
+            {{($metal->artigo) ? '('.strtoupper($metal->artigo).') ':''}}
+            @endforeach
+          @endforeach
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td style="text-align: left">ESPECIFICAÇÃO N° (S.F.A)/AWS:</td>
-        <th style="text-align: left">{{$metal->classificacao_aws}}</th>
-        <td style="text-align: left">SUPORTE:</td>
-        <th style="text-align: left">{{$metal->suporte}}</th>
+        <td colspan="1"></td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b>  {{$processo->qual_processo}} - Metal {{$index + 1}}  </b> </td>
+          @endforeach
+        @endforeach
+      <tr>
+        <td colspan="1" style="text-align: left">ESPECIFICAÇÃO N° (S.F.A)/AWS:</td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b>  {{$metal->classificacao_aws}}  </b></td>
+          @endforeach
+        @endforeach
       </tr>
       <tr>
-        <td>F N°.:</td>
-        <th>{{$metal->f_numero}}</th>
-        <td>MATERIAL DO SUPORTE:</td>
-        <th>{{$metal->material_suporte}}</th>
+        <td colspan="1">F N°.:</td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b>  {{$metal->f_numero}} </b></td> 
+          @endforeach
+        @endforeach     
       </tr>
       <tr>
         <td>A N°.:</td>
-        <th>{{$metal->a_numero}}</th>
-        <td>FORMA DO CONSUMÍVEL:</td>
-        <th>{{$metal->forma_consumivel}}</th> <!-- LÁ ELEKkkkkj -->
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b>  {{$metal->a_numero}} </b></td> 
+          @endforeach
+        @endforeach  
       </tr>
       <tr>
-        <td>BITOLA METAIS ADIÇÃO:</td>  <!-- (diametro_consumivel ?) -->
-        <th>ø {{$metal->diametro_consumivel}} mm</th>
-        <td>INSERTO CONSUMÍVEL:</td>
-        <th>sem</th>
+        <td>FORMA DO CONSUMÍVEL:</td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+          <td colspan="1" class="borda-lateral"><b>  {{ucfirst(str_replace("_"," ",$metal->forma_consumivel))}} </b></td> 
+          @endforeach
+        @endforeach  
       </tr>
-      <tr> <!-- (? - Existe metal_depositado no banco mas n tem chanfro e nem angulo.) -->
+      <tr>
+        <td>BITOLA METAIS ADIÇÃO:</td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"><b>  {{$metal->diametro_consumivel}} mm </b></td> 
+          @endforeach
+        @endforeach  
+      </tr>
+      <tr>
         <td>METAL DEPOSITADO: </td>
-        <th> {{$metal->metal_depositado}} mm </th>
-        <td></td>
-        <td></td>
-        {{-- <td>METAL DEPOSITADO  <span style="font-size: 10px">(ÂNGULO)</span>:</td>
-        <th>sem</th> --}}
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->metal_depositado}} mm </b></td> 
+          @endforeach
+        @endforeach  
       </tr>
       <tr>
         <td colspan="1">METAL ADIÇÃO SUPLEMENTAR:</td>
-        <th colspan="3">{{$metal->metal_suplementar ?: 'N/A'}}</th>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->metal_suplementar ?: 'N/A'}} </b></td> 
+          @endforeach
+        @endforeach  
       </tr>
       <tr>
         <td colspan="1">MARCA COMERCIAL:</td>
-        <th colspan="3">{{$metal->marca_material ?: 'N/A'}}</th>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->marca_material ?: 'N/A'}} </b></td> 
+          @endforeach
+        @endforeach  
+      </tr>      
+      <tr>
+        <td colspan="1" style="text-align: left">SUPORTE:</td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->suporte}}  </b></td>
+          @endforeach
+        @endforeach 
       </tr>
+      <tr>
+        <td>MATERIAL DO SUPORTE:</td>
+        @foreach ($eps->processos as $processo)
+          @foreach ($processo->metaisAdicao as $index => $metal)
+            <td colspan="1" class="borda-lateral"> <b> {{$metal->material_suporte}} </b></td> 
+          @endforeach
+        @endforeach 
+      </tr>   
     </tbody>
     </table>

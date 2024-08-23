@@ -131,7 +131,7 @@ crossorigin="anonymous"></script>
                             <select class="form-select" id="id_empresa" name="id_empresa">
                                 <option value="" selected>Infosolda (Administrativo)</option>
                                 @foreach ($empresas as $empresa)
-                                    <option value={{$empresa->id}}">{{$empresa->nome_fantasia}} </option>
+                                    <option value={{$empresa->id}}>{{$empresa->nome_fantasia}} </option>
                                 @endforeach
                             </select>                     
                         </div>

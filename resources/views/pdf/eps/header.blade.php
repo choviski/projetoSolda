@@ -20,6 +20,9 @@
         padding:2px;
         border: 1px black solid;
     }
+    #header > table td,th{
+            border: none
+    }
 </style>
 <header id="header">
     <table style="width:100%">

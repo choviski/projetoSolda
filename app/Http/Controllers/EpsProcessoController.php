@@ -39,17 +39,41 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaJunta(EpsAvancadaJuntaRequest $request){
         $validatedData = $request->validated();
-        
+
         if(is_null($request->id_junta)){ // Cria
             $junta = Junta::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_junta_id = $junta->id;
+            $processo->juntas()->attach($junta->id);
             $processo->save();
         }else{ // Edita
             $junta = Junta::find($request->id_junta);
             $junta->update($request->all());
         }
-        return response()->json(['id' => $junta->id]);
+        return response()->json([
+            'id' => $junta->id,
+            'tipo_junta' => $junta->tipo_junta,
+        ]);
+    }
+
+    public function getJunta($id){
+        $junta = Junta::find($id);
+        return response()->json($junta);
+    }
+
+    public function deleteJunta($id){
+        Junta::destroy($id);
+        return response()->json(['message'=>'ok']);
+    }
+
+    public function clonaJunta(Request $request){
+        $ProcessoOriginal = EpsProcesso::find($request->processo_original);
+        $ProcessoAtual = EpsProcesso::find($request->processo_atual);
+        $juntasClonadas=[];
+        foreach ($ProcessoOriginal->juntas as $junta){            
+            $ProcessoAtual->juntas()->attach($junta->id);
+            $juntasClonadas[$junta->id]= $junta->tipo_junta;
+        }
+        return response()->json(['message'=>'ok','juntas_clonadas'=>$juntasClonadas]);
     }
 
     public function cadastraOuEditaPosicaoSoldagem(EpsAvancadaPosicaoSoldagemRequest $request){
@@ -58,7 +82,7 @@ class EpsProcessoController extends Controller
         if(is_null($request->id_posicao_soldagem)){ // Cria
             $posicao_soldagem = PosicaoSoldagem::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
-            $processo->eps_posicao_soldagem_id = $request->id;
+            $processo->eps_posicao_soldagem_id = $posicao_soldagem->id;
             $processo->save();
         }else{ // Edita
             $posicao_soldagem = PosicaoSoldagem::find($request->id_posicao_soldagem);
@@ -86,7 +110,7 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaPosAquecimento(EpsAvancadaPosAquecimentoRequest $request){
         $validatedData = $request->validated();
-        
+
         if(is_null($request->id_pos_aquecimento)){ // Cria
             $pos_aquecimento = PosAquecimento::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -116,7 +140,7 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaCaracteristicasEletricas(EpsAvancadaCaracteristicasEletricasRequest $request){
         $validatedData = $request->validated();
-        
+
         if(is_null($request->id_caracteristicas_eletricas)){ // Cria
             $caracteristicas_eletricas = CaracteristicaEletrica::create($request->all());
             $processo = EpsProcesso::find($request->id_processo);
@@ -161,7 +185,7 @@ class EpsProcessoController extends Controller
 
     public function cadastraOuEditaMetalAdicao(EpsAvancadaMetalAdicaoRequest $request){
         $validatedData = $request->validated();
-        
+
         $request->merge(['eps_processo_id' => $request->id_processo]);
         if(is_null($request->id_metal_adicao)){ // Cria
             $metalAdicao = MetalAdicao::create($request->all());

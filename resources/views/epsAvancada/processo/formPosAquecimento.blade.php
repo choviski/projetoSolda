@@ -60,6 +60,7 @@
     function adicionaPosAquecimento(){
         var formData = $("#form-pos-aquecimento").serialize();
         var linkAjax = '{{route("cadastraOuEditaPosAquecimento")}}';
+        var qualProcesso = $("#qual_processo").val();
         $.ajax({
             url: linkAjax,
             type: "GET",
@@ -67,8 +68,12 @@
             dataType: "json", 
             success: function(data) {
                 $("#wrapper-validation-pos-aquecimento").empty();
-                $('input[name="id_pos_aquecimento"]').val(data["id"]);                
-                mostraAba("gas")
+                $('input[name="id_pos_aquecimento"]').val(data["id"]); 
+                if(qualProcesso=="SMAW"){
+                    mostraAba("caracteristicas-eletricas");
+                }else{
+                    mostraAba("gas");
+                }
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 mostraErrosValidacao('#wrapper-validation-pos-aquecimento',jqXHR.responseJSON)

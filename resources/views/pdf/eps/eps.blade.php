@@ -27,25 +27,33 @@
             page-break-inside: avoid;
         }
 
+        table tr{
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+        }
+        
+        table td, table th{
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+        }
+
+        .borda-lateral{
+            border-left: 1px solid rgba(0,0,0,0.3);
+        }
+
     </style>
 </head>
 
 <body>
 @include('pdf.eps.header')
+@include('pdf.eps.processos')
 
-@foreach($eps->processos as $processo)
-    @include('pdf.eps.processos')
-    @include('pdf.eps.junta')
-    @include('pdf.eps.metalBase')
-    
-    @foreach($processo->metaisAdicao as $metal)
-        @include('pdf.eps.metalAdicao')
-    @endforeach
+@include('pdf.eps.junta')
 
-    @include('pdf.eps.posicoesEPreAquecimento')
-    @include('pdf.eps.posAquecimentoEGas')
-    @include('pdf.eps.caracteristicasEletricas')
-@endforeach
+@include('pdf.eps.metalBase')
+@include('pdf.eps.metalAdicao')
+@include('pdf.eps.posicoes')
+@include('pdf.eps.aquecimento')
+@include('pdf.eps.gas')
+@include('pdf.eps.caracteristicasEletricas') 
 
 @include('pdf.eps.tecnica')
 @include('pdf.eps.notas')

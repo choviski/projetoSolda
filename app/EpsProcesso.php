@@ -18,7 +18,6 @@ class EpsProcesso extends Model
         'tipo',
         'qual_processo',
         'eps_gas_id',
-        'eps_junta_id',
         'eps_caracteristicas_eletrica_id',
         'eps_pre_aquecimento_id',
         'eps_posicao_soldagem_id',
@@ -28,11 +27,6 @@ class EpsProcesso extends Model
     public function gas(): BelongsTo
     {
         return $this->belongsTo(Gas::class, 'eps_gas_id');
-    }
-
-    public function junta(): BelongsTo
-    {
-        return $this->belongsTo(Junta::class, 'eps_junta_id');
     }
 
     public function caracteristicasEletricas(): BelongsTo
@@ -48,6 +42,11 @@ class EpsProcesso extends Model
     public function preAquecimento(): BelongsTo
     {
         return $this->belongsTo(PreAquecimento::class, 'eps_pre_aquecimento_id');
+    }
+
+    public function juntas(): BelongsToMany
+    {
+        return $this->belongsToMany(Junta::class, 'processo_juntas', 'processo_id','junta_id');
     }
 
     public function posAquecimento(): BelongsTo

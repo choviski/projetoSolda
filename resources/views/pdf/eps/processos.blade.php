@@ -14,8 +14,15 @@
 <table class="table-processos">
     <thead>
       <tr>
-        <td colspan="2">PROCESSO: <b>{{$processo->qual_processo}}</b></td>
-        <td>TIPO: <b>{{$processo->tipo}}</b></td>
+        <td colspan="2">PROCESSO: 
+          @foreach($eps->processos as $index=>$processo)
+            <b>{{$processo->qual_processo}}{{ $loop->last ? '' : ' /' }}</b>
+          @endforeach
+        </td>
+        <td>TIPO:  
+        @foreach($eps->processos as $index=>$processo)
+          <b>{{$processo->tipo}}{{ $loop->last ? '' : ' /' }}</b>
+        @endforeach</td>
       </tr>
     </thead>
 </table>

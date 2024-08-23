@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Junta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -44,6 +45,40 @@ class EpsAvancada extends Model
             'id_empresa',
             'id'
         );
+    }
+
+    public function quatidadeMetaisAdicao(){
+        return $this->processos->sum(function ($processo) {
+            return $processo->metaisAdicao->count();
+        });
+    }
+
+    public function temTIG(){
+        foreach ($this->processos as $processo){
+            if ($processo->qual_processo=="TIG"){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function juntasUnicas(){
+        $processosIds = $this->processos->pluck('id');
+        
+        return Junta::whereHas('processos', function ($query) use ($processosIds) {
+            $query->whereIn('processo_id', $processosIds);
+        })->distinct()->get();
+    }
+
+    public function maiorQuantidadeAngulosJunta(){
+        $juntas = $this->juntasUnicas();
+
+        foreach ($juntas as $junta){
+            if ($junta->qtd_angulos == 2){
+                return 2;
+            }
+        }
+        return 1;
     }
 
 }

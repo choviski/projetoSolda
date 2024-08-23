@@ -63,21 +63,21 @@
                 <div class="form-col p-0 col-12">
                     <label for="camada_todas_amperes_li" class="mb-0 mt-1">Amperes:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_todas_amperes_li" placeholder="A" name="camada_todas_amperes_li">                     
+                        <input type="numeric" class="form-control" id="camada_todas_amperes_li" placeholder="A" name="camada_todas_amperes_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div>  
-                        <input type="text" class="form-control" id="camada_todas_amperes_ls" placeholder="A" name="camada_todas_amperes_ls">                     
+                        <input type="numeric" class="form-control" id="camada_todas_amperes_ls" placeholder="A" name="camada_todas_amperes_ls">                     
                     </div>
                 </div>
                 <div class="form-col  p-0 col-12">
                     <label for="camada_todas_volts_li" class="mb-0 mt-1" >Volts:</label>
                     <div class="input-group">
-                        <input type="text"  class="form-control" id="camada_todas_volts_li" placeholder="V" name="camada_todas_volts_li">                     
+                        <input type="numeric"  class="form-control" id="camada_todas_volts_li" placeholder="V" name="camada_todas_volts_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div> 
-                        <input type="text"  class="form-control" id="camada_todas_volts_ls" placeholder="V" name="camada_todas_volts_ls">                     
+                        <input type="numeric"  class="form-control" id="camada_todas_volts_ls" placeholder="V" name="camada_todas_volts_ls">                     
                     </div>
                 </div>
             </div>
@@ -90,21 +90,21 @@
                 <div class="form-col p-0 col-12">
                     <label for="camada_raiz_amperes_li" class="mb-0 mt-1">Amperes:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_raiz_amperes_li" placeholder="A" name="camada_raiz_amperes_li">                     
+                        <input type="numeric" class="form-control" id="camada_raiz_amperes_li" placeholder="A" name="camada_raiz_amperes_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div>  
-                        <input type="text" class="form-control" id="camada_raiz_amperes_ls" placeholder="A" name="camada_raiz_amperes_ls">                     
+                        <input type="numeric" class="form-control" id="camada_raiz_amperes_ls" placeholder="A" name="camada_raiz_amperes_ls">                     
                     </div>
                 </div>
                 <div class="form-col  p-0 col-12">
                     <label for="camada_raiz_volts_li" class="mb-0 mt-1" >Volts:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_raiz_volts_li" placeholder="V" name="camada_raiz_volts_li">                     
+                        <input type="numeric" class="form-control" id="camada_raiz_volts_li" placeholder="V" name="camada_raiz_volts_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div> 
-                        <input type="text" class="form-control" id="camada_raiz_volts_ls" placeholder="V" name="camada_raiz_volts_ls">                     
+                        <input type="numeric" class="form-control" id="camada_raiz_volts_ls" placeholder="V" name="camada_raiz_volts_ls">                     
                     </div>
                 </div>
             </div>
@@ -114,21 +114,21 @@
                 <div class="form-col p-0 col-12">
                     <label for="camada_acabamento_amperes_li" class="mb-0 mt-1">Amperes:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_acabamento_amperes_li" placeholder="A" name="camada_acabamento_amperes_li">                     
+                        <input type="numeric" class="form-control" id="camada_acabamento_amperes_li" placeholder="A" name="camada_acabamento_amperes_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div>  
-                        <input type="text" class="form-control" id="camada_acabamento_amperes_ls" placeholder="A" name="camada_acabamento_amperes_ls">                     
+                        <input type="numeric" class="form-control" id="camada_acabamento_amperes_ls" placeholder="A" name="camada_acabamento_amperes_ls">                     
                     </div>
                 </div>
                 <div class="form-col  p-0 col-12">
                     <label for="camada_acabamento_volts_li" class="mb-0 mt-1" >Volts:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_acabamento_volts_li" placeholder="V" name="camada_acabamento_volts_li">                     
+                        <input type="numeric" class="form-control" id="camada_acabamento_volts_li" placeholder="V" name="camada_acabamento_volts_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div> 
-                        <input type="text" class="form-control" id="camada_acabamento_volts_ls" placeholder="V" name="camada_acabamento_volts_ls">                     
+                        <input type="numeric" class="form-control" id="camada_acabamento_volts_ls" placeholder="V" name="camada_acabamento_volts_ls">                     
                     </div>
                 </div>
             </div>
@@ -138,21 +138,21 @@
                 <div class="form-col p-0 col-12">
                     <label for="camada_enchimento_amperes_li" class="mb-0 mt-1">Amperes:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="camada_enchimento_amperes_li" placeholder="A" name="camada_enchimento_amperes_li">                     
+                        <input type="numeric" class="form-control" id="camada_enchimento_amperes_li" placeholder="A" name="camada_enchimento_amperes_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div>  
-                        <input type="text"class="form-control" id="camada_enchimento_amperes_ls" placeholder="A" name="camada_enchimento_amperes_ls">                     
+                        <input type="numeric"class="form-control" id="camada_enchimento_amperes_ls" placeholder="A" name="camada_enchimento_amperes_ls">                     
                     </div>
                 </div>
                 <div class="form-col  p-0 col-12">
                     <label for="camada_enchimento_volts_li" class="mb-0 mt-1" >Volts:</label>
                     <div class="input-group">
-                        <input type="text"  class="form-control" id="camada_enchimento_volts_li" placeholder="V" name="camada_enchimento_volts_li">                     
+                        <input type="numeric"  class="form-control" id="camada_enchimento_volts_li" placeholder="V" name="camada_enchimento_volts_li">                     
                         <div class="input-group-append">
                             <div class="input-group-text">a</div>
                         </div> 
-                        <input type="text" class="form-control" id="camada_enchimento_volts_ls" placeholder="V" name="camada_enchimento_volts_ls">                     
+                        <input type="numeric" class="form-control" id="camada_enchimento_volts_ls" placeholder="V" name="camada_enchimento_volts_ls">                     
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@
             </div>
         </div>         
         <a class="btn btn-block btn-primary mt-2" onclick="adicionaCaracteristicasEletricas()">Terminar Cadastro</a>                                   
-        <a class="btn btn-block btn-outline-danger mt-2" onclick="mostraAba('gas')">Voltar</a>                                                      
+        <a class="btn btn-block btn-outline-danger mt-2" onclick="voltaCaracteristicasEletricas()">Voltar</a>                                                      
     </form>
 </div>
 
@@ -197,7 +197,6 @@
         }
     });
 
-
     function finalizaCadastroProcesso(processoId,processoNome){
         var divElement = $('<div></div>').addClass('mt-2');
         var inputElement = $('<input>').attr({
@@ -210,7 +209,6 @@
         divElement.append(inputElement, spanElement);
 
         $('#lista_processos').append(divElement);
-
     }
 
     function resetaFormularios(){
@@ -232,10 +230,16 @@
         $('#form-pos-aquecimento input[type="hidden"]').val('');
         $('#form-gas')[0].reset();
         $('#form-gas input[type="hidden"]').val('');
-        $('#form-caracteristicas-eletricas')[0].reset()
-        $('#form-caracteristicas-eletricas input[type="hidden"]').val('');;
+        $('#form-caracteristicas-eletricas')[0].reset();
+        $('#form-caracteristicas-eletricas input[type="hidden"]').val('');
         $('#lista-metal-base').empty();
         $('#lista-metal-adicao').empty();
+        $('#lista-junta').empty();
+        $('#clonar-juntas').css('display', 'block');
+        $('#fcaw-sem-gas').css('display', 'none');
+        $('#diametro_eletrodo_tig').prop('disabled',false);
+        $('#classificacao_consumivel_tig').prop('disabled',false);
+        $('#processo-title').text('Processo');
     }
 
     function adicionaCaracteristicasEletricas(){
@@ -259,4 +263,14 @@
             }
         });
     };   
+
+    function voltaCaracteristicasEletricas(){
+        var qualProcesso = $("#qual_processo").val();
+        var temProcessoCadastrado = $('#lista_processos').children('div').length > 0 ? true : false;
+        if(qualProcesso=="SMAW"){
+            temProcessoCadastrado ? mostraAba('posicao-soldagem') : mostraAba('pos-aquecimento')
+        }else{
+            mostraAba("processo");
+        }
+    }
 </script>

@@ -67,32 +67,35 @@
                     @endif
                     <option value="" >Qualquer um</option>
                     <option value="TIG">TIG</option>
+                    <option value="GMAW">GMAW (MIG/MAG)</option>
+                    <option value="FCAW">FCAW</option>
+                    <option value="SMAW">SMAW</option>
                 </select> 
                 
                 <label for="norma" class="form-label mb-1 mt-1">Norma da EPS: </label>                   
                 <input  type="text" name="norma" id="norma" class="form-control"
                 value="{{ isset($filtros["norma"][1]) ? $filtros["norma"][1] : '' }}">                      
 
-                <label for="processos-junta-imagem" class="form-label mb-1">Chanfro de junta: </label>                   
-                <select name="processos-junta-imagem" id="processos-junta-imagem" class="form-select">
+                <label for="processos-juntas-tipo_junta" class="form-label mb-1">Chanfro de junta: </label>                   
+                <select name="processos-juntas-tipo_junta" id="processos-juntas-tipo_junta" class="form-select">
                     <option value="" selected>Selecione o chanfro de Junta</option>
-                    @if(isset($filtros["processos-junta-imagem"]))
-                        <option selected value="{{$filtros["processos-junta-imagem"][2]}}">{{$filtros["processos-junta-imagem"][1]}}</option> 
+                    @if(isset($filtros["processos-juntas-tipo_junta"]))
+                        <option selected value="{{$filtros["processos-juntas-tipo_junta"][1]}}">{{$filtros["processos-juntas-tipo_junta"][1]}}</option> 
                     @endif
                     <option value="" >Qualquer uma</option>
-                    <option value="/juntas/junta-chanfro-em-j.jpg">Chanfro em J</option>
-                    <option value="/juntas/junta-chanfro-em-k.jpg">Chanfro em K</option>
-                    <option value="/juntas/junta-chanfro-em-u.jpg">Chanfro em U</option>
-                    <option value="/juntas/junta-chanfro-em-v.jpg">Chanfro em V</option>
-                    <option value="/juntas/junta-chanfro-em-x.jpg">Chanfro em X</option>
-                    <option value="/juntas/junta-chanfro-em-meio-v.jpg">Chanfro em meio V</option>
-                    <option value="/juntas/junta-chanfro-em-duplo-j.jpg">Chanfro em duplo J</option>
-                    <option value="/juntas/junta-chanfro-em-duplo-u.jpg">Chanfro em duplo U</option>
+                    <option value="Chanfro em J">Chanfro em J</option>
+                    <option value="Chanfro em K">Chanfro em K</option>
+                    <option value="Chanfro em U">Chanfro em U</option>
+                    <option value="Chanfro em V">Chanfro em V</option>
+                    <option value="Chanfro em X">Chanfro em X</option>
+                    <option value="Chanfro em meio V">Chanfro em meio V</option>
+                    <option value="Chanfro em duplo J">Chanfro em duplo J</option>
+                    <option value="Chanfro em duplo U">Chanfro em duplo U</option>
                 </select>                  
             
-                <label for="processos-junta-cota_t" class="form-label mb-1 mt-1">Cota T (Junta): </label>                   
-                <input type="text" name="processos-junta-cota_t" id="processos-junta-cota_t" class="form-control"
-                value="{{ isset($filtros["processos-junta-cota_t"][1]) ? $filtros["processos-junta-cota_t"][1] : '' }}">                    
+                <label for="processos-juntas-cota_t" class="form-label mb-1 mt-1">Cota T (Junta): </label>                   
+                <input type="text" name="processos-juntas-cota_t" id="processos-juntas-cota_t" class="form-control"
+                value="{{ isset($filtros["processos-juntas-cota_t"][1]) ? $filtros["processos-juntas-cota_t"][1] : '' }}">                    
             
                 <label for="processos-materiaisBases-tipo_grau" class="form-label mb-1 mt-1">Especificação tipo/grau (Metal base): </label>                   
                 <input type="text" name="processos-materiaisBases-tipo_grau" id="processos-materiaisBases-tipo_grau" class="form-control"

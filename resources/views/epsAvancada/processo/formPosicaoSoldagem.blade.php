@@ -47,6 +47,7 @@
     function adicionaPosicaoSoldagem(){
         var formData = $("#form-posicao-soldagem").serialize();
         var linkAjax = '{{route("cadastraOuEditaPosicaoSoldagem")}}';
+        var qualProcesso = $("#qual_processo").val();
         $.ajax({
             url: linkAjax,
             type: "GET",
@@ -54,8 +55,17 @@
             dataType: "json", 
             success: function(data) {
                 $("#wrapper-validation-posicao-soldagem").empty();
-                $('input[name="id_posicao_soldagem"]').val(data["id"]);                
-                mostraAba("pre-aquecimento");
+                $('input[name="id_posicao_soldagem"]').val(data["id"]);
+                var temProcessoCadastrado = $('#lista_processos').children('div').length > 0 ? true : false;
+                if(temProcessoCadastrado){
+                    if(qualProcesso=="SMAW"){
+                        mostraAba("caracteristicas-eletricas");
+                    }else{
+                        mostraAba("gas");
+                    }    
+                }else{                    
+                    mostraAba("pre-aquecimento");                
+                }              
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 mostraErrosValidacao('#wrapper-validation-posicao-soldagem',jqXHR.responseJSON)

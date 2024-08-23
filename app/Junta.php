@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,6 +15,7 @@ class Junta extends Model
 
     protected $fillable = [
         'imagem',
+        'tipo_junta',
         'artigo',
         'necessidade_remocao_retentor',
         'necessidade_remocao_cobre_junta',
@@ -29,8 +31,17 @@ class Junta extends Model
         'abertura_raiz',
     ];
 
-    public function processo(): HasOne
+    public function processos(): BelongsToMany
     {
-        return $this->hasOne(EpsProcesso::class, 'eps_jnuta_id');
+        return $this->belongsToMany(EpsProcesso::class, 'processo_juntas', 'junta_id', 'processo_id');
+    }
+
+    public function getJuntaImagePath(): String{
+        //$path = public_path()  . $eps->processos[0]->junta->imagem;
+        $path = public_path() . "/" . $this->imagem;
+        $type = pathinfo($path,PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $imagem_junta = 'data:image/'. $type. ';base64,' . base64_encode($data);
+        return $imagem_junta;   
     }
 }
